@@ -12,7 +12,6 @@ public class AuthController
 
         using (NpgsqlConnection conn = connectDB.GetConn())
         {
-            // Query JOIN sesuai ERD: User -> Kewenangan -> Role
             string sql = @"
                 SELECT u.*, r.nama_role 
                 FROM ""users"" u
@@ -28,14 +27,13 @@ public class AuthController
                 using (NpgsqlDataReader reader = cmd.ExecuteReader())
                 {
                     if (reader.Read())
-                    {
-                        // Jika data ditemukan dan dia adalah Kasir, buat objeknya
+                    {               
                         dataKasir = new Kasir(
                             Convert.ToInt32(reader["id_user"]),
                             reader["nama"].ToString(),
                             reader["username"].ToString(),
                             reader["password"].ToString(),
-                            "KSR-" + reader["id_user"] // Kode kasir dummy dari ID
+                            "KSR-" + reader["id_user"] 
                         );
                     }
                 }

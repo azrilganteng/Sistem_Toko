@@ -17,8 +17,15 @@ namespace Sistem_Toko
             InitializeComponent();
             _kasirActive = data;
 
-            // Tampilkan nama kasir di label/form title
-            this.Text = "Sistem Kasir - " + _kasirActive.Nama;
+         
+            TampilanKasir();
+        }
+
+        public void TampilanKasir()
+        {
+            // Contoh menampilkan nama kasir di label
+            LblToko.Text = "TOKO TANI SAMUDRA\n";
+            LblKasir.Text = "Selamat Datang Kasir: " + _kasirActive.Nama;
         }
     }
 }

@@ -36,7 +36,7 @@ namespace Sistem_Toko
             }
             else
             {
-                MessageBox.Show("Username/Password salah atau Anda bukan Kasir!", "Login Gagal");
+                MessageBox.Show("Username/Password salah!", "Login Gagal");
             }
         }
     }
