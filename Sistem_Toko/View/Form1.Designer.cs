@@ -42,7 +42,6 @@
             // groupBox1
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            groupBox1.BackgroundImage = (Image)resources.GetObject("groupBox1.BackgroundImage");
             groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
@@ -72,8 +71,9 @@
             // 
             label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label3.AutoSize = true;
-            label3.BackColor = SystemColors.ControlLight;
+            label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label3.ForeColor = SystemColors.ButtonHighlight;
             label3.Location = new Point(38, 181);
             label3.Name = "label3";
             label3.Size = new Size(93, 28);
@@ -85,11 +85,12 @@
             // 
             label2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label2.AutoSize = true;
-            label2.BackColor = SystemColors.ControlLight;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.BackColor = Color.Transparent;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = SystemColors.ButtonHighlight;
             label2.Location = new Point(38, 116);
             label2.Name = "label2";
-            label2.Size = new Size(99, 28);
+            label2.Size = new Size(106, 28);
             label2.TabIndex = 9;
             label2.Text = "Username";
             label2.TextAlign = ContentAlignment.MiddleCenter;
@@ -112,8 +113,9 @@
             // 
             LoginText.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             LoginText.AutoSize = true;
-            LoginText.BackColor = SystemColors.ControlLight;
+            LoginText.BackColor = Color.Transparent;
             LoginText.Font = new Font("Tahoma", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LoginText.ForeColor = Color.Honeydew;
             LoginText.Location = new Point(136, 23);
             LoginText.Margin = new Padding(0);
             LoginText.Name = "LoginText";
@@ -127,6 +129,8 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDarkDark;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1168, 568);
             Controls.Add(groupBox1);
             Name = "Form1";

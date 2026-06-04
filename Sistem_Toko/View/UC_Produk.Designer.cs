@@ -60,10 +60,11 @@
             KeranjangBtn.BackColor = Color.SkyBlue;
             KeranjangBtn.Location = new Point(3, 210);
             KeranjangBtn.Name = "KeranjangBtn";
-            KeranjangBtn.Size = new Size(50, 39);
+            KeranjangBtn.Size = new Size(84, 39);
             KeranjangBtn.TabIndex = 2;
-            KeranjangBtn.Text = "button1";
+            KeranjangBtn.Text = "Keranjang";
             KeranjangBtn.UseVisualStyleBackColor = false;
+            KeranjangBtn.Click += KeranjangBtn_Click;
             // 
             // BuyNowBtn
             // 
@@ -72,7 +73,7 @@
             BuyNowBtn.Name = "BuyNowBtn";
             BuyNowBtn.Size = new Size(120, 39);
             BuyNowBtn.TabIndex = 3;
-            BuyNowBtn.Text = "button2";
+            BuyNowBtn.Text = "Buy Now";
             BuyNowBtn.UseVisualStyleBackColor = false;
             // 
             // LblHarga
@@ -89,7 +90,7 @@
             // 
             LblStok.AutoSize = true;
             LblStok.Font = new Font("Segoe UI Emoji", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LblStok.Location = new Point(207, 174);
+            LblStok.Location = new Point(192, 174);
             LblStok.Name = "LblStok";
             LblStok.Size = new Size(38, 20);
             LblStok.TabIndex = 5;
@@ -99,6 +100,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.YellowGreen;
             Controls.Add(LblStok);
             Controls.Add(LblHarga);
             Controls.Add(BuyNowBtn);
