@@ -22,15 +22,14 @@ namespace Sistem_Toko
             string user = UsernameBox.Text;
             string pass = PasswordBox.Text;
 
-            AuthController auth = new AuthController();
-            Kasir loginResult = auth.ProsesLoginKasir(user, pass);
+            Kasir kasir= new Kasir(0,"","","");
 
-            if (loginResult != null)
+
+            if (kasir.Login (user,pass))
             {
-                MessageBox.Show($"Selamat Datang, {loginResult.Nama}!", "Login Berhasil");
+                MessageBox.Show($"Selamat Datang, {kasir.Nama}!", "Login Berhasil");
 
-                // Pindah ke FormKasir dan kirim data objek Kasir
-                FormKasir kasirPage = new FormKasir(loginResult);
+                FormKasir kasirPage = new FormKasir(kasir);
                 kasirPage.Show();
                 this.Hide();
             }

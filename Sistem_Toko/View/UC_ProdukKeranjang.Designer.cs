@@ -28,104 +28,71 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_ProdukKeranjang));
-            ProdGambarKeranjang = new PictureBox();
-            ProdNamaKeranjang = new Label();
+            ItemKeranjang = new Label();
             HargaKeranjang = new Label();
-            QtyKeranjang = new Label();
-            plusQty = new Button();
-            BatalKeranjang = new Button();
-            ((System.ComponentModel.ISupportInitialize)ProdGambarKeranjang).BeginInit();
+            Qty = new Label();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
-            // ProdGambarKeranjang
+            // ItemKeranjang
             // 
-            ProdGambarKeranjang.Location = new Point(19, 16);
-            ProdGambarKeranjang.Name = "ProdGambarKeranjang";
-            ProdGambarKeranjang.Size = new Size(145, 90);
-            ProdGambarKeranjang.TabIndex = 1;
-            ProdGambarKeranjang.TabStop = false;
-            // 
-            // ProdNamaKeranjang
-            // 
-            ProdNamaKeranjang.AutoSize = true;
-            ProdNamaKeranjang.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ProdNamaKeranjang.Location = new Point(170, 0);
-            ProdNamaKeranjang.Name = "ProdNamaKeranjang";
-            ProdNamaKeranjang.Size = new Size(198, 38);
-            ProdNamaKeranjang.TabIndex = 2;
-            ProdNamaKeranjang.Text = "Nama Produk";
+            ItemKeranjang.AutoSize = true;
+            ItemKeranjang.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ItemKeranjang.Location = new Point(231, 22);
+            ItemKeranjang.Name = "ItemKeranjang";
+            ItemKeranjang.Size = new Size(92, 31);
+            ItemKeranjang.TabIndex = 0;
+            ItemKeranjang.Text = "Produk";
             // 
             // HargaKeranjang
             // 
             HargaKeranjang.AutoSize = true;
-            HargaKeranjang.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            HargaKeranjang.Location = new Point(179, 38);
+            HargaKeranjang.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            HargaKeranjang.Location = new Point(231, 63);
             HargaKeranjang.Name = "HargaKeranjang";
-            HargaKeranjang.Size = new Size(57, 25);
-            HargaKeranjang.TabIndex = 3;
-            HargaKeranjang.Text = "harga";
+            HargaKeranjang.Size = new Size(65, 28);
+            HargaKeranjang.TabIndex = 1;
+            HargaKeranjang.Text = "Harga";
             // 
-            // QtyKeranjang
+            // Qty
             // 
-            QtyKeranjang.AutoSize = true;
-            QtyKeranjang.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            QtyKeranjang.Location = new Point(191, 75);
-            QtyKeranjang.Name = "QtyKeranjang";
-            QtyKeranjang.Size = new Size(23, 28);
-            QtyKeranjang.TabIndex = 4;
-            QtyKeranjang.Text = "1";
+            Qty.AutoSize = true;
+            Qty.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Qty.Location = new Point(231, 109);
+            Qty.Name = "Qty";
+            Qty.Size = new Size(23, 28);
+            Qty.TabIndex = 2;
+            Qty.Text = "1";
             // 
-            // plusQty
+            // pictureBox1
             // 
-            plusQty.BackColor = Color.Transparent;
-            plusQty.BackgroundImage = (Image)resources.GetObject("plusQty.BackgroundImage");
-            plusQty.BackgroundImageLayout = ImageLayout.Stretch;
-            plusQty.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            plusQty.Location = new Point(243, 65);
-            plusQty.Name = "plusQty";
-            plusQty.Size = new Size(42, 41);
-            plusQty.TabIndex = 5;
-            plusQty.UseVisualStyleBackColor = false;
-            // 
-            // BatalKeranjang
-            // 
-            BatalKeranjang.BackColor = Color.IndianRed;
-            BatalKeranjang.BackgroundImage = (Image)resources.GetObject("BatalKeranjang.BackgroundImage");
-            BatalKeranjang.BackgroundImageLayout = ImageLayout.Stretch;
-            BatalKeranjang.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            BatalKeranjang.Location = new Point(452, 16);
-            BatalKeranjang.Name = "BatalKeranjang";
-            BatalKeranjang.Size = new Size(101, 87);
-            BatalKeranjang.TabIndex = 6;
-            BatalKeranjang.UseVisualStyleBackColor = false;
-            BatalKeranjang.Click += BatalKeranjang_Click;
+            pictureBox1.Location = new Point(26, 16);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(157, 121);
+            pictureBox1.TabIndex = 3;
+            pictureBox1.TabStop = false;
             // 
             // UC_ProdukKeranjang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.DarkSeaGreen;
-            Controls.Add(BatalKeranjang);
-            Controls.Add(plusQty);
-            Controls.Add(QtyKeranjang);
+            Controls.Add(pictureBox1);
+            Controls.Add(Qty);
             Controls.Add(HargaKeranjang);
-            Controls.Add(ProdNamaKeranjang);
-            Controls.Add(ProdGambarKeranjang);
+            Controls.Add(ItemKeranjang);
             Name = "UC_ProdukKeranjang";
-            Size = new Size(572, 122);
-            ((System.ComponentModel.ISupportInitialize)ProdGambarKeranjang).EndInit();
+            Size = new Size(750, 150);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private PictureBox ProdGambarKeranjang;
-        private Label ProdNamaKeranjang;
+        private Label ItemKeranjang;
         private Label HargaKeranjang;
-        private Label QtyKeranjang;
-        private Button plusQty;
-        private Button BatalKeranjang;
+        private Label Qty;
+        private PictureBox pictureBox1;
     }
 }

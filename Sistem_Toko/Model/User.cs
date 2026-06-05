@@ -18,5 +18,5 @@ public abstract class User
         this.Password = password;
     }
 
-    public abstract void Login(); 
+    public abstract bool Login(string username,string password); 
 }

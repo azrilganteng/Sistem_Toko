@@ -56,11 +56,8 @@ namespace Sistem_Toko
         {
             if (_Parent != null && this._produkDetail != null)
             {
-                _Parent.Keranjang(this._produkDetail);
-            }
-            else
-            {
-                MessageBox.Show("Gagal menambahkan ke keranjang: Data produk tidak terinisialisasi dengan benar.", "Error");
+                _Parent.Keranjang(this._produkDetail); // Mengisi list di FormKasir
+                MessageBox.Show("Berhasil Menambahkan ke keranjang", "Sukses");
             }
         }
 

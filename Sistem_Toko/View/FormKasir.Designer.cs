@@ -39,13 +39,10 @@
             BibitBtn = new Button();
             PupukBtn = new Button();
             panel2 = new Panel();
-            BayarBtn = new Button();
             FlpProduk = new FlowLayoutPanel();
-            FlpKeranjang = new FlowLayoutPanel();
             imageList1 = new ImageList(components);
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            FlpProduk.SuspendLayout();
             SuspendLayout();
             // 
             // LblToko
@@ -138,7 +135,6 @@
             // panel2
             // 
             panel2.BackColor = Color.Transparent;
-            panel2.Controls.Add(BayarBtn);
             panel2.Controls.Add(ListKeranjangBtn);
             panel2.Controls.Add(StatusKirimBtn);
             panel2.Dock = DockStyle.Left;
@@ -147,39 +143,15 @@
             panel2.Size = new Size(250, 446);
             panel2.TabIndex = 5;
             // 
-            // BayarBtn
-            // 
-            BayarBtn.BackColor = Color.MediumSeaGreen;
-            BayarBtn.Location = new Point(41, 355);
-            BayarBtn.Name = "BayarBtn";
-            BayarBtn.Size = new Size(147, 54);
-            BayarBtn.TabIndex = 4;
-            BayarBtn.Text = "Bayar";
-            BayarBtn.UseVisualStyleBackColor = false;
-            BayarBtn.Visible = false;
-            // 
             // FlpProduk
             // 
             FlpProduk.AutoScroll = true;
             FlpProduk.BackColor = Color.Transparent;
-            FlpProduk.Controls.Add(FlpKeranjang);
             FlpProduk.Dock = DockStyle.Fill;
             FlpProduk.Location = new Point(250, 125);
             FlpProduk.Name = "FlpProduk";
             FlpProduk.Size = new Size(817, 446);
             FlpProduk.TabIndex = 6;
-            // 
-            // FlpKeranjang
-            // 
-            FlpKeranjang.AutoScroll = true;
-            FlpKeranjang.BackColor = Color.Transparent;
-            FlpKeranjang.FlowDirection = FlowDirection.TopDown;
-            FlpKeranjang.Location = new Point(3, 3);
-            FlpKeranjang.Name = "FlpKeranjang";
-            FlpKeranjang.Size = new Size(817, 446);
-            FlpKeranjang.TabIndex = 0;
-            FlpKeranjang.Visible = false;
-            FlpKeranjang.WrapContents = false;
             // 
             // imageList1
             // 
@@ -204,7 +176,6 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
-            FlpProduk.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -221,7 +192,5 @@
         private Button ObatBtn;
         private Button BibitBtn;
         private Button PupukBtn;
-        private FlowLayoutPanel FlpKeranjang;
-        private Button BayarBtn;
     }
 }

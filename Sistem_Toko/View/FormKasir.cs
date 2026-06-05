@@ -12,14 +12,13 @@ namespace Sistem_Toko
     public partial class FormKasir : Form
     {
         private Kasir _kasirActive;
-        public List<Produk> ListKeranjang = new List<Produk>();
         public Dictionary<string, int> ItemQty = new Dictionary<string, int>();
+        public List<Detail_orders> ListKeranjang = new List<Detail_orders>();
 
         public FormKasir(Kasir data)
         {
             InitializeComponent();
             _kasirActive = data;
-
 
             TampilanKasir();
             ShowProduk();
@@ -28,7 +27,6 @@ namespace Sistem_Toko
 
         public void TampilanKasir()
         {
-            // Contoh menampilkan nama kasir di label
             LblToko.Text = "TOKO TANI SAMUDRA\n";
             LblKasir.Text = "Selamat Datang Kasir: " + _kasirActive.Nama;
         }
@@ -47,84 +45,73 @@ namespace Sistem_Toko
 
         }
 
-        
-
         private void FormKasir_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
 
-        public void Keranjang(Produk PilProdduk)
+        private Detail_orders CariDiKeranjang(string namaProduk)
         {
-            bool InKeranjang = ItemQty.ContainsKey(PilProdduk.NamaProduk);
-            if (InKeranjang)
+            return ListKeranjang.Find(x => x.ProdukItem.NamaProduk == namaProduk);
+        }
+        public void Keranjang(Produk PilProduk)
+        {
+            Detail_orders itemEksis = CariDiKeranjang(PilProduk.NamaProduk);
+
+            if (itemEksis != null)
             {
-
-                bool stokMasihAda = ItemQty[PilProdduk.NamaProduk] < PilProdduk.Stok;
-
-                if (stokMasihAda)
+                // Jika barang sudah ada, cek apakah penambahan melebihi stok yang ada
+                if (itemEksis.Qty < PilProduk.Stok)
                 {
-                    ItemQty[PilProdduk.NamaProduk]++;
-                    MessageBox.Show($"Jumlah {PilProdduk.NamaProduk} di keranjang ditambah!", "Sukses");
+                    itemEksis.TambahQty();
                 }
                 else
                 {
-                    MessageBox.Show("Tidak bisa menambah jumlah, melebihi stok yang tersedia!", "Peringatan");
+                    MessageBox.Show($"Stok '{PilProduk.NamaProduk}' tidak mencukupi!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
             }
             else
             {
-                ListKeranjang.Add(PilProdduk);
-                ItemQty.Add(PilProdduk.NamaProduk, 1);
-                MessageBox.Show($"{PilProdduk.NamaProduk} berhasil dimasukkan ke keranjang!", "Sukses");
+                // Jika barang baru masuk keranjang, cek apakah stok tersedia
+                if (PilProduk.Stok > 0)
+                {
+                    ListKeranjang.Add(new Detail_orders(PilProduk, 1));
+                }
+                else
+                {
+                    MessageBox.Show($"Stok '{PilProduk.NamaProduk}' habis!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
             }
-        }
 
-        public void RefreshTampilanKeranjang()
-        {
-            FlpKeranjang.Controls.Clear();
-
-            foreach (var item in ListKeranjang)
-            {
-                int jumlahBeli = ItemQty[item.NamaProduk];
-                UC_ProdukKeranjang barisCart = new UC_ProdukKeranjang(this, item, jumlahBeli);
-                FlpKeranjang.Controls.Add(barisCart);
-            }
-            FlpKeranjang.PerformLayout();
         }
 
 
         private void ListKeranjangBtn_Click(object sender, EventArgs e)
         {
-            FlpProduk.Visible = false;
-            FlpKeranjang.Visible = true;
-            BayarBtn.Visible = true;
+            if (ListKeranjang.Count == 0)
+            {
+                MessageBox.Show("Keranjang belanja masih kosong!", "Informasi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
-            RefreshTampilanKeranjang();
+            // Instansiasi FormKeranjang baru dengan melempar data ListKeranjang saat ini
+            FormKeranjang halamanKeranjang = new FormKeranjang(this, this.ListKeranjang);
+
+            this.Hide();
+            // Tampilkan secara ShowDialog (modal) agar user fokus menyelesaikan transaksi di form tersebut
+            halamanKeranjang.ShowDialog();
+  
+      
         }
+
 
         private void PupukBtn_Click(object sender, EventArgs e)
         {
             FlpProduk.Visible = true;
-            FlpKeranjang.Visible = false;
-
-            BayarBtn.Visible = false;
         }
 
-        
-
-        // Fungsi untuk menghapus item (dipanggil dari tombol Batal di UC_CartItem)
-        //public void HapusDariKeranjang(Produk produk)
-        //{
-        //    ListKeranjang.Remove(produk);
-        //    ItemQty.Remove(produk.NamaProduk);
-
-        //    KeranjangBtn.Text = ;
-        //    MessageBox.Show($"{PilProdduk.NamaProduk} ditambahkan ke keranjang.", "Sukses");
-
-        //    // Segarkan ulang list di layar
-        //    RefreshTampilanKeranjang();
-        //}
 
 
     }
