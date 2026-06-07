@@ -130,7 +130,6 @@
             PupukBtn.TabIndex = 2;
             PupukBtn.Text = "Pupuk";
             PupukBtn.UseVisualStyleBackColor = true;
-            PupukBtn.Click += PupukBtn_Click;
             // 
             // panel2
             // 

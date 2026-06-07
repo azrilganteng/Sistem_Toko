@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_ProdukKeranjang));
             ItemKeranjang = new Label();
             HargaKeranjang = new Label();
-            Qty = new Label();
+            lblQty = new Label();
             pictureBox1 = new PictureBox();
+            PlusQty = new Button();
+            BatalBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -55,15 +58,15 @@
             HargaKeranjang.TabIndex = 1;
             HargaKeranjang.Text = "Harga";
             // 
-            // Qty
+            // lblQty
             // 
-            Qty.AutoSize = true;
-            Qty.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Qty.Location = new Point(231, 109);
-            Qty.Name = "Qty";
-            Qty.Size = new Size(23, 28);
-            Qty.TabIndex = 2;
-            Qty.Text = "1";
+            lblQty.AutoSize = true;
+            lblQty.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblQty.Location = new Point(231, 109);
+            lblQty.Name = "lblQty";
+            lblQty.Size = new Size(23, 28);
+            lblQty.TabIndex = 2;
+            lblQty.Text = "1";
             // 
             // pictureBox1
             // 
@@ -73,12 +76,39 @@
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
             // 
+            // PlusQty
+            // 
+            PlusQty.BackColor = Color.LightGreen;
+            PlusQty.BackgroundImage = (Image)resources.GetObject("PlusQty.BackgroundImage");
+            PlusQty.BackgroundImageLayout = ImageLayout.Stretch;
+            PlusQty.Location = new Point(276, 107);
+            PlusQty.Name = "PlusQty";
+            PlusQty.Size = new Size(47, 38);
+            PlusQty.TabIndex = 4;
+            PlusQty.UseVisualStyleBackColor = false;
+            PlusQty.Click += PlusQty_Click;
+            // 
+            // BatalBtn
+            // 
+            BatalBtn.BackColor = Color.Beige;
+            BatalBtn.BackgroundImage = (Image)resources.GetObject("BatalBtn.BackgroundImage");
+            BatalBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            BatalBtn.Location = new Point(618, 27);
+            BatalBtn.Name = "BatalBtn";
+            BatalBtn.Size = new Size(109, 93);
+            BatalBtn.TabIndex = 5;
+            BatalBtn.UseVisualStyleBackColor = false;
+            BatalBtn.Click += BatalBtn_Click;
+            // 
             // UC_ProdukKeranjang
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.YellowGreen;
+            Controls.Add(BatalBtn);
+            Controls.Add(PlusQty);
             Controls.Add(pictureBox1);
-            Controls.Add(Qty);
+            Controls.Add(lblQty);
             Controls.Add(HargaKeranjang);
             Controls.Add(ItemKeranjang);
             Name = "UC_ProdukKeranjang";
@@ -92,7 +122,9 @@
 
         private Label ItemKeranjang;
         private Label HargaKeranjang;
-        private Label Qty;
+        private Label lblQty;
         private PictureBox pictureBox1;
+        private Button PlusQty;
+        private Button BatalBtn;
     }
 }

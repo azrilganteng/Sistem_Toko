@@ -56,7 +56,7 @@ namespace Sistem_Toko
         {
             if (_Parent != null && this._produkDetail != null)
             {
-                _Parent.Keranjang(this._produkDetail); // Mengisi list di FormKasir
+                _Parent._kasirActive.Keranjang(this._produkDetail);
                 MessageBox.Show("Berhasil Menambahkan ke keranjang", "Sukses");
             }
         }

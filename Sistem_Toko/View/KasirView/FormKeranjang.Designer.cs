@@ -83,6 +83,7 @@
             PupukBtn.TabIndex = 2;
             PupukBtn.Text = "Pupuk";
             PupukBtn.UseVisualStyleBackColor = true;
+            PupukBtn.Click += PupukBtn_Click;
             // 
             // LblToko
             // 
@@ -125,7 +126,6 @@
             BayarBtn.TabIndex = 4;
             BayarBtn.Text = "Bayar";
             BayarBtn.UseVisualStyleBackColor = false;
-            BayarBtn.Visible = false;
             // 
             // ListKeranjangBtn
             // 
