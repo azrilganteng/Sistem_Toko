@@ -24,7 +24,7 @@ public class AuthController
                 {
                     if (reader.Read())
                     {               
-                        dataKasir = new Kasir(
+                            dataKasir = new Kasir(
                             Convert.ToInt32(reader["id_user"]),
                             reader["nama"].ToString(),
                             reader["username"].ToString(),

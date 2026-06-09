@@ -38,7 +38,7 @@ namespace Sistem_Toko
 
             foreach (var item in listProduk)
             {
-                UC_Produk ucProduk = new UC_Produk(this,item.Gambar, item.NamaProduk, item.Harga, item.Stok);
+                UC_Produk ucProduk = new UC_Produk(this, item.Id,item.Gambar, item.NamaProduk, item.Harga, item.Stok);
                 FlpProduk.Controls.Add(ucProduk);
             }
 
@@ -65,8 +65,8 @@ namespace Sistem_Toko
 
             this.Hide();
             halamanKeranjang.ShowDialog();
+
+            ShowProduk();
         }
-
-
     }
 }

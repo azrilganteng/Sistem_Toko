@@ -23,7 +23,7 @@ namespace Sistem_Toko.Controller
                 {
                     list.Add(new Produk
                     {
-
+                        Id = Convert.ToInt32(reader["id_produk"]),
                         NamaProduk = reader["nama_produk"].ToString(),
                         Harga = Convert.ToInt32(reader["harga"]),
                         Stok = Convert.ToInt32(reader["stok"]),

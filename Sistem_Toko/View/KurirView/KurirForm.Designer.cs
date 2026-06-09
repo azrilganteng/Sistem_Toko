@@ -1,6 +1,6 @@
 ﻿namespace Sistem_Toko
 {
-    partial class KasirForm
+    partial class KurirForm
     {
         /// <summary>
         /// Required designer variable.

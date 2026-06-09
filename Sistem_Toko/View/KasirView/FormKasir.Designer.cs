@@ -48,26 +48,28 @@
             // LblToko
             // 
             LblToko.AutoSize = true;
-            LblToko.Font = new Font("Book Antiqua", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblToko.Font = new Font("Calibri", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LblToko.Location = new Point(41, 9);
             LblToko.Name = "LblToko";
-            LblToko.Size = new Size(353, 73);
+            LblToko.Size = new Size(311, 73);
             LblToko.TabIndex = 0;
             LblToko.Text = "Nama Toko";
             // 
             // LblKasir
             // 
             LblKasir.AutoSize = true;
-            LblKasir.Font = new Font("Book Antiqua", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LblKasir.Font = new Font("Calibri", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             LblKasir.Location = new Point(54, 88);
             LblKasir.Name = "LblKasir";
-            LblKasir.Size = new Size(157, 37);
+            LblKasir.Size = new Size(141, 37);
             LblKasir.TabIndex = 1;
             LblKasir.Text = "User Notif";
             // 
             // ListKeranjangBtn
             // 
-            ListKeranjangBtn.BackColor = Color.GreenYellow;
+            ListKeranjangBtn.BackColor = Color.Transparent;
+            ListKeranjangBtn.BackgroundImage = (Image)resources.GetObject("ListKeranjangBtn.BackgroundImage");
+            ListKeranjangBtn.BackgroundImageLayout = ImageLayout.Stretch;
             ListKeranjangBtn.Cursor = Cursors.Hand;
             ListKeranjangBtn.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ListKeranjangBtn.Location = new Point(12, 51);
@@ -80,7 +82,9 @@
             // 
             // StatusKirimBtn
             // 
-            StatusKirimBtn.BackColor = Color.GreenYellow;
+            StatusKirimBtn.BackColor = Color.Transparent;
+            StatusKirimBtn.BackgroundImage = (Image)resources.GetObject("StatusKirimBtn.BackgroundImage");
+            StatusKirimBtn.BackgroundImageLayout = ImageLayout.Stretch;
             StatusKirimBtn.Cursor = Cursors.Hand;
             StatusKirimBtn.Font = new Font("Franklin Gothic Medium", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             StatusKirimBtn.Location = new Point(12, 146);
@@ -106,27 +110,36 @@
             // 
             // ObatBtn
             // 
-            ObatBtn.Location = new Point(927, 88);
+            ObatBtn.BackgroundImage = (Image)resources.GetObject("ObatBtn.BackgroundImage");
+            ObatBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            ObatBtn.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ObatBtn.Location = new Point(926, 77);
             ObatBtn.Name = "ObatBtn";
-            ObatBtn.Size = new Size(94, 29);
+            ObatBtn.Size = new Size(95, 40);
             ObatBtn.TabIndex = 4;
             ObatBtn.Text = "Obat";
             ObatBtn.UseVisualStyleBackColor = true;
             // 
             // BibitBtn
             // 
-            BibitBtn.Location = new Point(779, 88);
+            BibitBtn.BackgroundImage = (Image)resources.GetObject("BibitBtn.BackgroundImage");
+            BibitBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            BibitBtn.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BibitBtn.Location = new Point(781, 77);
             BibitBtn.Name = "BibitBtn";
-            BibitBtn.Size = new Size(94, 29);
+            BibitBtn.Size = new Size(92, 40);
             BibitBtn.TabIndex = 3;
             BibitBtn.Text = "Bibit";
             BibitBtn.UseVisualStyleBackColor = true;
             // 
             // PupukBtn
             // 
-            PupukBtn.Location = new Point(632, 88);
+            PupukBtn.BackgroundImage = (Image)resources.GetObject("PupukBtn.BackgroundImage");
+            PupukBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            PupukBtn.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            PupukBtn.Location = new Point(633, 77);
             PupukBtn.Name = "PupukBtn";
-            PupukBtn.Size = new Size(94, 29);
+            PupukBtn.Size = new Size(93, 40);
             PupukBtn.TabIndex = 2;
             PupukBtn.Text = "Pupuk";
             PupukBtn.UseVisualStyleBackColor = true;
@@ -162,8 +175,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlDark;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackColor = Color.LightGray;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1067, 571);
             Controls.Add(FlpProduk);

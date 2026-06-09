@@ -126,6 +126,7 @@
             BayarBtn.TabIndex = 4;
             BayarBtn.Text = "Bayar";
             BayarBtn.UseVisualStyleBackColor = false;
+            BayarBtn.Click += BayarBtn_Click;
             // 
             // ListKeranjangBtn
             // 

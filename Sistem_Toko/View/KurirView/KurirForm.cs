@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace Sistem_Toko
 {
-    public partial class KasirForm : Form
+    public partial class KurirForm : Form
     {
-        public KasirForm()
+        public KurirForm()
         {
             InitializeComponent();
         }

@@ -9,7 +9,7 @@ namespace Sistem_Toko
 {
     public partial class FormKeranjang : Form
     {
-        private FormKasir _formInduk;
+        public FormKasir _formInduk;
         private bool _isKembaliKeKasir = false;
         private List<Detail_orders> _listKeranjang;
         public FormKeranjang(FormKasir formInduk, List<Detail_orders> listKeranjang)
@@ -27,19 +27,23 @@ namespace Sistem_Toko
 
             foreach (Detail_orders item in _listKeranjang)
             {
-                UC_ProdukKeranjang ucItem = new UC_ProdukKeranjang(this,_formInduk, item.ProdukItem, item.Qty);
+                UC_ProdukKeranjang ucItem = new UC_ProdukKeranjang(this, _formInduk, item.ProdukItem, item.Qty);
                 FlpKeranjang.Controls.Add(ucItem);
             }
         }
         private void FormKeranjang_FormClosed(object sender, FormClosedEventArgs e)
         {
-  
+
             if (_isKembaliKeKasir)
             {
                 if (this._formInduk != null)
                 {
                     this._formInduk.Show();
                 }
+            }
+            else
+            {
+                Application.Exit();
             }
         }
         public void TmbhQty(string namaProduk)
@@ -54,7 +58,7 @@ namespace Sistem_Toko
                         TampilkanDaftarKeranjang();
                     }
                 }
-                
+
             }
         }
 
@@ -85,6 +89,29 @@ namespace Sistem_Toko
         private void PupukBtn_Click(object sender, EventArgs e)
         {
             _isKembaliKeKasir = true;
+            this.Close();
+        }
+
+        private void BayarBtn_Click(object sender, EventArgs e)
+        {
+            if (_listKeranjang == null || _listKeranjang.Count == 0)
+            {
+                MessageBox.Show("Tidak ada item untuk dibayar!", "Peringatan");
+                return;
+            }
+            FormPembayaran Bayar = new FormPembayaran(this, this._listKeranjang);
+            this.Hide();
+            Bayar.ShowDialog();
+
+            if (_listKeranjang.Count > 0 && !this.IsDisposed)
+            {
+                this.Show();
+            }
+        }
+
+        public void SelesaiBayar()
+        {
+            _isKembaliKeKasir = true; 
             this.Close();
         }
     }

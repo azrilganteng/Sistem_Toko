@@ -6,6 +6,7 @@ namespace Sistem_Toko
 {
     public class Detail_orders
     {
+        public int Id { get; set; }
         public Produk ProdukItem { get; set; }
         public int Qty { get; set; }
         public int HargaSatuan { get; set; }

@@ -14,8 +14,10 @@ public class Kasir : User
     {
        AuthController auth = new AuthController();
        Kasir kasir = auth.LoginKasir(username, password);
+
         if (kasir != null)
         {
+            this.ID = kasir.ID;
             this.Nama = kasir.Nama;
             this.Username = kasir.Username;
             this.Password = kasir.Password;
