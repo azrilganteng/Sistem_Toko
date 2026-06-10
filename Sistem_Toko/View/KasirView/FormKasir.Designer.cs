@@ -48,20 +48,20 @@
             // LblToko
             // 
             LblToko.AutoSize = true;
-            LblToko.Font = new Font("Calibri", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblToko.Font = new Font("Book Antiqua", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LblToko.Location = new Point(41, 9);
             LblToko.Name = "LblToko";
-            LblToko.Size = new Size(311, 73);
+            LblToko.Size = new Size(353, 73);
             LblToko.TabIndex = 0;
             LblToko.Text = "Nama Toko";
             // 
             // LblKasir
             // 
             LblKasir.AutoSize = true;
-            LblKasir.Font = new Font("Calibri", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LblKasir.Font = new Font("Book Antiqua", 18F);
             LblKasir.Location = new Point(54, 88);
             LblKasir.Name = "LblKasir";
-            LblKasir.Size = new Size(141, 37);
+            LblKasir.Size = new Size(157, 37);
             LblKasir.TabIndex = 1;
             LblKasir.Text = "User Notif";
             // 

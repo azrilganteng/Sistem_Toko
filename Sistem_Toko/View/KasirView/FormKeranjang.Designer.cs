@@ -166,6 +166,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.LightGray;
             ClientSize = new Size(1067, 571);
             Controls.Add(FlpKeranjang);
             Controls.Add(panel2);
