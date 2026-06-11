@@ -1,4 +1,4 @@
-namespace Sistem_Toko
+namespace Sistem_Toko.Model
 {
 class Program
     {

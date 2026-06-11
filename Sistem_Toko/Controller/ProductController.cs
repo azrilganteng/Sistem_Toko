@@ -15,7 +15,7 @@ namespace Sistem_Toko.Controller
          List<Produk> list = new List<Produk>();
          using (var conn = connectDB.GetConn())
             {
-                string sql = "SELECT nama_produk,harga,stok,gambar FROM produk";
+                string sql = "select * from kartu_produk";
                 var cmd = new NpgsqlCommand(sql, conn);
                 var reader = cmd.ExecuteReader();
 
@@ -23,7 +23,7 @@ namespace Sistem_Toko.Controller
                 {
                     list.Add(new Produk
                     {
-
+                        Id = Convert.ToInt32(reader["id_produk"]),
                         NamaProduk = reader["nama_produk"].ToString(),
                         Harga = Convert.ToInt32(reader["harga"]),
                         Stok = Convert.ToInt32(reader["stok"]),

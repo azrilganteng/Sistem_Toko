@@ -6,7 +6,7 @@ namespace Sistem_Toko.Model;
 
 public abstract class User
 {
-    public int ID { get; private set; }
+    public int ID { get; protected set; }
     public string Nama { get; set; }
     public string Username { get; set; }
     public string Password { get; set; }
@@ -18,5 +18,5 @@ public abstract class User
         this.Password = password;
     }
 
-    public abstract void Login(); 
+    public abstract bool Login(string username,string password); 
 }

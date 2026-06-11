@@ -6,18 +6,14 @@ namespace Sistem_Toko.Controller;
 
 public class AuthController
 {
-    public Kasir ProsesLoginKasir(string user, string pass)
+    public Kasir LoginKasir(string user, string pass)
     {
         Kasir dataKasir = null;
 
         using (NpgsqlConnection conn = connectDB.GetConn())
         {
-            string sql = @"
-                SELECT u.*, r.nama_role 
-                FROM ""users"" u
-                JOIN kewenangan k using(id_user)
-                JOIN roles r using(id_role)
-                WHERE u.username = @u AND u.password = @p AND r.nama_role = 'Kasir'";
+            string sql = @"select * from data_kasir
+                        WHERE username = @u AND password = @p";
 
             using (NpgsqlCommand cmd = new NpgsqlCommand(sql, conn))
             {
@@ -28,12 +24,11 @@ public class AuthController
                 {
                     if (reader.Read())
                     {               
-                        dataKasir = new Kasir(
+                            dataKasir = new Kasir(
                             Convert.ToInt32(reader["id_user"]),
                             reader["nama"].ToString(),
                             reader["username"].ToString(),
-                            reader["password"].ToString(),
-                            "KSR-" + reader["id_user"] 
+                            reader["password"].ToString()
                         );
                     }
                 }

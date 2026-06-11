@@ -39,13 +39,10 @@
             BibitBtn = new Button();
             PupukBtn = new Button();
             panel2 = new Panel();
-            BayarBtn = new Button();
             FlpProduk = new FlowLayoutPanel();
-            FlpKeranjang = new FlowLayoutPanel();
             imageList1 = new ImageList(components);
             panel1.SuspendLayout();
             panel2.SuspendLayout();
-            FlpProduk.SuspendLayout();
             SuspendLayout();
             // 
             // LblToko
@@ -61,7 +58,7 @@
             // LblKasir
             // 
             LblKasir.AutoSize = true;
-            LblKasir.Font = new Font("Book Antiqua", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LblKasir.Font = new Font("Book Antiqua", 18F);
             LblKasir.Location = new Point(54, 88);
             LblKasir.Name = "LblKasir";
             LblKasir.Size = new Size(157, 37);
@@ -70,7 +67,9 @@
             // 
             // ListKeranjangBtn
             // 
-            ListKeranjangBtn.BackColor = Color.GreenYellow;
+            ListKeranjangBtn.BackColor = Color.Transparent;
+            ListKeranjangBtn.BackgroundImage = (Image)resources.GetObject("ListKeranjangBtn.BackgroundImage");
+            ListKeranjangBtn.BackgroundImageLayout = ImageLayout.Stretch;
             ListKeranjangBtn.Cursor = Cursors.Hand;
             ListKeranjangBtn.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ListKeranjangBtn.Location = new Point(12, 51);
@@ -83,7 +82,9 @@
             // 
             // StatusKirimBtn
             // 
-            StatusKirimBtn.BackColor = Color.GreenYellow;
+            StatusKirimBtn.BackColor = Color.Transparent;
+            StatusKirimBtn.BackgroundImage = (Image)resources.GetObject("StatusKirimBtn.BackgroundImage");
+            StatusKirimBtn.BackgroundImageLayout = ImageLayout.Stretch;
             StatusKirimBtn.Cursor = Cursors.Hand;
             StatusKirimBtn.Font = new Font("Franklin Gothic Medium", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             StatusKirimBtn.Location = new Point(12, 146);
@@ -109,36 +110,43 @@
             // 
             // ObatBtn
             // 
-            ObatBtn.Location = new Point(927, 88);
+            ObatBtn.BackgroundImage = (Image)resources.GetObject("ObatBtn.BackgroundImage");
+            ObatBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            ObatBtn.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ObatBtn.Location = new Point(926, 77);
             ObatBtn.Name = "ObatBtn";
-            ObatBtn.Size = new Size(94, 29);
+            ObatBtn.Size = new Size(95, 40);
             ObatBtn.TabIndex = 4;
             ObatBtn.Text = "Obat";
             ObatBtn.UseVisualStyleBackColor = true;
             // 
             // BibitBtn
             // 
-            BibitBtn.Location = new Point(779, 88);
+            BibitBtn.BackgroundImage = (Image)resources.GetObject("BibitBtn.BackgroundImage");
+            BibitBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            BibitBtn.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BibitBtn.Location = new Point(781, 77);
             BibitBtn.Name = "BibitBtn";
-            BibitBtn.Size = new Size(94, 29);
+            BibitBtn.Size = new Size(92, 40);
             BibitBtn.TabIndex = 3;
             BibitBtn.Text = "Bibit";
             BibitBtn.UseVisualStyleBackColor = true;
             // 
             // PupukBtn
             // 
-            PupukBtn.Location = new Point(632, 88);
+            PupukBtn.BackgroundImage = (Image)resources.GetObject("PupukBtn.BackgroundImage");
+            PupukBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            PupukBtn.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            PupukBtn.Location = new Point(633, 77);
             PupukBtn.Name = "PupukBtn";
-            PupukBtn.Size = new Size(94, 29);
+            PupukBtn.Size = new Size(93, 40);
             PupukBtn.TabIndex = 2;
             PupukBtn.Text = "Pupuk";
             PupukBtn.UseVisualStyleBackColor = true;
-            PupukBtn.Click += PupukBtn_Click;
             // 
             // panel2
             // 
             panel2.BackColor = Color.Transparent;
-            panel2.Controls.Add(BayarBtn);
             panel2.Controls.Add(ListKeranjangBtn);
             panel2.Controls.Add(StatusKirimBtn);
             panel2.Dock = DockStyle.Left;
@@ -147,39 +155,15 @@
             panel2.Size = new Size(250, 446);
             panel2.TabIndex = 5;
             // 
-            // BayarBtn
-            // 
-            BayarBtn.BackColor = Color.MediumSeaGreen;
-            BayarBtn.Location = new Point(41, 355);
-            BayarBtn.Name = "BayarBtn";
-            BayarBtn.Size = new Size(147, 54);
-            BayarBtn.TabIndex = 4;
-            BayarBtn.Text = "Bayar";
-            BayarBtn.UseVisualStyleBackColor = false;
-            BayarBtn.Visible = false;
-            // 
             // FlpProduk
             // 
             FlpProduk.AutoScroll = true;
             FlpProduk.BackColor = Color.Transparent;
-            FlpProduk.Controls.Add(FlpKeranjang);
             FlpProduk.Dock = DockStyle.Fill;
             FlpProduk.Location = new Point(250, 125);
             FlpProduk.Name = "FlpProduk";
             FlpProduk.Size = new Size(817, 446);
             FlpProduk.TabIndex = 6;
-            // 
-            // FlpKeranjang
-            // 
-            FlpKeranjang.AutoScroll = true;
-            FlpKeranjang.BackColor = Color.Transparent;
-            FlpKeranjang.FlowDirection = FlowDirection.TopDown;
-            FlpKeranjang.Location = new Point(3, 3);
-            FlpKeranjang.Name = "FlpKeranjang";
-            FlpKeranjang.Size = new Size(817, 446);
-            FlpKeranjang.TabIndex = 0;
-            FlpKeranjang.Visible = false;
-            FlpKeranjang.WrapContents = false;
             // 
             // imageList1
             // 
@@ -191,8 +175,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlDark;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackColor = Color.LightGray;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1067, 571);
             Controls.Add(FlpProduk);
@@ -204,7 +187,6 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
-            FlpProduk.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -221,7 +203,5 @@
         private Button ObatBtn;
         private Button BibitBtn;
         private Button PupukBtn;
-        private FlowLayoutPanel FlpKeranjang;
-        private Button BayarBtn;
     }
 }

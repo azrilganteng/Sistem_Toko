@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_Produk));
             Gambar = new PictureBox();
             LblProduk = new Label();
             KeranjangBtn = new Button();
@@ -57,18 +58,22 @@
             // 
             // KeranjangBtn
             // 
-            KeranjangBtn.BackColor = Color.SkyBlue;
-            KeranjangBtn.Location = new Point(3, 210);
+            KeranjangBtn.BackColor = Color.Transparent;
+            KeranjangBtn.BackgroundImage = (Image)resources.GetObject("KeranjangBtn.BackgroundImage");
+            KeranjangBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            KeranjangBtn.Location = new Point(12, 197);
             KeranjangBtn.Name = "KeranjangBtn";
-            KeranjangBtn.Size = new Size(84, 39);
+            KeranjangBtn.Size = new Size(63, 52);
             KeranjangBtn.TabIndex = 2;
-            KeranjangBtn.Text = "Keranjang";
             KeranjangBtn.UseVisualStyleBackColor = false;
             KeranjangBtn.Click += KeranjangBtn_Click;
             // 
             // BuyNowBtn
             // 
-            BuyNowBtn.BackColor = Color.MediumSeaGreen;
+            BuyNowBtn.BackColor = Color.Transparent;
+            BuyNowBtn.BackgroundImage = (Image)resources.GetObject("BuyNowBtn.BackgroundImage");
+            BuyNowBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            BuyNowBtn.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BuyNowBtn.Location = new Point(125, 210);
             BuyNowBtn.Name = "BuyNowBtn";
             BuyNowBtn.Size = new Size(120, 39);
@@ -100,13 +105,16 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.YellowGreen;
+            BackColor = Color.Transparent;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             Controls.Add(LblStok);
             Controls.Add(LblHarga);
             Controls.Add(BuyNowBtn);
             Controls.Add(KeranjangBtn);
             Controls.Add(LblProduk);
             Controls.Add(Gambar);
+            DoubleBuffered = true;
             Name = "UC_Produk";
             Size = new Size(259, 261);
             ((System.ComponentModel.ISupportInitialize)Gambar).EndInit();
