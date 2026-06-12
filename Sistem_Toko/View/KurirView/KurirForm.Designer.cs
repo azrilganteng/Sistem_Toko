@@ -1,4 +1,4 @@
-﻿namespace Sistem_Toko
+namespace Sistem_Toko
 {
     partial class KurirForm
     {
@@ -37,3 +37,5 @@
         #endregion
     }
 }
+
+

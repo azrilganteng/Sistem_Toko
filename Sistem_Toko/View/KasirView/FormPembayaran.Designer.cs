@@ -1,4 +1,4 @@
-﻿namespace Sistem_Toko
+namespace Sistem_Toko
 {
     partial class FormPembayaran
     {
@@ -80,6 +80,15 @@
             Controls.Add(listBox1);
             Name = "FormPembayaran";
             Text = "FormPembayaran";
+            // INJECTED_MANUAL_UI
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.KonfirmBtn.BackColor = System.Drawing.Color.SeaGreen;
+            this.KonfirmBtn.ForeColor = System.Drawing.Color.White;
+            this.KonfirmBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KonfirmBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.KonfirmBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+
             ResumeLayout(false);
             PerformLayout();
         }
@@ -92,3 +101,5 @@
         private Button KonfirmBtn;
     }
 }
+
+

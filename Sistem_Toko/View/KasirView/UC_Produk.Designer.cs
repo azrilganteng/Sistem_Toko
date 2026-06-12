@@ -1,4 +1,4 @@
-﻿namespace Sistem_Toko
+namespace Sistem_Toko
 {
     partial class UC_Produk
     {
@@ -118,6 +118,20 @@
             Name = "UC_Produk";
             Size = new Size(259, 261);
             ((System.ComponentModel.ISupportInitialize)Gambar).EndInit();
+            // INJECTED_MANUAL_UI
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.KeranjangBtn.BackColor = System.Drawing.Color.SeaGreen;
+            this.KeranjangBtn.ForeColor = System.Drawing.Color.White;
+            this.KeranjangBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KeranjangBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.KeranjangBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BuyNowBtn.BackColor = System.Drawing.Color.SeaGreen;
+            this.BuyNowBtn.ForeColor = System.Drawing.Color.White;
+            this.BuyNowBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BuyNowBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BuyNowBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+
             ResumeLayout(false);
             PerformLayout();
         }
@@ -132,3 +146,5 @@
         private Label LblStok;
     }
 }
+
+

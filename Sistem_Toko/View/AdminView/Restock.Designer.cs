@@ -1,6 +1,6 @@
-﻿namespace Sistem_Toko.View.AdminView
+namespace Sistem_Toko.View.AdminView
 {
-    partial class Form1
+    partial class Restock
     {
         /// <summary>
         /// Required designer variable.
@@ -28,21 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            LblToko = new Label();
             SuspendLayout();
             // 
-            // Form1
+            // LblToko
+            // 
+            LblToko.AutoSize = true;
+            LblToko.Font = new Font("Book Antiqua", 45F);
+            LblToko.Location = new Point(53, 41);
+            LblToko.Name = "LblToko";
+            LblToko.Size = new Size(465, 92);
+            LblToko.TabIndex = 11;
+            LblToko.Text = "Toko Taniku";
+            // 
+            // Restock
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightGray;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            ClientSize = new Size(800, 450);
-            Name = "Form1";
-            Text = "Form1";
+            ClientSize = new Size(1168, 568);
+            Controls.Add(LblToko);
+            Name = "Restock";
+            Text = "Restock";
+            // INJECTED_MANUAL_UI
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+        private Label LblToko;
     }
 }
+
+

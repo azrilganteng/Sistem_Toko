@@ -6,13 +6,18 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Sistem_Toko
+namespace Sistem_Toko.View.AdminView
 {
-    public partial class KurirForm : Form
+    public partial class EditKaryawan : Form
     {
-        public KurirForm()
+        public EditKaryawan()
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+        }
     }
 }
+

@@ -1,4 +1,4 @@
-﻿namespace Sistem_Toko
+namespace Sistem_Toko
 {
     partial class UC_ProdukKeranjang
     {
@@ -114,6 +114,20 @@
             Name = "UC_ProdukKeranjang";
             Size = new Size(750, 150);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            // INJECTED_MANUAL_UI
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.PlusQty.BackColor = System.Drawing.Color.SeaGreen;
+            this.PlusQty.ForeColor = System.Drawing.Color.White;
+            this.PlusQty.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PlusQty.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PlusQty.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BatalBtn.BackColor = System.Drawing.Color.SeaGreen;
+            this.BatalBtn.ForeColor = System.Drawing.Color.White;
+            this.BatalBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BatalBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BatalBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+
             ResumeLayout(false);
             PerformLayout();
         }
@@ -128,3 +142,5 @@
         private Button BatalBtn;
     }
 }
+
+
