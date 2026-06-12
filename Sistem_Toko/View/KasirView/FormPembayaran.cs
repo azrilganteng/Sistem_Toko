@@ -1,4 +1,4 @@
-﻿using Npgsql;
+using Npgsql;
 using Sistem_Toko.Helpers;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿using Sistem_Toko.Helpers; // Tempat connectDB kamu
+using Sistem_Toko.Helpers; // Tempat connectDB kamu
 using Npgsql;
 using Sistem_Toko.Model;
 
@@ -37,7 +37,17 @@ public class AuthController
         return dataKasir;
     }
 
-    public bool LoginKurir(string user, string pass)
+<<<<<<< HEAD
+    public Admin LoginAdmin(string user, string pass)
+    {
+        Admin dataAdmin = null;
+
+        using (NpgsqlConnection conn = connectDB.GetConn())
+        {
+            string sql = @"select * from admin
+                        WHERE username = @u AND password = @p";
+=======
+    public kurir LoginKurir(string user, string pass)
     {
         bool isSuccess = false;
 
@@ -59,6 +69,11 @@ public class AuthController
                 using (NpgsqlDataReader reader = cmd.ExecuteReader())
                 {
                     if (reader.Read())
+<<<<<<< HEAD
+                    {               
+                             dataKurir = new kurir(
+                            //Convert.ToInt32(reader["id_admin"]),
+=======
                     {
                       
                         SessionUser.IdUser = Convert.ToInt32(reader["id_user"]);
@@ -74,6 +89,7 @@ public class AuthController
             }
         }
         return isSuccess;
-    }
+>>>>>>> a92420899f7b67f66023c890f5449b4e1c336052
+        }
 
-}
+    }

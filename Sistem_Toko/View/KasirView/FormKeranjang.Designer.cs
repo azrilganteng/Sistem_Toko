@@ -1,4 +1,4 @@
-﻿namespace Sistem_Toko
+namespace Sistem_Toko
 {
     partial class FormKeranjang
     {
@@ -192,6 +192,42 @@
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
+            // INJECTED_MANUAL_UI
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.ObatBtn.BackColor = System.Drawing.Color.SeaGreen;
+            this.ObatBtn.ForeColor = System.Drawing.Color.White;
+            this.ObatBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ObatBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ObatBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BibitBtn.BackColor = System.Drawing.Color.SeaGreen;
+            this.BibitBtn.ForeColor = System.Drawing.Color.White;
+            this.BibitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BibitBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BibitBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.PupukBtn.BackColor = System.Drawing.Color.SeaGreen;
+            this.PupukBtn.ForeColor = System.Drawing.Color.White;
+            this.PupukBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PupukBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.PupukBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.BayarBtn.BackColor = System.Drawing.Color.SeaGreen;
+            this.BayarBtn.ForeColor = System.Drawing.Color.White;
+            this.BayarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BayarBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BayarBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.ListKeranjangBtn.BackColor = System.Drawing.Color.SeaGreen;
+            this.ListKeranjangBtn.ForeColor = System.Drawing.Color.White;
+            this.ListKeranjangBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ListKeranjangBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ListKeranjangBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.StatusKirimBtn.BackColor = System.Drawing.Color.SeaGreen;
+            this.StatusKirimBtn.ForeColor = System.Drawing.Color.White;
+            this.StatusKirimBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.StatusKirimBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.StatusKirimBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.panel2.BackColor = System.Drawing.Color.MediumSeaGreen;
+
             ResumeLayout(false);
         }
 
@@ -210,3 +246,5 @@
         private FlowLayoutPanel FlpKeranjang;
     }
 }
+
+

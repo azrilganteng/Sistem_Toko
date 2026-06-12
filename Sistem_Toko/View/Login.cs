@@ -2,13 +2,17 @@ using Npgsql;
 using Sistem_Toko.Controller; // Sesuaikan dengan namespace connectDB kamu
 using Sistem_Toko.Helpers;
 using Sistem_Toko.Model;
+<<<<<<< HEAD:Sistem_Toko/View/Login.cs
+using Sistem_Toko.View.AdminView;
+=======
 using Sistem_Toko.View.KurirView;
+>>>>>>> a92420899f7b67f66023c890f5449b4e1c336052:Sistem_Toko/View/Form1.cs
 
 namespace Sistem_Toko
 {
-    public partial class Form1 : Form
+    public partial class Login : Form
     {
-        public Form1()
+        public Login()
         {
             InitializeComponent();
         }
@@ -24,13 +28,27 @@ namespace Sistem_Toko
             string user = UsernameBox.Text;
             string pass = PasswordBox.Text;
 
+<<<<<<< HEAD:Sistem_Toko/View/Login.cs
+            // Coba login sebagai Admin dulu
+            Admin admin = new Admin(0, "", "", "");
+            if (admin.Login(user, pass))
+=======
             Kasir kasir = new Kasir(0, "", "", "");
 
 
             if (kasir.Login(user, pass))
+>>>>>>> a92420899f7b67f66023c890f5449b4e1c336052:Sistem_Toko/View/Form1.cs
             {
-                MessageBox.Show($"Selamat Datang, {kasir.Nama}!", "Login Berhasil");
+                AdminForm adminPage = new AdminForm(admin);
+                adminPage.Show();
+                this.Hide();
+                return;
+            }
 
+            // Kalau bukan admin, coba login sebagai Kasir
+            Kasir kasir = new Kasir(0, "", "", "");
+            if (kasir.Login(user, pass))
+            {
                 FormKasir kasirPage = new FormKasir(kasir);
                 kasirPage.Show();
                 this.Hide();
