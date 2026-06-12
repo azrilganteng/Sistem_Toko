@@ -36,4 +36,37 @@ public class AuthController
         }
         return dataKasir;
     }
+
+    public kurir LoginKurir(string user, string pass)
+    {
+        kurir dataKurir = null;
+
+        using (NpgsqlConnection conn = connectDB.GetConn())
+        {
+            string sql = @"select * from users u
+                       join kewenangan k on u.id_user = k.id_user
+                       where u.username = @u AND u.password = @p
+                       AND k.id_role = 3";
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("u", user);
+                cmd.Parameters.AddWithValue("p", pass);
+
+                using (NpgsqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        dataKurir = new kurir(
+                            Convert.ToInt32(reader["id_user"]),
+                            reader["nama"].ToString(),
+                            reader["username"].ToString(),
+                            reader["password"].ToString()
+                        );
+                    }
+                }
+            }
+        }
+        return dataKurir;
+    }
 }
