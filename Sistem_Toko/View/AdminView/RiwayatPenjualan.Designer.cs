@@ -56,20 +56,17 @@ namespace Sistem_Toko.View.AdminView
             // 
             // Riwayat_Stok
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightGray;
+            BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1168, 568);
             Controls.Add(Grid_RiwayatPenjualan);
             Controls.Add(LblToko);
+            Font = new Font("Segoe UI", 10F);
             Name = "Riwayat_Stok";
             Text = "RiwayatPenjualan";
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)Grid_RiwayatPenjualan).EndInit();
-            // INJECTED_MANUAL_UI
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-
             ResumeLayout(false);
             PerformLayout();
         }

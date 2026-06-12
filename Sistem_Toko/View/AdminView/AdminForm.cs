@@ -32,7 +32,7 @@ namespace Sistem_Toko
             // Tampilkan nama user yang sedang aktif
             if (_admin != null)
             {
-                label1.Text = "Selamat datang, " + _admin.Nama + "!";
+                Lbl_User.Text = "Selamat datang, " + _admin.Nama + "!";
             }
         }
 
@@ -62,23 +62,23 @@ namespace Sistem_Toko
 
         private void Btn_Profil_Click(object sender, EventArgs e)
         {
-            // Tampilkan info profil admin dalam MessageBox sederhana
-            // (ganti dengan form Profil khusus jika sudah dibuat)
-            if (_admin != null)
+            if (_admin == null) return;
+
+            string pesan = $"Nama     : {_admin.Nama}\nUsername : {_admin.Username}";
+
+            DialogResult result = MessageBox.Show(
+                pesan + "\n\nApakah Anda ingin Logout?",
+                "Profil Admin",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.Yes)
             {
-                MessageBox.Show(
-                    $"Nama     : {_admin.Nama}\n" +
-                    $"Username : {_admin.Username}",
-                    "Profil Admin",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
+                Login loginForm = new Login();
+                loginForm.Show();
+                this.Close();
             }
         }
-
-        private void label1_Click(object sender, EventArgs e) {}
-        private void label1_Click_1(object sender, EventArgs e) {}
-        private void button5_Click(object sender, EventArgs e) {}
     }
 }
-

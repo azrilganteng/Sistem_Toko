@@ -30,7 +30,7 @@ namespace Sistem_Toko
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
             LblToko = new Label();
-            label1 = new Label();
+            Lbl_User = new Label();
             Btn_Stok_Gudang = new Button();
             Btn_Daftar_Karyawan = new Button();
             Btn_Riwayat_Penjualan = new Button();
@@ -41,24 +41,22 @@ namespace Sistem_Toko
             // LblToko
             // 
             LblToko.AutoSize = true;
-            LblToko.Font = new Font("Book Antiqua", 26F);
+            LblToko.Font = new Font("Book Antiqua", 45F);
             LblToko.Location = new Point(51, 42);
             LblToko.Name = "LblToko";
-            LblToko.Size = new Size(272, 54);
+            LblToko.Size = new Size(465, 92);
             LblToko.TabIndex = 0;
             LblToko.Text = "Toko Taniku";
-            LblToko.Click += label1_Click;
             // 
-            // label1
+            // Lbl_User
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Book Antiqua", 15F);
-            label1.Location = new Point(61, 109);
-            label1.Name = "label1";
-            label1.Size = new Size(192, 31);
-            label1.TabIndex = 1;
-            label1.Text = "Selamat datang ";
-            label1.Click += label1_Click_1;
+            Lbl_User.AutoSize = true;
+            Lbl_User.Font = new Font("Book Antiqua", 15F);
+            Lbl_User.Location = new Point(61, 134);
+            Lbl_User.Name = "Lbl_User";
+            Lbl_User.Size = new Size(192, 31);
+            Lbl_User.TabIndex = 1;
+            Lbl_User.Text = "Selamat datang ";
             // 
             // Btn_Stok_Gudang
             // 
@@ -68,9 +66,9 @@ namespace Sistem_Toko
             Btn_Stok_Gudang.FlatStyle = FlatStyle.Flat;
             Btn_Stok_Gudang.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             Btn_Stok_Gudang.ForeColor = Color.White;
-            Btn_Stok_Gudang.Location = new Point(61, 183);
+            Btn_Stok_Gudang.Location = new Point(61, 200);
             Btn_Stok_Gudang.Name = "Btn_Stok_Gudang";
-            Btn_Stok_Gudang.Size = new Size(192, 52);
+            Btn_Stok_Gudang.Size = new Size(262, 52);
             Btn_Stok_Gudang.TabIndex = 2;
             Btn_Stok_Gudang.Text = "Stok Gudang";
             Btn_Stok_Gudang.UseVisualStyleBackColor = false;
@@ -83,9 +81,9 @@ namespace Sistem_Toko
             Btn_Daftar_Karyawan.FlatStyle = FlatStyle.Flat;
             Btn_Daftar_Karyawan.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             Btn_Daftar_Karyawan.ForeColor = Color.White;
-            Btn_Daftar_Karyawan.Location = new Point(61, 241);
+            Btn_Daftar_Karyawan.Location = new Point(61, 275);
             Btn_Daftar_Karyawan.Name = "Btn_Daftar_Karyawan";
-            Btn_Daftar_Karyawan.Size = new Size(192, 52);
+            Btn_Daftar_Karyawan.Size = new Size(262, 52);
             Btn_Daftar_Karyawan.TabIndex = 3;
             Btn_Daftar_Karyawan.Text = "Daftar Karyawan";
             Btn_Daftar_Karyawan.UseVisualStyleBackColor = false;
@@ -98,9 +96,9 @@ namespace Sistem_Toko
             Btn_Riwayat_Penjualan.FlatStyle = FlatStyle.Flat;
             Btn_Riwayat_Penjualan.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             Btn_Riwayat_Penjualan.ForeColor = Color.White;
-            Btn_Riwayat_Penjualan.Location = new Point(61, 299);
+            Btn_Riwayat_Penjualan.Location = new Point(61, 349);
             Btn_Riwayat_Penjualan.Name = "Btn_Riwayat_Penjualan";
-            Btn_Riwayat_Penjualan.Size = new Size(192, 52);
+            Btn_Riwayat_Penjualan.Size = new Size(262, 52);
             Btn_Riwayat_Penjualan.TabIndex = 4;
             Btn_Riwayat_Penjualan.Text = "Riwayat Penjualan";
             Btn_Riwayat_Penjualan.UseVisualStyleBackColor = false;
@@ -113,9 +111,9 @@ namespace Sistem_Toko
             Btn_Restock.FlatStyle = FlatStyle.Flat;
             Btn_Restock.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             Btn_Restock.ForeColor = Color.White;
-            Btn_Restock.Location = new Point(61, 357);
+            Btn_Restock.Location = new Point(61, 422);
             Btn_Restock.Name = "Btn_Restock";
-            Btn_Restock.Size = new Size(192, 52);
+            Btn_Restock.Size = new Size(262, 52);
             Btn_Restock.TabIndex = 5;
             Btn_Restock.Text = "Restock";
             Btn_Restock.UseVisualStyleBackColor = false;
@@ -129,29 +127,34 @@ namespace Sistem_Toko
             Btn_Profil.FlatStyle = FlatStyle.Flat;
             Btn_Profil.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             Btn_Profil.ForeColor = Color.White;
-            Btn_Profil.Location = new Point(640, 42);
+            Btn_Profil.Location = new Point(1006, 25);
             Btn_Profil.Name = "Btn_Profil";
             Btn_Profil.Size = new Size(105, 98);
             Btn_Profil.TabIndex = 6;
             Btn_Profil.UseVisualStyleBackColor = false;
-            Btn_Profil.Click += button5_Click;
             // 
             // AdminForm
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1168, 568);
             Controls.Add(Btn_Profil);
             Controls.Add(Btn_Restock);
             Controls.Add(Btn_Riwayat_Penjualan);
             Controls.Add(Btn_Daftar_Karyawan);
             Controls.Add(Btn_Stok_Gudang);
-            Controls.Add(label1);
+            Controls.Add(Lbl_User);
             Controls.Add(LblToko);
             Font = new Font("Segoe UI", 10F);
             Name = "AdminForm";
             Text = "AdminForm";
+            Load += new EventHandler(AdminForm_Load);
+            Btn_Stok_Gudang.Click += new EventHandler(Btn_Stok_Gudang_Click);
+            Btn_Daftar_Karyawan.Click += new EventHandler(Btn_Daftar_Karyawan_Click);
+            Btn_Riwayat_Penjualan.Click += new EventHandler(Btn_Riwayat_Penjualan_Click);
+            Btn_Restock.Click += new EventHandler(Btn_Restock_Click);
+            Btn_Profil.Click += new EventHandler(Btn_Profil_Click);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -159,7 +162,7 @@ namespace Sistem_Toko
         #endregion
 
         private Label LblToko;
-        private Label label1;
+        private Label Lbl_User;
         private Button Btn_Stok_Gudang;
         private Button Btn_Daftar_Karyawan;
         private Button Btn_Riwayat_Penjualan;

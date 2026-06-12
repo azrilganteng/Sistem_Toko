@@ -229,9 +229,10 @@ namespace Sistem_Toko.View.AdminView
             Btn_Simpan.Location = new Point(617, 380);
             Btn_Simpan.Name = "Btn_Simpan";
             Btn_Simpan.Size = new Size(133, 34);
-            Btn_Simpan.TabIndex = 37;
+            Btn_Simpan.TabIndex = 20;
             Btn_Simpan.Text = "Simpan";
             Btn_Simpan.UseVisualStyleBackColor = false;
+            Btn_Simpan.Click += Btn_Simpan_Click;
             // 
             // label10
             // 
@@ -272,6 +273,7 @@ namespace Sistem_Toko.View.AdminView
             Font = new Font("Segoe UI", 10F);
             Name = "EditKaryawan";
             Text = "EditKaryawan";
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }

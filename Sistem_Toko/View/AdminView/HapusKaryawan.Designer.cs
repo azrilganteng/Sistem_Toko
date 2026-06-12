@@ -75,6 +75,7 @@ namespace Sistem_Toko.View.AdminView
             Btn_Simpan.TabIndex = 42;
             Btn_Simpan.Text = "Simpan";
             Btn_Simpan.UseVisualStyleBackColor = false;
+            Btn_Simpan.Click += Btn_Simpan_Click;
             // 
             // HapusKaryawan
             // 
@@ -89,6 +90,7 @@ namespace Sistem_Toko.View.AdminView
             Font = new Font("Segoe UI", 10F);
             Name = "HapusKaryawan";
             Text = "HapusKaryawan";
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }

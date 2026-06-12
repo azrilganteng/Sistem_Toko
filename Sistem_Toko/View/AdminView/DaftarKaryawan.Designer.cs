@@ -29,11 +29,11 @@ namespace Sistem_Toko.View.AdminView
         private void InitializeComponent()
         {
             LblToko = new Label();
-            Grid_Riwayat_Stok = new DataGridView();
+            Grid_Daftar_Karyawan = new DataGridView();
             Btn_Tambah = new Button();
             Btn_Hapus = new Button();
             Btn_Edit = new Button();
-            ((System.ComponentModel.ISupportInitialize)Grid_Riwayat_Stok).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Grid_Daftar_Karyawan).BeginInit();
             SuspendLayout();
             // 
             // LblToko
@@ -46,17 +46,17 @@ namespace Sistem_Toko.View.AdminView
             LblToko.TabIndex = 1;
             LblToko.Text = "Toko Taniku";
             // 
-            // Grid_Riwayat_Stok
+            // Grid_Daftar_Karyawan
             // 
-            Grid_Riwayat_Stok.BackgroundColor = Color.LightGray;
-            Grid_Riwayat_Stok.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            Grid_Riwayat_Stok.GridColor = Color.LightGray;
-            Grid_Riwayat_Stok.Location = new Point(51, 177);
-            Grid_Riwayat_Stok.Name = "Grid_Riwayat_Stok";
-            Grid_Riwayat_Stok.RowHeadersWidth = 51;
-            Grid_Riwayat_Stok.Size = new Size(922, 379);
-            Grid_Riwayat_Stok.TabIndex = 9;
-            Grid_Riwayat_Stok.CellContentClick += Grid_Riwayat_Stok_CellContentClick;
+            Grid_Daftar_Karyawan.BackgroundColor = Color.LightGray;
+            Grid_Daftar_Karyawan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            Grid_Daftar_Karyawan.GridColor = Color.LightGray;
+            Grid_Daftar_Karyawan.Location = new Point(51, 177);
+            Grid_Daftar_Karyawan.Name = "Grid_Daftar_Karyawan";
+            Grid_Daftar_Karyawan.RowHeadersWidth = 51;
+            Grid_Daftar_Karyawan.Size = new Size(922, 379);
+            Grid_Daftar_Karyawan.TabIndex = 9;
+            Grid_Daftar_Karyawan.CellClick += Grid_Daftar_Karyawan_CellClick;
             // 
             // Btn_Tambah
             // 
@@ -118,14 +118,14 @@ namespace Sistem_Toko.View.AdminView
             Controls.Add(Btn_Edit);
             Controls.Add(Btn_Hapus);
             Controls.Add(Btn_Tambah);
-            Controls.Add(Grid_Riwayat_Stok);
+            Controls.Add(Grid_Daftar_Karyawan);
             Controls.Add(LblToko);
             Font = new Font("Segoe UI", 10F);
             IsMdiContainer = true;
             Name = "DaftarKaryawan";
             Text = "DaftarKaryawan";
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)Grid_Riwayat_Stok).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Grid_Daftar_Karyawan).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -133,7 +133,7 @@ namespace Sistem_Toko.View.AdminView
         #endregion
 
         private Label LblToko;
-        private DataGridView Grid_Riwayat_Stok;
+        private DataGridView Grid_Daftar_Karyawan;
         private Button Btn_Tambah;
         private Button Btn_Hapus;
         private Button Btn_Edit;
