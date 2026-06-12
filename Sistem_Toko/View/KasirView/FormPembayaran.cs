@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
+using System.Transactions;
 using System.Windows.Forms;
 
 namespace Sistem_Toko
@@ -15,9 +16,11 @@ namespace Sistem_Toko
     {
         private FormKeranjang _formKeranjang;
         private List<Detail_orders> _listBarang;
-        public FormPembayaran(FormKeranjang formKeranjang, List<Detail_orders> listBarang)
+        private FormKasir _formKasir;
+        public FormPembayaran(FormKasir formKasir, FormKeranjang formKeranjang, List<Detail_orders> listBarang)
         {
             InitializeComponent();
+            this._formKasir = formKasir;
             this._formKeranjang = formKeranjang;
             this._listBarang = listBarang;
 
@@ -47,9 +50,9 @@ namespace Sistem_Toko
                     MessageBox.Show("Pembayaran berhasil! Stok produk telah diperbarui.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     _listBarang.Clear();
 
-                    this.Close();
                     _formKeranjang.SelesaiBayar();
-
+                    _formKasir.Show();
+                    this.Close();
                 }
             }
         }
@@ -58,39 +61,50 @@ namespace Sistem_Toko
         {
             using (var conn = connectDB.GetConn())
             {
-                
+                using (var transaction = conn.BeginTransaction()) 
+                {
                     try
                     {
-                        var daftarItem = new List<string>();
-                        foreach (var item in _listBarang)
-                        {
-                            decimal subTotalHarga = (decimal)(item.Qty * item.ProdukItem.Harga);
+                        int idOrderBaru = 0;
 
-                        string formatBaris = $"{item.ProdukItem.Id},{item.Qty},{subTotalHarga}";
-                        daftarItem.Add(formatBaris);
-                    }
-                        string sql = "select simpan_transaksi(@idUser, @metodeBayar, @metodeKirim, @items);";
-
-                        using (var cmd = new NpgsqlCommand(sql, conn))
+                        string sqlOrder = "SELECT buat_order_baru(@idUser, @metodeBayar, @metodeKirim);";
+                        using (var cmdOrder = new NpgsqlCommand(sqlOrder, conn))
                         {
                             int idKasirAktif = this._formKeranjang._formInduk._kasirActive.ID;
 
-                            cmd.Parameters.AddWithValue("idUser", idKasirAktif);
-                            cmd.Parameters.AddWithValue("metodeBayar", "Online");
-                            cmd.Parameters.AddWithValue("metodeKirim", "Langsung");
+                            cmdOrder.Parameters.AddWithValue("idUser", idKasirAktif);
+                            cmdOrder.Parameters.AddWithValue("metodeBayar", "Online");
+                            cmdOrder.Parameters.AddWithValue("metodeKirim", "Langsung");
 
-                            cmd.Parameters.AddWithValue("items", daftarItem.ToArray());
 
-                        cmd.ExecuteNonQuery();
+                            idOrderBaru = Convert.ToInt32(cmdOrder.ExecuteScalar());
                         }
-                        return true;
+                        foreach (var item in _listBarang)
+                        {
+                            string sqlDetail = "SELECT tambah_detail_order(@idOrder, @idProduk, @jumlah, @harga);";
+                            using (var cmdDetail = new NpgsqlCommand(sqlDetail, conn))
+                            {
+                                decimal subTotalHarga = (decimal)(item.Qty * item.ProdukItem.Harga);
 
+                                cmdDetail.Parameters.AddWithValue("idOrder", idOrderBaru);
+                                cmdDetail.Parameters.AddWithValue("idProduk", item.ProdukItem.Id);
+                                cmdDetail.Parameters.AddWithValue("jumlah", item.Qty);
+                                cmdDetail.Parameters.AddWithValue("harga", subTotalHarga);
+
+                                cmdDetail.ExecuteScalar();
+                            }
+                        }
+                        transaction.Commit();
+                        return true;
                     }
                     catch (Exception ex)
                     {
                         MessageBox.Show("Gagal memperbarui data ke database: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
+                }
+
+                    
                 
             }
         }

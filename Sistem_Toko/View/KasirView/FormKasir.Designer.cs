@@ -127,7 +127,7 @@
             BibitBtn.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             BibitBtn.Location = new Point(781, 77);
             BibitBtn.Name = "BibitBtn";
-            BibitBtn.Size = new Size(92, 40);
+            BibitBtn.Size = new Size(93, 40);
             BibitBtn.TabIndex = 3;
             BibitBtn.Text = "Bibit";
             BibitBtn.UseVisualStyleBackColor = true;

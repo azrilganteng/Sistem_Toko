@@ -32,6 +32,8 @@
             lblTotal = new Label();
             txtNota = new TextBox();
             KonfirmBtn = new Button();
+            CboMetodeKirim = new ComboBox();
+            CboMetodeBayar = new ComboBox();
             SuspendLayout();
             // 
             // listBox1
@@ -54,10 +56,15 @@
             // 
             // txtNota
             // 
+            txtNota.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNota.Location = new Point(199, 158);
+            txtNota.Multiline = true;
             txtNota.Name = "txtNota";
-            txtNota.Size = new Size(677, 27);
+            txtNota.ReadOnly = true;
+            txtNota.ScrollBars = ScrollBars.Vertical;
+            txtNota.Size = new Size(677, 213);
             txtNota.TabIndex = 4;
+            txtNota.WordWrap = false;
             // 
             // KonfirmBtn
             // 
@@ -69,11 +76,27 @@
             KonfirmBtn.UseVisualStyleBackColor = true;
             KonfirmBtn.Click += KonfirmBtn_Click;
             // 
+            // CboMetodeKirim
+            // 
+            CboMetodeKirim.Location = new Point(289, 423);
+            CboMetodeKirim.Name = "CboMetodeKirim";
+            CboMetodeKirim.Size = new Size(151, 28);
+            CboMetodeKirim.TabIndex = 0;
+            // 
+            // CboMetodeBayar
+            // 
+            CboMetodeBayar.Location = new Point(289, 483);
+            CboMetodeBayar.Name = "CboMetodeBayar";
+            CboMetodeBayar.Size = new Size(151, 28);
+            CboMetodeBayar.TabIndex = 6;
+            // 
             // FormPembayaran
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1067, 571);
+            Controls.Add(CboMetodeBayar);
+            Controls.Add(CboMetodeKirim);
             Controls.Add(KonfirmBtn);
             Controls.Add(txtNota);
             Controls.Add(lblTotal);
@@ -90,5 +113,7 @@
         private Label lblTotal;
         private TextBox txtNota;
         private Button KonfirmBtn;
+        private ComboBox CboMetodeKirim;
+        private ComboBox CboMetodeBayar;
     }
 }

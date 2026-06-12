@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKeranjang));
             panel1 = new Panel();
             ObatBtn = new Button();
             BibitBtn = new Button();
@@ -59,27 +60,36 @@
             // 
             // ObatBtn
             // 
-            ObatBtn.Location = new Point(927, 88);
+            ObatBtn.BackgroundImage = (Image)resources.GetObject("ObatBtn.BackgroundImage");
+            ObatBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            ObatBtn.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            ObatBtn.Location = new Point(926, 77);
             ObatBtn.Name = "ObatBtn";
-            ObatBtn.Size = new Size(94, 29);
+            ObatBtn.Size = new Size(93, 40);
             ObatBtn.TabIndex = 4;
             ObatBtn.Text = "Obat";
             ObatBtn.UseVisualStyleBackColor = true;
             // 
             // BibitBtn
             // 
-            BibitBtn.Location = new Point(779, 88);
+            BibitBtn.BackgroundImage = (Image)resources.GetObject("BibitBtn.BackgroundImage");
+            BibitBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            BibitBtn.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BibitBtn.Location = new Point(781, 77);
             BibitBtn.Name = "BibitBtn";
-            BibitBtn.Size = new Size(94, 29);
+            BibitBtn.Size = new Size(93, 40);
             BibitBtn.TabIndex = 3;
             BibitBtn.Text = "Bibit";
             BibitBtn.UseVisualStyleBackColor = true;
             // 
             // PupukBtn
             // 
-            PupukBtn.Location = new Point(632, 88);
+            PupukBtn.BackgroundImage = (Image)resources.GetObject("PupukBtn.BackgroundImage");
+            PupukBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            PupukBtn.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            PupukBtn.Location = new Point(633, 77);
             PupukBtn.Name = "PupukBtn";
-            PupukBtn.Size = new Size(94, 29);
+            PupukBtn.Size = new Size(93, 40);
             PupukBtn.TabIndex = 2;
             PupukBtn.Text = "Pupuk";
             PupukBtn.UseVisualStyleBackColor = true;
@@ -119,7 +129,9 @@
             // 
             // BayarBtn
             // 
-            BayarBtn.BackColor = Color.MediumSeaGreen;
+            BayarBtn.BackColor = Color.Transparent;
+            BayarBtn.BackgroundImage = (Image)resources.GetObject("BayarBtn.BackgroundImage");
+            BayarBtn.BackgroundImageLayout = ImageLayout.Stretch;
             BayarBtn.Location = new Point(41, 355);
             BayarBtn.Name = "BayarBtn";
             BayarBtn.Size = new Size(147, 54);
@@ -130,7 +142,9 @@
             // 
             // ListKeranjangBtn
             // 
-            ListKeranjangBtn.BackColor = Color.GreenYellow;
+            ListKeranjangBtn.BackColor = Color.Transparent;
+            ListKeranjangBtn.BackgroundImage = (Image)resources.GetObject("ListKeranjangBtn.BackgroundImage");
+            ListKeranjangBtn.BackgroundImageLayout = ImageLayout.Stretch;
             ListKeranjangBtn.Cursor = Cursors.Hand;
             ListKeranjangBtn.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             ListKeranjangBtn.Location = new Point(12, 51);
@@ -142,7 +156,9 @@
             // 
             // StatusKirimBtn
             // 
-            StatusKirimBtn.BackColor = Color.GreenYellow;
+            StatusKirimBtn.BackColor = Color.Transparent;
+            StatusKirimBtn.BackgroundImage = (Image)resources.GetObject("StatusKirimBtn.BackgroundImage");
+            StatusKirimBtn.BackgroundImageLayout = ImageLayout.Stretch;
             StatusKirimBtn.Cursor = Cursors.Hand;
             StatusKirimBtn.Font = new Font("Franklin Gothic Medium", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             StatusKirimBtn.Location = new Point(12, 146);

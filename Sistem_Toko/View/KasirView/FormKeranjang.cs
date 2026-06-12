@@ -12,12 +12,14 @@ namespace Sistem_Toko
         public FormKasir _formInduk;
         private bool _isKembaliKeKasir = false;
         private List<Detail_orders> _listKeranjang;
+       
         public FormKeranjang(FormKasir formInduk, List<Detail_orders> listKeranjang)
         {
             InitializeComponent();
             this._formInduk = formInduk;
             this._listKeranjang = listKeranjang;
 
+            _formInduk.TampilanKasir();
             TampilkanDaftarKeranjang();
         }
 
@@ -31,21 +33,21 @@ namespace Sistem_Toko
                 FlpKeranjang.Controls.Add(ucItem);
             }
         }
-        private void FormKeranjang_FormClosed(object sender, FormClosedEventArgs e)
-        {
+        //private void FormKeranjang_FormClosed(object sender, FormClosedEventArgs e)
+        //{
 
-            if (_isKembaliKeKasir)
-            {
-                if (this._formInduk != null)
-                {
-                    this._formInduk.Show();
-                }
-            }
-            else
-            {
-                Application.Exit();
-            }
-        }
+        //    if (_isKembaliKeKasir)
+        //    {
+        //        if (this._formInduk != null)
+        //        {
+        //            this._formInduk.Show();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Application.Exit();
+        //    }
+        //}
         public void TmbhQty(string namaProduk)
         {
             foreach (Detail_orders item in _listKeranjang)
@@ -71,6 +73,7 @@ namespace Sistem_Toko
                 {
                     Hapus = item;
                     break;
+
                 }
             }
 
@@ -82,13 +85,14 @@ namespace Sistem_Toko
                 if (_listKeranjang.Count == 0)
                 {
                     MessageBox.Show("Keranjang Anda sekarang kosong.", "Informasi");
+                    _formInduk.Show();
                     this.Close();
                 }
             }
         }
         private void PupukBtn_Click(object sender, EventArgs e)
         {
-            _isKembaliKeKasir = true;
+            _formInduk.Show();
             this.Close();
         }
 
@@ -99,7 +103,7 @@ namespace Sistem_Toko
                 MessageBox.Show("Tidak ada item untuk dibayar!", "Peringatan");
                 return;
             }
-            FormPembayaran Bayar = new FormPembayaran(this, this._listKeranjang);
+            FormPembayaran Bayar = new FormPembayaran(this._formInduk, this,this._listKeranjang);
             this.Hide();
             Bayar.ShowDialog();
 
@@ -111,7 +115,8 @@ namespace Sistem_Toko
 
         public void SelesaiBayar()
         {
-            _isKembaliKeKasir = true; 
+            FlpKeranjang.Controls.Clear();
+            //_isKembaliKeKasir = true; 
             this.Close();
         }
     }
