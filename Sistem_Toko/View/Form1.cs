@@ -1,6 +1,8 @@
 using Npgsql;
 using Sistem_Toko.Controller; // Sesuaikan dengan namespace connectDB kamu
+using Sistem_Toko.Helpers;
 using Sistem_Toko.Model;
+using Sistem_Toko.View.KurirView;
 
 namespace Sistem_Toko
 {
@@ -22,10 +24,10 @@ namespace Sistem_Toko
             string user = UsernameBox.Text;
             string pass = PasswordBox.Text;
 
-            Kasir kasir= new Kasir(0,"","","");
+            Kasir kasir = new Kasir(0, "", "", "");
 
 
-            if (kasir.Login (user,pass))
+            if (kasir.Login(user, pass))
             {
                 MessageBox.Show($"Selamat Datang, {kasir.Nama}!", "Login Berhasil");
 
@@ -35,8 +37,28 @@ namespace Sistem_Toko
             }
             else
             {
-                MessageBox.Show("Username/Password salah!", "Login Gagal");
+                kurir dataKurir = new kurir(0, "", "", "");
+
+                if (dataKurir.Login(user, pass))
+                {
+                    MessageBox.Show($"Selamat Datang, {dataKurir.Nama}!", "Login Berhasil");
+
+                    SessionUser.IdUser = dataKurir.ID;
+                    SessionUser.Nama = dataKurir.Nama;
+                    SessionUser.IdRole = 3;
+
+                    kurirDashboard dashboard = new kurirDashboard();
+                    dashboard.Show();
+                    this.Hide();
+                    return;
+                }
+
+                else
+                {
+                    MessageBox.Show("Username/Password salah!", "Login Gagal");
+                }
             }
         }
+
     }
 }
