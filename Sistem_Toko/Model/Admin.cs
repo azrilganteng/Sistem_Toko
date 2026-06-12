@@ -5,6 +5,8 @@ namespace Sistem_Toko.Model;
 
 public class Admin : User
 {
+    internal kurir dataKurir;
+
     public Admin(int id, string nama, string username, string password)
         : base(id, nama, username, password)
     {
