@@ -37,7 +37,7 @@ namespace Sistem_Toko
             }
             else
             {
-                kurir dataKurir = new kurir(0, "", "", "");
+                Kurir dataKurir = new Kurir(0, "", "", "");
 
                 if (dataKurir.Login(user, pass))
                 {

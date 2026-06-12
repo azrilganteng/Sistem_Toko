@@ -3,10 +3,10 @@ using System;
 
 namespace Sistem_Toko.Model
 {
-    public class kurir : User
+    public class Kurir : User
     {
         private List<Detail_orders> ListKeranjang = new List<Detail_orders>();
-        public kurir(int id, string nama, string username, string password)
+        public Kurir(int id, string nama, string username, string password)
             : base(id, nama, username, password)
         {
         }
@@ -14,7 +14,7 @@ namespace Sistem_Toko.Model
         public override bool Login(string username, string password)
         {
             AuthController auth = new AuthController();
-            kurir kurir = auth.LoginKurir(username, password);
+            Kurir kurir = auth.LoginKurir(username, password);
 
             if (kurir != null)
             {

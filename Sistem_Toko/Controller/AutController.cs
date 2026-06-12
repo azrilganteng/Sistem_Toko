@@ -37,16 +37,14 @@ public class AuthController
         return dataKasir;
     }
 
-    public kurir LoginKurir(string user, string pass)
+    public Kurir LoginKurir(string user, string pass)
     {
-        kurir dataKurir = null;
+        Kurir dataKurir = null;
 
         using (NpgsqlConnection conn = connectDB.GetConn())
         {
-            string sql = @"select * from users u
-                       join kewenangan k on u.id_user = k.id_user
-                       where u.username = @u AND u.password = @p
-                       AND k.id_role = 3";
+            string sql = @"select * from data_kurir
+                        WHERE username = @u AND password = @p";
 
             using (NpgsqlCommand cmd = new NpgsqlCommand(sql, conn))
             {
@@ -57,7 +55,7 @@ public class AuthController
                 {
                     if (reader.Read())
                     {
-                        dataKurir = new kurir(
+                        dataKurir = new Kurir(
                             Convert.ToInt32(reader["id_user"]),
                             reader["nama"].ToString(),
                             reader["username"].ToString(),
