@@ -20,14 +20,15 @@ namespace Sistem_Toko.Controller
 
                 while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
-                        list.Add(new Kurir
-                        {
-                            Nama = reader["nama"].ToString(),
-                            PlatNo = reader["plat_no"].ToString()
-                        });
-                    }
+                  
+                    list.Add(new Kurir(
+                        0,                                   
+                        reader["nama"].ToString(),            
+                        "",                                   
+                        "",                                   
+                        reader["plat_no"].ToString(),         
+                        true                                  
+                    ));
                 }
             }
             return list;

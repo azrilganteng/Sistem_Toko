@@ -13,12 +13,8 @@ namespace Sistem_Toko.Helpers
             "Port=5432;" +
             "Username=postgres;" +
             "Password=12345678;" + //password kalian
-<<<<<<< HEAD
             "Database=Sistem_Toko_UAS_Sem2;"; //database kalian
-=======
-            "Database=Projek_SQL;"; //database kalian
 
->>>>>>> a92420899f7b67f66023c890f5449b4e1c336052
         public static NpgsqlConnection GetConn() //ini method manggil database
         {
             NpgsqlConnection conn = new NpgsqlConnection(connString);

@@ -37,16 +37,19 @@ public class AuthController
         return dataKasir;
     }
 
-    public kurir LoginKurir(string user, string pass)
+    public bool LoginKurir(string user, string pass)
     {
-        kurir dataKurir = null;
+        bool isSuccess = false;
 
         using (NpgsqlConnection conn = connectDB.GetConn())
         {
-            string sql = @"select * from users u
-                       join kewenangan k on u.id_user = k.id_user
-                       where u.username = @u AND u.password = @p
-                       AND k.id_role = 3";
+            string sql = @"SELECT u.id_user, u.username, u.password, u.nama, 
+                      u.no_hp, u.email, u.is_ready,
+                      kw.id_role
+               FROM users u
+               JOIN kewenangan kw ON u.id_user = kw.id_user
+               WHERE u.username = @u AND u.password = @p
+               AND kw.id_role = 3";
 
             using (NpgsqlCommand cmd = new NpgsqlCommand(sql, conn))
             {
@@ -57,16 +60,20 @@ public class AuthController
                 {
                     if (reader.Read())
                     {
-                        dataKurir = new kurir(
-                            Convert.ToInt32(reader["id_user"]),
-                            reader["nama"].ToString(),
-                            reader["username"].ToString(),
-                            reader["password"].ToString()
-                        );
+                      
+                        SessionUser.IdUser = Convert.ToInt32(reader["id_user"]);
+                        SessionUser.Username = reader["username"].ToString();
+                        SessionUser.Nama = reader["nama"].ToString();
+                        SessionUser.NoHp = reader["no_hp"].ToString();
+                        SessionUser.Email = reader["email"].ToString();
+                        SessionUser.IdRole = Convert.ToInt32(reader["id_role"]);
+                        SessionUser.IsReady = Convert.ToBoolean(reader["is_ready"]); 
+                        isSuccess = true;
                     }
                 }
             }
         }
-        return dataKurir;
+        return isSuccess;
     }
+
 }
