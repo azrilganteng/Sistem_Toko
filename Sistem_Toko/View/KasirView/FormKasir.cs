@@ -1,4 +1,4 @@
-﻿using Sistem_Toko.Controller;
+using Sistem_Toko.Controller;
 using Sistem_Toko.Helpers;
 using Sistem_Toko.Model;
 using System;
@@ -35,10 +35,20 @@ namespace Sistem_Toko
             LblToko.Text = "TOKO TANI SAMUDRA\n";
             LblKasir.Text = "Selamat Datang Kasir: " + SessionUser.Nama;
         }
-        public void ShowProduk()
+        public void ShowProduk(int? idKategori = null)
         {
             ProductController pc = new ProductController();
-            var listProduk = pc.GetProduct();
+            List<Produk> listProduk;
+
+            if (idKategori.HasValue)
+            {
+                listProduk = pc.GetProduct(idKategori.Value);
+            }
+            else
+            {
+                listProduk = pc.GetAll();
+            }
+
             FlpProduk.Controls.Clear();
 
             foreach (var item in listProduk)
@@ -55,7 +65,6 @@ namespace Sistem_Toko
 
         public void Keranjang(Produk PilProduk)
         {
-            // Memanggil fungsi baru di Model Kasir yang merespons status dalam bentuk teks string
             string hasilValidasi = _kasirActive.TambahKeKeranjang(PilProduk);
 
             if (hasilValidasi != "SUKSES")
@@ -78,6 +87,7 @@ namespace Sistem_Toko
             halamanKeranjang.ShowDialog();
 
             ShowProduk();
+            this.Show();
         }
 
 
@@ -87,6 +97,27 @@ namespace Sistem_Toko
 
             this.Hide();
             halamanStatus.ShowDialog();
+            this.Show();
+        }
+
+        private void PupukBtn_Click(object sender, EventArgs e)
+        {
+            ShowProduk(1);
+        }
+
+        private void BibitBtn_Click(object sender, EventArgs e)
+        {
+            ShowProduk(2);
+        }
+
+        private void ObatBtn_Click(object sender, EventArgs e)
+        {
+            ShowProduk(3);
+        }
+
+        private void SemuaBtn_Click(object sender, EventArgs e)
+        {
+            ShowProduk();
         }
     }
 }

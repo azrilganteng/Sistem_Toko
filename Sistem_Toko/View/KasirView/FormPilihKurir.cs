@@ -19,6 +19,7 @@ namespace Sistem_Toko.View.KasirView
         {
             InitializeComponent();
 
+            NamaToko.Text = "TOKO TANI SAMUDRA\n";
             ListKurirReady();
         }
 
@@ -29,7 +30,7 @@ namespace Sistem_Toko.View.KasirView
 
             CboKurir.DataSource = listKurir;
             CboKurir.DisplayMember = "Nama";
-            CboKurir.ValueMember = "ID"; 
+            CboKurir.ValueMember = "ID";
         }
 
         private void Kirmkan_Click(object sender, EventArgs e)
@@ -60,6 +61,11 @@ namespace Sistem_Toko.View.KasirView
             {
                 this.DialogResult = DialogResult.Cancel;
             }
+        }
+
+        private void BackBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

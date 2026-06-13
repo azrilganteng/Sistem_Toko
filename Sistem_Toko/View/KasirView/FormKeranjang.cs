@@ -19,8 +19,9 @@ namespace Sistem_Toko
             this._formInduk = formInduk;
             this._listKeranjang = listKeranjang;
 
-            _formInduk.TampilanKasir();
+            LblKasir.Text = "Kasir: " + Sistem_Toko.Helpers.SessionUser.Nama;
             TampilkanDaftarKeranjang();
+            HitungTotal();
         }
 
         public void TampilkanDaftarKeranjang()
@@ -32,6 +33,18 @@ namespace Sistem_Toko
                 UC_ProdukKeranjang ucItem = new UC_ProdukKeranjang(this, _formInduk, item.ProdukItem, item.Qty);
                 FlpKeranjang.Controls.Add(ucItem);
             }
+
+            HitungTotal();
+        }
+
+        private void HitungTotal()
+        {
+            double total = 0;
+            foreach (Detail_orders item in _listKeranjang)
+            {
+                total += (double)item.Qty * item.ProdukItem.Harga;
+            }
+            LblTotalKeranjang.Text = $"Total: Rp. {total:N0}";
         }
 
         public void TmbhQty(string namaProduk)
@@ -43,6 +56,31 @@ namespace Sistem_Toko
                     if (item.Qty < item.ProdukItem.Stok)
                     {
                         item.TambahQty();
+                        TampilkanDaftarKeranjang();
+                    }
+                    break;
+                }
+            }
+        }
+
+        public void UbahQty(string namaProduk, int newQty)
+        {
+            foreach (Detail_orders item in _listKeranjang)
+            {
+                if (item.ProdukItem.NamaProduk == namaProduk)
+                {
+                    if (newQty <= item.ProdukItem.Stok && newQty > 0)
+                    {
+                        item.Qty = newQty;
+                        TampilkanDaftarKeranjang();
+                    }
+                    else if (newQty == 0)
+                    {
+                        HapusItem(namaProduk);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Stok tidak mencukupi!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         TampilkanDaftarKeranjang();
                     }
                     break;
@@ -76,12 +114,6 @@ namespace Sistem_Toko
             }
         }
 
-        private void PupukBtn_Click(object sender, EventArgs e)
-        {
-            if (_formInduk != null) _formInduk.Show();
-            this.Close();
-        }
-
         private void BayarBtn_Click(object sender, EventArgs e)
         {
             if (_listKeranjang == null || _listKeranjang.Count == 0)
@@ -98,6 +130,10 @@ namespace Sistem_Toko
             {
                 this.Close();
             }
+            else
+            {
+                TampilkanDaftarKeranjang();
+            }
         }
 
 
@@ -110,17 +146,21 @@ namespace Sistem_Toko
 
         private void FormKeranjang_FormClosing(object sender, FormClosingEventArgs e)
         {
-
-            if (_listKeranjang.Count > 0 && _formInduk != null)
+            if (_formInduk != null)
             {
                 _formInduk.Show();
-                _formInduk.TampilanKasir();
+                _formInduk.ShowProduk();
             }
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void BackBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

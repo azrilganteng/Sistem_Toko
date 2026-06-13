@@ -71,8 +71,47 @@ namespace Sistem_Toko.Model
             var adapter = new NpgsqlDataAdapter(sql, conn);
             var dt = new DataTable();
             adapter.Fill(dt);
-
             return dt;
+        }
+
+        public static List<Produk> GetProductKategory(int idKategori)
+        {
+            List<Produk> list = new List<Produk>();
+
+            using (var conn = connectDB.GetConn())
+            {
+                if (conn.State == ConnectionState.Closed) conn.Open();
+
+                string sql = "SELECT id_produk, nama_produk, harga, stok, gambar, id_kategori_produk, deskripsi FROM produk WHERE id_kategori_produk = @id_kat AND stok > 0;";
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("id_kat", idKategori);
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Produk p = new Produk
+                            {
+                                Id = Convert.ToInt32(reader["id_produk"]),
+                                NamaProduk = reader["nama_produk"].ToString(),
+                                Harga = Convert.ToInt32(reader["harga"]),
+                                Stok = Convert.ToInt32(reader["stok"]),
+                                IdKategori = Convert.ToInt32(reader["id_kategori_produk"]),
+                                //Status = reader["status"].ToString(),
+                                Gambar = reader["gambar"] != DBNull.Value ? (byte[])reader["gambar"] : null,
+                                Deskripsi = HasColumn(reader, "deskripsi") && reader["deskripsi"] != DBNull.Value
+                                    ? reader["deskripsi"].ToString()
+                                    : ""
+                            };
+                            list.Add(p);
+                        }
+                    }
+                }
+            }
+            return list;
+
         }
     }
 }

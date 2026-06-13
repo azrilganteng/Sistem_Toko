@@ -1,4 +1,4 @@
-﻿using Npgsql;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,7 +15,7 @@ namespace Sistem_Toko.Model
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = "SELECT id_user, nama FROM kurir_ready;";
+                string sql = "SELECT u.id_user, u.nama FROM users u JOIN kewenangan k ON u.id_user = k.id_user WHERE k.id_role = 3 AND k.is_ready = true;";
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -38,7 +38,7 @@ namespace Sistem_Toko.Model
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
                 string sql = @"SELECT u.id_user, u.username, u.nama, u.no_hp, u.email
-                               FROM ""user"" u
+                               FROM users u
                                WHERE u.username = @u AND u.password = @p;";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
@@ -53,7 +53,7 @@ namespace Sistem_Toko.Model
                             SessionUser.Id = Convert.ToInt32(reader["id_user"]);
                             SessionUser.Username = reader["username"].ToString();
                             SessionUser.Nama = reader["nama"].ToString();
-                            SessionUser.IdRole = 3; 
+                            SessionUser.IdRole = 3;
 
                             isSuccess = true;
                         }

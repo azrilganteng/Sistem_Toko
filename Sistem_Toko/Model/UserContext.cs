@@ -15,7 +15,7 @@ namespace Sistem_Toko.Model
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
                 string sql = @"SELECT id_user, nama, username, password 
-                               FROM ""user"" 
+                               FROM users 
                                WHERE username = @username AND password = @password;";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
