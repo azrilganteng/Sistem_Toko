@@ -128,6 +128,7 @@ namespace Sistem_Toko
             ObatBtn.TabIndex = 4;
             ObatBtn.Text = "Obat";
             ObatBtn.UseVisualStyleBackColor = false;
+            ObatBtn.Click += ObatBtn_Click;
             // 
             // BibitBtn
             // 
@@ -144,6 +145,7 @@ namespace Sistem_Toko
             BibitBtn.TabIndex = 3;
             BibitBtn.Text = "Bibit";
             BibitBtn.UseVisualStyleBackColor = false;
+            BibitBtn.Click += BibitBtn_Click;
             // 
             // PupukBtn
             // 
@@ -160,6 +162,7 @@ namespace Sistem_Toko
             PupukBtn.TabIndex = 2;
             PupukBtn.Text = "Pupuk";
             PupukBtn.UseVisualStyleBackColor = false;
+            PupukBtn.Click += PupukBtn_Click;
             // 
             // panel2
             // 

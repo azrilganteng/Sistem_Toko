@@ -28,12 +28,14 @@ namespace Sistem_Toko
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPembayaran));
             listBox1 = new ListBox();
             lblTotal = new Label();
             txtNota = new TextBox();
             KonfirmBtn = new Button();
             CboMetodeKirim = new ComboBox();
             CboMetodeBayar = new ComboBox();
+            BackBtn = new Button();
             SuspendLayout();
             // 
             // listBox1
@@ -57,7 +59,7 @@ namespace Sistem_Toko
             // txtNota
             // 
             txtNota.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtNota.Location = new Point(199, 158);
+            txtNota.Location = new Point(201, 110);
             txtNota.Multiline = true;
             txtNota.Name = "txtNota";
             txtNota.ReadOnly = true;
@@ -83,17 +85,29 @@ namespace Sistem_Toko
             // 
             // CboMetodeKirim
             // 
-            CboMetodeKirim.Location = new Point(289, 423);
+            CboMetodeKirim.Location = new Point(289, 385);
             CboMetodeKirim.Name = "CboMetodeKirim";
             CboMetodeKirim.Size = new Size(151, 31);
             CboMetodeKirim.TabIndex = 0;
             // 
             // CboMetodeBayar
             // 
-            CboMetodeBayar.Location = new Point(289, 483);
+            CboMetodeBayar.Location = new Point(289, 437);
             CboMetodeBayar.Name = "CboMetodeBayar";
             CboMetodeBayar.Size = new Size(151, 31);
             CboMetodeBayar.TabIndex = 6;
+            // 
+            // BackBtn
+            // 
+            BackBtn.BackColor = Color.Transparent;
+            BackBtn.BackgroundImage = (Image)resources.GetObject("BackBtn.BackgroundImage");
+            BackBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            BackBtn.Location = new Point(45, 41);
+            BackBtn.Name = "BackBtn";
+            BackBtn.Size = new Size(39, 29);
+            BackBtn.TabIndex = 7;
+            BackBtn.UseVisualStyleBackColor = false;
+            BackBtn.Click += BackBtn_Click;
             // 
             // FormPembayaran
             // 
@@ -101,6 +115,7 @@ namespace Sistem_Toko
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightYellow;
             ClientSize = new Size(1067, 571);
+            Controls.Add(BackBtn);
             Controls.Add(CboMetodeBayar);
             Controls.Add(CboMetodeKirim);
             Controls.Add(KonfirmBtn);
@@ -122,6 +137,7 @@ namespace Sistem_Toko
         private Button KonfirmBtn;
         private ComboBox CboMetodeKirim;
         private ComboBox CboMetodeBayar;
+        private Button BackBtn;
     }
 }
 

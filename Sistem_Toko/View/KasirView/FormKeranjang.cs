@@ -45,7 +45,7 @@ namespace Sistem_Toko
                         item.TambahQty();
                         TampilkanDaftarKeranjang();
                     }
-                    break; 
+                    break;
                 }
             }
         }
@@ -100,22 +100,26 @@ namespace Sistem_Toko
             }
         }
 
-      
         public void SelesaiBayar()
         {
             FlpKeranjang.Controls.Clear();
-            _listKeranjang.Clear(); 
+            _listKeranjang.Clear();
             this.Close();
         }
 
         private void FormKeranjang_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
             if (_listKeranjang.Count > 0 && _formInduk != null)
             {
                 _formInduk.Show();
-                _formInduk.TampilanKasir(); 
+                _formInduk.TampilanKasir();
             }
+        }
+
+        private void BackBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

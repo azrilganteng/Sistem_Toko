@@ -46,10 +46,6 @@ namespace Sistem_Toko.View.KasirView
             }
         }
 
-        private void BtnKembali_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
 
         private void OngoingBtn_Click(object sender, EventArgs e)
         {
@@ -59,6 +55,12 @@ namespace Sistem_Toko.View.KasirView
         private void FinishBtn_Click(object sender, EventArgs e)
         {
             TampilkanRiwayat("Selesai");
+        }
+
+        private void BackBtn_Click(object sender, EventArgs e)
+        {
+            _formKasir.Show();
+            this.Close();
         }
     }
 }

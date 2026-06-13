@@ -196,5 +196,10 @@ namespace Sistem_Toko
                 _formKeranjang.TampilkanDaftarKeranjang();
             }
         }
+
+        private void BackBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

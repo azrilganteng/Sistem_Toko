@@ -10,9 +10,13 @@ namespace Sistem_Toko.Controller
 {
     public class ProductController
     {
-        public List<Produk> GetProduct()
+        public List<Produk> GetAll()
         {
-            return ProdukContext.GetProductFromDatabase();
+            return ProdukContext.GetAllProduct();
+        }
+        public List<Produk> GetProduct(int idKategori)
+        {
+            return ProdukContext.GetProductKategory(idKategori);
         }
     }
 }

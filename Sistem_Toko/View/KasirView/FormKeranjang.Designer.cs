@@ -40,6 +40,7 @@ namespace Sistem_Toko
             ListKeranjangBtn = new Button();
             StatusKirimBtn = new Button();
             FlpKeranjang = new FlowLayoutPanel();
+            BackBtn = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -47,6 +48,7 @@ namespace Sistem_Toko
             // panel1
             // 
             panel1.BackColor = Color.Transparent;
+            panel1.Controls.Add(BackBtn);
             panel1.Controls.Add(ObatBtn);
             panel1.Controls.Add(BibitBtn);
             panel1.Controls.Add(PupukBtn);
@@ -198,6 +200,18 @@ namespace Sistem_Toko
             FlpKeranjang.Size = new Size(817, 446);
             FlpKeranjang.TabIndex = 7;
             // 
+            // BackBtn
+            // 
+            BackBtn.BackColor = Color.Transparent;
+            BackBtn.BackgroundImage = (Image)resources.GetObject("BackBtn.BackgroundImage");
+            BackBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            BackBtn.Location = new Point(12, 31);
+            BackBtn.Name = "BackBtn";
+            BackBtn.Size = new Size(39, 29);
+            BackBtn.TabIndex = 5;
+            BackBtn.UseVisualStyleBackColor = false;
+            BackBtn.Click += BackBtn_Click;
+            // 
             // FormKeranjang
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
@@ -229,6 +243,7 @@ namespace Sistem_Toko
         private Button ListKeranjangBtn;
         private Button StatusKirimBtn;
         private FlowLayoutPanel FlpKeranjang;
+        private Button BackBtn;
     }
 }
 

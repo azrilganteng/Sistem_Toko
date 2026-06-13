@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormStatusPengiriman));
             panel1 = new Panel();
+            BackBtn = new Button();
             FinishBtn = new Button();
             OngoingBtn = new Button();
             FlpStatus = new FlowLayoutPanel();
@@ -37,6 +39,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(BackBtn);
             panel1.Controls.Add(FinishBtn);
             panel1.Controls.Add(OngoingBtn);
             panel1.Dock = DockStyle.Top;
@@ -45,24 +48,40 @@
             panel1.Size = new Size(1067, 125);
             panel1.TabIndex = 0;
             // 
+            // BackBtn
+            // 
+            BackBtn.BackColor = Color.Transparent;
+            BackBtn.BackgroundImage = (Image)resources.GetObject("BackBtn.BackgroundImage");
+            BackBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            BackBtn.Location = new Point(28, 12);
+            BackBtn.Name = "BackBtn";
+            BackBtn.Size = new Size(39, 29);
+            BackBtn.TabIndex = 2;
+            BackBtn.UseVisualStyleBackColor = false;
+            BackBtn.Click += BackBtn_Click;
+            // 
             // FinishBtn
             // 
-            FinishBtn.Location = new Point(883, 70);
+            FinishBtn.BackColor = Color.Chartreuse;
+            FinishBtn.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            FinishBtn.Location = new Point(225, 70);
             FinishBtn.Name = "FinishBtn";
             FinishBtn.Size = new Size(116, 39);
             FinishBtn.TabIndex = 1;
-            FinishBtn.Text = "button2";
-            FinishBtn.UseVisualStyleBackColor = true;
+            FinishBtn.Text = "Selesai";
+            FinishBtn.UseVisualStyleBackColor = false;
             FinishBtn.Click += FinishBtn_Click;
             // 
             // OngoingBtn
             // 
-            OngoingBtn.Location = new Point(687, 70);
+            OngoingBtn.BackColor = Color.Yellow;
+            OngoingBtn.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            OngoingBtn.Location = new Point(48, 70);
             OngoingBtn.Name = "OngoingBtn";
             OngoingBtn.Size = new Size(116, 39);
             OngoingBtn.TabIndex = 0;
-            OngoingBtn.Text = "button1";
-            OngoingBtn.UseVisualStyleBackColor = true;
+            OngoingBtn.Text = "Dikirim";
+            OngoingBtn.UseVisualStyleBackColor = false;
             OngoingBtn.Click += OngoingBtn_Click;
             // 
             // FlpStatus
@@ -94,5 +113,6 @@
         private FlowLayoutPanel FlpStatus;
         private Button FinishBtn;
         private Button OngoingBtn;
+        private Button BackBtn;
     }
 }

@@ -10,6 +10,7 @@ WHERE r.nama_role = 'Kasir';
 create or replace view kartu_produk as
 select id_produk,nama_produk,harga,gambar,stok
 from produk
+where stok >0
 
 
 create type item_keranjang as (
