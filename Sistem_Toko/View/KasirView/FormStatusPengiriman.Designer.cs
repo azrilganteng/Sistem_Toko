@@ -28,7 +28,6 @@ namespace Sistem_Toko.View.KasirView
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormStatusPengiriman));
             panel1 = new Panel();
             BackBtn = new Button();
             LblHeader = new Label();

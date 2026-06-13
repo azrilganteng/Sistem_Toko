@@ -29,20 +29,27 @@ namespace Sistem_Toko
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKasir));
             LblToko = new Label();
             LblKasir = new Label();
             ListKeranjangBtn = new Button();
             StatusKirimBtn = new Button();
             panel1 = new Panel();
             SemuaBtn = new Button();
+            Profil = new PictureBox();
             ObatBtn = new Button();
             BibitBtn = new Button();
             PupukBtn = new Button();
             panel2 = new Panel();
             FlpProduk = new FlowLayoutPanel();
             imageList1 = new ImageList(components);
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            profilToolStripMenuItem = new ToolStripMenuItem();
+            logoutToolStripMenuItem = new ToolStripMenuItem();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)Profil).BeginInit();
             panel2.SuspendLayout();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // LblToko
@@ -103,6 +110,7 @@ namespace Sistem_Toko
             // 
             panel1.BackColor = Color.SeaGreen;
             panel1.Controls.Add(SemuaBtn);
+            panel1.Controls.Add(Profil);
             panel1.Controls.Add(ObatBtn);
             panel1.Controls.Add(BibitBtn);
             panel1.Controls.Add(PupukBtn);
@@ -121,13 +129,24 @@ namespace Sistem_Toko
             SemuaBtn.FlatStyle = FlatStyle.Flat;
             SemuaBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             SemuaBtn.ForeColor = Color.SeaGreen;
-            SemuaBtn.Location = new Point(610, 35);
+            SemuaBtn.Location = new Point(530, 35);
             SemuaBtn.Name = "SemuaBtn";
             SemuaBtn.Size = new Size(95, 40);
             SemuaBtn.TabIndex = 5;
             SemuaBtn.Text = "Semua";
             SemuaBtn.UseVisualStyleBackColor = false;
             SemuaBtn.Click += SemuaBtn_Click;
+            // 
+            // Profil
+            // 
+            Profil.BackgroundImage = (Image)resources.GetObject("Profil.BackgroundImage");
+            Profil.BackgroundImageLayout = ImageLayout.Stretch;
+            Profil.Location = new Point(989, 0);
+            Profil.Name = "Profil";
+            Profil.Size = new Size(75, 75);
+            Profil.TabIndex = 5;
+            Profil.TabStop = false;
+            Profil.Click += Profil_Click;
             // 
             // ObatBtn
             // 
@@ -136,7 +155,7 @@ namespace Sistem_Toko
             ObatBtn.FlatStyle = FlatStyle.Flat;
             ObatBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             ObatBtn.ForeColor = Color.SeaGreen;
-            ObatBtn.Location = new Point(913, 35);
+            ObatBtn.Location = new Point(870, 35);
             ObatBtn.Name = "ObatBtn";
             ObatBtn.Size = new Size(95, 40);
             ObatBtn.TabIndex = 4;
@@ -151,7 +170,7 @@ namespace Sistem_Toko
             BibitBtn.FlatStyle = FlatStyle.Flat;
             BibitBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             BibitBtn.ForeColor = Color.SeaGreen;
-            BibitBtn.Location = new Point(812, 35);
+            BibitBtn.Location = new Point(755, 35);
             BibitBtn.Name = "BibitBtn";
             BibitBtn.Size = new Size(95, 40);
             BibitBtn.TabIndex = 3;
@@ -166,7 +185,7 @@ namespace Sistem_Toko
             PupukBtn.FlatStyle = FlatStyle.Flat;
             PupukBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             PupukBtn.ForeColor = Color.SeaGreen;
-            PupukBtn.Location = new Point(711, 35);
+            PupukBtn.Location = new Point(640, 35);
             PupukBtn.Name = "PupukBtn";
             PupukBtn.Size = new Size(95, 40);
             PupukBtn.TabIndex = 2;
@@ -203,6 +222,27 @@ namespace Sistem_Toko
             imageList1.ImageSize = new Size(16, 16);
             imageList1.TransparentColor = Color.Transparent;
             // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { profilToolStripMenuItem, logoutToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(211, 80);
+            // 
+            // profilToolStripMenuItem
+            // 
+            profilToolStripMenuItem.Name = "profilToolStripMenuItem";
+            profilToolStripMenuItem.Size = new Size(210, 24);
+            profilToolStripMenuItem.Text = "Profil";
+            profilToolStripMenuItem.Click += profilToolStripMenuItem_Click;
+            // 
+            // logoutToolStripMenuItem
+            // 
+            logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            logoutToolStripMenuItem.Size = new Size(210, 24);
+            logoutToolStripMenuItem.Text = "Logout";
+            logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
+            // 
             // FormKasir
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
@@ -220,7 +260,9 @@ namespace Sistem_Toko
             FormClosed += FormKasir_FormClosed;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)Profil).EndInit();
             panel2.ResumeLayout(false);
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -238,10 +280,9 @@ namespace Sistem_Toko
         private Button BibitBtn;
         private Button PupukBtn;
         private Button SemuaBtn;
+        private PictureBox Profil;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem profilToolStripMenuItem;
+        private ToolStripMenuItem logoutToolStripMenuItem;
     }
 }
-
-
-
-
-

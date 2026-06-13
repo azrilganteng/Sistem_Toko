@@ -28,7 +28,6 @@ namespace Sistem_Toko
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKeranjang));
             panel1 = new Panel();
             BackBtn = new Button();
             LblToko = new Label();
