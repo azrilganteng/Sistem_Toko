@@ -1,34 +1,48 @@
 using Npgsql;
 using Sistem_Toko.Helpers;
+using Sistem_Toko.Model;
+using Sistem_Toko.View.KasirView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Text;
-using System.Transactions;
 using System.Windows.Forms;
 
 namespace Sistem_Toko
 {
-
     public partial class FormPembayaran : Form
     {
         private FormKeranjang _formKeranjang;
         private List<Detail_orders> _listBarang;
         private FormKasir _formKasir;
+
         public FormPembayaran(FormKasir formKasir, FormKeranjang formKeranjang, List<Detail_orders> listBarang)
         {
             InitializeComponent();
             this._formKasir = formKasir;
             this._formKeranjang = formKeranjang;
-            this._listBarang = listBarang;
+
+            this._listBarang = new List<Detail_orders>(listBarang);
+
+            CboMetodeKirim.Items.Clear();
+            CboMetodeKirim.Items.Add("Langsung");
+            CboMetodeKirim.Items.Add("Dikirim");
+            CboMetodeKirim.SelectedIndex = 0;
+
+            CboMetodeBayar.Items.Clear();
+            CboMetodeBayar.Items.Add("Cash");
+            CboMetodeBayar.Items.Add("Transfer");
+            CboMetodeBayar.SelectedIndex = 0;
 
             TampilDetail();
         }
+
         private void TampilDetail()
         {
             double TotalBayar = 0;
+            txtNota.Clear();
 
             foreach (var item in _listBarang)
             {
@@ -42,50 +56,119 @@ namespace Sistem_Toko
 
         private void KonfirmBtn_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Apakah Anda yakin ingin menyelesaikan pembayaran?", "Konfirmasi Pembayaran", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-               if(UpdateStok())
-                {
-                    MessageBox.Show("Pembayaran berhasil! Stok produk telah diperbarui.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    _listBarang.Clear();
+            string metodeKirim = CboMetodeKirim.SelectedItem?.ToString() ?? "Langsung";
+            string metodeBayar = CboMetodeBayar.SelectedItem?.ToString() ?? "Cash";
 
-                    _formKeranjang.SelesaiBayar();
-                    _formKasir.Show();
-                    this.Close();
+            int idKurir = 0;
+            string alamat = "";
+
+            if (metodeKirim.Equals("Dikirim", StringComparison.OrdinalIgnoreCase))
+            {
+                using (FormPilihKurir frmKurir = new FormPilihKurir())
+                {
+                    if (frmKurir.ShowDialog() == DialogResult.OK)
+                    {
+                        idKurir = frmKurir.PilKurir.ID;
+                        alamat = frmKurir.AlamatKirim;
+
+                        if (idKurir <= 0 || string.IsNullOrWhiteSpace(alamat))
+                        {
+                            MessageBox.Show("Data kurir atau alamat tidak valid!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
+
+                        if (UpdateStok(metodeBayar, metodeKirim, idKurir, alamat))
+                        {
+                            MessageBox.Show("Pembayaran & Penugasan Kurir Berhasil!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            ClosePembayaran();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                DialogResult result = MessageBox.Show("Apakah Anda yakin ingin menyelesaikan pembayaran?", "Konfirmasi Pembayaran", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    if (UpdateStok(metodeBayar, metodeKirim, idKurir, alamat))
+                    {
+                        MessageBox.Show("Pembayaran berhasil! Stok produk telah diperbarui.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ClosePembayaran();
+                    }
                 }
             }
         }
 
-        private bool UpdateStok()
+        private void ClosePembayaran()
         {
+            _listBarang.Clear();
+            _formKeranjang.SelesaiBayar();
+
+            if (_formKasir != null)
+            {
+                _formKasir.Show();
+            }
+
+            this.Close();
+        }
+
+        private void SimpanDataPengiriman(NpgsqlConnection conn, NpgsqlTransaction transaction, int idOrder, int idKurir, string alamat)
+        {
+            string sqlPengiriman = @"
+                INSERT INTO pengiriman (alamat, status_pengiriman, tanggal_kirim, id_order, id_user) 
+                VALUES (@alamat, 'Proses', CURRENT_DATE, @idOrder, @idKurir);";
+
+            using (var cmdKirim = new NpgsqlCommand(sqlPengiriman, conn, transaction))
+            {
+                cmdKirim.Parameters.AddWithValue("alamat", alamat);
+                cmdKirim.Parameters.AddWithValue("idOrder", idOrder);
+                cmdKirim.Parameters.AddWithValue("idKurir", idKurir);
+
+                cmdKirim.ExecuteNonQuery();
+            }
+        }
+
+        private bool UpdateStok(string metodeBayar, string metodeKirim, int idKurir, string alamat)
+        {
+            if (_listBarang.Count == 0)
+            {
+                MessageBox.Show("Gagal Transaksi: Keranjang belanja kosong!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
             using (var conn = connectDB.GetConn())
             {
-                using (var transaction = conn.BeginTransaction()) 
+                if (conn.State == ConnectionState.Closed) conn.Open();
+
+                using (var transaction = conn.BeginTransaction())
                 {
                     try
                     {
                         int idOrderBaru = 0;
 
                         string sqlOrder = "SELECT buat_order_baru(@idUser, @metodeBayar, @metodeKirim);";
-                        using (var cmdOrder = new NpgsqlCommand(sqlOrder, conn))
+                        using (var cmdOrder = new NpgsqlCommand(sqlOrder, conn, transaction))
                         {
                             int idKasirAktif = this._formKeranjang._formInduk._kasirActive.ID;
-
                             cmdOrder.Parameters.AddWithValue("idUser", idKasirAktif);
-                            cmdOrder.Parameters.AddWithValue("metodeBayar", "Online");
-                            cmdOrder.Parameters.AddWithValue("metodeKirim", "Langsung");
-
+                            cmdOrder.Parameters.AddWithValue("metodeBayar", metodeBayar);
+                            cmdOrder.Parameters.AddWithValue("metodeKirim", metodeKirim);
 
                             idOrderBaru = Convert.ToInt32(cmdOrder.ExecuteScalar());
                         }
+
+                        if (metodeKirim.Equals("Dikirim", StringComparison.OrdinalIgnoreCase) && idKurir > 0)
+                        {
+                            SimpanDataPengiriman(conn, transaction, idOrderBaru, idKurir, alamat);
+                        }
+
                         foreach (var item in _listBarang)
                         {
                             string sqlDetail = "SELECT tambah_detail_order(@idOrder, @idProduk, @jumlah, @harga);";
-                            using (var cmdDetail = new NpgsqlCommand(sqlDetail, conn))
+                            using (var cmdDetail = new NpgsqlCommand(sqlDetail, conn, transaction))
                             {
                                 decimal subTotalHarga = (decimal)(item.Qty * item.ProdukItem.Harga);
-
                                 cmdDetail.Parameters.AddWithValue("idOrder", idOrderBaru);
                                 cmdDetail.Parameters.AddWithValue("idProduk", item.ProdukItem.Id);
                                 cmdDetail.Parameters.AddWithValue("jumlah", item.Qty);
@@ -99,13 +182,18 @@ namespace Sistem_Toko
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Gagal memperbarui data ke database: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        transaction.Rollback();
+                        MessageBox.Show("Gagal memperbarui data transaksi ke database: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
                 }
-
-                    
-                
+            }
+        }
+        private void FormPembayaran_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_listBarang.Count > 0 && _formKeranjang != null && !_formKeranjang.IsDisposed)
+            {
+                _formKeranjang.TampilkanDaftarKeranjang();
             }
         }
     }

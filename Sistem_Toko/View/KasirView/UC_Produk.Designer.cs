@@ -58,9 +58,13 @@ namespace Sistem_Toko
             // 
             // KeranjangBtn
             // 
-            KeranjangBtn.BackColor = Color.Transparent;
+            KeranjangBtn.BackColor = Color.SeaGreen;
             KeranjangBtn.BackgroundImage = (Image)resources.GetObject("KeranjangBtn.BackgroundImage");
             KeranjangBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            KeranjangBtn.Cursor = Cursors.Hand;
+            KeranjangBtn.FlatStyle = FlatStyle.Flat;
+            KeranjangBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            KeranjangBtn.ForeColor = Color.White;
             KeranjangBtn.Location = new Point(12, 197);
             KeranjangBtn.Name = "KeranjangBtn";
             KeranjangBtn.Size = new Size(63, 52);
@@ -70,16 +74,20 @@ namespace Sistem_Toko
             // 
             // BuyNowBtn
             // 
-            BuyNowBtn.BackColor = Color.Transparent;
+            BuyNowBtn.BackColor = Color.SeaGreen;
             BuyNowBtn.BackgroundImage = (Image)resources.GetObject("BuyNowBtn.BackgroundImage");
             BuyNowBtn.BackgroundImageLayout = ImageLayout.Stretch;
-            BuyNowBtn.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            BuyNowBtn.Cursor = Cursors.Hand;
+            BuyNowBtn.FlatStyle = FlatStyle.Flat;
+            BuyNowBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            BuyNowBtn.ForeColor = Color.White;
             BuyNowBtn.Location = new Point(125, 210);
             BuyNowBtn.Name = "BuyNowBtn";
             BuyNowBtn.Size = new Size(120, 39);
             BuyNowBtn.TabIndex = 3;
             BuyNowBtn.Text = "Buy Now";
             BuyNowBtn.UseVisualStyleBackColor = false;
+            BuyNowBtn.Click += BuyNowBtn_Click;
             // 
             // LblHarga
             // 
@@ -103,7 +111,7 @@ namespace Sistem_Toko
             // 
             // UC_Produk
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Transparent;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
@@ -115,23 +123,10 @@ namespace Sistem_Toko
             Controls.Add(LblProduk);
             Controls.Add(Gambar);
             DoubleBuffered = true;
+            Font = new Font("Segoe UI", 10F);
             Name = "UC_Produk";
             Size = new Size(259, 261);
             ((System.ComponentModel.ISupportInitialize)Gambar).EndInit();
-            // INJECTED_MANUAL_UI
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.KeranjangBtn.BackColor = System.Drawing.Color.SeaGreen;
-            this.KeranjangBtn.ForeColor = System.Drawing.Color.White;
-            this.KeranjangBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.KeranjangBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.KeranjangBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.BuyNowBtn.BackColor = System.Drawing.Color.SeaGreen;
-            this.BuyNowBtn.ForeColor = System.Drawing.Color.White;
-            this.BuyNowBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BuyNowBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BuyNowBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-
             ResumeLayout(false);
             PerformLayout();
         }

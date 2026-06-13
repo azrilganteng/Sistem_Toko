@@ -3,6 +3,7 @@ using Sistem_Toko.Helpers;
 using Sistem_Toko.Model;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace Sistem_Toko.Controller
@@ -14,24 +15,28 @@ namespace Sistem_Toko.Controller
             List<Kurir> list = new List<Kurir>();
             using (var conn = connectDB.GetConn())
             {
-                string sql = "select * from kurir_ready";
-                var cmd = new NpgsqlCommand(sql, conn);
-                var reader = cmd.ExecuteReader();
+                if (conn.State == ConnectionState.Closed) conn.Open();
 
-                while (reader.Read())
+                string sql = "SELECT id_user, nama FROM kurir_ready;"; 
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                using (var reader = cmd.ExecuteReader())
                 {
-                  
-                    list.Add(new Kurir(
-                        0,                                   
-                        reader["nama"].ToString(),            
-                        "",                                   
-                        "",                                   
-                        reader["plat_no"].ToString(),         
-                        true                                  
-                    ));
+                    while (reader.Read())
+                    {
+                        int id = Convert.ToInt32(reader["id_user"]);
+                        string namaKurir = reader["nama"].ToString();
+
+                        list.Add(new Kurir(
+                            id,
+                            namaKurir,
+                            "",
+                            "",
+                            true
+                        ));
+                    }
                 }
+                return list;
             }
-            return list;
         }
     }
 }

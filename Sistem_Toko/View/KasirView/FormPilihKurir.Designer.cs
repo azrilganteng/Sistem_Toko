@@ -31,7 +31,7 @@
             panel1 = new Panel();
             CboKurir = new ComboBox();
             TxtAlamat = new TextBox();
-            Kirmkakn = new Button();
+            Kirmkan = new Button();
             SuspendLayout();
             // 
             // panel1
@@ -52,26 +52,27 @@
             // 
             // TxtAlamat
             // 
-            TxtAlamat.Location = new Point(48, 358);
+            TxtAlamat.Location = new Point(31, 412);
             TxtAlamat.Name = "TxtAlamat";
-            TxtAlamat.Size = new Size(125, 27);
+            TxtAlamat.Size = new Size(599, 27);
             TxtAlamat.TabIndex = 2;
             // 
-            // Kirmkakn
+            // Kirmkan
             // 
-            Kirmkakn.Location = new Point(874, 488);
-            Kirmkakn.Name = "Kirmkakn";
-            Kirmkakn.Size = new Size(134, 51);
-            Kirmkakn.TabIndex = 3;
-            Kirmkakn.Text = "button1";
-            Kirmkakn.UseVisualStyleBackColor = true;
+            Kirmkan.Location = new Point(874, 488);
+            Kirmkan.Name = "Kirmkan";
+            Kirmkan.Size = new Size(134, 51);
+            Kirmkan.TabIndex = 3;
+            Kirmkan.Text = "button1";
+            Kirmkan.UseVisualStyleBackColor = true;
+            Kirmkan.Click += Kirmkan_Click;
             // 
             // FormPilihKurir
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1067, 571);
-            Controls.Add(Kirmkakn);
+            Controls.Add(Kirmkan);
             Controls.Add(TxtAlamat);
             Controls.Add(CboKurir);
             Controls.Add(panel1);
@@ -86,6 +87,6 @@
         private Panel panel1;
         private ComboBox CboKurir;
         private TextBox TxtAlamat;
-        private Button Kirmkakn;
+        private Button Kirmkan;
     }
 }

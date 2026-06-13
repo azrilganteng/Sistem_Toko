@@ -14,6 +14,7 @@ namespace Sistem_Toko
     {
         private FormKasir _Parent;
         public Produk ProdukData { get; private set; }
+
         public UC_Produk(FormKasir formInduk, int id, byte[] gambar, string nama, int harga, int stok)
         {
             InitializeComponent();
@@ -21,7 +22,7 @@ namespace Sistem_Toko
 
             this.ProdukData = new Produk
             {
-                Id = id, 
+                Id = id,
                 Gambar = gambar,
                 NamaProduk = nama,
                 Harga = harga,
@@ -39,7 +40,7 @@ namespace Sistem_Toko
                 }
                 else
                 {
-                    Gambar.Image = null; 
+                    Gambar.Image = null;
                 }
             }
             catch (ArgumentException)
@@ -48,7 +49,7 @@ namespace Sistem_Toko
             }
 
             LblProduk.Text = nama;
-            LblHarga.Text = "Rp. " + harga.ToString("N0"); 
+            LblHarga.Text = "Rp. " + harga.ToString("N0");
             LblStok.Text = "Stok: " + stok.ToString();
         }
 
@@ -56,9 +57,15 @@ namespace Sistem_Toko
         {
             if (_Parent != null && this.ProdukData != null)
             {
-                _Parent._kasirActive.Keranjang(this.ProdukData);
-                MessageBox.Show("Berhasil Menambahkan ke keranjang", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                _Parent.Keranjang(this.ProdukData);
+                MessageBox.Show($"{this.ProdukData.NamaProduk} berhasil dimasukkan ke keranjang!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void BuyNowBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

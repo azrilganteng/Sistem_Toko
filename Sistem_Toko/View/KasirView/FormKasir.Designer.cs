@@ -29,6 +29,7 @@ namespace Sistem_Toko
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKasir));
             LblToko = new Label();
             LblKasir = new Label();
             ListKeranjangBtn = new Button();
@@ -66,7 +67,8 @@ namespace Sistem_Toko
             // 
             // ListKeranjangBtn
             // 
-            ListKeranjangBtn.BackColor = Color.SeaGreen;
+            ListKeranjangBtn.BackColor = Color.Transparent;
+            ListKeranjangBtn.BackgroundImage = (Image)resources.GetObject("ListKeranjangBtn.BackgroundImage");
             ListKeranjangBtn.BackgroundImageLayout = ImageLayout.Stretch;
             ListKeranjangBtn.Cursor = Cursors.Hand;
             ListKeranjangBtn.FlatStyle = FlatStyle.Flat;
@@ -82,7 +84,8 @@ namespace Sistem_Toko
             // 
             // StatusKirimBtn
             // 
-            StatusKirimBtn.BackColor = Color.SeaGreen;
+            StatusKirimBtn.BackColor = Color.Transparent;
+            StatusKirimBtn.BackgroundImage = (Image)resources.GetObject("StatusKirimBtn.BackgroundImage");
             StatusKirimBtn.BackgroundImageLayout = ImageLayout.Stretch;
             StatusKirimBtn.Cursor = Cursors.Hand;
             StatusKirimBtn.FlatStyle = FlatStyle.Flat;
@@ -94,10 +97,11 @@ namespace Sistem_Toko
             StatusKirimBtn.TabIndex = 3;
             StatusKirimBtn.Text = "Status Pengiriman";
             StatusKirimBtn.UseVisualStyleBackColor = false;
+            StatusKirimBtn.Click += StatusKirimBtn_Click_1;
             // 
             // panel1
             // 
-            panel1.BackColor = Color.MediumSeaGreen;
+            panel1.BackColor = Color.Transparent;
             panel1.Controls.Add(ObatBtn);
             panel1.Controls.Add(BibitBtn);
             panel1.Controls.Add(PupukBtn);
@@ -111,7 +115,8 @@ namespace Sistem_Toko
             // 
             // ObatBtn
             // 
-            ObatBtn.BackColor = Color.SeaGreen;
+            ObatBtn.BackColor = Color.Transparent;
+            ObatBtn.BackgroundImage = (Image)resources.GetObject("ObatBtn.BackgroundImage");
             ObatBtn.BackgroundImageLayout = ImageLayout.Stretch;
             ObatBtn.Cursor = Cursors.Hand;
             ObatBtn.FlatStyle = FlatStyle.Flat;
@@ -126,7 +131,8 @@ namespace Sistem_Toko
             // 
             // BibitBtn
             // 
-            BibitBtn.BackColor = Color.SeaGreen;
+            BibitBtn.BackColor = Color.Transparent;
+            BibitBtn.BackgroundImage = (Image)resources.GetObject("BibitBtn.BackgroundImage");
             BibitBtn.BackgroundImageLayout = ImageLayout.Stretch;
             BibitBtn.Cursor = Cursors.Hand;
             BibitBtn.FlatStyle = FlatStyle.Flat;
@@ -141,7 +147,8 @@ namespace Sistem_Toko
             // 
             // PupukBtn
             // 
-            PupukBtn.BackColor = Color.SeaGreen;
+            PupukBtn.BackColor = Color.Transparent;
+            PupukBtn.BackgroundImage = (Image)resources.GetObject("PupukBtn.BackgroundImage");
             PupukBtn.BackgroundImageLayout = ImageLayout.Stretch;
             PupukBtn.Cursor = Cursors.Hand;
             PupukBtn.FlatStyle = FlatStyle.Flat;
@@ -156,7 +163,7 @@ namespace Sistem_Toko
             // 
             // panel2
             // 
-            panel2.BackColor = Color.MediumSeaGreen;
+            panel2.BackColor = Color.Transparent;
             panel2.Controls.Add(ListKeranjangBtn);
             panel2.Controls.Add(StatusKirimBtn);
             panel2.Dock = DockStyle.Left;
@@ -185,7 +192,7 @@ namespace Sistem_Toko
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.WhiteSmoke;
+            BackColor = Color.LightYellow;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1067, 571);
             Controls.Add(FlpProduk);
