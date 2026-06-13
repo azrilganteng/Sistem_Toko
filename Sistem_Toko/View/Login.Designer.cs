@@ -1,6 +1,6 @@
-﻿namespace Sistem_Toko
+namespace Sistem_Toko
 {
-    partial class Form1
+    partial class Login
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             groupBox1 = new GroupBox();
             button1 = new Button();
             label3 = new Label();
@@ -129,7 +129,7 @@
             LoginText.Text = "Let's Login";
             LoginText.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // Form1
+            // Login
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -138,10 +138,19 @@
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1168, 568);
             Controls.Add(groupBox1);
-            Name = "Form1";
+            Name = "Login";
             Text = "Sistem_Toko";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            // INJECTED_MANUAL_UI
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button1.BackColor = System.Drawing.Color.SeaGreen;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+
             ResumeLayout(false);
         }
 
@@ -155,3 +164,5 @@
         private Button button1;
     }
 }
+
+

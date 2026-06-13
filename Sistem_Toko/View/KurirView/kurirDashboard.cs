@@ -3,7 +3,8 @@ using System.Windows.Forms;
 using Npgsql;
 using Sistem_Toko.Helpers; // namespace connectDB kamu
 using Sistem_Toko.Helpers;
-
+using System.Data;
+using Sistem_Toko.Controller;
 namespace Sistem_Toko.View.KurirView
 {
     public partial class kurirDashboard : Form
@@ -50,9 +51,12 @@ namespace Sistem_Toko.View.KurirView
         // Tombol Pengiriman Anda
         private void button1_Click(object sender, EventArgs e)
         {
-            new KurirForm().Show();
-            this.Hide();
+            KurirForm formPengiriman = new KurirForm();
+            formPengiriman.Show();
+            this.Hide(); // sembunyikan dashboard
         }
+
+
 
         private void label2_Click(object sender, EventArgs e)
         {

@@ -1,4 +1,4 @@
-﻿using Sistem_Toko.Helpers; // Tempat connectDB kamu
+using Sistem_Toko.Helpers; // Tempat connectDB kamu
 using Npgsql;
 using Sistem_Toko.Model;
 
@@ -23,13 +23,13 @@ public class AuthController
                 using (NpgsqlDataReader reader = cmd.ExecuteReader())
                 {
                     if (reader.Read())
-                    {               
-                            dataKasir = new Kasir(
-                            Convert.ToInt32(reader["id_user"]),
-                            reader["nama"].ToString(),
-                            reader["username"].ToString(),
-                            reader["password"].ToString()
-                        );
+                    {
+                        dataKasir = new Kasir(
+                        Convert.ToInt32(reader["id_user"]),
+                        reader["nama"].ToString(),
+                        reader["username"].ToString(),
+                        reader["password"].ToString()
+                    );
                     }
                 }
             }
@@ -37,14 +37,18 @@ public class AuthController
         return dataKasir;
     }
 
+
     public Kurir LoginKurir(string user, string pass)
+
     {
         Kurir dataKurir = null;
 
         using (NpgsqlConnection conn = connectDB.GetConn())
         {
+
             string sql = @"select * from data_kurir
                         WHERE username = @u AND password = @p";
+
 
             using (NpgsqlCommand cmd = new NpgsqlCommand(sql, conn))
             {
@@ -54,17 +58,65 @@ public class AuthController
                 using (NpgsqlDataReader reader = cmd.ExecuteReader())
                 {
                     if (reader.Read())
+
+
                     {
                         dataKurir = new Kurir(
-                            Convert.ToInt32(reader["id_user"]),
-                            reader["nama"].ToString(),
-                            reader["username"].ToString(),
-                            reader["password"].ToString()
-                        );
+                    Convert.ToInt32(reader["id_user"]),
+
+                    reader["nama"].ToString(),
+                    reader["username"].ToString(),
+                    reader["password"].ToString()
+                );
                     }
                 }
             }
         }
+
         return dataKurir;
+
     }
+
+    public Admin LoginAdmin(string user, string pass)
+    {
+        Admin dataAdmin = null;
+
+        using (NpgsqlConnection conn = connectDB.GetConn())
+        {
+            string sql = @"select * from data_admin
+                     WHERE username = @u AND password = @p";
+
+            using (NpgsqlCommand cmd = new NpgsqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("u", user);
+                cmd.Parameters.AddWithValue("p", pass);
+
+                using (NpgsqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+
+                    {
+                        dataAdmin = new Admin(
+                        Convert.ToInt32(reader["id_user"]),
+
+                        reader["nama"].ToString(),
+                        reader["username"].ToString(),
+                        reader["password"].ToString()
+                    );
+                    }
+                }
+            }
+        }
+        return dataAdmin;
+
+    }
+
+
 }
+
+
+
+
+
+                   
+
