@@ -27,6 +27,9 @@ namespace Sistem_Toko.Model
                             SessionUser.Id = Convert.ToInt32(reader["id_user"]);
                             SessionUser.Username = reader["username"].ToString();
                             SessionUser.Nama = reader["nama"].ToString();
+                            SessionUser.Email = reader["email"].ToString();
+                            SessionUser.Alamat = reader["alamat"].ToString();
+                            SessionUser.Role = reader["nama_role"].ToString();
                             SessionUser.IdRole = 2;
 
                             return new Kasir(

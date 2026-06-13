@@ -55,7 +55,7 @@
             BackBtn.BackgroundImageLayout = ImageLayout.Stretch;
             BackBtn.Location = new Point(28, 12);
             BackBtn.Name = "BackBtn";
-            BackBtn.Size = new Size(39, 29);
+            BackBtn.Size = new Size(39, 37);
             BackBtn.TabIndex = 2;
             BackBtn.UseVisualStyleBackColor = false;
             BackBtn.Click += BackBtn_Click;

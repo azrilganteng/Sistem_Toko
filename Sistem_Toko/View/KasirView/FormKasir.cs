@@ -1,6 +1,8 @@
 ﻿using Sistem_Toko.Controller;
 using Sistem_Toko.Helpers;
 using Sistem_Toko.Model;
+using Sistem_Toko;
+using Sistem_Toko.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -111,6 +113,37 @@ namespace Sistem_Toko
         private void ObatBtn_Click(object sender, EventArgs e)
         {
             ShowProduk(3);
+        }
+
+        private void Profil_Click(object sender, EventArgs e)
+        {
+            contextMenuStrip1.Show(Profil, new Point(-90, Profil.Height));
+            
+        }
+
+        private void profilToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Sistem_Toko.View.FormProfil halamanProfil = new Sistem_Toko.View.FormProfil();
+            halamanProfil.ShowDialog();
+            this.Show();
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dialog = MessageBox.Show("Apakah Anda yakin ingin logout?", "Konfirmasi Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialog == DialogResult.Yes)
+            {
+                SessionUser.Id = 0;
+                SessionUser.Nama = "";
+                SessionUser.Username = "";
+
+                Login halamanLogin = new Login();
+                halamanLogin.Show();
+
+                this.Hide();
+            }
         }
     }
 }

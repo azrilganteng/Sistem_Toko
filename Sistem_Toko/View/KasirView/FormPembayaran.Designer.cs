@@ -104,7 +104,7 @@ namespace Sistem_Toko
             BackBtn.BackgroundImageLayout = ImageLayout.Stretch;
             BackBtn.Location = new Point(45, 41);
             BackBtn.Name = "BackBtn";
-            BackBtn.Size = new Size(39, 29);
+            BackBtn.Size = new Size(39, 37);
             BackBtn.TabIndex = 7;
             BackBtn.UseVisualStyleBackColor = false;
             BackBtn.Click += BackBtn_Click;

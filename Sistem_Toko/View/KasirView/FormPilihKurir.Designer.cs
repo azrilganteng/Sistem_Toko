@@ -30,15 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPilihKurir));
             panel1 = new Panel();
+            BackBtn = new Button();
             NamaToko = new Label();
             LblToko = new Label();
             CboKurir = new ComboBox();
             TxtAlamat = new TextBox();
             Kirmkan = new Button();
             groupBox1 = new GroupBox();
-            label1 = new Label();
             label2 = new Label();
-            BackBtn = new Button();
+            label1 = new Label();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -53,6 +53,18 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(1067, 125);
             panel1.TabIndex = 0;
+            // 
+            // BackBtn
+            // 
+            BackBtn.BackColor = Color.Transparent;
+            BackBtn.BackgroundImage = (Image)resources.GetObject("BackBtn.BackgroundImage");
+            BackBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            BackBtn.Location = new Point(21, 29);
+            BackBtn.Name = "BackBtn";
+            BackBtn.Size = new Size(39, 37);
+            BackBtn.TabIndex = 6;
+            BackBtn.UseVisualStyleBackColor = false;
+            BackBtn.Click += BackBtn_Click;
             // 
             // NamaToko
             // 
@@ -110,16 +122,6 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "groupBox1";
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(28, 32);
-            label1.Name = "label1";
-            label1.Size = new Size(243, 24);
-            label1.TabIndex = 3;
-            label1.Text = "Pilih Kurir Untuk mengirim";
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -130,17 +132,15 @@
             label2.TabIndex = 4;
             label2.Text = "Alamat Pengiriman";
             // 
-            // BackBtn
+            // label1
             // 
-            BackBtn.BackColor = Color.Transparent;
-            BackBtn.BackgroundImage = (Image)resources.GetObject("BackBtn.BackgroundImage");
-            BackBtn.BackgroundImageLayout = ImageLayout.Stretch;
-            BackBtn.Location = new Point(21, 29);
-            BackBtn.Name = "BackBtn";
-            BackBtn.Size = new Size(39, 29);
-            BackBtn.TabIndex = 6;
-            BackBtn.UseVisualStyleBackColor = false;
-            BackBtn.Click += BackBtn_Click;
+            label1.AutoSize = true;
+            label1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(28, 32);
+            label1.Name = "label1";
+            label1.Size = new Size(243, 24);
+            label1.TabIndex = 3;
+            label1.Text = "Pilih Kurir Untuk mengirim";
             // 
             // FormPilihKurir
             // 
