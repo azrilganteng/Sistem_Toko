@@ -1,11 +1,6 @@
-using Npgsql;
-using Sistem_Toko.Helpers;
+using Sistem_Toko.Model;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Sistem_Toko.View.AdminView
@@ -26,12 +21,7 @@ namespace Sistem_Toko.View.AdminView
         {
             try
             {
-                using var conn = connectDB.GetConn();
-                string sql = @"SELECT * FROM stok_gudang";
-
-                var adapter = new NpgsqlDataAdapter(sql, conn);
-                var dt = new DataTable();
-                adapter.Fill(dt);
+                DataTable dt = ProdukContext.GetStokGudang();
 
                 Grid_Riwayat_Stok.DataSource = dt;
                 Grid_Riwayat_Stok.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -46,5 +36,10 @@ namespace Sistem_Toko.View.AdminView
         }
 
         private void Grid_Riwayat_Stok_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+
+        private void Btn_Kembali_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

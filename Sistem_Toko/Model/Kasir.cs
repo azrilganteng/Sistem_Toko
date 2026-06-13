@@ -1,74 +1,67 @@
-﻿using Sistem_Toko.Controller;
-using System;
-namespace Sistem_Toko.Model;
+﻿using System;
+using System.Collections.Generic;
 
-public class Kasir : User
+namespace Sistem_Toko.Model
 {
-    private List<Detail_orders> ListKeranjang = new List<Detail_orders>();
-    public Kasir(int id, string nama, string username, string password)
-        : base(id, nama, username, password)
+    public class Kasir : User
     {
-    }
+        private List<Detail_orders> ListKeranjang = new List<Detail_orders>();
 
-    public override bool Login(string username, string password)
-    {
-       AuthController auth = new AuthController();
-       Kasir kasir = auth.LoginKasir(username, password);
-
-        if (kasir != null)
+        public Kasir(int id, string nama, string username, string password)
+            : base(id, nama, username, password)
         {
-            this.ID = kasir.ID;
-            this.Nama = kasir.Nama;
-            this.Username = kasir.Username;
-            this.Password = kasir.Password;
-            return true;
         }
-        return false;
-    }
 
-    private Detail_orders CariDiKeranjang(string produk)
-    {
-        foreach (Detail_orders item in ListKeranjang)
+        public override bool Login(string username, string password)
         {
-            if (item.ProdukItem.NamaProduk == produk)
+            return false;
+        }
+
+        private Detail_orders CariDiKeranjang(string namaProduk)
+        {
+            foreach (Detail_orders item in ListKeranjang)
             {
-                return item; 
+                if (item.ProdukItem.NamaProduk == namaProduk)
+                {
+                    return item;
+                }
             }
+            return null;
         }
-        return null;
-    }
-    public List<Detail_orders> GetListKeranjang()
-    {
-        return this.ListKeranjang;
-    }
-    public void Keranjang(Produk PilProduk)
-    {
-        Detail_orders Exist = CariDiKeranjang(PilProduk.NamaProduk);
 
-        if (Exist != null)
+        public List<Detail_orders> GetListKeranjang()
         {
-            if (Exist.Qty < PilProduk.Stok)
+            return this.ListKeranjang;
+        }
+
+        public string TambahKeKeranjang(Produk pilProduk)
+        {
+            Detail_orders exist = CariDiKeranjang(pilProduk.NamaProduk);
+
+            if (exist != null)
             {
-                Exist.TambahQty();
+                if (exist.Qty < pilProduk.Stok)
+                {
+                    exist.TambahQty();
+                    return "SUKSES";
+                }
+                else
+                {
+                    return $"Stok '{pilProduk.NamaProduk}' tidak mencukupi!";
+                }
             }
             else
             {
-                MessageBox.Show($"Stok '{PilProduk.NamaProduk}' tidak mencukupi!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                if (pilProduk.Stok > 0)
+                {
+                    ListKeranjang.Add(new Detail_orders(pilProduk, 1));
+                    return "SUKSES";
+                }
+                else
+                {
+                    return $"Stok '{pilProduk.NamaProduk}' habis!";
+                }
             }
         }
-        else
-        {
-            if (PilProduk.Stok > 0)
-            {
-                ListKeranjang.Add(new Detail_orders(PilProduk, 1));
-            }
-            else
-            {
-                MessageBox.Show($"Stok '{PilProduk.NamaProduk}' habis!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-        }
-
     }
 }

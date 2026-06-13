@@ -41,7 +41,7 @@ namespace Sistem_Toko
             // 
             // groupBox1
             // 
-            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             groupBox1.BackColor = Color.Transparent;
             groupBox1.BackgroundImage = (Image)resources.GetObject("groupBox1.BackgroundImage");
             groupBox1.BackgroundImageLayout = ImageLayout.Stretch;
@@ -56,14 +56,17 @@ namespace Sistem_Toko
             groupBox1.Size = new Size(449, 413);
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
-            groupBox1.Enter += groupBox1_Enter;
             // 
             // button1
             // 
-            button1.BackColor = Color.Transparent;
+            button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            button1.BackColor = Color.SeaGreen;
             button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
             button1.BackgroundImageLayout = ImageLayout.Stretch;
-            button1.Font = new Font("Tahoma", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Cursor = Cursors.Hand;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            button1.ForeColor = Color.White;
             button1.Location = new Point(189, 285);
             button1.Name = "button1";
             button1.Size = new Size(111, 45);
@@ -74,7 +77,7 @@ namespace Sistem_Toko
             // 
             // label3
             // 
-            label3.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -88,7 +91,7 @@ namespace Sistem_Toko
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -102,21 +105,23 @@ namespace Sistem_Toko
             // 
             // PasswordBox
             // 
+            PasswordBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             PasswordBox.Location = new Point(149, 185);
             PasswordBox.Name = "PasswordBox";
-            PasswordBox.Size = new Size(268, 27);
+            PasswordBox.Size = new Size(268, 30);
             PasswordBox.TabIndex = 8;
             // 
             // UsernameBox
             // 
+            UsernameBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             UsernameBox.Location = new Point(149, 120);
             UsernameBox.Name = "UsernameBox";
-            UsernameBox.Size = new Size(268, 27);
+            UsernameBox.Size = new Size(268, 30);
             UsernameBox.TabIndex = 7;
             // 
             // LoginText
             // 
-            LoginText.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            LoginText.Anchor = System.Windows.Forms.AnchorStyles.None;
             LoginText.AutoSize = true;
             LoginText.BackColor = Color.Transparent;
             LoginText.Font = new Font("MS Gothic", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -131,26 +136,19 @@ namespace Sistem_Toko
             // 
             // Login
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ControlDarkDark;
+            BackColor = Color.WhiteSmoke;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1168, 568);
             Controls.Add(groupBox1);
+            Font = new Font("Segoe UI", 10F);
             Name = "Login";
             Text = "Sistem_Toko";
+            WindowState = FormWindowState.Maximized;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
-            // INJECTED_MANUAL_UI
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button1.BackColor = System.Drawing.Color.SeaGreen;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-
             ResumeLayout(false);
         }
 
@@ -164,5 +162,7 @@ namespace Sistem_Toko
         private Button button1;
     }
 }
+
+
 
 

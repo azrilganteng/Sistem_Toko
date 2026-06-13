@@ -39,25 +39,33 @@ namespace Sistem_Toko
         private void Btn_Stok_Gudang_Click(object sender, EventArgs e)
         {
             StokGudang formStokGudang = new StokGudang();
-            formStokGudang.Show();
+            this.Hide();
+            formStokGudang.ShowDialog();
+            this.Show();
         }
 
         private void Btn_Daftar_Karyawan_Click(object sender, EventArgs e)
         {
             DaftarKaryawan formDaftarKaryawan = new DaftarKaryawan();
-            formDaftarKaryawan.Show();
+            this.Hide();
+            formDaftarKaryawan.ShowDialog();
+            this.Show();
         }
 
         private void Btn_Riwayat_Penjualan_Click(object sender, EventArgs e)
         {
             Riwayat_Stok formRiwayatPenjualan = new Riwayat_Stok();
-            formRiwayatPenjualan.Show();
+            this.Hide();
+            formRiwayatPenjualan.ShowDialog();
+            this.Show();
         }
 
         private void Btn_Restock_Click(object sender, EventArgs e)
         {
             Restock formRestock = new Restock();
-            formRestock.Show();
+            this.Hide();
+            formRestock.ShowDialog();
+            this.Show();
         }
 
         private void Btn_Profil_Click(object sender, EventArgs e)

@@ -29,6 +29,7 @@ namespace Sistem_Toko
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKasir));
             LblToko = new Label();
             LblKasir = new Label();
             ListKeranjangBtn = new Button();
@@ -46,6 +47,7 @@ namespace Sistem_Toko
             // 
             // LblToko
             // 
+            LblToko.Anchor = System.Windows.Forms.AnchorStyles.None;
             LblToko.AutoSize = true;
             LblToko.Font = new Font("Book Antiqua", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LblToko.Location = new Point(41, 9);
@@ -56,6 +58,7 @@ namespace Sistem_Toko
             // 
             // LblKasir
             // 
+            LblKasir.Anchor = System.Windows.Forms.AnchorStyles.None;
             LblKasir.AutoSize = true;
             LblKasir.Font = new Font("Book Antiqua", 18F);
             LblKasir.Location = new Point(54, 88);
@@ -66,7 +69,9 @@ namespace Sistem_Toko
             // 
             // ListKeranjangBtn
             // 
-            ListKeranjangBtn.BackColor = Color.SeaGreen;
+            ListKeranjangBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            ListKeranjangBtn.BackColor = Color.Transparent;
+            ListKeranjangBtn.BackgroundImage = (Image)resources.GetObject("ListKeranjangBtn.BackgroundImage");
             ListKeranjangBtn.BackgroundImageLayout = ImageLayout.Stretch;
             ListKeranjangBtn.Cursor = Cursors.Hand;
             ListKeranjangBtn.FlatStyle = FlatStyle.Flat;
@@ -82,7 +87,9 @@ namespace Sistem_Toko
             // 
             // StatusKirimBtn
             // 
-            StatusKirimBtn.BackColor = Color.SeaGreen;
+            StatusKirimBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            StatusKirimBtn.BackColor = Color.Transparent;
+            StatusKirimBtn.BackgroundImage = (Image)resources.GetObject("StatusKirimBtn.BackgroundImage");
             StatusKirimBtn.BackgroundImageLayout = ImageLayout.Stretch;
             StatusKirimBtn.Cursor = Cursors.Hand;
             StatusKirimBtn.FlatStyle = FlatStyle.Flat;
@@ -94,16 +101,17 @@ namespace Sistem_Toko
             StatusKirimBtn.TabIndex = 3;
             StatusKirimBtn.Text = "Status Pengiriman";
             StatusKirimBtn.UseVisualStyleBackColor = false;
+            StatusKirimBtn.Click += StatusKirimBtn_Click_1;
             // 
             // panel1
             // 
-            panel1.BackColor = Color.MediumSeaGreen;
+            panel1.Dock = DockStyle.Top;
+            panel1.BackColor = Color.Transparent;
             panel1.Controls.Add(ObatBtn);
             panel1.Controls.Add(BibitBtn);
             panel1.Controls.Add(PupukBtn);
             panel1.Controls.Add(LblToko);
             panel1.Controls.Add(LblKasir);
-            panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1067, 125);
@@ -111,7 +119,9 @@ namespace Sistem_Toko
             // 
             // ObatBtn
             // 
-            ObatBtn.BackColor = Color.SeaGreen;
+            ObatBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            ObatBtn.BackColor = Color.Transparent;
+            ObatBtn.BackgroundImage = (Image)resources.GetObject("ObatBtn.BackgroundImage");
             ObatBtn.BackgroundImageLayout = ImageLayout.Stretch;
             ObatBtn.Cursor = Cursors.Hand;
             ObatBtn.FlatStyle = FlatStyle.Flat;
@@ -126,7 +136,9 @@ namespace Sistem_Toko
             // 
             // BibitBtn
             // 
-            BibitBtn.BackColor = Color.SeaGreen;
+            BibitBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            BibitBtn.BackColor = Color.Transparent;
+            BibitBtn.BackgroundImage = (Image)resources.GetObject("BibitBtn.BackgroundImage");
             BibitBtn.BackgroundImageLayout = ImageLayout.Stretch;
             BibitBtn.Cursor = Cursors.Hand;
             BibitBtn.FlatStyle = FlatStyle.Flat;
@@ -134,14 +146,16 @@ namespace Sistem_Toko
             BibitBtn.ForeColor = Color.White;
             BibitBtn.Location = new Point(781, 77);
             BibitBtn.Name = "BibitBtn";
-            BibitBtn.Size = new Size(92, 40);
+            BibitBtn.Size = new Size(93, 40);
             BibitBtn.TabIndex = 3;
             BibitBtn.Text = "Bibit";
             BibitBtn.UseVisualStyleBackColor = false;
             // 
             // PupukBtn
             // 
-            PupukBtn.BackColor = Color.SeaGreen;
+            PupukBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            PupukBtn.BackColor = Color.Transparent;
+            PupukBtn.BackgroundImage = (Image)resources.GetObject("PupukBtn.BackgroundImage");
             PupukBtn.BackgroundImageLayout = ImageLayout.Stretch;
             PupukBtn.Cursor = Cursors.Hand;
             PupukBtn.FlatStyle = FlatStyle.Flat;
@@ -156,10 +170,10 @@ namespace Sistem_Toko
             // 
             // panel2
             // 
-            panel2.BackColor = Color.MediumSeaGreen;
+            panel2.Dock = DockStyle.Left;
+            panel2.BackColor = Color.Transparent;
             panel2.Controls.Add(ListKeranjangBtn);
             panel2.Controls.Add(StatusKirimBtn);
-            panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 125);
             panel2.Name = "panel2";
             panel2.Size = new Size(250, 446);
@@ -167,9 +181,9 @@ namespace Sistem_Toko
             // 
             // FlpProduk
             // 
+            FlpProduk.Dock = DockStyle.Fill;
             FlpProduk.AutoScroll = true;
             FlpProduk.BackColor = Color.Transparent;
-            FlpProduk.Dock = DockStyle.Fill;
             FlpProduk.Location = new Point(250, 125);
             FlpProduk.Name = "FlpProduk";
             FlpProduk.Size = new Size(817, 446);
@@ -185,7 +199,7 @@ namespace Sistem_Toko
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.WhiteSmoke;
+            BackColor = Color.LightYellow;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1067, 571);
             Controls.Add(FlpProduk);
@@ -216,5 +230,8 @@ namespace Sistem_Toko
         private Button PupukBtn;
     }
 }
+
+
+
 
 

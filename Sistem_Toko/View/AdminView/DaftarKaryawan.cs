@@ -1,5 +1,4 @@
-using Npgsql;
-using Sistem_Toko.Helpers;
+using Sistem_Toko.Model;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -24,12 +23,7 @@ namespace Sistem_Toko.View.AdminView
         {
             try
             {
-                using var conn = connectDB.GetConn();
-                string sql = @"SELECT * FROM daftar_karyawan";
-
-                var adapter = new NpgsqlDataAdapter(sql, conn);
-                var dt = new DataTable();
-                adapter.Fill(dt);
+                DataTable dt = UserContext.GetDaftarKaryawan();
 
                 Grid_Daftar_Karyawan.DataSource = dt;
                 Grid_Daftar_Karyawan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -73,14 +67,13 @@ namespace Sistem_Toko.View.AdminView
 
         private void Btn_Hapus_Click(object sender, EventArgs e)
         {
-            if (selectedId == -1)
-            {
-                MessageBox.Show("Pilih karyawan yang ingin dihapus dari tabel terlebih dahulu!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             HapusKaryawan formHapus = new HapusKaryawan(selectedId, this);
             formHapus.ShowDialog();
+        }
+
+        private void Btn_Kembali_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

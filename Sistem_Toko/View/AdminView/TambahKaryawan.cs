@@ -1,5 +1,4 @@
-using Npgsql;
-using Sistem_Toko.Helpers;
+using Sistem_Toko.Model;
 using System;
 using System.Windows.Forms;
 
@@ -29,27 +28,13 @@ namespace Sistem_Toko.View.AdminView
 
             try
             {
-                using var conn = connectDB.GetConn();
-
                 // 1. Memanggil function tambah_user dan ambil ID-nya
-                string sqlUser = @"SELECT tambah_user(@username, @password, @nama, @no_hp, @alamat, @email)";
-
-                int newUserId;
-                using (var cmdUser = new NpgsqlCommand(sqlUser, conn))
-                {
-                    cmdUser.Parameters.AddWithValue("username", TextBox_Username.Text);
-                    cmdUser.Parameters.AddWithValue("password", TextBox_Password.Text);
-                    cmdUser.Parameters.AddWithValue("nama", TextBox_NamaLengkap.Text);
-                    cmdUser.Parameters.AddWithValue("no_hp", TextBox_NoHP.Text);
-                    cmdUser.Parameters.AddWithValue("alamat", TextBox_Alamat.Text);
-                    cmdUser.Parameters.AddWithValue("email", TextBox_Email.Text);
-                    newUserId = Convert.ToInt32(cmdUser.ExecuteScalar());
-                }
+                int newUserId = UserContext.TambahKaryawan(TextBox_Username.Text, TextBox_Password.Text, TextBox_NamaLengkap.Text, TextBox_NoHP.Text, TextBox_Alamat.Text, TextBox_Email.Text);
 
                 // 2. Insert role ke tabel kewenangan
-                InsertRole(newUserId, ComBox_Role1.Text, conn);
-                InsertRole(newUserId, ComBox_Role2.Text, conn);
-                InsertRole(newUserId, ComBox_Role3.Text, conn);
+                UserContext.InsertRoleKaryawan(newUserId, ComBox_Role1.Text);
+                UserContext.InsertRoleKaryawan(newUserId, ComBox_Role2.Text);
+                UserContext.InsertRoleKaryawan(newUserId, ComBox_Role3.Text);
 
                 MessageBox.Show("Karyawan berhasil ditambahkan!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -63,18 +48,9 @@ namespace Sistem_Toko.View.AdminView
             }
         }
 
-        private void InsertRole(int idUser, string roleName, NpgsqlConnection conn)
+        private void Btn_Kembali_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(roleName) || roleName.ToLower() == "tidak ada") return;
-
-            string sqlRole = @"
-                INSERT INTO kewenangan (id_user, id_role)
-                SELECT @id_user, id_role FROM roles WHERE nama_role ILIKE @role";
-
-            using var cmd = new NpgsqlCommand(sqlRole, conn);
-            cmd.Parameters.AddWithValue("id_user", idUser);
-            cmd.Parameters.AddWithValue("role", roleName);
-            cmd.ExecuteNonQuery();
+            this.Close();
         }
     }
 }

@@ -28,6 +28,7 @@ namespace Sistem_Toko
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKeranjang));
             panel1 = new Panel();
             ObatBtn = new Button();
             BibitBtn = new Button();
@@ -45,48 +46,74 @@ namespace Sistem_Toko
             // 
             // panel1
             // 
+            panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             panel1.BackColor = Color.Transparent;
             panel1.Controls.Add(ObatBtn);
             panel1.Controls.Add(BibitBtn);
             panel1.Controls.Add(PupukBtn);
             panel1.Controls.Add(LblToko);
             panel1.Controls.Add(LblKasir);
-            panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(1067, 125);
             panel1.TabIndex = 5;
+            panel1.Paint += panel1_Paint;
             // 
             // ObatBtn
             // 
-            ObatBtn.Location = new Point(927, 88);
+            ObatBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            ObatBtn.BackColor = Color.SeaGreen;
+            ObatBtn.BackgroundImage = (Image)resources.GetObject("ObatBtn.BackgroundImage");
+            ObatBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            ObatBtn.Cursor = Cursors.Hand;
+            ObatBtn.FlatStyle = FlatStyle.Flat;
+            ObatBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            ObatBtn.ForeColor = Color.White;
+            ObatBtn.Location = new Point(926, 77);
             ObatBtn.Name = "ObatBtn";
-            ObatBtn.Size = new Size(94, 29);
+            ObatBtn.Size = new Size(93, 40);
             ObatBtn.TabIndex = 4;
             ObatBtn.Text = "Obat";
-            ObatBtn.UseVisualStyleBackColor = true;
+            ObatBtn.UseVisualStyleBackColor = false;
             // 
             // BibitBtn
             // 
-            BibitBtn.Location = new Point(779, 88);
+            BibitBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            BibitBtn.BackColor = Color.SeaGreen;
+            BibitBtn.BackgroundImage = (Image)resources.GetObject("BibitBtn.BackgroundImage");
+            BibitBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            BibitBtn.Cursor = Cursors.Hand;
+            BibitBtn.FlatStyle = FlatStyle.Flat;
+            BibitBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            BibitBtn.ForeColor = Color.White;
+            BibitBtn.Location = new Point(781, 77);
             BibitBtn.Name = "BibitBtn";
-            BibitBtn.Size = new Size(94, 29);
+            BibitBtn.Size = new Size(93, 40);
             BibitBtn.TabIndex = 3;
             BibitBtn.Text = "Bibit";
-            BibitBtn.UseVisualStyleBackColor = true;
+            BibitBtn.UseVisualStyleBackColor = false;
             // 
             // PupukBtn
             // 
-            PupukBtn.Location = new Point(632, 88);
+            PupukBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            PupukBtn.BackColor = Color.SeaGreen;
+            PupukBtn.BackgroundImage = (Image)resources.GetObject("PupukBtn.BackgroundImage");
+            PupukBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            PupukBtn.Cursor = Cursors.Hand;
+            PupukBtn.FlatStyle = FlatStyle.Flat;
+            PupukBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            PupukBtn.ForeColor = Color.White;
+            PupukBtn.Location = new Point(633, 77);
             PupukBtn.Name = "PupukBtn";
-            PupukBtn.Size = new Size(94, 29);
+            PupukBtn.Size = new Size(93, 40);
             PupukBtn.TabIndex = 2;
             PupukBtn.Text = "Pupuk";
-            PupukBtn.UseVisualStyleBackColor = true;
+            PupukBtn.UseVisualStyleBackColor = false;
             PupukBtn.Click += PupukBtn_Click;
             // 
             // LblToko
             // 
+            LblToko.Anchor = System.Windows.Forms.AnchorStyles.None;
             LblToko.AutoSize = true;
             LblToko.Font = new Font("Book Antiqua", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LblToko.Location = new Point(41, 9);
@@ -97,6 +124,7 @@ namespace Sistem_Toko
             // 
             // LblKasir
             // 
+            LblKasir.Anchor = System.Windows.Forms.AnchorStyles.None;
             LblKasir.AutoSize = true;
             LblKasir.Font = new Font("Book Antiqua", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
             LblKasir.Location = new Point(54, 88);
@@ -107,11 +135,11 @@ namespace Sistem_Toko
             // 
             // panel2
             // 
+            panel2.Anchor = System.Windows.Forms.AnchorStyles.None;
             panel2.BackColor = Color.Transparent;
             panel2.Controls.Add(BayarBtn);
             panel2.Controls.Add(ListKeranjangBtn);
             panel2.Controls.Add(StatusKirimBtn);
-            panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 125);
             panel2.Name = "panel2";
             panel2.Size = new Size(250, 446);
@@ -119,7 +147,14 @@ namespace Sistem_Toko
             // 
             // BayarBtn
             // 
-            BayarBtn.BackColor = Color.MediumSeaGreen;
+            BayarBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            BayarBtn.BackColor = Color.SeaGreen;
+            BayarBtn.BackgroundImage = (Image)resources.GetObject("BayarBtn.BackgroundImage");
+            BayarBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            BayarBtn.Cursor = Cursors.Hand;
+            BayarBtn.FlatStyle = FlatStyle.Flat;
+            BayarBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            BayarBtn.ForeColor = Color.White;
             BayarBtn.Location = new Point(41, 355);
             BayarBtn.Name = "BayarBtn";
             BayarBtn.Size = new Size(147, 54);
@@ -130,9 +165,14 @@ namespace Sistem_Toko
             // 
             // ListKeranjangBtn
             // 
-            ListKeranjangBtn.BackColor = Color.GreenYellow;
+            ListKeranjangBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            ListKeranjangBtn.BackColor = Color.SeaGreen;
+            ListKeranjangBtn.BackgroundImage = (Image)resources.GetObject("ListKeranjangBtn.BackgroundImage");
+            ListKeranjangBtn.BackgroundImageLayout = ImageLayout.Stretch;
             ListKeranjangBtn.Cursor = Cursors.Hand;
-            ListKeranjangBtn.Font = new Font("Franklin Gothic Medium", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            ListKeranjangBtn.FlatStyle = FlatStyle.Flat;
+            ListKeranjangBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            ListKeranjangBtn.ForeColor = Color.White;
             ListKeranjangBtn.Location = new Point(12, 51);
             ListKeranjangBtn.Name = "ListKeranjangBtn";
             ListKeranjangBtn.Size = new Size(221, 67);
@@ -142,9 +182,14 @@ namespace Sistem_Toko
             // 
             // StatusKirimBtn
             // 
-            StatusKirimBtn.BackColor = Color.GreenYellow;
+            StatusKirimBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            StatusKirimBtn.BackColor = Color.SeaGreen;
+            StatusKirimBtn.BackgroundImage = (Image)resources.GetObject("StatusKirimBtn.BackgroundImage");
+            StatusKirimBtn.BackgroundImageLayout = ImageLayout.Stretch;
             StatusKirimBtn.Cursor = Cursors.Hand;
-            StatusKirimBtn.Font = new Font("Franklin Gothic Medium", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            StatusKirimBtn.FlatStyle = FlatStyle.Flat;
+            StatusKirimBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            StatusKirimBtn.ForeColor = Color.White;
             StatusKirimBtn.Location = new Point(12, 146);
             StatusKirimBtn.Name = "StatusKirimBtn";
             StatusKirimBtn.Size = new Size(221, 99);
@@ -154,9 +199,9 @@ namespace Sistem_Toko
             // 
             // FlpKeranjang
             // 
+            FlpKeranjang.Anchor = System.Windows.Forms.AnchorStyles.None;
             FlpKeranjang.AutoScroll = true;
             FlpKeranjang.BackColor = Color.Transparent;
-            FlpKeranjang.Dock = DockStyle.Fill;
             FlpKeranjang.Location = new Point(250, 125);
             FlpKeranjang.Name = "FlpKeranjang";
             FlpKeranjang.Size = new Size(817, 446);
@@ -164,54 +209,19 @@ namespace Sistem_Toko
             // 
             // FormKeranjang
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightGray;
+            BackColor = Color.LightYellow;
             ClientSize = new Size(1067, 571);
             Controls.Add(FlpKeranjang);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            Font = new Font("Segoe UI", 10F);
             Name = "FormKeranjang";
             Text = "FormKeranjang";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);
-            // INJECTED_MANUAL_UI
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.ObatBtn.BackColor = System.Drawing.Color.SeaGreen;
-            this.ObatBtn.ForeColor = System.Drawing.Color.White;
-            this.ObatBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ObatBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ObatBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.BibitBtn.BackColor = System.Drawing.Color.SeaGreen;
-            this.BibitBtn.ForeColor = System.Drawing.Color.White;
-            this.BibitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BibitBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BibitBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.PupukBtn.BackColor = System.Drawing.Color.SeaGreen;
-            this.PupukBtn.ForeColor = System.Drawing.Color.White;
-            this.PupukBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PupukBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PupukBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.BayarBtn.BackColor = System.Drawing.Color.SeaGreen;
-            this.BayarBtn.ForeColor = System.Drawing.Color.White;
-            this.BayarBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BayarBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BayarBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ListKeranjangBtn.BackColor = System.Drawing.Color.SeaGreen;
-            this.ListKeranjangBtn.ForeColor = System.Drawing.Color.White;
-            this.ListKeranjangBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ListKeranjangBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ListKeranjangBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.StatusKirimBtn.BackColor = System.Drawing.Color.SeaGreen;
-            this.StatusKirimBtn.ForeColor = System.Drawing.Color.White;
-            this.StatusKirimBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.StatusKirimBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.StatusKirimBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.panel1.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.panel2.BackColor = System.Drawing.Color.MediumSeaGreen;
-
             ResumeLayout(false);
         }
 
@@ -230,5 +240,8 @@ namespace Sistem_Toko
         private FlowLayoutPanel FlpKeranjang;
     }
 }
+
+
+
 
 

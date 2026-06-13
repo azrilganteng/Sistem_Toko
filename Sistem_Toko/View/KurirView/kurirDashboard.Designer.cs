@@ -1,4 +1,4 @@
-﻿namespace Sistem_Toko.View.KurirView
+namespace Sistem_Toko.View.KurirView
 {
     partial class kurirDashboard
     {
@@ -73,6 +73,7 @@
             // 
             // button2
             // 
+            button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             button2.BackColor = Color.LightGray;
             button2.BackgroundImage = (Image)resources.GetObject("button2.BackgroundImage");
             button2.BackgroundImageLayout = ImageLayout.Zoom;
@@ -119,3 +120,5 @@
         private Label lblNamaKurir;
     }
 }
+
+

@@ -32,18 +32,22 @@ namespace Sistem_Toko
             lblTotal = new Label();
             txtNota = new TextBox();
             KonfirmBtn = new Button();
+            CboMetodeKirim = new ComboBox();
+            CboMetodeBayar = new ComboBox();
             SuspendLayout();
             // 
             // listBox1
             // 
+            listBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             listBox1.FormattingEnabled = true;
             listBox1.Location = new Point(120, 73);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(840, 404);
+            listBox1.Size = new Size(840, 395);
             listBox1.TabIndex = 0;
             // 
             // lblTotal
             // 
+            lblTotal.Anchor = System.Windows.Forms.AnchorStyles.None;
             lblTotal.AutoSize = true;
             lblTotal.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTotal.Location = new Point(706, 401);
@@ -54,41 +58,64 @@ namespace Sistem_Toko
             // 
             // txtNota
             // 
+            txtNota.Anchor = System.Windows.Forms.AnchorStyles.None;
+            txtNota.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtNota.Location = new Point(199, 158);
+            txtNota.Multiline = true;
             txtNota.Name = "txtNota";
-            txtNota.Size = new Size(677, 27);
+            txtNota.ReadOnly = true;
+            txtNota.ScrollBars = ScrollBars.Vertical;
+            txtNota.Size = new Size(677, 213);
             txtNota.TabIndex = 4;
+            txtNota.WordWrap = false;
             // 
             // KonfirmBtn
             // 
+            KonfirmBtn.Anchor = System.Windows.Forms.AnchorStyles.None;
+            KonfirmBtn.BackColor = Color.SeaGreen;
+            KonfirmBtn.Cursor = Cursors.Hand;
+            KonfirmBtn.FlatStyle = FlatStyle.Flat;
+            KonfirmBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            KonfirmBtn.ForeColor = Color.White;
             KonfirmBtn.Location = new Point(838, 492);
             KonfirmBtn.Name = "KonfirmBtn";
             KonfirmBtn.Size = new Size(122, 46);
             KonfirmBtn.TabIndex = 5;
             KonfirmBtn.Text = "button1";
-            KonfirmBtn.UseVisualStyleBackColor = true;
+            KonfirmBtn.UseVisualStyleBackColor = false;
             KonfirmBtn.Click += KonfirmBtn_Click;
+            // 
+            // CboMetodeKirim
+            // 
+            CboMetodeKirim.Anchor = System.Windows.Forms.AnchorStyles.None;
+            CboMetodeKirim.Location = new Point(289, 423);
+            CboMetodeKirim.Name = "CboMetodeKirim";
+            CboMetodeKirim.Size = new Size(151, 31);
+            CboMetodeKirim.TabIndex = 0;
+            // 
+            // CboMetodeBayar
+            // 
+            CboMetodeBayar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            CboMetodeBayar.Location = new Point(289, 483);
+            CboMetodeBayar.Name = "CboMetodeBayar";
+            CboMetodeBayar.Size = new Size(151, 31);
+            CboMetodeBayar.TabIndex = 6;
             // 
             // FormPembayaran
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.LightYellow;
             ClientSize = new Size(1067, 571);
+            Controls.Add(CboMetodeBayar);
+            Controls.Add(CboMetodeKirim);
             Controls.Add(KonfirmBtn);
             Controls.Add(txtNota);
             Controls.Add(lblTotal);
             Controls.Add(listBox1);
+            Font = new Font("Segoe UI", 10F);
             Name = "FormPembayaran";
             Text = "FormPembayaran";
-            // INJECTED_MANUAL_UI
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.KonfirmBtn.BackColor = System.Drawing.Color.SeaGreen;
-            this.KonfirmBtn.ForeColor = System.Drawing.Color.White;
-            this.KonfirmBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.KonfirmBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.KonfirmBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-
             ResumeLayout(false);
             PerformLayout();
         }
@@ -99,7 +126,12 @@ namespace Sistem_Toko
         private Label lblTotal;
         private TextBox txtNota;
         private Button KonfirmBtn;
+        private ComboBox CboMetodeKirim;
+        private ComboBox CboMetodeBayar;
     }
 }
+
+
+
 
 

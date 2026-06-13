@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using Npgsql;
 using Sistem_Toko.Helpers; // namespace connectDB kamu
@@ -22,11 +22,11 @@ namespace Sistem_Toko.View.KurirView
         {
             try
             {
-                using (var conn = connectDB.GetConn()) // pakai GetConn() bukan GetConnection()
+                using (var conn = connectDB.GetConn())
                 {
                     var cmd = new NpgsqlCommand(
                         "SELECT * FROM fn_get_user_info(@id)", conn);
-                    cmd.Parameters.AddWithValue("id", SessionUser.IdUser);
+                    cmd.Parameters.AddWithValue("id", SessionUser.Id);
 
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -47,11 +47,11 @@ namespace Sistem_Toko.View.KurirView
             }
         }
 
-        // Tombol Pengiriman Anda
         private void button1_Click(object sender, EventArgs e)
         {
-            new KurirForm().Show();
             this.Hide();
+            new KurirForm().ShowDialog();
+            this.Show();
         }
 
         private void label2_Click(object sender, EventArgs e)

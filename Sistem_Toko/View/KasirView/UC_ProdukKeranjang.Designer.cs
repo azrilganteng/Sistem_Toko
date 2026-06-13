@@ -78,9 +78,13 @@ namespace Sistem_Toko
             // 
             // PlusQty
             // 
-            PlusQty.BackColor = Color.LightGreen;
+            PlusQty.BackColor = Color.Black;
             PlusQty.BackgroundImage = (Image)resources.GetObject("PlusQty.BackgroundImage");
             PlusQty.BackgroundImageLayout = ImageLayout.Stretch;
+            PlusQty.Cursor = Cursors.Hand;
+            PlusQty.FlatStyle = FlatStyle.Flat;
+            PlusQty.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            PlusQty.ForeColor = Color.White;
             PlusQty.Location = new Point(276, 107);
             PlusQty.Name = "PlusQty";
             PlusQty.Size = new Size(47, 38);
@@ -90,9 +94,13 @@ namespace Sistem_Toko
             // 
             // BatalBtn
             // 
-            BatalBtn.BackColor = Color.Beige;
+            BatalBtn.BackColor = Color.Transparent;
             BatalBtn.BackgroundImage = (Image)resources.GetObject("BatalBtn.BackgroundImage");
             BatalBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            BatalBtn.Cursor = Cursors.Hand;
+            BatalBtn.FlatStyle = FlatStyle.Flat;
+            BatalBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            BatalBtn.ForeColor = Color.White;
             BatalBtn.Location = new Point(618, 27);
             BatalBtn.Name = "BatalBtn";
             BatalBtn.Size = new Size(109, 93);
@@ -102,32 +110,19 @@ namespace Sistem_Toko
             // 
             // UC_ProdukKeranjang
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.YellowGreen;
+            BackColor = Color.LightSkyBlue;
             Controls.Add(BatalBtn);
             Controls.Add(PlusQty);
             Controls.Add(pictureBox1);
             Controls.Add(lblQty);
             Controls.Add(HargaKeranjang);
             Controls.Add(ItemKeranjang);
+            Font = new Font("Segoe UI", 10F);
             Name = "UC_ProdukKeranjang";
             Size = new Size(750, 150);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            // INJECTED_MANUAL_UI
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.PlusQty.BackColor = System.Drawing.Color.SeaGreen;
-            this.PlusQty.ForeColor = System.Drawing.Color.White;
-            this.PlusQty.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PlusQty.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.PlusQty.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.BatalBtn.BackColor = System.Drawing.Color.SeaGreen;
-            this.BatalBtn.ForeColor = System.Drawing.Color.White;
-            this.BatalBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BatalBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BatalBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-
             ResumeLayout(false);
             PerformLayout();
         }
@@ -142,5 +137,8 @@ namespace Sistem_Toko
         private Button BatalBtn;
     }
 }
+
+
+
 
 

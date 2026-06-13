@@ -28,6 +28,7 @@ namespace Sistem_Toko.View.AdminView
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditKaryawan));
             ComBox_Role2 = new ComboBox();
             ComBox_Role3 = new ComboBox();
             ComBox_Role1 = new ComboBox();
@@ -48,10 +49,12 @@ namespace Sistem_Toko.View.AdminView
             label1 = new Label();
             Btn_Simpan = new Button();
             label10 = new Label();
+            Btn_Kembali = new Button();
             SuspendLayout();
             // 
             // ComBox_Role2
             // 
+            ComBox_Role2.Anchor = AnchorStyles.None;
             ComBox_Role2.FormattingEnabled = true;
             ComBox_Role2.Items.AddRange(new object[] { "Kasir", "Kurir", "Admin", "Tidak Ada" });
             ComBox_Role2.Location = new Point(165, 338);
@@ -61,6 +64,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // ComBox_Role3
             // 
+            ComBox_Role3.Anchor = AnchorStyles.None;
             ComBox_Role3.FormattingEnabled = true;
             ComBox_Role3.Items.AddRange(new object[] { "Kasir", "Kurir", "Admin", "Tidak ada" });
             ComBox_Role3.Location = new Point(165, 374);
@@ -70,6 +74,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // ComBox_Role1
             // 
+            ComBox_Role1.Anchor = AnchorStyles.None;
             ComBox_Role1.FormattingEnabled = true;
             ComBox_Role1.Items.AddRange(new object[] { "Kasir", "Kurir", "Admin" });
             ComBox_Role1.Location = new Point(165, 297);
@@ -79,6 +84,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // TextBox_Email
             // 
+            TextBox_Email.Anchor = AnchorStyles.None;
             TextBox_Email.Location = new Point(165, 257);
             TextBox_Email.Name = "TextBox_Email";
             TextBox_Email.Size = new Size(343, 30);
@@ -86,6 +92,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // TextBox_Password
             // 
+            TextBox_Password.Anchor = AnchorStyles.None;
             TextBox_Password.Location = new Point(165, 91);
             TextBox_Password.Name = "TextBox_Password";
             TextBox_Password.Size = new Size(173, 30);
@@ -93,6 +100,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // TextBox_NamaLengkap
             // 
+            TextBox_NamaLengkap.Anchor = AnchorStyles.None;
             TextBox_NamaLengkap.Location = new Point(165, 131);
             TextBox_NamaLengkap.Name = "TextBox_NamaLengkap";
             TextBox_NamaLengkap.Size = new Size(343, 30);
@@ -100,6 +108,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // TextBox_NoHP
             // 
+            TextBox_NoHP.Anchor = AnchorStyles.None;
             TextBox_NoHP.Location = new Point(165, 171);
             TextBox_NoHP.Name = "TextBox_NoHP";
             TextBox_NoHP.Size = new Size(190, 30);
@@ -107,6 +116,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // TextBox_Alamat
             // 
+            TextBox_Alamat.Anchor = AnchorStyles.None;
             TextBox_Alamat.Location = new Point(165, 214);
             TextBox_Alamat.Name = "TextBox_Alamat";
             TextBox_Alamat.Size = new Size(343, 30);
@@ -114,6 +124,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // TextBox_Username
             // 
+            TextBox_Username.Anchor = AnchorStyles.None;
             TextBox_Username.Location = new Point(165, 52);
             TextBox_Username.Name = "TextBox_Username";
             TextBox_Username.Size = new Size(173, 30);
@@ -121,6 +132,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label9
             // 
+            label9.Anchor = AnchorStyles.None;
             label9.AutoSize = true;
             label9.Font = new Font("Book Antiqua", 10F);
             label9.ForeColor = Color.Black;
@@ -132,6 +144,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label8
             // 
+            label8.Anchor = AnchorStyles.None;
             label8.AutoSize = true;
             label8.Font = new Font("Book Antiqua", 10F);
             label8.ForeColor = Color.Black;
@@ -143,6 +156,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label7
             // 
+            label7.Anchor = AnchorStyles.None;
             label7.AutoSize = true;
             label7.Font = new Font("Book Antiqua", 10F);
             label7.ForeColor = Color.Black;
@@ -154,6 +168,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label6
             // 
+            label6.Anchor = AnchorStyles.None;
             label6.AutoSize = true;
             label6.Font = new Font("Book Antiqua", 10F);
             label6.ForeColor = Color.Black;
@@ -165,6 +180,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label5
             // 
+            label5.Anchor = AnchorStyles.None;
             label5.AutoSize = true;
             label5.Font = new Font("Book Antiqua", 10F);
             label5.ForeColor = Color.Black;
@@ -176,6 +192,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label4
             // 
+            label4.Anchor = AnchorStyles.None;
             label4.AutoSize = true;
             label4.Font = new Font("Book Antiqua", 10F);
             label4.ForeColor = Color.Black;
@@ -187,6 +204,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
             label3.Font = new Font("Book Antiqua", 10F);
             label3.ForeColor = Color.Black;
@@ -198,6 +216,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
             label2.Font = new Font("Book Antiqua", 10F);
             label2.ForeColor = Color.Black;
@@ -209,6 +228,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Font = new Font("Book Antiqua", 10F);
             label1.ForeColor = Color.Black;
@@ -220,6 +240,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // Btn_Simpan
             // 
+            Btn_Simpan.Anchor = AnchorStyles.None;
             Btn_Simpan.BackColor = Color.Gold;
             Btn_Simpan.BackgroundImageLayout = ImageLayout.Stretch;
             Btn_Simpan.Cursor = Cursors.Hand;
@@ -236,6 +257,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label10
             // 
+            label10.Anchor = AnchorStyles.None;
             label10.AutoSize = true;
             label10.Font = new Font("Book Antiqua", 15F);
             label10.Location = new Point(270, 9);
@@ -243,6 +265,21 @@ namespace Sistem_Toko.View.AdminView
             label10.Size = new Size(251, 31);
             label10.TabIndex = 38;
             label10.Text = "Edit Akun Karyawan";
+            // 
+            // Btn_Kembali
+            // 
+            Btn_Kembali.Anchor = AnchorStyles.None;
+            Btn_Kembali.BackColor = Color.Transparent;
+            Btn_Kembali.BackgroundImage = (Image)resources.GetObject("Btn_Kembali.BackgroundImage");
+            Btn_Kembali.BackgroundImageLayout = ImageLayout.Zoom;
+            Btn_Kembali.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            Btn_Kembali.ForeColor = Color.White;
+            Btn_Kembali.Location = new Point(5, 12);
+            Btn_Kembali.Name = "Btn_Kembali";
+            Btn_Kembali.Size = new Size(40, 40);
+            Btn_Kembali.TabIndex = 99;
+            Btn_Kembali.UseVisualStyleBackColor = false;
+            Btn_Kembali.Click += Btn_Kembali_Click;
             // 
             // EditKaryawan
             // 
@@ -270,6 +307,7 @@ namespace Sistem_Toko.View.AdminView
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            Controls.Add(Btn_Kembali);
             Font = new Font("Segoe UI", 10F);
             Name = "EditKaryawan";
             Text = "EditKaryawan";
@@ -300,7 +338,14 @@ namespace Sistem_Toko.View.AdminView
         private Label label1;
         private Button Btn_Simpan;
         private Label label10;
+    
+        private System.Windows.Forms.Button Btn_Kembali;
     }
 }
+
+
+
+
+
 
 

@@ -1,9 +1,11 @@
 using Npgsql;
-using Sistem_Toko.Controller; // Sesuaikan dengan namespace connectDB kamu
+using Sistem_Toko.Controller;
 using Sistem_Toko.Helpers;
 using Sistem_Toko.Model;
 using Sistem_Toko.View.AdminView;
 using Sistem_Toko.View.KurirView;
+using System;
+using System.Windows.Forms;
 
 namespace Sistem_Toko
 {
@@ -14,57 +16,53 @@ namespace Sistem_Toko
             InitializeComponent();
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-
         private void button1_Click(object sender, EventArgs e)
         {
             string user = UsernameBox.Text;
             string pass = PasswordBox.Text;
 
-            // Coba login sebagai Admin dulu
-            Admin admin = new Admin(0, "", "", "");
-            if (admin.Login(user, pass))
+            if (string.IsNullOrWhiteSpace(user) || string.IsNullOrWhiteSpace(pass))
             {
-                AdminForm adminPage = new AdminForm(admin);
+                MessageBox.Show("Username dan Password tidak boleh kosong!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            AuthController auth = new AuthController();
+
+            // Coba login sebagai Kasir
+            Kasir kasirAktif = auth.LoginKasir(user, pass);
+
+            if (kasirAktif != null)
+            {
+                FormKasir kasirPage = new FormKasir();
+                kasirPage.Show();
+                this.Hide();
+                return;
+            }
+
+            // Coba login sebagai Admin
+            Admin adminAktif = auth.LoginAdmin(user, pass);
+
+            if (adminAktif != null)
+            {
+                AdminForm adminPage = new AdminForm();
                 adminPage.Show();
                 this.Hide();
                 return;
             }
 
-            // Kalau bukan admin, coba login sebagai Kasir
-            Kasir kasir = new Kasir(0, "", "", "");
-            if (kasir.Login(user, pass))
+            // Coba login sebagai Kurir
+            bool isKurirValid = auth.LoginKurir(user, pass);
+
+            if (isKurirValid)
             {
-                FormKasir kasirPage = new FormKasir(kasir);
-                kasirPage.Show();
+                kurirDashboard dashboard = new kurirDashboard();
+                dashboard.Show();
                 this.Hide();
+                return;
             }
-            else
-            {
-                kurir dataKurir = new kurir(0, "", "", "");
 
-                if (dataKurir.Login(user, pass))
-                {
-                    MessageBox.Show($"Selamat Datang, {dataKurir.Nama}!", "Login Berhasil");
-
-                    SessionUser.IdUser = dataKurir.ID;
-                    SessionUser.Nama = dataKurir.Nama;
-                    SessionUser.IdRole = 3;
-
-                    kurirDashboard dashboard = new kurirDashboard();
-                    dashboard.Show();
-                    this.Hide();
-                    return;
-                }
-                else
-                {
-                    MessageBox.Show("Username/Password salah!", "Login Gagal");
-                }
-            }
+            MessageBox.Show("Username atau Password salah / Akun tidak dikenali!", "Login Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
-}
+}   

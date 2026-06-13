@@ -28,11 +28,13 @@ namespace Sistem_Toko.View.AdminView
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DaftarKaryawan));
             LblToko = new Label();
             Grid_Daftar_Karyawan = new DataGridView();
             Btn_Tambah = new Button();
             Btn_Hapus = new Button();
             Btn_Edit = new Button();
+            Btn_Kembali = new Button();
             ((System.ComponentModel.ISupportInitialize)Grid_Daftar_Karyawan).BeginInit();
             SuspendLayout();
             // 
@@ -48,6 +50,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // Grid_Daftar_Karyawan
             // 
+            Grid_Daftar_Karyawan.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             Grid_Daftar_Karyawan.BackgroundColor = Color.LightGray;
             Grid_Daftar_Karyawan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             Grid_Daftar_Karyawan.GridColor = Color.LightGray;
@@ -77,6 +80,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // Btn_Hapus
             // 
+            Btn_Hapus.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             Btn_Hapus.BackColor = Color.Crimson;
             Btn_Hapus.BackgroundImageLayout = ImageLayout.Stretch;
             Btn_Hapus.Cursor = Cursors.Hand;
@@ -109,6 +113,21 @@ namespace Sistem_Toko.View.AdminView
             Btn_Edit.UseVisualStyleBackColor = false;
             Btn_Edit.Click += Btn_Edit_Click;
             // 
+            // Btn_Kembali
+            // 
+            Btn_Kembali.Anchor = AnchorStyles.None;
+            Btn_Kembali.BackColor = Color.Transparent;
+            Btn_Kembali.BackgroundImage = (Image)resources.GetObject("Btn_Kembali.BackgroundImage");
+            Btn_Kembali.BackgroundImageLayout = ImageLayout.Zoom;
+            Btn_Kembali.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            Btn_Kembali.ForeColor = Color.White;
+            Btn_Kembali.Location = new Point(5, 12);
+            Btn_Kembali.Name = "Btn_Kembali";
+            Btn_Kembali.Size = new Size(40, 40);
+            Btn_Kembali.TabIndex = 99;
+            Btn_Kembali.UseVisualStyleBackColor = false;
+            Btn_Kembali.Click += Btn_Kembali_Click;
+            // 
             // DaftarKaryawan
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
@@ -120,6 +139,7 @@ namespace Sistem_Toko.View.AdminView
             Controls.Add(Btn_Tambah);
             Controls.Add(Grid_Daftar_Karyawan);
             Controls.Add(LblToko);
+            Controls.Add(Btn_Kembali);
             Font = new Font("Segoe UI", 10F);
             IsMdiContainer = true;
             Name = "DaftarKaryawan";
@@ -137,7 +157,13 @@ namespace Sistem_Toko.View.AdminView
         private Button Btn_Tambah;
         private Button Btn_Hapus;
         private Button Btn_Edit;
+    
+        private System.Windows.Forms.Button Btn_Kembali;
     }
 }
+
+
+
+
 
 
