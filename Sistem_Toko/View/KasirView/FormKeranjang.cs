@@ -44,7 +44,7 @@ namespace Sistem_Toko
             {
                 total += (double)item.Qty * item.ProdukItem.Harga;
             }
-            LblTotalKeranjang.Text = $"Total: Rp. {total:N0}";
+            //LblTotal.Text = $"Total: Rp. {total:N0}";
         }
 
         public void TmbhQty(string namaProduk)
@@ -116,6 +116,7 @@ namespace Sistem_Toko
 
         private void BayarBtn_Click(object sender, EventArgs e)
         {
+            this.Hide();
             if (_listKeranjang == null || _listKeranjang.Count == 0)
             {
                 MessageBox.Show("Tidak ada item untuk dibayar!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);

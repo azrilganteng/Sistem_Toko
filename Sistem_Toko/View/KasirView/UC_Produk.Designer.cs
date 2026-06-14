@@ -42,7 +42,7 @@ namespace Sistem_Toko
             // 
             Gambar.Location = new Point(0, 0);
             Gambar.Name = "Gambar";
-            Gambar.Size = new Size(259, 135);
+            Gambar.Size = new Size(235, 135);
             Gambar.SizeMode = PictureBoxSizeMode.StretchImage;
             Gambar.TabIndex = 0;
             Gambar.TabStop = false;
@@ -54,23 +54,24 @@ namespace Sistem_Toko
             LblProduk.Location = new Point(5, 138);
             LblProduk.MaximumSize = new Size(250, 0);
             LblProduk.Name = "LblProduk";
-            LblProduk.Size = new Size(143, 25);
+            LblProduk.Size = new Size(136, 25);
             LblProduk.TabIndex = 1;
             LblProduk.Text = "Produk Name";
             // 
             // KeranjangBtn
             // 
             KeranjangBtn.BackColor = Color.SeaGreen;
+            KeranjangBtn.BackgroundImage = (Image)resources.GetObject("KeranjangBtn.BackgroundImage");
+            KeranjangBtn.BackgroundImageLayout = ImageLayout.Stretch;
             KeranjangBtn.Cursor = Cursors.Hand;
             KeranjangBtn.FlatAppearance.BorderSize = 0;
             KeranjangBtn.FlatStyle = FlatStyle.Flat;
             KeranjangBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             KeranjangBtn.ForeColor = Color.White;
-            KeranjangBtn.Location = new Point(12, 205);
+            KeranjangBtn.Location = new Point(5, 225);
             KeranjangBtn.Name = "KeranjangBtn";
-            KeranjangBtn.Size = new Size(110, 40);
+            KeranjangBtn.Size = new Size(58, 40);
             KeranjangBtn.TabIndex = 2;
-            KeranjangBtn.Text = "+ Keranjang";
             KeranjangBtn.UseVisualStyleBackColor = false;
             KeranjangBtn.Click += KeranjangBtn_Click;
             // 
@@ -82,11 +83,11 @@ namespace Sistem_Toko
             BuyNowBtn.FlatStyle = FlatStyle.Flat;
             BuyNowBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             BuyNowBtn.ForeColor = Color.White;
-            BuyNowBtn.Location = new Point(135, 205);
+            BuyNowBtn.Location = new Point(112, 225);
             BuyNowBtn.Name = "BuyNowBtn";
             BuyNowBtn.Size = new Size(110, 40);
             BuyNowBtn.TabIndex = 3;
-            BuyNowBtn.Text = "Beli Langsung";
+            BuyNowBtn.Text = "Buy Now";
             BuyNowBtn.UseVisualStyleBackColor = false;
             BuyNowBtn.Click += BuyNowBtn_Click;
             // 
@@ -95,9 +96,9 @@ namespace Sistem_Toko
             LblHarga.AutoSize = true;
             LblHarga.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             LblHarga.ForeColor = Color.SeaGreen;
-            LblHarga.Location = new Point(5, 170);
+            LblHarga.Location = new Point(5, 190);
             LblHarga.Name = "LblHarga";
-            LblHarga.Size = new Size(41, 23);
+            LblHarga.Size = new Size(49, 23);
             LblHarga.TabIndex = 4;
             LblHarga.Text = "Price";
             // 
@@ -106,7 +107,7 @@ namespace Sistem_Toko
             LblStok.AutoSize = true;
             LblStok.Font = new Font("Segoe UI", 9F);
             LblStok.ForeColor = Color.Gray;
-            LblStok.Location = new Point(5, 190);
+            LblStok.Location = new Point(162, 190);
             LblStok.Name = "LblStok";
             LblStok.Size = new Size(38, 20);
             LblStok.TabIndex = 5;
@@ -127,7 +128,7 @@ namespace Sistem_Toko
             DoubleBuffered = true;
             Font = new Font("Segoe UI", 10F);
             Name = "UC_Produk";
-            Size = new Size(259, 261);
+            Size = new Size(234, 277);
             ((System.ComponentModel.ISupportInitialize)Gambar).EndInit();
             ResumeLayout(false);
             PerformLayout();

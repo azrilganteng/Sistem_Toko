@@ -58,13 +58,16 @@ namespace Sistem_Toko.View.KasirView
             // BackBtn
             // 
             BackBtn.BackColor = Color.White;
+            BackBtn.BackgroundImage = (Image)resources.GetObject("BackBtn.BackgroundImage");
+            BackBtn.BackgroundImageLayout = ImageLayout.Stretch;
             BackBtn.Cursor = Cursors.Hand;
             BackBtn.FlatStyle = FlatStyle.Flat;
             BackBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             BackBtn.ForeColor = Color.SeaGreen;
-            BackBtn.Location = new Point(15, 35);
+            BackBtn.Location = new Point(33, 18);
             BackBtn.Name = "BackBtn";
-            BackBtn.Size = new Size(90, 40);
+            BackBtn.RightToLeft = RightToLeft.No;
+            BackBtn.Size = new Size(46, 40);
             BackBtn.TabIndex = 6;
             BackBtn.Text = "< Kembali";
             BackBtn.UseVisualStyleBackColor = false;
@@ -77,7 +80,7 @@ namespace Sistem_Toko.View.KasirView
             NamaToko.ForeColor = Color.White;
             NamaToko.Location = new Point(130, 10);
             NamaToko.Name = "NamaToko";
-            NamaToko.Size = new Size(353, 55);
+            NamaToko.Size = new Size(260, 56);
             NamaToko.TabIndex = 1;
             NamaToko.Text = "Pilih Kurir";
             // 
@@ -144,7 +147,7 @@ namespace Sistem_Toko.View.KasirView
             label2.ForeColor = Color.Black;
             label2.Location = new Point(28, 146);
             label2.Name = "label2";
-            label2.Size = new Size(179, 25);
+            label2.Size = new Size(172, 25);
             label2.TabIndex = 4;
             label2.Text = "Alamat Pengiriman";
             // 
@@ -155,7 +158,7 @@ namespace Sistem_Toko.View.KasirView
             label1.ForeColor = Color.Black;
             label1.Location = new Point(28, 32);
             label1.Name = "label1";
-            label1.Size = new Size(243, 25);
+            label1.Size = new Size(236, 25);
             label1.TabIndex = 3;
             label1.Text = "Pilih Kurir Untuk mengirim";
             // 

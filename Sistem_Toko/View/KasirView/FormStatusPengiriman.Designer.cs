@@ -28,6 +28,7 @@ namespace Sistem_Toko.View.KasirView
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormStatusPengiriman));
             panel1 = new Panel();
             BackBtn = new Button();
             LblHeader = new Label();
@@ -53,12 +54,14 @@ namespace Sistem_Toko.View.KasirView
             // BackBtn
             // 
             BackBtn.BackColor = Color.White;
+            BackBtn.BackgroundImage = (Image)resources.GetObject("BackBtn.BackgroundImage");
+            BackBtn.BackgroundImageLayout = ImageLayout.Stretch;
             BackBtn.FlatStyle = FlatStyle.Flat;
             BackBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             BackBtn.ForeColor = Color.SeaGreen;
             BackBtn.Location = new Point(15, 35);
             BackBtn.Name = "BackBtn";
-            BackBtn.Size = new Size(90, 40);
+            BackBtn.Size = new Size(46, 40);
             BackBtn.TabIndex = 2;
             BackBtn.Text = "< Kembali";
             BackBtn.UseVisualStyleBackColor = false;
@@ -71,7 +74,7 @@ namespace Sistem_Toko.View.KasirView
             LblHeader.ForeColor = Color.White;
             LblHeader.Location = new Point(130, 22);
             LblHeader.Name = "LblHeader";
-            LblHeader.Size = new Size(400, 55);
+            LblHeader.Size = new Size(424, 56);
             LblHeader.TabIndex = 3;
             LblHeader.Text = "Status Pengiriman";
             // 

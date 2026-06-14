@@ -80,3 +80,11 @@ CREATE TABLE pengiriman (
     CONSTRAINT fk_pengiriman_order FOREIGN KEY (id_order) REFERENCES "orders" (id_order) ON DELETE CASCADE,
     CONSTRAINT fk_pengiriman_user FOREIGN KEY (id_user) REFERENCES "users" (id_user)
 );
+
+CREATE OR REPLACE VIEW view_kurir_ready AS
+SELECT 
+    u.id_user, 
+    u.nama 
+FROM users u 
+JOIN kewenangan k ON u.id_user = k.id_user 
+WHERE k.id_role = 3 AND u.is_ready = true;

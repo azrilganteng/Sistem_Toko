@@ -27,9 +27,8 @@ namespace Sistem_Toko
 
 
             ItemKeranjang.Text = produk.NamaProduk;
-            HargaKeranjang.Text = "Rp. " + produk.Harga.ToString("N0");
-            this.NumQty.Value = qty;
-            LblSubtotal.Text = "Subtotal: Rp. " + ((long)produk.Harga * qty).ToString("N0");
+            HargaKeranjang.Text = "Harga Rp. " + produk.Harga.ToString("N0");
+            this.lblQty.Text = qty.ToString();
             try
             {
                 if (produk.Gambar != null && produk.Gambar.Length > 0)
@@ -50,11 +49,11 @@ namespace Sistem_Toko
             }
         }
 
-        private void UpdateBtn_Click(object sender, EventArgs e)
+        private void PlusQty_Click(object sender, EventArgs e)
         {
             if (_halamanKeranjang != null && this.ProdukItem != null)
             { 
-                _halamanKeranjang.UbahQty(this.ProdukItem.NamaProduk, (int)NumQty.Value);
+                _halamanKeranjang.TmbhQty(this.ProdukItem.NamaProduk);
             }
         }
 

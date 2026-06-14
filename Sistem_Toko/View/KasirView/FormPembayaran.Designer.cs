@@ -28,10 +28,12 @@ namespace Sistem_Toko
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPembayaran));
             panelHeader = new Panel();
             BackBtn = new Button();
             LblHeader = new Label();
             panelContent = new Panel();
+            LblNotaTitle = new Label();
             LblMetodeKirim = new Label();
             LblMetodeBayar = new Label();
             CboMetodeKirim = new ComboBox();
@@ -39,7 +41,6 @@ namespace Sistem_Toko
             lblTotal = new Label();
             txtNota = new TextBox();
             KonfirmBtn = new Button();
-            LblNotaTitle = new Label();
             panelHeader.SuspendLayout();
             panelContent.SuspendLayout();
             SuspendLayout();
@@ -58,13 +59,15 @@ namespace Sistem_Toko
             // BackBtn
             // 
             BackBtn.BackColor = Color.White;
+            BackBtn.BackgroundImage = (Image)resources.GetObject("BackBtn.BackgroundImage");
+            BackBtn.BackgroundImageLayout = ImageLayout.Stretch;
             BackBtn.Cursor = Cursors.Hand;
             BackBtn.FlatStyle = FlatStyle.Flat;
             BackBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             BackBtn.ForeColor = Color.SeaGreen;
-            BackBtn.Location = new Point(15, 35);
+            BackBtn.Location = new Point(34, 33);
             BackBtn.Name = "BackBtn";
-            BackBtn.Size = new Size(90, 40);
+            BackBtn.Size = new Size(46, 40);
             BackBtn.TabIndex = 0;
             BackBtn.Text = "< Kembali";
             BackBtn.UseVisualStyleBackColor = false;
@@ -77,7 +80,7 @@ namespace Sistem_Toko
             LblHeader.ForeColor = Color.White;
             LblHeader.Location = new Point(130, 22);
             LblHeader.Name = "LblHeader";
-            LblHeader.Size = new Size(300, 55);
+            LblHeader.Size = new Size(293, 56);
             LblHeader.TabIndex = 1;
             LblHeader.Text = "Pembayaran";
             // 
@@ -106,7 +109,7 @@ namespace Sistem_Toko
             LblNotaTitle.ForeColor = Color.SeaGreen;
             LblNotaTitle.Location = new Point(50, 20);
             LblNotaTitle.Name = "LblNotaTitle";
-            LblNotaTitle.Size = new Size(180, 32);
+            LblNotaTitle.Size = new Size(182, 32);
             LblNotaTitle.TabIndex = 10;
             LblNotaTitle.Text = "Detail Pesanan";
             // 
@@ -116,7 +119,7 @@ namespace Sistem_Toko
             LblMetodeKirim.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             LblMetodeKirim.Location = new Point(50, 310);
             LblMetodeKirim.Name = "LblMetodeKirim";
-            LblMetodeKirim.Size = new Size(140, 25);
+            LblMetodeKirim.Size = new Size(138, 25);
             LblMetodeKirim.TabIndex = 7;
             LblMetodeKirim.Text = "Metode Kirim:";
             // 
@@ -126,7 +129,7 @@ namespace Sistem_Toko
             LblMetodeBayar.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             LblMetodeBayar.Location = new Point(50, 360);
             LblMetodeBayar.Name = "LblMetodeBayar";
-            LblMetodeBayar.Size = new Size(145, 25);
+            LblMetodeBayar.Size = new Size(142, 25);
             LblMetodeBayar.TabIndex = 8;
             LblMetodeBayar.Text = "Metode Bayar:";
             // 
@@ -155,7 +158,7 @@ namespace Sistem_Toko
             lblTotal.ForeColor = Color.SeaGreen;
             lblTotal.Location = new Point(50, 415);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new Size(180, 37);
+            lblTotal.Size = new Size(161, 37);
             lblTotal.TabIndex = 3;
             lblTotal.Text = "Total: Rp. 0";
             // 

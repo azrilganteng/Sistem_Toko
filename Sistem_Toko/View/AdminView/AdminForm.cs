@@ -1,4 +1,7 @@
+using Sistem_Toko.Helpers;
 using Sistem_Toko.Model;
+using Sistem_Toko.Model;
+using Sistem_Toko.View;
 using Sistem_Toko.View.AdminView;
 using System;
 using System.Collections.Generic;
@@ -70,22 +73,33 @@ namespace Sistem_Toko
 
         private void Btn_Profil_Click(object sender, EventArgs e)
         {
-            if (_admin == null) return;
 
-            string pesan = $"Nama     : {_admin.Nama}\nUsername : {_admin.Username}";
+            contextMenuStrip1.Show(Btn_Profil, new Point(-90, Btn_Profil.Height));
 
-            DialogResult result = MessageBox.Show(
-                pesan + "\n\nApakah Anda ingin Logout?",
-                "Profil Admin",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
+        }
 
-            if (result == DialogResult.Yes)
+        private void profilToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            Sistem_Toko.View.FormProfil halamanProfil = new Sistem_Toko.View.FormProfil();
+            halamanProfil.ShowDialog();
+            this.Show();
+        }
+
+        private void logoutToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            DialogResult dialog = MessageBox.Show("Apakah Anda yakin ingin logout?", "Konfirmasi Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialog == DialogResult.Yes)
             {
-                Login loginForm = new Login();
-                loginForm.Show();
-                this.Close();
+                SessionUser.Id = 0;
+                SessionUser.Nama = "";
+                SessionUser.Username = "";
+
+                Login halamanLogin = new Login();
+                halamanLogin.Show();
+
+                this.Hide();
             }
         }
     }

@@ -28,6 +28,7 @@ namespace Sistem_Toko
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
             LblToko = new Label();
             Lbl_User = new Label();
@@ -36,11 +37,15 @@ namespace Sistem_Toko
             Btn_Riwayat_Penjualan = new Button();
             Btn_Restock = new Button();
             Btn_Profil = new Button();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            profilToolStripMenuItem = new ToolStripMenuItem();
+            logoutToolStripMenuItem = new ToolStripMenuItem();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // LblToko
             // 
-            LblToko.Anchor = System.Windows.Forms.AnchorStyles.None;
+            LblToko.Anchor = AnchorStyles.None;
             LblToko.AutoSize = true;
             LblToko.Font = new Font("Book Antiqua", 45F);
             LblToko.Location = new Point(51, 42);
@@ -51,7 +56,7 @@ namespace Sistem_Toko
             // 
             // Lbl_User
             // 
-            Lbl_User.Anchor = System.Windows.Forms.AnchorStyles.None;
+            Lbl_User.Anchor = AnchorStyles.None;
             Lbl_User.AutoSize = true;
             Lbl_User.Font = new Font("Book Antiqua", 15F);
             Lbl_User.Location = new Point(61, 134);
@@ -62,7 +67,7 @@ namespace Sistem_Toko
             // 
             // Btn_Stok_Gudang
             // 
-            Btn_Stok_Gudang.Anchor = System.Windows.Forms.AnchorStyles.None;
+            Btn_Stok_Gudang.Anchor = AnchorStyles.None;
             Btn_Stok_Gudang.BackColor = Color.SeaGreen;
             Btn_Stok_Gudang.BackgroundImageLayout = ImageLayout.Stretch;
             Btn_Stok_Gudang.Cursor = Cursors.Hand;
@@ -79,7 +84,7 @@ namespace Sistem_Toko
             // 
             // Btn_Daftar_Karyawan
             // 
-            Btn_Daftar_Karyawan.Anchor = System.Windows.Forms.AnchorStyles.None;
+            Btn_Daftar_Karyawan.Anchor = AnchorStyles.None;
             Btn_Daftar_Karyawan.BackColor = Color.SeaGreen;
             Btn_Daftar_Karyawan.BackgroundImageLayout = ImageLayout.Stretch;
             Btn_Daftar_Karyawan.Cursor = Cursors.Hand;
@@ -96,7 +101,7 @@ namespace Sistem_Toko
             // 
             // Btn_Riwayat_Penjualan
             // 
-            Btn_Riwayat_Penjualan.Anchor = System.Windows.Forms.AnchorStyles.None;
+            Btn_Riwayat_Penjualan.Anchor = AnchorStyles.None;
             Btn_Riwayat_Penjualan.BackColor = Color.SeaGreen;
             Btn_Riwayat_Penjualan.BackgroundImageLayout = ImageLayout.Stretch;
             Btn_Riwayat_Penjualan.Cursor = Cursors.Hand;
@@ -113,7 +118,7 @@ namespace Sistem_Toko
             // 
             // Btn_Restock
             // 
-            Btn_Restock.Anchor = System.Windows.Forms.AnchorStyles.None;
+            Btn_Restock.Anchor = AnchorStyles.None;
             Btn_Restock.BackColor = Color.SeaGreen;
             Btn_Restock.BackgroundImageLayout = ImageLayout.Stretch;
             Btn_Restock.Cursor = Cursors.Hand;
@@ -145,6 +150,27 @@ namespace Sistem_Toko
             Btn_Profil.UseVisualStyleBackColor = false;
             Btn_Profil.Click += Btn_Profil_Click;
             // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { profilToolStripMenuItem, logoutToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(211, 80);
+            // 
+            // profilToolStripMenuItem
+            // 
+            profilToolStripMenuItem.Name = "profilToolStripMenuItem";
+            profilToolStripMenuItem.Size = new Size(210, 24);
+            profilToolStripMenuItem.Text = "Profil";
+            profilToolStripMenuItem.Click += profilToolStripMenuItem_Click_1;
+            // 
+            // logoutToolStripMenuItem
+            // 
+            logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            logoutToolStripMenuItem.Size = new Size(210, 24);
+            logoutToolStripMenuItem.Text = "Logout";
+            logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click_1;
+            // 
             // AdminForm
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
@@ -162,6 +188,7 @@ namespace Sistem_Toko
             Name = "AdminForm";
             Text = "AdminForm";
             Load += AdminForm_Load;
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -175,6 +202,9 @@ namespace Sistem_Toko
         private Button Btn_Riwayat_Penjualan;
         private Button Btn_Restock;
         private Button Btn_Profil;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem profilToolStripMenuItem;
+        private ToolStripMenuItem logoutToolStripMenuItem;
     }
 }
 
