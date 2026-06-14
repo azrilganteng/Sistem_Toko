@@ -1,0 +1,82 @@
+﻿
+
+CREATE OR REPLACE VIEW data_kasir AS
+SELECT u.*,r.nama_role
+FROM users u
+JOIN kewenangan k USING(id_user)
+JOIN roles r USING(id_role)
+WHERE r.nama_role = 'Kasir';
+
+create or replace view kartu_produk as
+select id_produk,nama_produk,harga,gambar,stok
+from produk
+where stok >0
+
+
+create type item_keranjang as (
+	id_produk int,
+	jumlah int,
+	subtotal numeric(10,2)
+)
+
+
+CREATE OR REPLACE FUNCTION buat_order_baru(
+    p_id_user INT,
+    p_metode_pembayaran VARCHAR(50),
+    p_metode_pengiriman VARCHAR(50)
+)
+RETURNS INT AS $$
+DECLARE
+    new_order_id INT;
+BEGIN
+    -- Masukkan data nota induk
+    INSERT INTO "orders" (tanggal_order, status, metode_pembayaran, metode_pengiriman, tanggal_bayar, id_user)
+    VALUES (CURRENT_DATE, 'Selesai', p_metode_pembayaran, p_metode_pengiriman, CURRENT_DATE, p_id_user)
+    RETURNING id_order INTO new_order_id;
+
+    -- Kembalikan ID order yang baru dibuat ke C#
+    RETURN new_order_id;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+CREATE OR REPLACE FUNCTION tambah_detail_order(
+    p_id_order INT,
+    p_id_produk INT,
+    p_jumlah INT,
+    p_harga NUMERIC
+)
+RETURNS VOID AS $$
+BEGIN
+    -- 1. Masukkan barang ke tabel detail
+    INSERT INTO "detail_order" (id_order, id_produk, jumlah, harga)
+    VALUES (p_id_order, p_id_produk, p_jumlah, p_harga);
+
+    -- 2. Langsung kurangi stok produk (Ini alasan kenapa stokmu kemarin tidak berkurang!)
+    UPDATE "produk" 
+    SET stok = stok - p_jumlah 
+    WHERE id_produk = p_id_produk;
+END;
+$$ LANGUAGE plpgsql;
+
+
+
+CREATE OR REPLACE VIEW kurir_ready AS
+SELECT id_user,nama
+FROM users join kewenangan using(id_user)
+WHERE id_role = 3 and is_ready = true;
+
+
+CREATE TABLE pengiriman (
+    id_pengiriman SERIAL PRIMARY KEY,
+    alamat TEXT NOT NULL,                     -- Tambahan untuk menyimpan alamat tujuan
+    status_pengiriman VARCHAR(50) DEFAULT 'Proses', -- Sesuai ERD: status_pengiriman
+    tanggal_kirim DATE DEFAULT CURRENT_DATE,  -- Sesuai ERD: tanggal_kirim
+    id_order INTEGER NOT NULL,                -- Foreign Key ke tabel order
+    id_user INTEGER NOT NULL,                 -- Foreign Key ke tabel user (Kurir yang dikasih tugas)
+    
+    -- Menghubungkan Foreign Key ke tabel masing-masing
+    CONSTRAINT fk_pengiriman_order FOREIGN KEY (id_order) REFERENCES "orders" (id_order) ON DELETE CASCADE,
+    CONSTRAINT fk_pengiriman_user FOREIGN KEY (id_user) REFERENCES "users" (id_user)
+);

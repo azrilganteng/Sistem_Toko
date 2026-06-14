@@ -1,10 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Sistem_Toko.Model
 {
-    internal class Pengiriman
+    public class Pengiriman
     {
+        public int IdPengiriman { get; set; }
+        public string Alamat { get; set; }
+        public string StatusPengiriman { get; set; }
+        public DateTime TanggalKirim { get; set; }
+        public int IdOrder { get; set; }
+        public int IdUser { get; set; }
+
+       
+        public string NamaKurir { get; set; }
+
+        public Pengiriman() { }
+
+        public Pengiriman(int idPengiriman, string alamat, string statusPengiriman, DateTime tanggalKirim, int idOrder, int idUser)
+        {
+            this.IdPengiriman = idPengiriman;
+            this.Alamat = alamat;
+            this.StatusPengiriman = statusPengiriman;
+            this.TanggalKirim = tanggalKirim;
+            this.IdOrder = idOrder;
+            this.IdUser = idUser;
+        }
     }
 }

@@ -31,10 +31,10 @@
             panel1 = new Panel();
             panel2 = new Panel();
             lblPengiriman = new Label();
-            dgvPengiriman = new DataGridView();
+            panel3 = new Panel();
+            FlpPengiriman = new FlowLayoutPanel();
             panel1.SuspendLayout();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvPengiriman).BeginInit();
+            panel3.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -47,7 +47,6 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(lblPengiriman);
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
             panel2.Size = new Size(803, 452);
@@ -58,26 +57,29 @@
             lblPengiriman.AutoSize = true;
             lblPengiriman.BackColor = Color.White;
             lblPengiriman.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPengiriman.Location = new Point(24, 37);
+            lblPengiriman.Location = new Point(91, 78);
             lblPengiriman.Name = "lblPengiriman";
             lblPengiriman.Size = new Size(119, 28);
             lblPengiriman.TabIndex = 0;
             lblPengiriman.Text = "Pengiriman";
             lblPengiriman.Click += lblPengiriman_Click;
             // 
-            // dgvPengiriman
+            // panel3
             // 
-            dgvPengiriman.AllowUserToAddRows = false;
-            dgvPengiriman.AllowUserToResizeColumns = false;
-            dgvPengiriman.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPengiriman.ColumnHeadersVisible = false;
-            dgvPengiriman.Location = new Point(3, 68);
-            dgvPengiriman.Name = "dgvPengiriman";
-            dgvPengiriman.RowHeadersVisible = false;
-            dgvPengiriman.RowHeadersWidth = 51;
-            dgvPengiriman.Size = new Size(1066, 504);
-            dgvPengiriman.TabIndex = 1;
-            dgvPengiriman.CellClick += dgvPengiriman_CellClick;
+            panel3.Controls.Add(lblPengiriman);
+            panel3.Dock = DockStyle.Top;
+            panel3.Location = new Point(0, 0);
+            panel3.Name = "panel3";
+            panel3.Size = new Size(1067, 125);
+            panel3.TabIndex = 1;
+            // 
+            // FlpPengiriman
+            // 
+            FlpPengiriman.Dock = DockStyle.Fill;
+            FlpPengiriman.Location = new Point(0, 125);
+            FlpPengiriman.Name = "FlpPengiriman";
+            FlpPengiriman.Size = new Size(1067, 446);
+            FlpPengiriman.TabIndex = 2;
             // 
             // KurirForm
             // 
@@ -85,15 +87,15 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightGray;
             ClientSize = new Size(1067, 571);
-            Controls.Add(dgvPengiriman);
+            Controls.Add(FlpPengiriman);
+            Controls.Add(panel3);
             Controls.Add(panel1);
             Name = "KurirForm";
             Text = "Form1";
             Load += KurirForm_Load;
             panel1.ResumeLayout(false);
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvPengiriman).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -102,6 +104,7 @@
         private Panel panel1;
         private Panel panel2;
         private Label lblPengiriman;
-        private DataGridView dgvPengiriman;
+        private Panel panel3;
+        private FlowLayoutPanel FlpPengiriman;
     }
 }

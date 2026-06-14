@@ -6,76 +6,12 @@ namespace Sistem_Toko.Controller;
 
 public class AuthController
 {
-    public Kasir LoginKasir(string user, string pass)
-    {
-        Kasir dataKasir = null;
+    public Kasir LoginKasir(string username, string password) 
+    { 
 
-        using (NpgsqlConnection conn = connectDB.GetConn())
-        {
-            string sql = @"select * from data_kasir
-                        WHERE username = @u AND password = @p";
-
-            using (NpgsqlCommand cmd = new NpgsqlCommand(sql, conn))
-            {
-                cmd.Parameters.AddWithValue("u", user);
-                cmd.Parameters.AddWithValue("p", pass);
-
-                using (NpgsqlDataReader reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        dataKasir = new Kasir(
-                        Convert.ToInt32(reader["id_user"]),
-                        reader["nama"].ToString(),
-                        reader["username"].ToString(),
-                        reader["password"].ToString()
-                    );
-                    }
-                }
-            }
-        }
-        return dataKasir;
+        return KasirContext.CekLoginKasir(username, password);
     }
 
-
-    public Kurir LoginKurir(string user, string pass)
-
-    {
-        Kurir dataKurir = null;
-
-        using (NpgsqlConnection conn = connectDB.GetConn())
-        {
-
-            string sql = @"select * from data_kurir
-                        WHERE username = @u AND password = @p";
-
-
-            using (NpgsqlCommand cmd = new NpgsqlCommand(sql, conn))
-            {
-                cmd.Parameters.AddWithValue("u", user);
-                cmd.Parameters.AddWithValue("p", pass);
-
-                using (NpgsqlDataReader reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-
-
-                    {
-                        dataKurir = new Kurir(
-                    Convert.ToInt32(reader["id_user"]),
-
-                    reader["nama"].ToString(),
-                    reader["username"].ToString(),
-                    reader["password"].ToString()
-                );
-                    }
-                }
-            }
-        }
-
-        return dataKurir;
-
-    }
 
     public Admin LoginAdmin(string user, string pass)
     {
@@ -84,8 +20,7 @@ public class AuthController
         using (NpgsqlConnection conn = connectDB.GetConn())
         {
             string sql = @"select * from data_admin
-                     WHERE username = @u AND password = @p";
-
+                        WHERE username = @u AND password = @p";
             using (NpgsqlCommand cmd = new NpgsqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("u", user);
@@ -94,11 +29,9 @@ public class AuthController
                 using (NpgsqlDataReader reader = cmd.ExecuteReader())
                 {
                     if (reader.Read())
-
                     {
                         dataAdmin = new Admin(
                         Convert.ToInt32(reader["id_user"]),
-
                         reader["nama"].ToString(),
                         reader["username"].ToString(),
                         reader["password"].ToString()
@@ -108,15 +41,12 @@ public class AuthController
             }
         }
         return dataAdmin;
+    }
 
+    public Kurir LoginKurir(string username, string password)
+    {
+        return KurirContext.CekLoginKurir(username, password);
     }
 
 
 }
-
-
-
-
-
-                   
-

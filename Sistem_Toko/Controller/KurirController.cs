@@ -1,44 +1,47 @@
 ﻿using Npgsql;
-using System.Data;
 using Sistem_Toko.Helpers;
+using Sistem_Toko.Model;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Text;
 
 namespace Sistem_Toko.Controller
 {
     public class KurirController
     {
-        public DataTable GetPengirimanByKurir(int idUser)
+        public List<Kurir> GetKurir()
         {
-            DataTable dt = new DataTable();
-
-            using (NpgsqlConnection conn = connectDB.GetConn())
+            List<Kurir> list = new List<Kurir>();
+            using (var conn = connectDB.GetConn())
             {
-                string sql = "SELECT * FROM get_pengiriman_kurir(@idUser)";
+                if (conn.State == ConnectionState.Closed) conn.Open();
 
-                using (NpgsqlCommand cmd = new NpgsqlCommand(sql, conn))
+                string sql = "SELECT id_user, nama FROM kurir_ready;"; 
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                using (var reader = cmd.ExecuteReader())
                 {
-                    cmd.Parameters.AddWithValue("idUser", idUser);
-
-                    using (NpgsqlDataReader reader = cmd.ExecuteReader())
+                    while (reader.Read())
                     {
-                        dt.Load(reader);
+                        int id = Convert.ToInt32(reader["id_user"]);
+                        string namaKurir = reader["nama"].ToString();
+
+                        list.Add(new Kurir(
+                            id,
+                            namaKurir,
+                            "",
+                            "",
+                            true
+                        ));
                     }
                 }
+                return list;
             }
-            return dt;
+
         }
-
-        public void SelesaikanPengiriman(int idOrder)
+        public List<Pengiriman> GetAllPengiriman()
         {
-            using (NpgsqlConnection conn = connectDB.GetConn())
-            {
-                string sql = "SELECT selesaikan_pengiriman(@id)";
-
-                using (NpgsqlCommand cmd = new NpgsqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("id", idOrder);
-                    cmd.ExecuteNonQuery();
-                }
-            }
+            return PengirimanContext.GetAll();
         }
     }
 }

@@ -28,10 +28,14 @@ namespace Sistem_Toko
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPembayaran));
             listBox1 = new ListBox();
             lblTotal = new Label();
             txtNota = new TextBox();
             KonfirmBtn = new Button();
+            CboMetodeKirim = new ComboBox();
+            CboMetodeBayar = new ComboBox();
+            BackBtn = new Button();
             SuspendLayout();
             // 
             // listBox1
@@ -39,7 +43,7 @@ namespace Sistem_Toko
             listBox1.FormattingEnabled = true;
             listBox1.Location = new Point(120, 73);
             listBox1.Name = "listBox1";
-            listBox1.Size = new Size(840, 404);
+            listBox1.Size = new Size(840, 395);
             listBox1.TabIndex = 0;
             // 
             // lblTotal
@@ -54,41 +58,73 @@ namespace Sistem_Toko
             // 
             // txtNota
             // 
-            txtNota.Location = new Point(199, 158);
+            txtNota.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtNota.Location = new Point(201, 110);
+            txtNota.Multiline = true;
             txtNota.Name = "txtNota";
-            txtNota.Size = new Size(677, 27);
+            txtNota.ReadOnly = true;
+            txtNota.ScrollBars = ScrollBars.Vertical;
+            txtNota.Size = new Size(677, 213);
             txtNota.TabIndex = 4;
+            txtNota.WordWrap = false;
             // 
             // KonfirmBtn
             // 
+            KonfirmBtn.BackColor = Color.SeaGreen;
+            KonfirmBtn.Cursor = Cursors.Hand;
+            KonfirmBtn.FlatStyle = FlatStyle.Flat;
+            KonfirmBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            KonfirmBtn.ForeColor = Color.White;
             KonfirmBtn.Location = new Point(838, 492);
             KonfirmBtn.Name = "KonfirmBtn";
             KonfirmBtn.Size = new Size(122, 46);
             KonfirmBtn.TabIndex = 5;
             KonfirmBtn.Text = "button1";
-            KonfirmBtn.UseVisualStyleBackColor = true;
+            KonfirmBtn.UseVisualStyleBackColor = false;
             KonfirmBtn.Click += KonfirmBtn_Click;
+            // 
+            // CboMetodeKirim
+            // 
+            CboMetodeKirim.Location = new Point(289, 385);
+            CboMetodeKirim.Name = "CboMetodeKirim";
+            CboMetodeKirim.Size = new Size(151, 31);
+            CboMetodeKirim.TabIndex = 0;
+            // 
+            // CboMetodeBayar
+            // 
+            CboMetodeBayar.Location = new Point(289, 437);
+            CboMetodeBayar.Name = "CboMetodeBayar";
+            CboMetodeBayar.Size = new Size(151, 31);
+            CboMetodeBayar.TabIndex = 6;
+            // 
+            // BackBtn
+            // 
+            BackBtn.BackColor = Color.Transparent;
+            BackBtn.BackgroundImage = (Image)resources.GetObject("BackBtn.BackgroundImage");
+            BackBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            BackBtn.Location = new Point(45, 41);
+            BackBtn.Name = "BackBtn";
+            BackBtn.Size = new Size(39, 29);
+            BackBtn.TabIndex = 7;
+            BackBtn.UseVisualStyleBackColor = false;
+            BackBtn.Click += BackBtn_Click;
             // 
             // FormPembayaran
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.LightYellow;
             ClientSize = new Size(1067, 571);
+            Controls.Add(BackBtn);
+            Controls.Add(CboMetodeBayar);
+            Controls.Add(CboMetodeKirim);
             Controls.Add(KonfirmBtn);
             Controls.Add(txtNota);
             Controls.Add(lblTotal);
             Controls.Add(listBox1);
+            Font = new Font("Segoe UI", 10F);
             Name = "FormPembayaran";
             Text = "FormPembayaran";
-            // INJECTED_MANUAL_UI
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.KonfirmBtn.BackColor = System.Drawing.Color.SeaGreen;
-            this.KonfirmBtn.ForeColor = System.Drawing.Color.White;
-            this.KonfirmBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.KonfirmBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.KonfirmBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-
             ResumeLayout(false);
             PerformLayout();
         }
@@ -99,6 +135,9 @@ namespace Sistem_Toko
         private Label lblTotal;
         private TextBox txtNota;
         private Button KonfirmBtn;
+        private ComboBox CboMetodeKirim;
+        private ComboBox CboMetodeBayar;
+        private Button BackBtn;
     }
 }
 

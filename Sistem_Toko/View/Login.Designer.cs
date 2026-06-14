@@ -56,7 +56,7 @@ namespace Sistem_Toko
             groupBox1.Size = new Size(449, 413);
             groupBox1.TabIndex = 6;
             groupBox1.TabStop = false;
-            groupBox1.Enter += groupBox1_Enter;
+          
             // 
             // button1
             // 
