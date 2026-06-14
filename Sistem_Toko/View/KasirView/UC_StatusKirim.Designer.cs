@@ -1,4 +1,4 @@
-﻿namespace Sistem_Toko.View.KasirView
+namespace Sistem_Toko.View.KasirView
 {
     partial class UC_StatusKirim
     {
@@ -31,25 +31,42 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_StatusKirim));
             LblInfo = new Label();
             LblStatus = new Label();
+            panel1 = new Panel();
+            panel1.SuspendLayout();
             SuspendLayout();
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.White;
+            panel1.Controls.Add(LblInfo);
+            panel1.Controls.Add(LblStatus);
+            panel1.Dock = DockStyle.Fill;
+            panel1.Location = new Point(0, 0);
+            panel1.Name = "panel1";
+            panel1.Padding = new Padding(20, 10, 20, 10);
+            panel1.Size = new Size(1020, 110);
+            panel1.TabIndex = 0;
             // 
             // LblInfo
             // 
             LblInfo.AutoSize = true;
-            LblInfo.Font = new Font("Tahoma", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LblInfo.Location = new Point(221, 26);
+            LblInfo.Font = new Font("Segoe UI", 12F);
+            LblInfo.ForeColor = Color.DarkSlateGray;
+            LblInfo.Location = new Point(25, 20);
             LblInfo.Name = "LblInfo";
-            LblInfo.Size = new Size(87, 34);
+            LblInfo.Size = new Size(87, 28);
             LblInfo.TabIndex = 0;
             LblInfo.Text = "label1";
             // 
             // LblStatus
             // 
+            LblStatus.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             LblStatus.AutoSize = true;
-            LblStatus.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LblStatus.Location = new Point(934, 47);
+            LblStatus.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            LblStatus.Location = new Point(880, 40);
             LblStatus.Name = "LblStatus";
-            LblStatus.Size = new Size(65, 28);
+            LblStatus.Padding = new Padding(12, 6, 12, 6);
+            LblStatus.Size = new Size(80, 37);
             LblStatus.TabIndex = 1;
             LblStatus.Text = "label2";
             // 
@@ -57,20 +74,21 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Transparent;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
-            BackgroundImageLayout = ImageLayout.Stretch;
-            Controls.Add(LblStatus);
-            Controls.Add(LblInfo);
+            BackColor = Color.White;
+            BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(panel1);
             DoubleBuffered = true;
             Name = "UC_StatusKirim";
-            Size = new Size(1067, 120);
+            Size = new Size(1020, 110);
+            Load += UC_StatusKirim_Load;
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
+        private Panel panel1;
         private Label LblInfo;
         private Label LblStatus;
     }

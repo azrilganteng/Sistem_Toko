@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using Npgsql;
 using Sistem_Toko.Helpers; // namespace connectDB kamu
@@ -23,7 +23,7 @@ namespace Sistem_Toko.View.KurirView
         {
             try
             {
-                using (var conn = connectDB.GetConn()) 
+                using (var conn = connectDB.GetConn())
                 {
                     var cmd = new NpgsqlCommand(
                         "SELECT * FROM fn_get_user_info(@id)", conn);
@@ -50,9 +50,15 @@ namespace Sistem_Toko.View.KurirView
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             KurirForm formPengiriman = new KurirForm();
             formPengiriman.Show();
             this.Hide(); // sembunyikan dashboard
+
+            this.Hide();
+            new KurirForm().ShowDialog();
+            this.Show();
+
         }
 
 

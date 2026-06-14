@@ -31,97 +31,117 @@ namespace Sistem_Toko
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_ProdukKeranjang));
             ItemKeranjang = new Label();
             HargaKeranjang = new Label();
-            lblQty = new Label();
+            NumQty = new NumericUpDown();
             pictureBox1 = new PictureBox();
-            PlusQty = new Button();
+            UpdateBtn = new Button();
             BatalBtn = new Button();
+            LblSubtotal = new Label();
+            ((System.ComponentModel.ISupportInitialize)NumQty).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // ItemKeranjang
             // 
             ItemKeranjang.AutoSize = true;
-            ItemKeranjang.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            ItemKeranjang.Location = new Point(231, 22);
+            ItemKeranjang.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            ItemKeranjang.Location = new Point(195, 15);
             ItemKeranjang.Name = "ItemKeranjang";
-            ItemKeranjang.Size = new Size(92, 31);
+            ItemKeranjang.Size = new Size(92, 30);
             ItemKeranjang.TabIndex = 0;
             ItemKeranjang.Text = "Produk";
             // 
             // HargaKeranjang
             // 
             HargaKeranjang.AutoSize = true;
-            HargaKeranjang.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            HargaKeranjang.Location = new Point(231, 63);
+            HargaKeranjang.Font = new Font("Segoe UI", 11F);
+            HargaKeranjang.ForeColor = Color.Gray;
+            HargaKeranjang.Location = new Point(195, 50);
             HargaKeranjang.Name = "HargaKeranjang";
-            HargaKeranjang.Size = new Size(65, 28);
+            HargaKeranjang.Size = new Size(65, 25);
             HargaKeranjang.TabIndex = 1;
             HargaKeranjang.Text = "Harga";
             // 
-            // lblQty
+            // NumQty
             // 
-            lblQty.AutoSize = true;
-            lblQty.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblQty.Location = new Point(231, 109);
-            lblQty.Name = "lblQty";
-            lblQty.Size = new Size(23, 28);
-            lblQty.TabIndex = 2;
-            lblQty.Text = "1";
+            NumQty.Font = new Font("Segoe UI", 11F);
+            NumQty.Location = new Point(195, 90);
+            NumQty.Maximum = new decimal(new int[] { 99999, 0, 0, 0 });
+            NumQty.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            NumQty.Name = "NumQty";
+            NumQty.Size = new Size(70, 32);
+            NumQty.TabIndex = 2;
+            NumQty.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // pictureBox1
             // 
-            pictureBox1.Location = new Point(26, 16);
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            pictureBox1.Location = new Point(15, 10);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(157, 121);
+            pictureBox1.Size = new Size(160, 120);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
             // 
-            // PlusQty
+            // UpdateBtn
             // 
-            PlusQty.BackColor = Color.Black;
-            PlusQty.BackgroundImage = (Image)resources.GetObject("PlusQty.BackgroundImage");
-            PlusQty.BackgroundImageLayout = ImageLayout.Stretch;
-            PlusQty.Cursor = Cursors.Hand;
-            PlusQty.FlatStyle = FlatStyle.Flat;
-            PlusQty.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            PlusQty.ForeColor = Color.White;
-            PlusQty.Location = new Point(276, 107);
-            PlusQty.Name = "PlusQty";
-            PlusQty.Size = new Size(47, 38);
-            PlusQty.TabIndex = 4;
-            PlusQty.UseVisualStyleBackColor = false;
-            PlusQty.Click += PlusQty_Click;
+            UpdateBtn.BackColor = Color.SeaGreen;
+            UpdateBtn.Cursor = Cursors.Hand;
+            UpdateBtn.FlatAppearance.BorderSize = 0;
+            UpdateBtn.FlatStyle = FlatStyle.Flat;
+            UpdateBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            UpdateBtn.ForeColor = Color.White;
+            UpdateBtn.Location = new Point(290, 88);
+            UpdateBtn.Name = "UpdateBtn";
+            UpdateBtn.Size = new Size(100, 35);
+            UpdateBtn.TabIndex = 4;
+            UpdateBtn.Text = "Update";
+            UpdateBtn.UseVisualStyleBackColor = false;
+            UpdateBtn.Click += UpdateBtn_Click;
             // 
             // BatalBtn
             // 
-            BatalBtn.BackColor = Color.Transparent;
-            BatalBtn.BackgroundImage = (Image)resources.GetObject("BatalBtn.BackgroundImage");
-            BatalBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            BatalBtn.BackColor = Color.Crimson;
             BatalBtn.Cursor = Cursors.Hand;
+            BatalBtn.FlatAppearance.BorderSize = 0;
             BatalBtn.FlatStyle = FlatStyle.Flat;
             BatalBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             BatalBtn.ForeColor = Color.White;
-            BatalBtn.Location = new Point(618, 27);
+            BatalBtn.Location = new Point(630, 40);
             BatalBtn.Name = "BatalBtn";
-            BatalBtn.Size = new Size(109, 93);
+            BatalBtn.Size = new Size(100, 55);
             BatalBtn.TabIndex = 5;
+            BatalBtn.Text = "Hapus";
             BatalBtn.UseVisualStyleBackColor = false;
             BatalBtn.Click += BatalBtn_Click;
+            // 
+            // LblSubtotal
+            // 
+            LblSubtotal.AutoSize = true;
+            LblSubtotal.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            LblSubtotal.ForeColor = Color.SeaGreen;
+            LblSubtotal.Location = new Point(420, 50);
+            LblSubtotal.Name = "LblSubtotal";
+            LblSubtotal.Size = new Size(65, 23);
+            LblSubtotal.TabIndex = 6;
+            LblSubtotal.Text = "Subtotal";
             // 
             // UC_ProdukKeranjang
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightSkyBlue;
+            BackColor = Color.White;
+            BorderStyle = BorderStyle.FixedSingle;
+            Controls.Add(LblSubtotal);
             Controls.Add(BatalBtn);
-            Controls.Add(PlusQty);
+            Controls.Add(UpdateBtn);
             Controls.Add(pictureBox1);
-            Controls.Add(lblQty);
+            Controls.Add(NumQty);
             Controls.Add(HargaKeranjang);
             Controls.Add(ItemKeranjang);
             Font = new Font("Segoe UI", 10F);
             Name = "UC_ProdukKeranjang";
-            Size = new Size(750, 150);
+            Size = new Size(750, 140);
+            ((System.ComponentModel.ISupportInitialize)NumQty).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -131,11 +151,15 @@ namespace Sistem_Toko
 
         private Label ItemKeranjang;
         private Label HargaKeranjang;
-        private Label lblQty;
+        private NumericUpDown NumQty;
         private PictureBox pictureBox1;
-        private Button PlusQty;
+        private Button UpdateBtn;
         private Button BatalBtn;
+        private Label LblSubtotal;
     }
 }
+
+
+
 
 

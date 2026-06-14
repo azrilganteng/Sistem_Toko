@@ -1,4 +1,4 @@
-﻿using Npgsql;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -44,6 +44,7 @@ namespace Sistem_Toko.Model
             }
             return list;
         }
+
         public static List<Pengiriman> GetAll()
         {
             List<Pengiriman> list = new List<Pengiriman>();
@@ -83,6 +84,24 @@ namespace Sistem_Toko.Model
             }
 
             return list;
+        }
+
+
+        public static void SimpanDataPengiriman(NpgsqlConnection conn, NpgsqlTransaction transaction, int idOrder, int idKurir, string alamat)
+        {
+            string sqlPengiriman = @"
+                INSERT INTO pengiriman (alamat, status_pengiriman, tanggal_kirim, id_order, id_user) 
+                VALUES (@alamat, 'Proses', CURRENT_DATE, @idOrder, @idKurir);";
+
+            using (var cmdKirim = new NpgsqlCommand(sqlPengiriman, conn, transaction))
+            {
+                cmdKirim.Parameters.AddWithValue("alamat", alamat);
+                cmdKirim.Parameters.AddWithValue("idOrder", idOrder);
+                cmdKirim.Parameters.AddWithValue("idKurir", idKurir);
+
+                cmdKirim.ExecuteNonQuery();
+            }
+
         }
     }
 }

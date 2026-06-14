@@ -28,14 +28,17 @@ namespace Sistem_Toko.View.AdminView
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HapusKaryawan));
             label10 = new Label();
             label1 = new Label();
             TextBox_ID = new TextBox();
             Btn_Simpan = new Button();
+            Btn_Kembali = new Button();
             SuspendLayout();
             // 
             // label10
             // 
+            label10.Anchor = AnchorStyles.None;
             label10.AutoSize = true;
             label10.Font = new Font("Book Antiqua", 15F);
             label10.Location = new Point(74, 9);
@@ -46,6 +49,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Font = new Font("Book Antiqua", 15F);
             label1.Location = new Point(107, 124);
@@ -56,6 +60,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // TextBox_ID
             // 
+            TextBox_ID.Anchor = AnchorStyles.None;
             TextBox_ID.Location = new Point(177, 128);
             TextBox_ID.Name = "TextBox_ID";
             TextBox_ID.Size = new Size(125, 30);
@@ -63,6 +68,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // Btn_Simpan
             // 
+            Btn_Simpan.Anchor = AnchorStyles.None;
             Btn_Simpan.BackColor = Color.Crimson;
             Btn_Simpan.BackgroundImageLayout = ImageLayout.Stretch;
             Btn_Simpan.Cursor = Cursors.Hand;
@@ -75,6 +81,22 @@ namespace Sistem_Toko.View.AdminView
             Btn_Simpan.TabIndex = 42;
             Btn_Simpan.Text = "Simpan";
             Btn_Simpan.UseVisualStyleBackColor = false;
+            Btn_Simpan.Click += Btn_Simpan_Click;
+            // 
+            // Btn_Kembali
+            // 
+            Btn_Kembali.Anchor = AnchorStyles.None;
+            Btn_Kembali.BackColor = Color.Transparent;
+            Btn_Kembali.BackgroundImage = (Image)resources.GetObject("Btn_Kembali.BackgroundImage");
+            Btn_Kembali.BackgroundImageLayout = ImageLayout.Zoom;
+            Btn_Kembali.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            Btn_Kembali.ForeColor = Color.White;
+            Btn_Kembali.Location = new Point(5, 12);
+            Btn_Kembali.Name = "Btn_Kembali";
+            Btn_Kembali.Size = new Size(40, 40);
+            Btn_Kembali.TabIndex = 99;
+            Btn_Kembali.UseVisualStyleBackColor = false;
+            Btn_Kembali.Click += Btn_Kembali_Click;
             // 
             // HapusKaryawan
             // 
@@ -86,9 +108,11 @@ namespace Sistem_Toko.View.AdminView
             Controls.Add(TextBox_ID);
             Controls.Add(label1);
             Controls.Add(label10);
+            Controls.Add(Btn_Kembali);
             Font = new Font("Segoe UI", 10F);
             Name = "HapusKaryawan";
             Text = "HapusKaryawan";
+            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -99,7 +123,14 @@ namespace Sistem_Toko.View.AdminView
         private Label label1;
         private TextBox TextBox_ID;
         private Button Btn_Simpan;
+    
+        private System.Windows.Forms.Button Btn_Kembali;
     }
 }
+
+
+
+
+
 
 

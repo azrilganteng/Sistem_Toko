@@ -12,7 +12,9 @@ namespace Sistem_Toko.Helpers
         public static string Password { get; set; }
         public static string NoHp { get; set; }
         public static string Email { get; set; }
+        public static string Role { get; set; }
         public static int IdRole { get; set; }
+        public static string Alamat { get; set; }
         public static bool IsReady { get; set; }
     }
 }

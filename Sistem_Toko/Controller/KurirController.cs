@@ -1,4 +1,4 @@
-﻿using Npgsql;
+using Npgsql;
 using Sistem_Toko.Helpers;
 using Sistem_Toko.Model;
 using System;
@@ -17,7 +17,7 @@ namespace Sistem_Toko.Controller
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = "SELECT id_user, nama FROM kurir_ready;"; 
+                string sql = "SELECT u.id_user, u.nama FROM users u JOIN kewenangan k ON u.id_user = k.id_user WHERE k.id_role = 3 AND k.is_ready = true;";
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 using (var reader = cmd.ExecuteReader())
                 {

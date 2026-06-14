@@ -1,4 +1,6 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Sistem_Toko.Model
 {
@@ -9,8 +11,9 @@ namespace Sistem_Toko.Model
         public int Harga { get; set; }
         public int Stok { get; set; }
         public string Deskripsi { get; set; }
-        public int IdKategori { get; set; } 
-        public string Status { get; set; }     
+        public int IdKategori { get; set; }
+        public string Status { get; set; }
+
         public byte[] Gambar { get; set; }
 
         public Produk() { }

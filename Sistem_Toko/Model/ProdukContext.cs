@@ -1,4 +1,4 @@
-﻿using Npgsql;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +8,7 @@ namespace Sistem_Toko.Model
 {
     public class ProdukContext
     {
-        public static List<Produk> GetAllProduct()
+        public static List<Produk> GetProductFromDatabase()
         {
             List<Produk> list = new List<Produk>();
 
@@ -16,7 +16,7 @@ namespace Sistem_Toko.Model
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = "select * from kartu_produk;";
+                string sql = "SELECT id_produk, nama_produk, harga, stok, deskripsi, gambar FROM produk ORDER BY nama_produk";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 using (var reader = cmd.ExecuteReader())
@@ -30,8 +30,9 @@ namespace Sistem_Toko.Model
                             Harga = Convert.ToInt32(reader["harga"]),
                             Stok = Convert.ToInt32(reader["stok"]),
                             Gambar = reader["gambar"] != DBNull.Value ? (byte[])reader["gambar"] : null,
-
-                            Deskripsi = ""
+                            Deskripsi = HasColumn(reader, "deskripsi") && reader["deskripsi"] != DBNull.Value
+                                ? reader["deskripsi"].ToString()
+                                : ""
                         };
 
                         list.Add(p);
@@ -40,6 +41,39 @@ namespace Sistem_Toko.Model
             }
             return list;
         }
+
+        private static bool HasColumn(Npgsql.NpgsqlDataReader reader, string columnName)
+        {
+            for (int i = 0; i < reader.FieldCount; i++)
+                if (reader.GetName(i).Equals(columnName, StringComparison.OrdinalIgnoreCase)) return true;
+            return false;
+        }
+
+        public static void RestockProduk(int idProduk, int jumlah)
+        {
+            using var conn = connectDB.GetConn();
+            if (conn.State == System.Data.ConnectionState.Closed) conn.Open();
+
+            string sql = "UPDATE produk SET stok = stok + @jumlah WHERE id_produk = @id";
+            using var cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("jumlah", jumlah);
+            cmd.Parameters.AddWithValue("id", idProduk);
+            cmd.ExecuteNonQuery();
+        }
+
+        public static DataTable GetStokGudang()
+        {
+            using var conn = connectDB.GetConn();
+            if (conn.State == ConnectionState.Closed) conn.Open();
+
+            string sql = @"SELECT * FROM stok_gudang";
+
+            var adapter = new NpgsqlDataAdapter(sql, conn);
+            var dt = new DataTable();
+            adapter.Fill(dt);
+            return dt;
+        }
+
         public static List<Produk> GetProductKategory(int idKategori)
         {
             List<Produk> list = new List<Produk>();
@@ -48,7 +82,7 @@ namespace Sistem_Toko.Model
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = "SELECT * FROM kartu_produk WHERE id_kategori_produk = @id_kat;";
+                string sql = "SELECT id_produk, nama_produk, harga, stok, gambar, id_kategori_produk, deskripsi FROM produk WHERE id_kategori_produk = @id_kat AND stok > 0;";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
@@ -67,7 +101,9 @@ namespace Sistem_Toko.Model
                                 IdKategori = Convert.ToInt32(reader["id_kategori_produk"]),
                                 //Status = reader["status"].ToString(),
                                 Gambar = reader["gambar"] != DBNull.Value ? (byte[])reader["gambar"] : null,
-                                Deskripsi = ""
+                                Deskripsi = HasColumn(reader, "deskripsi") && reader["deskripsi"] != DBNull.Value
+                                    ? reader["deskripsi"].ToString()
+                                    : ""
                             };
                             list.Add(p);
                         }
@@ -75,6 +111,7 @@ namespace Sistem_Toko.Model
                 }
             }
             return list;
+
         }
     }
 }

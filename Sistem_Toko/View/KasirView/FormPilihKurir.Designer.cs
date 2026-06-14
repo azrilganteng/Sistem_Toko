@@ -1,4 +1,4 @@
-﻿namespace Sistem_Toko.View.KasirView
+namespace Sistem_Toko.View.KasirView
 {
     partial class FormPilihKurir
     {
@@ -30,39 +30,56 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPilihKurir));
             panel1 = new Panel();
+            BackBtn = new Button();
             NamaToko = new Label();
             LblToko = new Label();
             CboKurir = new ComboBox();
             TxtAlamat = new TextBox();
             Kirmkan = new Button();
             groupBox1 = new GroupBox();
-            label1 = new Label();
             label2 = new Label();
-            BackBtn = new Button();
+            label1 = new Label();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.BackColor = Color.SeaGreen;
             panel1.Controls.Add(BackBtn);
             panel1.Controls.Add(NamaToko);
             panel1.Controls.Add(LblToko);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1067, 125);
+            panel1.Size = new Size(1067, 100);
             panel1.TabIndex = 0;
+            // 
+            // BackBtn
+            // 
+            BackBtn.BackColor = Color.White;
+            BackBtn.Cursor = Cursors.Hand;
+            BackBtn.FlatStyle = FlatStyle.Flat;
+            BackBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            BackBtn.ForeColor = Color.SeaGreen;
+            BackBtn.Location = new Point(15, 35);
+            BackBtn.Name = "BackBtn";
+            BackBtn.Size = new Size(90, 40);
+            BackBtn.TabIndex = 6;
+            BackBtn.Text = "< Kembali";
+            BackBtn.UseVisualStyleBackColor = false;
+            BackBtn.Click += BackBtn_Click;
             // 
             // NamaToko
             // 
             NamaToko.AutoSize = true;
-            NamaToko.Font = new Font("Book Antiqua", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            NamaToko.Location = new Point(66, 9);
+            NamaToko.Font = new Font("Book Antiqua", 28F, FontStyle.Bold);
+            NamaToko.ForeColor = Color.White;
+            NamaToko.Location = new Point(130, 10);
             NamaToko.Name = "NamaToko";
-            NamaToko.Size = new Size(353, 73);
+            NamaToko.Size = new Size(353, 55);
             NamaToko.TabIndex = 1;
-            NamaToko.Text = "Nama Toko";
+            NamaToko.Text = "Pilih Kurir";
             // 
             // LblToko
             // 
@@ -74,27 +91,35 @@
             // 
             // CboKurir
             // 
+            CboKurir.Font = new Font("Segoe UI", 11F);
             CboKurir.FormattingEnabled = true;
             CboKurir.Location = new Point(28, 67);
             CboKurir.Name = "CboKurir";
-            CboKurir.Size = new Size(810, 28);
+            CboKurir.Size = new Size(810, 33);
             CboKurir.TabIndex = 1;
             // 
             // TxtAlamat
             // 
+            TxtAlamat.Font = new Font("Segoe UI", 11F);
             TxtAlamat.Location = new Point(28, 184);
             TxtAlamat.Name = "TxtAlamat";
-            TxtAlamat.Size = new Size(599, 27);
+            TxtAlamat.Size = new Size(599, 32);
             TxtAlamat.TabIndex = 2;
             // 
             // Kirmkan
             // 
+            Kirmkan.BackColor = Color.SeaGreen;
+            Kirmkan.Cursor = Cursors.Hand;
+            Kirmkan.FlatAppearance.BorderSize = 0;
+            Kirmkan.FlatStyle = FlatStyle.Flat;
+            Kirmkan.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            Kirmkan.ForeColor = Color.White;
             Kirmkan.Location = new Point(874, 488);
             Kirmkan.Name = "Kirmkan";
-            Kirmkan.Size = new Size(134, 51);
+            Kirmkan.Size = new Size(150, 51);
             Kirmkan.TabIndex = 3;
             Kirmkan.Text = "Konfirmasi";
-            Kirmkan.UseVisualStyleBackColor = true;
+            Kirmkan.UseVisualStyleBackColor = false;
             Kirmkan.Click += Kirmkan_Click;
             // 
             // groupBox1
@@ -103,55 +128,50 @@
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(CboKurir);
             groupBox1.Controls.Add(TxtAlamat);
-            groupBox1.Location = new Point(94, 173);
+            groupBox1.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            groupBox1.ForeColor = Color.SeaGreen;
+            groupBox1.Location = new Point(94, 140);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(876, 272);
             groupBox1.TabIndex = 4;
             groupBox1.TabStop = false;
-            groupBox1.Text = "groupBox1";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(28, 32);
-            label1.Name = "label1";
-            label1.Size = new Size(243, 24);
-            label1.TabIndex = 3;
-            label1.Text = "Pilih Kurir Untuk mengirim";
+            groupBox1.Text = "Data Pengiriman";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Tahoma", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Segoe UI", 11F);
+            label2.ForeColor = Color.Black;
             label2.Location = new Point(28, 146);
             label2.Name = "label2";
-            label2.Size = new Size(179, 24);
+            label2.Size = new Size(179, 25);
             label2.TabIndex = 4;
             label2.Text = "Alamat Pengiriman";
             // 
-            // BackBtn
+            // label1
             // 
-            BackBtn.BackColor = Color.Transparent;
-            BackBtn.BackgroundImage = (Image)resources.GetObject("BackBtn.BackgroundImage");
-            BackBtn.BackgroundImageLayout = ImageLayout.Stretch;
-            BackBtn.Location = new Point(21, 29);
-            BackBtn.Name = "BackBtn";
-            BackBtn.Size = new Size(39, 29);
-            BackBtn.TabIndex = 6;
-            BackBtn.UseVisualStyleBackColor = false;
-            BackBtn.Click += BackBtn_Click;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 11F);
+            label1.ForeColor = Color.Black;
+            label1.Location = new Point(28, 32);
+            label1.Name = "label1";
+            label1.Size = new Size(243, 25);
+            label1.TabIndex = 3;
+            label1.Text = "Pilih Kurir Untuk mengirim";
             // 
             // FormPilihKurir
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1067, 571);
             Controls.Add(groupBox1);
             Controls.Add(Kirmkan);
             Controls.Add(panel1);
             Name = "FormPilihKurir";
-            Text = "PilihKurir";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Pilih Kurir - Toko Tani Samudra";
+            FormClosing += FormPilihKurir_FormClosing;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             groupBox1.ResumeLayout(false);

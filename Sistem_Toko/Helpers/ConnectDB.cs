@@ -1,4 +1,4 @@
-﻿using Npgsql;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,6 +14,7 @@ namespace Sistem_Toko.Helpers
             "Username=postgres;" +
             "Password=12345678;" + //password kalian
             "Database=UAS_PBO;"; //database kalian
+
 
         public static NpgsqlConnection GetConn() //ini method manggil database
         {

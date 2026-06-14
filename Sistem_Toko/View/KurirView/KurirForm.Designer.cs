@@ -107,4 +107,12 @@
         private Panel panel3;
         private FlowLayoutPanel FlpPengiriman;
     }
+
 }
+
+
+
+
+
+
+
