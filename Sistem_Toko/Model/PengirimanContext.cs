@@ -46,6 +46,90 @@ namespace Sistem_Toko.Model
             return list;
         }
 
+        public static List<Pengiriman> GetAll()
+        {
+            List<Pengiriman> list = new List<Pengiriman>();
+
+            using (var conn = connectDB.GetConn())
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+
+                string sql = @"SELECT id_pengiriman,
+                              alamat,
+                              status_pengiriman,
+                              tanggal_kirim,
+                              id_order,
+                              id_user
+                       FROM pengiriman";
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Pengiriman p = new Pengiriman
+                        {
+                            IdPengiriman = Convert.ToInt32(reader["id_pengiriman"]),
+                            Alamat = reader["alamat"].ToString(),
+                            StatusPengiriman = reader["status_pengiriman"].ToString(),
+                            TanggalKirim = ((DateOnly)reader["tanggal_kirim"])
+                                            .ToDateTime(TimeOnly.MinValue),
+                            IdOrder = Convert.ToInt32(reader["id_order"]),
+                            IdUser = Convert.ToInt32(reader["id_user"])
+                        };
+
+                        list.Add(p);
+                    }
+                }
+            }
+
+            return list;
+        }
+
+
+        public static List<Pengiriman> GetAll()
+        {
+            List<Pengiriman> list = new List<Pengiriman>();
+
+            using (var conn = connectDB.GetConn())
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+
+                string sql = @"SELECT id_pengiriman,
+                              alamat,
+                              status_pengiriman,
+                              tanggal_kirim,
+                              id_order,
+                              id_user
+                       FROM pengiriman";
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Pengiriman p = new Pengiriman
+                        {
+                            IdPengiriman = Convert.ToInt32(reader["id_pengiriman"]),
+                            Alamat = reader["alamat"].ToString(),
+                            StatusPengiriman = reader["status_pengiriman"].ToString(),
+                            TanggalKirim = ((DateOnly)reader["tanggal_kirim"])
+                                            .ToDateTime(TimeOnly.MinValue),
+                            IdOrder = Convert.ToInt32(reader["id_order"]),
+                            IdUser = Convert.ToInt32(reader["id_user"])
+                        };
+
+                        list.Add(p);
+                    }
+                }
+            }
+
+            return list;
+        }
+
+
         private static bool HasColumn(NpgsqlDataReader reader, string columnName)
         {
             for (int i = 0; i < reader.FieldCount; i++)
@@ -71,6 +155,7 @@ namespace Sistem_Toko.Model
                 cmdGet.Parameters.AddWithValue("@idKurir", idKurir);
                 return Convert.ToInt32(cmdGet.ExecuteScalar());
             }
+
         }
     }
 }

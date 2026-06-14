@@ -37,6 +37,11 @@ namespace Sistem_Toko.Controller
                 }
                 return list;
             }
+
+        }
+        public List<Pengiriman> GetAllPengiriman()
+        {
+            return PengirimanContext.GetAll();
         }
     }
 }

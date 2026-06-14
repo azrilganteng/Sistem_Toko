@@ -1,6 +1,5 @@
 using Npgsql;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using Sistem_Toko.Helpers;
 
@@ -8,9 +7,8 @@ namespace Sistem_Toko.Model
 {
     public class KurirContext
     {
-        public static List<Kurir> GetKurirReadyFromDatabase()
+        public static Kurir CekLoginKurir(string username, string password)
         {
-            List<Kurir> list = new List<Kurir>();
             using (var conn = connectDB.GetConn())
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
@@ -42,8 +40,8 @@ namespace Sistem_Toko.Model
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("u", user);
-                    cmd.Parameters.AddWithValue("p", pass);
+                    cmd.Parameters.AddWithValue("username", username);
+                    cmd.Parameters.AddWithValue("password", password);
 
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -54,12 +52,18 @@ namespace Sistem_Toko.Model
                             SessionUser.Nama = reader["nama"].ToString();
                             SessionUser.IdRole = 3;
 
-                            isSuccess = true;
+                            return new Kurir(
+                                SessionUser.Id,
+                                SessionUser.Nama,
+                                SessionUser.Username,
+                                reader["password"].ToString(),
+                                true
+                            );
                         }
                     }
                 }
             }
-            return isSuccess;
+            return null;
         }
     }
 }

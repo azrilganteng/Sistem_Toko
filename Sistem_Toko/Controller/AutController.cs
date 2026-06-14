@@ -7,8 +7,12 @@ namespace Sistem_Toko.Controller;
 
 public class AuthController
 {
+
+   
+
     public Kasir LoginKasir(string username, string password)
     {
+
         return KasirContext.CekLoginKasir(username, password);
     }
 
@@ -17,7 +21,7 @@ public class AuthController
         return UserContext.LoginAdmin(user, pass);
     }
 
-    public bool LoginKurir(string username, string password)
+    public Kurir LoginKurir(string username, string password)
     {
         return KurirContext.CekLoginKurir(username, password);
     }

@@ -14,5 +14,17 @@ namespace Sistem_Toko.Controller
         {
             return PengirimanContext.GetStatusPengiriman(status);
         }
+        public List<Pengiriman> GetAllPengiriman()
+        {
+            return PengirimanContext.GetAll();
+        }
+
+        public void UpdateStatusPengiriman(Pengiriman pengiriman)
+        {
+            // kode update
+        }
     }
+
+
+
 }
