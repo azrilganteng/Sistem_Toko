@@ -23,11 +23,15 @@ namespace Sistem_Toko.View.KasirView
 
         private void TampilStatus()
         {
-            LblInfo.Text = $"Order: {_data.IdOrder} | Kurir: {_data.NamaKurir}\nAlamat: {_data.Alamat} ({_data.TanggalKirim:dd/MM/yyyy})";
+            LblInfo.Text = $"Pengiriman: {_data.IdPengiriman} | Kurir: {_data.NamaKurir}\nAlamat: {_data.Alamat} ({_data.TanggalKirim:dd/MM/yyyy})";
 
-            LblStatus.Text = _data.StatusPengiriman;
+            // status_pengiriman is boolean: True = Selesai, False = Proses
+            bool isSelesai = _data.StatusPengiriman.Equals("True", StringComparison.OrdinalIgnoreCase)
+                          || _data.StatusPengiriman.Equals("Selesai", StringComparison.OrdinalIgnoreCase);
 
-            if (_data.StatusPengiriman.Equals("Selesai", StringComparison.OrdinalIgnoreCase))
+            LblStatus.Text = isSelesai ? "Selesai" : "Proses";
+
+            if (isSelesai)
             {
                 LblStatus.BackColor = Color.LightGreen;
                 LblStatus.ForeColor = Color.Green;

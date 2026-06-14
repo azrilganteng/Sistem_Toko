@@ -15,7 +15,7 @@ namespace Sistem_Toko.Model
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = "SELECT u.id_user, u.nama FROM users u JOIN kewenangan k ON u.id_user = k.id_user WHERE k.id_role = 3 AND k.is_ready = true;";
+                string sql = "SELECT * FROM v_kurir_ready;";
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -37,9 +37,8 @@ namespace Sistem_Toko.Model
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = @"SELECT u.id_user, u.username, u.nama, u.no_hp, u.email
-                               FROM users u
-                               WHERE u.username = @u AND u.password = @p;";
+                string sql = @"SELECT * FROM v_data_kurir
+                               WHERE username = @u AND password = @p;";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {

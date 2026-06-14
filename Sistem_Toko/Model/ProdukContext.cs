@@ -66,7 +66,7 @@ namespace Sistem_Toko.Model
             using var conn = connectDB.GetConn();
             if (conn.State == ConnectionState.Closed) conn.Open();
 
-            string sql = @"SELECT * FROM stok_gudang";
+            string sql = @"SELECT * FROM v_stok_gudang";
 
             var adapter = new NpgsqlDataAdapter(sql, conn);
             var dt = new DataTable();

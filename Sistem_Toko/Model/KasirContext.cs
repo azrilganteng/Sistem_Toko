@@ -13,7 +13,7 @@ namespace Sistem_Toko.Model
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = @"SELECT * FROM data_kasir WHERE username = @username AND password = @password;";
+                string sql = @"SELECT * FROM v_data_kasir WHERE username = @username AND password = @password;";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
@@ -47,7 +47,7 @@ namespace Sistem_Toko.Model
 
         public static int BuatOrderBaru(NpgsqlConnection conn, NpgsqlTransaction transaction, int idUser, string metodeBayar, string metodeKirim)
         {
-            string sqlOrder = "SELECT buat_order_baru(@idUser, @metodeBayar, @metodeKirim);";
+            string sqlOrder = "SELECT fn_buat_order_baru(@idUser, @metodeBayar, @metodeKirim);";
             using (var cmdOrder = new NpgsqlCommand(sqlOrder, conn, transaction))
             {
                 cmdOrder.Parameters.AddWithValue("idUser", idUser);
@@ -60,7 +60,7 @@ namespace Sistem_Toko.Model
 
         public static void TambahDetailOrder(NpgsqlConnection conn, NpgsqlTransaction transaction, int idOrder, int idProduk, int jumlah, decimal harga)
         {
-            string sqlDetail = "SELECT tambah_detail_order(@idOrder, @idProduk, @jumlah, @harga);";
+            string sqlDetail = "SELECT fn_tambah_detail_order(@idOrder, @idProduk, @jumlah, @harga);";
             using (var cmdDetail = new NpgsqlCommand(sqlDetail, conn, transaction))
             {
                 cmdDetail.Parameters.AddWithValue("idOrder", idOrder);
@@ -82,7 +82,7 @@ namespace Sistem_Toko.Model
             using var conn = connectDB.GetConn();
             if (conn.State == ConnectionState.Closed) conn.Open();
 
-            string sql = "SELECT * FROM riwayat_penjualan WHERE 1=1";
+            string sql = "SELECT * FROM v_riwayat_penjualan WHERE 1=1";
             if (bulan.HasValue)
                 sql += " AND EXTRACT(MONTH FROM \"Tanggal Order\") = @bulan";
             if (tahun.HasValue)

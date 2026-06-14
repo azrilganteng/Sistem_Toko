@@ -29,7 +29,6 @@ namespace Sistem_Toko
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKasir));
             LblToko = new Label();
             LblKasir = new Label();
             ListKeranjangBtn = new Button();
@@ -139,7 +138,6 @@ namespace Sistem_Toko
             // 
             // Profil
             // 
-            Profil.BackgroundImage = (Image)resources.GetObject("Profil.BackgroundImage");
             Profil.BackgroundImageLayout = ImageLayout.Stretch;
             Profil.Location = new Point(989, 0);
             Profil.Name = "Profil";
@@ -227,19 +225,19 @@ namespace Sistem_Toko
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { profilToolStripMenuItem, logoutToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(211, 80);
+            contextMenuStrip1.Size = new Size(126, 52);
             // 
             // profilToolStripMenuItem
             // 
             profilToolStripMenuItem.Name = "profilToolStripMenuItem";
-            profilToolStripMenuItem.Size = new Size(210, 24);
+            profilToolStripMenuItem.Size = new Size(125, 24);
             profilToolStripMenuItem.Text = "Profil";
             profilToolStripMenuItem.Click += profilToolStripMenuItem_Click;
             // 
             // logoutToolStripMenuItem
             // 
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            logoutToolStripMenuItem.Size = new Size(210, 24);
+            logoutToolStripMenuItem.Size = new Size(125, 24);
             logoutToolStripMenuItem.Text = "Logout";
             logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
             // 
@@ -258,6 +256,7 @@ namespace Sistem_Toko
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Kasir - Toko Tani Samudra";
             FormClosed += FormKasir_FormClosed;
+            Load += FormKasir_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Profil).EndInit();

@@ -125,7 +125,7 @@ namespace Sistem_Toko
         private void Profil_Click(object sender, EventArgs e)
         {
             contextMenuStrip1.Show(Profil, new Point(-90, Profil.Height));
-            
+
         }
 
         private void profilToolStripMenuItem_Click(object sender, EventArgs e)
@@ -151,6 +151,11 @@ namespace Sistem_Toko
 
                 this.Hide();
             }
+        }
+
+        private void FormKasir_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }
