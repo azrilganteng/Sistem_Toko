@@ -34,6 +34,9 @@ namespace Sistem_Toko
             LblHeader = new Label();
             panelContent = new Panel();
             LblNotaTitle = new Label();
+            LblCustomer = new Label();
+            TxtCustomer = new TextBox();
+            BtnCariCustomer = new Button();
             LblMetodeKirim = new Label();
             LblMetodeBayar = new Label();
             CboMetodeKirim = new ComboBox();
@@ -88,12 +91,15 @@ namespace Sistem_Toko
             // 
             panelContent.BackColor = Color.WhiteSmoke;
             panelContent.Controls.Add(LblNotaTitle);
+            panelContent.Controls.Add(txtNota);
+            panelContent.Controls.Add(LblCustomer);
+            panelContent.Controls.Add(TxtCustomer);
+            panelContent.Controls.Add(BtnCariCustomer);
             panelContent.Controls.Add(LblMetodeKirim);
             panelContent.Controls.Add(LblMetodeBayar);
             panelContent.Controls.Add(CboMetodeKirim);
             panelContent.Controls.Add(CboMetodeBayar);
             panelContent.Controls.Add(lblTotal);
-            panelContent.Controls.Add(txtNota);
             panelContent.Controls.Add(KonfirmBtn);
             panelContent.Dock = DockStyle.Fill;
             panelContent.Location = new Point(0, 100);
@@ -117,7 +123,7 @@ namespace Sistem_Toko
             // 
             LblMetodeKirim.AutoSize = true;
             LblMetodeKirim.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            LblMetodeKirim.Location = new Point(50, 310);
+            LblMetodeKirim.Location = new Point(50, 320);
             LblMetodeKirim.Name = "LblMetodeKirim";
             LblMetodeKirim.Size = new Size(138, 25);
             LblMetodeKirim.TabIndex = 7;
@@ -127,7 +133,7 @@ namespace Sistem_Toko
             // 
             LblMetodeBayar.AutoSize = true;
             LblMetodeBayar.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            LblMetodeBayar.Location = new Point(50, 360);
+            LblMetodeBayar.Location = new Point(50, 365);
             LblMetodeBayar.Name = "LblMetodeBayar";
             LblMetodeBayar.Size = new Size(142, 25);
             LblMetodeBayar.TabIndex = 8;
@@ -137,7 +143,7 @@ namespace Sistem_Toko
             // 
             CboMetodeKirim.DropDownStyle = ComboBoxStyle.DropDownList;
             CboMetodeKirim.Font = new Font("Segoe UI", 11F);
-            CboMetodeKirim.Location = new Point(220, 307);
+            CboMetodeKirim.Location = new Point(220, 317);
             CboMetodeKirim.Name = "CboMetodeKirim";
             CboMetodeKirim.Size = new Size(200, 33);
             CboMetodeKirim.TabIndex = 0;
@@ -146,7 +152,7 @@ namespace Sistem_Toko
             // 
             CboMetodeBayar.DropDownStyle = ComboBoxStyle.DropDownList;
             CboMetodeBayar.Font = new Font("Segoe UI", 11F);
-            CboMetodeBayar.Location = new Point(220, 357);
+            CboMetodeBayar.Location = new Point(220, 362);
             CboMetodeBayar.Name = "CboMetodeBayar";
             CboMetodeBayar.Size = new Size(200, 33);
             CboMetodeBayar.TabIndex = 6;
@@ -156,7 +162,7 @@ namespace Sistem_Toko
             lblTotal.AutoSize = true;
             lblTotal.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             lblTotal.ForeColor = Color.SeaGreen;
-            lblTotal.Location = new Point(50, 415);
+            lblTotal.Location = new Point(50, 410);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new Size(161, 37);
             lblTotal.TabIndex = 3;
@@ -172,9 +178,46 @@ namespace Sistem_Toko
             txtNota.Name = "txtNota";
             txtNota.ReadOnly = true;
             txtNota.ScrollBars = ScrollBars.Vertical;
-            txtNota.Size = new Size(960, 230);
+            txtNota.Size = new Size(960, 200);
             txtNota.TabIndex = 4;
             txtNota.WordWrap = false;
+            // 
+            // LblCustomer
+            // 
+            LblCustomer.AutoSize = true;
+            LblCustomer.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            LblCustomer.Location = new Point(50, 275);
+            LblCustomer.Name = "LblCustomer";
+            LblCustomer.Size = new Size(85, 25);
+            LblCustomer.TabIndex = 11;
+            LblCustomer.Text = "Customer:";
+            // 
+            // TxtCustomer
+            // 
+            TxtCustomer.BackColor = Color.White;
+            TxtCustomer.Font = new Font("Segoe UI", 11F);
+            TxtCustomer.Location = new Point(220, 272);
+            TxtCustomer.Name = "TxtCustomer";
+            TxtCustomer.ReadOnly = true;
+            TxtCustomer.Size = new Size(500, 32);
+            TxtCustomer.TabIndex = 12;
+            TxtCustomer.Text = "";
+            // 
+            // BtnCariCustomer
+            // 
+            BtnCariCustomer.BackColor = Color.SeaGreen;
+            BtnCariCustomer.Cursor = Cursors.Hand;
+            BtnCariCustomer.FlatAppearance.BorderSize = 0;
+            BtnCariCustomer.FlatStyle = FlatStyle.Flat;
+            BtnCariCustomer.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            BtnCariCustomer.ForeColor = Color.White;
+            BtnCariCustomer.Location = new Point(740, 270);
+            BtnCariCustomer.Name = "BtnCariCustomer";
+            BtnCariCustomer.Size = new Size(120, 36);
+            BtnCariCustomer.TabIndex = 13;
+            BtnCariCustomer.Text = "Cari Customer";
+            BtnCariCustomer.UseVisualStyleBackColor = false;
+            BtnCariCustomer.Click += BtnCariCustomer_Click;
             // 
             // KonfirmBtn
             // 
@@ -219,6 +262,9 @@ namespace Sistem_Toko
         private Label LblHeader;
         private Panel panelContent;
         private Label LblNotaTitle;
+        private Label LblCustomer;
+        private TextBox TxtCustomer;
+        private Button BtnCariCustomer;
         private Label LblMetodeKirim;
         private Label LblMetodeBayar;
         private ComboBox CboMetodeKirim;
