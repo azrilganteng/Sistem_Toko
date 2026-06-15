@@ -7,9 +7,6 @@ namespace Sistem_Toko.Controller;
 
 public class AuthController
 {
-
-   
-
     public Kasir LoginKasir(string username, string password)
     {
 

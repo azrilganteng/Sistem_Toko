@@ -331,3 +331,36 @@ SELECT
     p.status
 FROM produk p
 JOIN kategori_produk k ON p.id_kategori_produk = k.id_kategori_produk;
+
+==============================================
+azril
+
+data user:
+INSERT INTO nama_tabel_anda (username, password, nama, no_hp, alamat, email, is_active, is_ready, nama_role)
+VALUES 
+('budi', '123', 'budi', '082612285', 'Jember', 'budi@gmail.com', true, true, 'Kasir'),
+('siti', '123', 'siti', '082612286', 'Jember', 'siti@gmail.com', true, true, 'Kasir'),
+('andi', '123', 'andi', '082612287', 'Jember', 'andi@gmail.com', true, true, 'Kasir');
+
+data kewenangan dan role:
+INSERT INTO kewenangan (id_kewenangan, id_role, id_user)
+VALUES 
+(2, 1, 2),
+(3, 1, 3),
+(4, 1, 4);
+
+data kategori produk:
+ INSERT INTO kategori_produk (id_kategori_produk, nama_kategori)
+VALUES 
+(1, 'pupuk'),
+(2, 'obat'),
+(3, 'bibit');
+
+data produk:
+
+INSERT INTO produk (id_produk, harga, nama_produk, stok, status, gambar, deskripsi, id_kategori_produk)
+VALUES 
+(1, 50000, 'Pupuk Urea Subur', 100, true, 'pupuk_urea.jpg', 'Pupuk urea berkualitas tinggi untuk pertumbuhan daun.', 1),
+(2, 35000, 'Obat Hama Wereng', 50, true, 'obat_wereng.jpg', 'Cairan pembasmi hama wereng dan serangga tanaman.', 2),
+(3, 15000, 'Bibit Cabai Rawit', 200, true, 'bibit_cabai.jpg', 'Benih unggul cabai rawit tahan penyakit.', 3);
+

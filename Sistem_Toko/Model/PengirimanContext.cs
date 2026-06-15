@@ -12,7 +12,6 @@ namespace Sistem_Toko.Model
         {
             List<Pengiriman> list = new List<Pengiriman>();
 
-            // Convert string status to boolean: "Selesai" = true, "Proses" = false
             bool statusBool = status.Equals("Selesai", StringComparison.OrdinalIgnoreCase);
 
             using (var conn = connectDB.GetConn())
@@ -35,8 +34,8 @@ namespace Sistem_Toko.Model
                                 IdPengiriman = Convert.ToInt32(reader["id_pengiriman"]),
                                 Alamat = reader["alamat"].ToString(),
                                 StatusPengiriman = reader["status_pengiriman"].ToString(),
-                                TanggalKirim = ((DateOnly)reader["tanggal_kirim"]).ToDateTime(TimeOnly.MinValue),
-                                IdUser = HasColumn(reader, "id_user") ? Convert.ToInt32(reader["id_user"]) : 0
+                                TanggalKirim = ((DateOnly)reader["tanggal_kirim"]).ToDateTime(TimeOnly.MinValue)
+                                //IdUser = HasColumn(reader, "id_user") ? Convert.ToInt32(reader["id_user"]) : 0
                             };
                             list.Add(p);
                         }
@@ -88,12 +87,12 @@ namespace Sistem_Toko.Model
         }
 
 
-        public static void SimpanDataPengiriman(NpgsqlConnection conn, NpgsqlTransaction transaction, int idOrder, int idKurir, string alamat)
-        {
-            for (int i = 0; i < reader.FieldCount; i++)
-                if (reader.GetName(i).Equals(columnName, StringComparison.OrdinalIgnoreCase)) return true;
-            return false;
-        }
+        //public static void SimpanDataPengiriman(NpgsqlConnection conn, NpgsqlTransaction transaction, int idOrder, int idKurir, string alamat)
+        //{
+        //    for (int i = 0; i < reader.FieldCount; i++)
+        //        if (reader.GetName(i).Equals(columnName, StringComparison.OrdinalIgnoreCase)) return true;
+        //    return false;
+        //}
 
         public static int SimpanDataPengiriman(NpgsqlConnection conn, NpgsqlTransaction transaction, int idKurir)
         {

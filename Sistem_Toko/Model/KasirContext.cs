@@ -32,6 +32,7 @@ namespace Sistem_Toko.Model
                             SessionUser.Role = reader["nama_role"].ToString();
                             SessionUser.IdRole = 2;
 
+
                             return new Kasir(
                                 SessionUser.Id,
                                 SessionUser.Nama,
