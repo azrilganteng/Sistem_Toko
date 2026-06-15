@@ -29,7 +29,6 @@ namespace Sistem_Toko
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
             LblToko = new Label();
             Lbl_User = new Label();
             Btn_Stok_Gudang = new Button();
@@ -139,7 +138,6 @@ namespace Sistem_Toko
             // 
             Btn_Profil.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             Btn_Profil.BackColor = Color.Transparent;
-            Btn_Profil.BackgroundImage = (Image)resources.GetObject("Btn_Profil.BackgroundImage");
             Btn_Profil.BackgroundImageLayout = ImageLayout.Zoom;
             Btn_Profil.Cursor = Cursors.Hand;
             Btn_Profil.FlatStyle = FlatStyle.Flat;
@@ -157,19 +155,19 @@ namespace Sistem_Toko
             contextMenuStrip1.ImageScalingSize = new Size(20, 20);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { profilToolStripMenuItem, logoutToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(211, 80);
+            contextMenuStrip1.Size = new Size(126, 52);
             // 
             // profilToolStripMenuItem
             // 
             profilToolStripMenuItem.Name = "profilToolStripMenuItem";
-            profilToolStripMenuItem.Size = new Size(210, 24);
+            profilToolStripMenuItem.Size = new Size(125, 24);
             profilToolStripMenuItem.Text = "Profil";
             profilToolStripMenuItem.Click += profilToolStripMenuItem_Click_1;
             // 
             // logoutToolStripMenuItem
             // 
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            logoutToolStripMenuItem.Size = new Size(210, 24);
+            logoutToolStripMenuItem.Size = new Size(125, 24);
             logoutToolStripMenuItem.Text = "Logout";
             logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click_1;
             // 
@@ -178,7 +176,6 @@ namespace Sistem_Toko
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
-            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1168, 568);
             Controls.Add(Btn_Profil);

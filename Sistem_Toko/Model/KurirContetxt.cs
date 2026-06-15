@@ -7,28 +7,7 @@ namespace Sistem_Toko.Model
 {
     public class KurirContext
     {
-        public static Kurir CekLoginKurir(string username, string password)
-        {
-            using (var conn = connectDB.GetConn())
-            {
-                if (conn.State == ConnectionState.Closed) conn.Open();
-
-                string sql = "SELECT * FROM v_kurir_ready;";
-                using (var cmd = new NpgsqlCommand(sql, conn))
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        int id = Convert.ToInt32(reader["id_user"]);
-                        string namaKurir = reader["nama"].ToString();
-
-                        list.Add(new Kurir(id, namaKurir));
-                    }
-                }
-            }
-            return list;
-        }
-        public static bool CekLoginKurir(string user, string pass)
+        public static Kurir CekLoginKurir(string user, string pass)
         {
             bool isSuccess = false;
             using (var conn = connectDB.GetConn())
@@ -40,8 +19,8 @@ namespace Sistem_Toko.Model
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("username", username);
-                    cmd.Parameters.AddWithValue("password", password);
+                    cmd.Parameters.AddWithValue("username", user);
+                    cmd.Parameters.AddWithValue("password", pass);
 
                     using (var reader = cmd.ExecuteReader())
                     {

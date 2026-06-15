@@ -28,6 +28,7 @@ namespace Sistem_Toko
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKasir));
             components = new System.ComponentModel.Container();
             LblToko = new Label();
             LblKasir = new Label();
@@ -73,7 +74,7 @@ namespace Sistem_Toko
             // ListKeranjangBtn
             // 
             ListKeranjangBtn.BackColor = Color.Transparent;
-            ListKeranjangBtn.BackgroundImage = (Image)resources.GetObject("ListKeranjangBtn.BackgroundImage");
+            //ListKeranjangBtn.BackgroundImage = (Image)resources.GetObject("ListKeranjangBtn.BackgroundImage");
             ListKeranjangBtn.BackgroundImageLayout = ImageLayout.Stretch;
             ListKeranjangBtn.Cursor = Cursors.Hand;
             ListKeranjangBtn.FlatStyle = FlatStyle.Flat;
@@ -90,7 +91,7 @@ namespace Sistem_Toko
             // StatusKirimBtn
             // 
             StatusKirimBtn.BackColor = Color.Transparent;
-            StatusKirimBtn.BackgroundImage = (Image)resources.GetObject("StatusKirimBtn.BackgroundImage");
+            //StatusKirimBtn.BackgroundImage = (Image)resources.GetObject("StatusKirimBtn.BackgroundImage");
             StatusKirimBtn.BackgroundImageLayout = ImageLayout.Stretch;
             StatusKirimBtn.Cursor = Cursors.Hand;
             StatusKirimBtn.FlatStyle = FlatStyle.Flat;
@@ -122,7 +123,7 @@ namespace Sistem_Toko
             // Profil
             // 
             Profil.BackColor = Color.Transparent;
-            Profil.BackgroundImage = (Image)resources.GetObject("Profil.BackgroundImage");
+            //Profil.BackgroundImage = (Image)resources.GetObject("Profil.BackgroundImage");
             Profil.BackgroundImageLayout = ImageLayout.Stretch;
             Profil.Location = new Point(989, 0);
             Profil.Name = "Profil";

@@ -17,8 +17,8 @@ namespace Sistem_Toko.Model
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("username", username);
-                    cmd.Parameters.AddWithValue("password", password);
+                    cmd.Parameters.Add("@username", NpgsqlTypes.NpgsqlDbType.Varchar).Value = username;
+                    cmd.Parameters.Add("@password", NpgsqlTypes.NpgsqlDbType.Varchar).Value = password;
 
                     using (var reader = cmd.ExecuteReader())
                     {
