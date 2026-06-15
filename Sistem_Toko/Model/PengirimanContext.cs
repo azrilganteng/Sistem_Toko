@@ -12,17 +12,19 @@ namespace Sistem_Toko.Model
         {
             List<Pengiriman> list = new List<Pengiriman>();
 
+            // Convert string status to boolean: "Selesai" = true, "Proses" = false
+            bool statusBool = status.Equals("Selesai", StringComparison.OrdinalIgnoreCase);
+
             using (var conn = connectDB.GetConn())
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = @"SELECT id_pengiriman, alamat, status_pengiriman, tanggal_kirim, id_order, id_user 
-                               FROM pengiriman 
+                string sql = @"SELECT * FROM v_status_pengiriman
                                WHERE status_pengiriman = @status;";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("status", status);
+                    cmd.Parameters.AddWithValue("status", statusBool);
 
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -34,8 +36,7 @@ namespace Sistem_Toko.Model
                                 Alamat = reader["alamat"].ToString(),
                                 StatusPengiriman = reader["status_pengiriman"].ToString(),
                                 TanggalKirim = ((DateOnly)reader["tanggal_kirim"]).ToDateTime(TimeOnly.MinValue),
-                                IdOrder = Convert.ToInt32(reader["id_order"]),
-                                IdUser = Convert.ToInt32(reader["id_user"])
+                                IdUser = HasColumn(reader, "id_user") ? Convert.ToInt32(reader["id_user"]) : 0
                             };
                             list.Add(p);
                         }
@@ -87,19 +88,72 @@ namespace Sistem_Toko.Model
         }
 
 
-        public static void SimpanDataPengiriman(NpgsqlConnection conn, NpgsqlTransaction transaction, int idOrder, int idKurir, string alamat)
+        public static List<Pengiriman> GetAll()
         {
-            string sqlPengiriman = @"
-                INSERT INTO pengiriman (alamat, status_pengiriman, tanggal_kirim, id_order, id_user) 
-                VALUES (@alamat, 'Proses', CURRENT_DATE, @idOrder, @idKurir);";
+            List<Pengiriman> list = new List<Pengiriman>();
 
-            using (var cmdKirim = new NpgsqlCommand(sqlPengiriman, conn, transaction))
+            using (var conn = connectDB.GetConn())
             {
-                cmdKirim.Parameters.AddWithValue("alamat", alamat);
-                cmdKirim.Parameters.AddWithValue("idOrder", idOrder);
-                cmdKirim.Parameters.AddWithValue("idKurir", idKurir);
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
 
-                cmdKirim.ExecuteNonQuery();
+                string sql = @"SELECT id_pengiriman,
+                              alamat,
+                              status_pengiriman,
+                              tanggal_kirim,
+                              id_order,
+                              id_user
+                       FROM pengiriman";
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Pengiriman p = new Pengiriman
+                        {
+                            IdPengiriman = Convert.ToInt32(reader["id_pengiriman"]),
+                            Alamat = reader["alamat"].ToString(),
+                            StatusPengiriman = reader["status_pengiriman"].ToString(),
+                            TanggalKirim = ((DateOnly)reader["tanggal_kirim"])
+                                            .ToDateTime(TimeOnly.MinValue),
+                            IdOrder = Convert.ToInt32(reader["id_order"]),
+                            IdUser = Convert.ToInt32(reader["id_user"])
+                        };
+
+                        list.Add(p);
+                    }
+                }
+            }
+
+            return list;
+        }
+
+
+        private static bool HasColumn(NpgsqlDataReader reader, string columnName)
+        {
+            for (int i = 0; i < reader.FieldCount; i++)
+                if (reader.GetName(i).Equals(columnName, StringComparison.OrdinalIgnoreCase)) return true;
+            return false;
+        }
+
+        public static int SimpanDataPengiriman(NpgsqlConnection conn, NpgsqlTransaction transaction, int idKurir)
+        {
+            string sqlPengiriman = @"CALL p_simpan_pengiriman(@idKurir);";
+
+            using (var cmd = new NpgsqlCommand(sqlPengiriman, conn))
+            {
+                cmd.Parameters.AddWithValue("@idKurir", idKurir);
+
+                cmd.ExecuteNonQuery();
+            }
+
+            // Ambil id_pengiriman yang baru dibuat
+            string sqlGetId = "SELECT MAX(id_pengiriman) FROM pengiriman WHERE id_user = @idKurir;";
+            using (var cmdGet = new NpgsqlCommand(sqlGetId, conn))
+            {
+                cmdGet.Parameters.AddWithValue("@idKurir", idKurir);
+                return Convert.ToInt32(cmdGet.ExecuteScalar());
             }
 
         }

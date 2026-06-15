@@ -48,7 +48,7 @@ namespace Sistem_Toko.Model
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = @"select * from data_admin WHERE username = @u AND password = @p";
+                string sql = @"select * from v_data_admin WHERE username = @u AND password = @p";
 
                 using (NpgsqlCommand cmd = new NpgsqlCommand(sql, conn))
                 {
@@ -77,7 +77,7 @@ namespace Sistem_Toko.Model
             using var conn = connectDB.GetConn();
             if (conn.State == ConnectionState.Closed) conn.Open();
 
-            string sql = @"SELECT * FROM daftar_karyawan";
+            string sql = @"SELECT * FROM v_daftar_karyawan";
             var adapter = new NpgsqlDataAdapter(sql, conn);
             var dt = new DataTable();
             adapter.Fill(dt);
@@ -185,7 +185,7 @@ namespace Sistem_Toko.Model
             using var conn = connectDB.GetConn();
             if (conn.State == ConnectionState.Closed) conn.Open();
 
-            using (var cmdUser = new NpgsqlCommand("UPDATE users SET is_aktif = false WHERE id_user = @id", conn))
+            using (var cmdUser = new NpgsqlCommand("UPDATE users SET is_active = false WHERE id_user = @id", conn))
             {
                 cmdUser.Parameters.AddWithValue("id", userId);
                 cmdUser.ExecuteNonQuery();
@@ -197,7 +197,7 @@ namespace Sistem_Toko.Model
             using var conn = connectDB.GetConn();
             if (conn.State == ConnectionState.Closed) conn.Open();
 
-            string sqlUser = @"SELECT tambah_user(@username, @password, @nama, @no_hp, @alamat, @email)";
+            string sqlUser = @"SELECT fn_tambah_user(@username, @password, @nama, @no_hp, @alamat, @email)";
 
             int newUserId;
             using (var cmdUser = new NpgsqlCommand(sqlUser, conn))

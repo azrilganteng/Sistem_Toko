@@ -47,6 +47,7 @@ namespace Sistem_Toko
             // 
             LblToko.Anchor = AnchorStyles.None;
             LblToko.AutoSize = true;
+            LblToko.BackColor = Color.Transparent;
             LblToko.Font = new Font("Book Antiqua", 45F);
             LblToko.Location = new Point(51, 42);
             LblToko.Name = "LblToko";
@@ -58,6 +59,7 @@ namespace Sistem_Toko
             // 
             Lbl_User.Anchor = AnchorStyles.None;
             Lbl_User.AutoSize = true;
+            Lbl_User.BackColor = Color.Transparent;
             Lbl_User.Font = new Font("Book Antiqua", 15F);
             Lbl_User.Location = new Point(61, 134);
             Lbl_User.Name = "Lbl_User";
@@ -136,7 +138,7 @@ namespace Sistem_Toko
             // Btn_Profil
             // 
             Btn_Profil.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            Btn_Profil.BackColor = Color.SeaGreen;
+            Btn_Profil.BackColor = Color.Transparent;
             Btn_Profil.BackgroundImage = (Image)resources.GetObject("Btn_Profil.BackgroundImage");
             Btn_Profil.BackgroundImageLayout = ImageLayout.Zoom;
             Btn_Profil.Cursor = Cursors.Hand;
@@ -176,6 +178,8 @@ namespace Sistem_Toko
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1168, 568);
             Controls.Add(Btn_Profil);
             Controls.Add(Btn_Restock);
@@ -184,6 +188,7 @@ namespace Sistem_Toko
             Controls.Add(Btn_Stok_Gudang);
             Controls.Add(Lbl_User);
             Controls.Add(LblToko);
+            DoubleBuffered = true;
             Font = new Font("Segoe UI", 10F);
             Name = "AdminForm";
             Text = "AdminForm";

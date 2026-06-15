@@ -1,17 +1,145 @@
-﻿
+﻿CREATE TABLE supplier (
+    id_supplier SERIAL PRIMARY KEY,
+    nama VARCHAR(50) NOT NULL,
+    alamat VARCHAR(50) NOT NULL,
+    no_hp VARCHAR(13) NOT NULL UNIQUE,
+    email VARCHAR(50) NOT NULL UNIQUE
+);
 
-CREATE OR REPLACE VIEW data_kasir AS
+CREATE TABLE kategori_produk (
+    id_kategori_produk SERIAL PRIMARY KEY,
+    nama_kategori VARCHAR(30) NOT NULL
+);
+
+CREATE TABLE produk (
+    id_produk Serial PRIMARY KEY,
+    harga int NOT NULL,
+    nama_produk VARCHAR(50) NOT NULL,
+    stok int not null,
+    status boolean not null,
+    gambar text not null,
+    deskripsi text,
+    id_kategori_produk int not null REFERENCES kategori_produk(id_kategori_produk)
+);
+
+CREATE TABLE supplier_produk (
+    id_supplier_produk serial PRIMARY KEY,
+    id_supplier int NOT NULL REFERENCES supplier(id_supplier),
+    id_produk int NOT NULL REFERENCES produk(id_produk)
+);
+
+CREATE TABLE log_stok (
+    id_stok serial PRIMARY KEY,
+    jumlah_stok int NOT NULL,
+    kode_aksi int NOT NULL,
+    updated_at DATE not null,
+    id_produk int NOT NULL REFERENCES produk(id_produk)
+);
+
+CREATE TABLE pengiriman (
+    id_pengiriman serial PRIMARY KEY,
+    tanggal_kirim DATE NOT NULL,
+    status_pengiriman boolean,
+    id_user int NOT NULL REFERENCES users(id_user)
+);
+
+CREATE TABLE orders (
+    id_order serial PRIMARY KEY,
+    tanggal_order DATE NOT NULL,
+    status boolean not null,
+    metode_pembayaran boolean not null,
+    tanggal_bayar DATE not null,
+    id_customer int NOT NULL REFERENCES customer(id_customer),
+    id_pengiriman int NOT NULL REFERENCES pengiriman(id_pengiriman),
+    id_user int NOT NULL REFERENCES users(id_user)
+);
+
+CREATE TABLE detail_orders (
+    id_detail_orders serial PRIMARY KEY,
+    harga int NOT NULL,
+    jumlah int NOT NULL,
+    id_produk int NOT NULL REFERENCES produk(id_produk),
+    id_order int NOT NULL REFERENCES orders(id_order)
+);
+
+CREATE TABLE kewenangan (
+    id_kewenangan serial PRIMARY KEY,
+    id_role int NOT NULL REFERENCES roles(id_role),
+    id_user int NOT NULL REFERENCES users(id_user)
+);
+
+CREATE TABLE log_perubahan_user (
+    id_log_perubahan_user serial PRIMARY KEY,
+    kode_aksi int NOT NULL,
+    data_lama text,
+    data_baru text,
+    update_at DATE not null,
+    id_user int NOT NULL REFERENCES users(id_user)
+);
+
+CREATE TABLE customer (
+    id_customer serial PRIMARY KEY,
+    nama_customer VARCHAR(50) NOT NULL,
+    no_hp VARCHAR(13) NOT NULL,
+    alamat VARCHAR(50) not null
+);
+
+CREATE TABLE users (
+    id_user serial PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    nama VARCHAR(50) NOT NULL,
+    no_hp VARCHAR(13) UNIQUE not null,
+    alamat VARCHAR(50) not null,
+    email VARCHAR(50) UNIQUE not null,
+    is_active boolean not null,
+	is_ready boolean not null
+);
+
+CREATE TABLE roles (
+    id_role serial PRIMARY KEY,
+    nama_role VARCHAR(30) NOT NULL
+);
+
+select * from supplier
+select * from kategori_produk
+select * from produk
+select * from supplier_produk
+select * from log_stok
+select * from pengiriman
+select * from orders
+select * from detail_orders
+select * from kewenangan
+select * from log_perubahan_user
+select * from customer
+select * from users
+select * from roles
+
+CREATE OR REPLACE VIEW v_data_kasir AS
 SELECT u.*,r.nama_role
 FROM users u
 JOIN kewenangan k USING(id_user)
 JOIN roles r USING(id_role)
-WHERE r.nama_role = 'Kasir';
+WHERE r.nama_role = 'Kasir' AND u.is_active = True;`
 
-create or replace view kartu_produk as
+CREATE OR REPLACE VIEW v_data_admin AS
+SELECT u.*,r.nama_role
+FROM users u
+JOIN kewenangan k USING(id_user)
+JOIN roles r USING(id_role)
+WHERE r.nama_role = 'Admin' AND u.is_active = True;
+
+CREATE OR REPLACE VIEW v_data_kurir AS
+SELECT u.*,r.nama_role
+FROM users u
+JOIN kewenangan k USING(id_user)
+JOIN roles r USING(id_role)
+WHERE r.nama_role = 'Kurir' AND u.is_active = True
+
+create or replace view v_kartu_produk as
 select id_produk,nama_produk,harga,gambar,stok
 from produk
 where stok >0
-
 
 create type item_keranjang as (
 	id_produk int,
@@ -19,8 +147,7 @@ create type item_keranjang as (
 	subtotal numeric(10,2)
 )
 
-
-CREATE OR REPLACE FUNCTION buat_order_baru(
+CREATE OR REPLACE FUNCTION fn_buat_order_baru(
     p_id_user INT,
     p_metode_pembayaran VARCHAR(50),
     p_metode_pengiriman VARCHAR(50)
@@ -30,7 +157,7 @@ DECLARE
     new_order_id INT;
 BEGIN
     -- Masukkan data nota induk
-    INSERT INTO "orders" (tanggal_order, status, metode_pembayaran, metode_pengiriman, tanggal_bayar, id_user)
+    INSERT INTO orders (tanggal_order, status, metode_pembayaran, metode_pengiriman, tanggal_bayar, id_user)
     VALUES (CURRENT_DATE, 'Selesai', p_metode_pembayaran, p_metode_pengiriman, CURRENT_DATE, p_id_user)
     RETURNING id_order INTO new_order_id;
 
@@ -39,35 +166,151 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
-
-CREATE OR REPLACE FUNCTION tambah_detail_order(
+CREATE OR REPLACE FUNCTION fn_tambah_detail_order(
     p_id_order INT,
     p_id_produk INT,
     p_jumlah INT,
     p_harga NUMERIC
 )
 RETURNS VOID AS $$
-BEGIN
+BEGIN	
     -- 1. Masukkan barang ke tabel detail
-    INSERT INTO "detail_order" (id_order, id_produk, jumlah, harga)
+    INSERT INTO detail_orders (id_order, id_produk, jumlah, harga)
     VALUES (p_id_order, p_id_produk, p_jumlah, p_harga);
 
     -- 2. Langsung kurangi stok produk (Ini alasan kenapa stokmu kemarin tidak berkurang!)
-    UPDATE "produk" 
+    UPDATE produk
     SET stok = stok - p_jumlah 
     WHERE id_produk = p_id_produk;
 END;
 $$ LANGUAGE plpgsql;
 
-
-
-CREATE OR REPLACE VIEW kurir_ready AS
+CREATE OR REPLACE VIEW v_kurir_ready AS
 SELECT id_user,nama
 FROM users join kewenangan using(id_user)
 WHERE id_role = 3 and is_ready = true;
 
+CREATE VIEW v_status_pengiriman AS
+SELECT
+    p.id_pengiriman,
+    u.alamat,
+    p.status_pengiriman,
+    p.tanggal_kirim,
+    u.nama AS nama_kurir
+FROM pengiriman p
+JOIN users u ON p.id_user = u.id_user;
 
+CREATE OR REPLACE PROCEDURE p_simpan_pengiriman(
+    p_user_id INTEGER
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO pengiriman (
+        tanggal_kirim,
+        status_pengiriman,
+        user_id_user
+    )
+    VALUES (
+        CURRENT_DATE,
+        'Proses',
+        p_user_id
+    );
+END;
+$$;
+
+INSERT INTO users(username, password, nama, no_hp, alamat, email, is_active, is_ready)
+VALUES('qwer', '123', 'azril', '0826184', 'Jember', 'azril@gmail.com', true, true)
+
+
+-- View riwayat penjualan untuk dashboard admin/kasir
+CREATE OR REPLACE VIEW v_riwayat_penjualan AS
+SELECT
+    o.id_order,
+    o.tanggal_order AS "Tanggal Order",
+    u.nama AS "Kasir",
+    c.nama_customer AS "Customer",
+    p.nama_produk AS "Produk",
+    d.jumlah AS "Qty",
+    d.harga AS "Harga",
+    (d.jumlah * d.harga) AS "Total",
+    o.metode_pembayaran AS "Metode Bayar"
+FROM orders o
+JOIN detail_orders d ON o.id_order = d.id_order
+JOIN produk p ON d.id_produk = p.id_produk
+JOIN users u ON o.id_user = u.id_user
+LEFT JOIN customer c ON o.id_customer = c.id_customer;
+
+
+-- View daftar karyawan (semua user + role)
+CREATE OR REPLACE VIEW v_daftar_karyawan AS
+SELECT
+    u.id_user,
+    u.username,
+    u.password,
+    u.nama,
+    u.no_hp,
+    u.alamat,
+    u.email,
+    u.is_active,
+    u.is_ready,
+    r.nama_role
+FROM users u
+JOIN kewenangan k USING(id_user)
+JOIN roles r USING(id_role);
+
+
+-- Function tambah user baru (karyawan)
+CREATE OR REPLACE FUNCTION fn_tambah_user(
+    p_username VARCHAR,
+    p_password VARCHAR,
+    p_nama VARCHAR,
+    p_no_hp VARCHAR,
+    p_alamat VARCHAR,
+    p_email VARCHAR
+)
+RETURNS INT AS $$
+DECLARE
+    new_user_id INT;
+BEGIN
+    INSERT INTO users (username, password, nama, no_hp, alamat, email, is_active, is_ready)
+    VALUES (p_username, p_password, p_nama, p_no_hp, p_alamat, p_email, true, false)
+    RETURNING id_user INTO new_user_id;
+
+    RETURN new_user_id;
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- Function ambil info user berdasarkan id
+CREATE OR REPLACE FUNCTION fn_get_user_info(p_id_user INT)
+RETURNS TABLE(
+    id_user INT,
+    nama VARCHAR,
+    no_hp VARCHAR,
+    alamat VARCHAR,
+    email VARCHAR
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT u.id_user, u.nama, u.no_hp, u.alamat, u.email
+    FROM users u
+    WHERE u.id_user = p_id_user;
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- View stok gudang (produk + kategori untuk dashboard admin)
+CREATE OR REPLACE VIEW v_stok_gudang AS
+SELECT
+    p.id_produk,
+    p.nama_produk,
+    k.nama_kategori,
+    p.stok,
+    p.harga,
+    p.status
+FROM produk p
+JOIN kategori_produk k ON p.id_kategori_produk = k.id_kategori_produk;
 CREATE TABLE pengiriman (
     id_pengiriman SERIAL PRIMARY KEY,
     alamat TEXT NOT NULL,                     -- Tambahan untuk menyimpan alamat tujuan

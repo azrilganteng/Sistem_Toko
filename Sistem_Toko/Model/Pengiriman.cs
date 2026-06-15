@@ -8,7 +8,6 @@ namespace Sistem_Toko.Model
         public string Alamat { get; set; }
         public string StatusPengiriman { get; set; }
         public DateTime TanggalKirim { get; set; }
-        public int IdOrder { get; set; }
         public int IdUser { get; set; }
 
        
@@ -16,13 +15,12 @@ namespace Sistem_Toko.Model
 
         public Pengiriman() { }
 
-        public Pengiriman(int idPengiriman, string alamat, string statusPengiriman, DateTime tanggalKirim, int idOrder, int idUser)
+        public Pengiriman(int idPengiriman, string alamat, string statusPengiriman, DateTime tanggalKirim, int idUser)
         {
             this.IdPengiriman = idPengiriman;
             this.Alamat = alamat;
             this.StatusPengiriman = statusPengiriman;
             this.TanggalKirim = tanggalKirim;
-            this.IdOrder = idOrder;
             this.IdUser = idUser;
         }
     }
