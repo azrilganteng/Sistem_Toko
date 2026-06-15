@@ -29,7 +29,6 @@ namespace Sistem_Toko
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKasir));
             LblToko = new Label();
             LblKasir = new Label();
             ListKeranjangBtn = new Button();
@@ -242,6 +241,7 @@ namespace Sistem_Toko
             Name = "FormKasir";
             Text = "FormKasir";
             FormClosed += FormKasir_FormClosed;
+            Load += FormKasir_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)Profil).EndInit();

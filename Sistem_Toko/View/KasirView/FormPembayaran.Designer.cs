@@ -33,6 +33,9 @@ namespace Sistem_Toko
             BackBtn = new Button();
             LblHeader = new Label();
             panelContent = new Panel();
+            LblCustomer = new Label();
+            TxtCustomer = new TextBox();
+            BtnCariCustomer = new Button();
             LblNotaTitle = new Label();
             LblCustomer = new Label();
             TxtCustomer = new TextBox();

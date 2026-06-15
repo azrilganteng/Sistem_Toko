@@ -13,9 +13,30 @@ namespace Sistem_Toko.Model
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = @"SELECT id_user, username, password, nama, no_hp, email, alamat 
-                               FROM ""users"" 
-                               WHERE username = @username AND password = @password;";
+                string sql = "SELECT * FROM v_kurir_ready;";
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int id = Convert.ToInt32(reader["id_user"]);
+                        string namaKurir = reader["nama"].ToString();
+
+                        list.Add(new Kurir(id, namaKurir));
+                    }
+                }
+            }
+            return list;
+        }
+        public static bool CekLoginKurir(string user, string pass)
+        {
+            bool isSuccess = false;
+            using (var conn = connectDB.GetConn())
+            {
+                if (conn.State == ConnectionState.Closed) conn.Open();
+
+                string sql = @"SELECT * FROM v_data_kurir
+                               WHERE username = @u AND password = @p;";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {

@@ -16,7 +16,7 @@ namespace Sistem_Toko.Model
 
         public Pengiriman() { }
 
-        public Pengiriman(int idPengiriman, string alamat, string statusPengiriman, DateTime tanggalKirim, int idUser, int idOrder)
+        public Pengiriman(int idPengiriman, string alamat, string statusPengiriman, DateTime tanggalKirim, int idUser)
         {
             this.IdPengiriman = idPengiriman;
             this.Alamat = alamat;
