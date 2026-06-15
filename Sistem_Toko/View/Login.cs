@@ -29,7 +29,8 @@ namespace Sistem_Toko
 
             AuthController auth = new AuthController();
 
-            // Coba login sebagai Kasir
+
+
             Kasir kasirAktif = auth.LoginKasir(user, pass);
 
             if (kasirAktif != null)
@@ -40,29 +41,40 @@ namespace Sistem_Toko
                 return;
             }
 
-            // Coba login sebagai Admin
+
             Admin adminAktif = auth.LoginAdmin(user, pass);
 
             if (adminAktif != null)
             {
+
                 AdminForm adminPage = new AdminForm();
                 adminPage.Show();
                 this.Hide();
                 return;
             }
 
-            // Coba login sebagai Kurir
-            bool isKurirValid = auth.LoginKurir(user, pass);
+            Kurir KurirAktif = auth.LoginKurir(user, pass);
 
-            if (isKurirValid)
+            if (KurirAktif != null)
             {
-                kurirDashboard dashboard = new kurirDashboard();
-                dashboard.Show();
-                this.Hide();
-                return;
-            }
+                MessageBox.Show($"Selamat Datang, {SessionUser.Nama}!");
 
-            MessageBox.Show("Username atau Password salah / Akun tidak dikenali!", "Login Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Coba login sebagai Kurir
+                Kurir dataKurir = auth.LoginKurir(user, pass);
+
+                if (dataKurir != null)
+                {
+
+                    kurirDashboard dashboard = new kurirDashboard();
+                    dashboard.Show();
+                    this.Hide();
+                    return;
+                }
+
+                MessageBox.Show("Username atau Password salah / Akun tidak dikenali!", "Login Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+
     }
-}   
+}  

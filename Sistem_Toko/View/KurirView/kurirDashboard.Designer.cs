@@ -56,7 +56,7 @@ namespace Sistem_Toko.View.KurirView
             lblSelamatDatang.Size = new Size(183, 31);
             lblSelamatDatang.TabIndex = 1;
             lblSelamatDatang.Text = "Selamat Datang ";
-            lblSelamatDatang.Click += label2_Click;
+            //lblSelamatDatang.Click += label2_Click;
             // 
             // button1
             // 
@@ -91,14 +91,14 @@ namespace Sistem_Toko.View.KurirView
             lblNamaKurir.Name = "lblNamaKurir";
             lblNamaKurir.Size = new Size(0, 31);
             lblNamaKurir.TabIndex = 4;
-            lblNamaKurir.Click += lblNamaKurir_Click;
+            //lblNamaKurir.Click += lblNamaKurir_Click;
             // 
             // kurirDashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightGray;
-            ClientSize = new Size(1168, 568);
+            ClientSize = new Size(1067, 571);
             Controls.Add(lblNamaKurir);
             Controls.Add(button2);
             Controls.Add(button1);
