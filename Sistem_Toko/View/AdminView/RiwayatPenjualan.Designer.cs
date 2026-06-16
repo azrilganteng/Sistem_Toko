@@ -32,7 +32,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // Grid_RiwayatPenjualan
             // 
-            Grid_RiwayatPenjualan.Anchor = AnchorStyles.None;
+            Grid_RiwayatPenjualan.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             Grid_RiwayatPenjualan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             Grid_RiwayatPenjualan.Location = new Point(52, 194);
             Grid_RiwayatPenjualan.Name = "Grid_RiwayatPenjualan";
@@ -42,7 +42,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // LblToko
             // 
-            LblToko.Anchor = AnchorStyles.None;
+            LblToko.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             LblToko.AutoSize = true;
             LblToko.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
             LblToko.Location = new Point(344, 40);
@@ -53,7 +53,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // Btn_Kembali
             // 
-            Btn_Kembali.Anchor = AnchorStyles.None;
+            Btn_Kembali.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             Btn_Kembali.BackColor = Color.Transparent;
             Btn_Kembali.BackgroundImage = (Image)resources.GetObject("Btn_Kembali.BackgroundImage");
             Btn_Kembali.BackgroundImageLayout = ImageLayout.Zoom;
@@ -68,7 +68,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // CmbBulan
             // 
-            CmbBulan.Anchor = AnchorStyles.None;
+            CmbBulan.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             CmbBulan.DropDownStyle = ComboBoxStyle.DropDownList;
             CmbBulan.Font = new Font("Segoe UI", 10F);
             CmbBulan.Location = new Point(110, 141);
@@ -78,7 +78,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // NumTahun
             // 
-            NumTahun.Anchor = AnchorStyles.None;
+            NumTahun.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             NumTahun.Font = new Font("Segoe UI", 10F);
             NumTahun.Location = new Point(325, 141);
             NumTahun.Maximum = new decimal(new int[] { 2100, 0, 0, 0 });
@@ -90,7 +90,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // Btn_Filter
             // 
-            Btn_Filter.Anchor = AnchorStyles.None;
+            Btn_Filter.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             Btn_Filter.BackColor = Color.SeaGreen;
             Btn_Filter.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             Btn_Filter.ForeColor = Color.White;
@@ -104,7 +104,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // LblBulan
             // 
-            LblBulan.Anchor = AnchorStyles.None;
+            LblBulan.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             LblBulan.AutoSize = true;
             LblBulan.Font = new Font("Segoe UI", 10F);
             LblBulan.Location = new Point(52, 144);
@@ -115,7 +115,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // LblTahun
             // 
-            LblTahun.Anchor = AnchorStyles.None;
+            LblTahun.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             LblTahun.AutoSize = true;
             LblTahun.Font = new Font("Segoe UI", 10F);
             LblTahun.Location = new Point(268, 144);
@@ -130,6 +130,7 @@ namespace Sistem_Toko.View.AdminView
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1050, 560);
+            WindowState = FormWindowState.Maximized;
             Controls.Add(Grid_RiwayatPenjualan);
             Controls.Add(LblToko);
             Controls.Add(LblBulan);

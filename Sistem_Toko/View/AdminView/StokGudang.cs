@@ -23,6 +23,10 @@ namespace Sistem_Toko.View.AdminView
             {
                 DataTable dt = ProdukContext.GetStokGudang();
 
+                // Hide boolean status column
+                if (dt.Columns.Contains("status"))
+                    dt.Columns.Remove("status");
+
                 Grid_Riwayat_Stok.DataSource = dt;
                 Grid_Riwayat_Stok.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 Grid_Riwayat_Stok.ReadOnly = true;

@@ -23,12 +23,13 @@ namespace Sistem_Toko.View.AdminView
             PnlScroll = new System.Windows.Forms.Panel();
             FlowProduk = new System.Windows.Forms.FlowLayoutPanel();
             Btn_Simpan = new System.Windows.Forms.Button();
+            Btn_Tambah_Produk = new System.Windows.Forms.Button();
             PnlScroll.SuspendLayout();
             SuspendLayout();
             // 
             // LblToko
             // 
-            LblToko.Anchor = System.Windows.Forms.AnchorStyles.None;
+            LblToko.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left;
             LblToko.AutoSize = true;
             LblToko.Font = new System.Drawing.Font("Book Antiqua", 36F, System.Drawing.FontStyle.Bold);
             LblToko.ForeColor = System.Drawing.Color.FromArgb(40, 100, 60);
@@ -39,7 +40,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // Btn_Kembali
             // 
-            Btn_Kembali.Anchor = System.Windows.Forms.AnchorStyles.None;
+            Btn_Kembali.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left;
             Btn_Kembali.BackColor = System.Drawing.Color.Transparent;
             Btn_Kembali.BackgroundImage = (System.Drawing.Image)resources.GetObject("Btn_Kembali.BackgroundImage");
             Btn_Kembali.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -54,7 +55,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // LblSubjudul
             // 
-            LblSubjudul.Anchor = System.Windows.Forms.AnchorStyles.None;
+            LblSubjudul.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left;
             LblSubjudul.AutoSize = true;
             LblSubjudul.Font = new System.Drawing.Font("Segoe UI", 10F);
             LblSubjudul.ForeColor = System.Drawing.Color.Gray;
@@ -65,7 +66,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // LblInfo
             // 
-            LblInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            LblInfo.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left;
             LblInfo.AutoSize = true;
             LblInfo.Font = new System.Drawing.Font("Segoe UI", 10F);
             LblInfo.ForeColor = System.Drawing.Color.Gray;
@@ -77,7 +78,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // PnlScroll
             // 
-            PnlScroll.Anchor = System.Windows.Forms.AnchorStyles.None;
+            PnlScroll.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
             PnlScroll.AutoScroll = true;
             PnlScroll.BackColor = System.Drawing.Color.WhiteSmoke;
             PnlScroll.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -101,7 +102,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // Btn_Simpan
             // 
-            Btn_Simpan.Anchor = System.Windows.Forms.AnchorStyles.None;
+            Btn_Simpan.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
             Btn_Simpan.BackColor = System.Drawing.Color.SeaGreen;
             Btn_Simpan.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
             Btn_Simpan.ForeColor = System.Drawing.Color.White;
@@ -113,12 +114,28 @@ namespace Sistem_Toko.View.AdminView
             Btn_Simpan.UseVisualStyleBackColor = false;
             Btn_Simpan.Click += Btn_Simpan_Click;
             // 
+            // Btn_Tambah_Produk
+            // 
+            Btn_Tambah_Produk.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left;
+            Btn_Tambah_Produk.BackColor = System.Drawing.Color.DarkOrange;
+            Btn_Tambah_Produk.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            Btn_Tambah_Produk.ForeColor = System.Drawing.Color.White;
+            Btn_Tambah_Produk.Location = new System.Drawing.Point(270, 500);
+            Btn_Tambah_Produk.Name = "Btn_Tambah_Produk";
+            Btn_Tambah_Produk.Size = new System.Drawing.Size(200, 44);
+            Btn_Tambah_Produk.TabIndex = 16;
+            Btn_Tambah_Produk.Text = "+ Tambah Produk";
+            Btn_Tambah_Produk.UseVisualStyleBackColor = false;
+            Btn_Tambah_Produk.Click += Btn_Tambah_Produk_Click;
+            // 
             // Restock
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.WhiteSmoke;
             ClientSize = new System.Drawing.Size(1168, 568);
+            WindowState = FormWindowState.Maximized;
+            Controls.Add(Btn_Tambah_Produk);
             Controls.Add(Btn_Simpan);
             Controls.Add(PnlScroll);
             Controls.Add(LblInfo);
@@ -144,5 +161,6 @@ namespace Sistem_Toko.View.AdminView
         private System.Windows.Forms.Panel PnlScroll;
         private System.Windows.Forms.FlowLayoutPanel FlowProduk;
         private System.Windows.Forms.Button Btn_Simpan;
+        private System.Windows.Forms.Button Btn_Tambah_Produk;
     }
 }

@@ -46,7 +46,6 @@ namespace Sistem_Toko.View.KasirView
             }
         }
 
-
         private void OngoingBtn_Click(object sender, EventArgs e)
         {
             TampilkanRiwayat("Proses");

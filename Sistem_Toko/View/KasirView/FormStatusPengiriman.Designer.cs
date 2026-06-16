@@ -123,6 +123,7 @@ namespace Sistem_Toko.View.KasirView
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1067, 571);
+            WindowState = FormWindowState.Maximized;
             Controls.Add(FlpStatus);
             Controls.Add(panel1);
             Name = "FormStatusPengiriman";

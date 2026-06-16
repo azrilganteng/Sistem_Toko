@@ -12,7 +12,7 @@ namespace Sistem_Toko.View.KurirView
             InitializeComponent();
         }
 
-        private void kurirDashboard_Load(object sender, EventArgs e)
+        private void MuatDashboard(object sender, EventArgs e)
         {
             MuatInfoKurir();
         }
@@ -28,6 +28,18 @@ namespace Sistem_Toko.View.KurirView
             KurirForm formPengiriman = new KurirForm();
             formPengiriman.Show();
             this.Hide(); 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Sistem_Toko.View.FormProfil halamanProfil = new Sistem_Toko.View.FormProfil();
+            halamanProfil.Owner = this;
+            halamanProfil.ShowDialog();
+            if (halamanProfil.IsLoggedOut)
+                this.Close();
+            else
+                this.Show();
         }
     }
 }

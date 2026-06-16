@@ -8,19 +8,29 @@ namespace Sistem_Toko.Model
 {
     public class PengirimanContext
     {
+        // Convert boolean to display string: true = "Selesai", false = "Proses"
+        private static string BoolToStatus(object dbValue)
+        {
+            if (dbValue is bool b) return b ? "Selesai" : "Proses";
+            return dbValue?.ToString() ?? "Proses";
+        }
+
         public static List<Pengiriman> GetStatusPengiriman(string status)
         {
             List<Pengiriman> list = new List<Pengiriman>();
 
-            // Convert string status to boolean: "Selesai" = true, "Proses" = false
             bool statusBool = status.Equals("Selesai", StringComparison.OrdinalIgnoreCase);
 
             using (var conn = connectDB.GetConn())
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = @"SELECT * FROM v_status_pengiriman
-                               WHERE status_pengiriman = @status;";
+                string sql = @"SELECT p.id_pengiriman, p.status_pengiriman, p.tanggal_kirim, p.id_user,
+                                      o.id_order, c.alamat
+                               FROM pengiriman p
+                               LEFT JOIN orders o ON o.id_pengiriman = p.id_pengiriman
+                               LEFT JOIN customer c ON o.id_customer = c.id_customer
+                               WHERE p.status_pengiriman = @status";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
@@ -33,9 +43,10 @@ namespace Sistem_Toko.Model
                             Pengiriman p = new Pengiriman
                             {
                                 IdPengiriman = Convert.ToInt32(reader["id_pengiriman"]),
-                                Alamat = reader["alamat"].ToString(),
-                                StatusPengiriman = reader["status_pengiriman"].ToString(),
+                                Alamat = reader["alamat"]?.ToString() ?? "",
+                                StatusPengiriman = BoolToStatus(reader["status_pengiriman"]),
                                 TanggalKirim = ((DateOnly)reader["tanggal_kirim"]).ToDateTime(TimeOnly.MinValue),
+                                IdOrder = HasColumn(reader, "id_order") && reader["id_order"] != DBNull.Value ? Convert.ToInt32(reader["id_order"]) : 0,
                                 IdUser = HasColumn(reader, "id_user") ? Convert.ToInt32(reader["id_user"]) : 0
                             };
                             list.Add(p);
@@ -55,13 +66,11 @@ namespace Sistem_Toko.Model
                 if (conn.State == ConnectionState.Closed)
                     conn.Open();
 
-                string sql = @"SELECT id_pengiriman,
-                              alamat,
-                              status_pengiriman,
-                              tanggal_kirim,
-                              id_order,
-                              id_user
-                       FROM pengiriman";
+                string sql = @"SELECT p.id_pengiriman, p.status_pengiriman, p.tanggal_kirim, p.id_user,
+                                      o.id_order, c.alamat
+                               FROM pengiriman p
+                               LEFT JOIN orders o ON o.id_pengiriman = p.id_pengiriman
+                               LEFT JOIN customer c ON o.id_customer = c.id_customer";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 using (var reader = cmd.ExecuteReader())
@@ -71,11 +80,12 @@ namespace Sistem_Toko.Model
                         Pengiriman p = new Pengiriman
                         {
                             IdPengiriman = Convert.ToInt32(reader["id_pengiriman"]),
-                            Alamat = reader["alamat"].ToString(),
-                            StatusPengiriman = reader["status_pengiriman"].ToString(),
-                            TanggalKirim = ((DateOnly)reader["tanggal_kirim"])
-                                            .ToDateTime(TimeOnly.MinValue),
-                            IdOrder = Convert.ToInt32(reader["id_order"]),
+                            Alamat = reader["alamat"]?.ToString() ?? "",
+                            StatusPengiriman = BoolToStatus(reader["status_pengiriman"]),
+                            TanggalKirim = reader["tanggal_kirim"] is DateOnly d 
+                                ? d.ToDateTime(TimeOnly.MinValue) 
+                                : Convert.ToDateTime(reader["tanggal_kirim"]),
+                            IdOrder = reader["id_order"] != DBNull.Value ? Convert.ToInt32(reader["id_order"]) : 0,
                             IdUser = Convert.ToInt32(reader["id_user"])
                         };
 
@@ -94,26 +104,6 @@ namespace Sistem_Toko.Model
             return false;
         }
 
-        public static int SimpanDataPengiriman(NpgsqlConnection conn, NpgsqlTransaction transaction, int idKurir)
-        {
-            string sqlPengiriman = @"CALL p_simpan_pengiriman(@idKurir);";
-
-            using (var cmd = new NpgsqlCommand(sqlPengiriman, conn))
-            {
-                cmd.Parameters.AddWithValue("@idKurir", idKurir);
-
-                cmd.ExecuteNonQuery();
-            }
-
-            // Ambil id_pengiriman yang baru dibuat
-            string sqlGetId = "SELECT MAX(id_pengiriman) FROM pengiriman WHERE id_user = @idKurir;";
-            using (var cmdGet = new NpgsqlCommand(sqlGetId, conn))
-            {
-                cmdGet.Parameters.AddWithValue("@idKurir", idKurir);
-                return Convert.ToInt32(cmdGet.ExecuteScalar());
-            }
-
-        }
         public static List<Pengiriman> GetPengirimanByKurir(int idKurir)
         {
             List<Pengiriman> list = new List<Pengiriman>();
@@ -122,10 +112,13 @@ namespace Sistem_Toko.Model
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = @"SELECT id_pengiriman, alamat, status_pengiriman, tanggal_kirim, id_order, id_user 
-                               FROM pengiriman 
-                               WHERE id_user = @id_kurir AND status_pengiriman = 'Proses' 
-                               ORDER BY id_pengiriman DESC;";
+                string sql = @"SELECT p.id_pengiriman, p.status_pengiriman, p.tanggal_kirim, p.id_user,
+                                      o.id_order, c.alamat
+                               FROM pengiriman p
+                               LEFT JOIN orders o ON o.id_pengiriman = p.id_pengiriman
+                               LEFT JOIN customer c ON o.id_customer = c.id_customer
+                               WHERE p.id_user = @id_kurir AND p.status_pengiriman = false
+                               ORDER BY p.id_pengiriman DESC;";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
@@ -150,8 +143,8 @@ namespace Sistem_Toko.Model
                             Pengiriman p = new Pengiriman
                             {
                                 IdPengiriman = Convert.ToInt32(reader["id_pengiriman"]),
-                                Alamat = reader["alamat"].ToString(),
-                                StatusPengiriman = reader["status_pengiriman"].ToString(),
+                                Alamat = reader["alamat"]?.ToString() ?? "",
+                                StatusPengiriman = BoolToStatus(reader["status_pengiriman"]),
                                 TanggalKirim = tanggalHasil, // Menggunakan tanggal yang sudah aman
                                 IdOrder = Convert.ToInt32(reader["id_order"]),
                                 IdUser = Convert.ToInt32(reader["id_user"])

@@ -42,6 +42,19 @@ namespace Sistem_Toko.View.AdminView
             {
                 DataTable dt = KasirContext.GetRiwayatPenjualan(bulan, tahun);
 
+                // Convert boolean metode_pembayaran to text
+                if (dt.Columns.Contains("Metode Bayar"))
+                {
+                    dt.Columns.Add("metode_text", typeof(string));
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        bool val = row["Metode Bayar"] != DBNull.Value && Convert.ToBoolean(row["Metode Bayar"]);
+                        row["metode_text"] = val ? "Tunai" : "Non-Tunai";
+                    }
+                    dt.Columns.Remove("Metode Bayar");
+                    dt.Columns["metode_text"].ColumnName = "Metode Bayar";
+                }
+
                 Grid_RiwayatPenjualan.DataSource = dt;
                 Grid_RiwayatPenjualan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 Grid_RiwayatPenjualan.ReadOnly = true;

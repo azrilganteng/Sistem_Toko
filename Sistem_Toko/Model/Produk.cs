@@ -14,10 +14,10 @@ namespace Sistem_Toko.Model
         public int IdKategori { get; set; }
         public string Status { get; set; }
 
-        public byte[] Gambar { get; set; }
+        public string Gambar { get; set; }
 
         public Produk() { }
-        public Produk(int id, string namaProduk, int harga, int stok, string deskripsi, int idKategori, string status, byte[] gambar)
+        public Produk(int id, string namaProduk, int harga, int stok, string deskripsi, int idKategori, string status, string gambar)
         {
             this.Id = id;
             this.NamaProduk = namaProduk;

@@ -65,6 +65,15 @@ namespace Sistem_Toko.Model
                                 reader["username"].ToString(),
                                 reader["password"].ToString()
                             );
+
+                            SessionUser.Id = dataAdmin.ID;
+                            SessionUser.Username = dataAdmin.Username;
+                            SessionUser.Nama = dataAdmin.Nama;
+                            SessionUser.Role = "Admin";
+                            SessionUser.IdRole = 1;
+                            try { SessionUser.Email = reader["email"].ToString(); } catch { }
+                            try { SessionUser.Alamat = reader["alamat"].ToString(); } catch { }
+                            try { SessionUser.NoHp = reader["no_hp"].ToString(); } catch { }
                         }
                     }
                 }
@@ -185,7 +194,7 @@ namespace Sistem_Toko.Model
             using var conn = connectDB.GetConn();
             if (conn.State == ConnectionState.Closed) conn.Open();
 
-            using (var cmdUser = new NpgsqlCommand("UPDATE users SET is_active = false WHERE id_user = @id", conn))
+            using (var cmdUser = new NpgsqlCommand("UPDATE users SET is_active = false, is_ready = false WHERE id_user = @id", conn))
             {
                 cmdUser.Parameters.AddWithValue("id", userId);
                 cmdUser.ExecuteNonQuery();
@@ -229,6 +238,65 @@ namespace Sistem_Toko.Model
                     SessionUser.NoHp = reader["no_hp"].ToString();
                 }
             }
+        }
+
+        public static Dictionary<string, string> GetProfilUser(int userId)
+        {
+            var data = new Dictionary<string, string>();
+            using var conn = connectDB.GetConn();
+            if (conn.State == ConnectionState.Closed) conn.Open();
+
+            string sql = @"SELECT u.id_user, u.username, u.nama, u.email, u.no_hp, u.alamat,
+                                  STRING_AGG(r.nama_role, ', ') AS roles
+                           FROM users u
+                           LEFT JOIN kewenangan k ON k.id_user = u.id_user
+                           LEFT JOIN roles r ON r.id_role = k.id_role
+                           WHERE u.id_user = @id
+                           GROUP BY u.id_user, u.username, u.nama, u.email, u.no_hp, u.alamat";
+
+            using var cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("id", userId);
+            using var reader = cmd.ExecuteReader();
+            if (reader.Read())
+            {
+                data["id_user"] = reader["id_user"].ToString();
+                data["username"] = reader["username"].ToString();
+                data["nama"] = reader["nama"].ToString();
+                data["email"] = reader["email"].ToString();
+                data["no_hp"] = reader["no_hp"].ToString();
+                data["alamat"] = reader["alamat"].ToString();
+                data["role"] = string.IsNullOrEmpty(reader["roles"].ToString())
+                    ? SessionUser.Role
+                    : reader["roles"].ToString();
+            }
+            return data;
+        }
+
+        public static void UpdateProfil(int userId, string nama, string username, string email, string noHp, string alamat)
+        {
+            using var conn = connectDB.GetConn();
+            if (conn.State == ConnectionState.Closed) conn.Open();
+
+            string sql = @"UPDATE users 
+                           SET nama = @nama, username = @username, 
+                               email = @email, no_hp = @no_hp, alamat = @alamat
+                           WHERE id_user = @id";
+
+            using var cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("nama", nama);
+            cmd.Parameters.AddWithValue("username", username);
+            cmd.Parameters.AddWithValue("email", (object)email ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("no_hp", (object)noHp ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("alamat", (object)alamat ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("id", userId);
+            cmd.ExecuteNonQuery();
+
+            // Update session
+            SessionUser.Nama = nama;
+            SessionUser.Username = username;
+            SessionUser.Email = email;
+            SessionUser.NoHp = noHp;
+            SessionUser.Alamat = alamat;
         }
     }
 }

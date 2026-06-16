@@ -25,6 +25,10 @@ namespace Sistem_Toko.View.AdminView
             {
                 DataTable dt = UserContext.GetDaftarKaryawan();
 
+                // Hide boolean columns
+                HapusKolomBoolean(dt, "is_active");
+                HapusKolomBoolean(dt, "is_ready");
+
                 Grid_Daftar_Karyawan.DataSource = dt;
                 Grid_Daftar_Karyawan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 Grid_Daftar_Karyawan.ReadOnly = true;
@@ -74,6 +78,12 @@ namespace Sistem_Toko.View.AdminView
         private void Btn_Kembali_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private static void HapusKolomBoolean(DataTable dt, string columnName)
+        {
+            if (dt.Columns.Contains(columnName))
+                dt.Columns.Remove(columnName);
         }
     }
 }

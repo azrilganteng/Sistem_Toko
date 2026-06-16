@@ -44,6 +44,7 @@
             // 
             // TxtNota
             // 
+            TxtNota.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             TxtNota.Location = new Point(113, 117);
             TxtNota.Name = "TxtNota";
             TxtNota.ReadOnly = true;
@@ -71,6 +72,7 @@
             // 
             // LblTotalHarga
             // 
+            LblTotalHarga.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             LblTotalHarga.AutoSize = true;
             LblTotalHarga.Location = new Point(761, 456);
             LblTotalHarga.Name = "LblTotalHarga";
@@ -83,6 +85,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1067, 571);
+            WindowState = FormWindowState.Maximized;
             Controls.Add(LblTotalHarga);
             Controls.Add(LblTujuan);
             Controls.Add(LblJudul);

@@ -1,10 +1,5 @@
-using Npgsql;
-using Sistem_Toko.Helpers;
 using Sistem_Toko.Model;
-using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Text;
 
 namespace Sistem_Toko.Controller
 {
@@ -17,7 +12,7 @@ namespace Sistem_Toko.Controller
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = "SELECT * FROM view_kurir_ready;";
+                string sql = "SELECT * FROM v_kurir_ready;";
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -39,11 +34,12 @@ namespace Sistem_Toko.Controller
             }
 
         }
+            return KurirContext.GetKurirReady();
+        }
+
         public List<Pengiriman> GetAllPengiriman()
         {
             return PengirimanContext.GetAll();
         }
-
-        
     }
 }

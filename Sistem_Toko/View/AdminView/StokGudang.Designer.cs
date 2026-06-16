@@ -60,7 +60,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // Btn_Kembali
             // 
-            Btn_Kembali.Anchor = AnchorStyles.None;
+            Btn_Kembali.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             Btn_Kembali.BackColor = Color.Transparent;
             Btn_Kembali.BackgroundImage = (Image)resources.GetObject("Btn_Kembali.BackgroundImage");
             Btn_Kembali.BackgroundImageLayout = ImageLayout.Zoom;
@@ -79,6 +79,7 @@ namespace Sistem_Toko.View.AdminView
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1168, 568);
+            WindowState = FormWindowState.Maximized;
             Controls.Add(Grid_Riwayat_Stok);
             Controls.Add(LblToko);
             Controls.Add(Btn_Kembali);

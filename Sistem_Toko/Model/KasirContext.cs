@@ -1,7 +1,10 @@
+using Microsoft.VisualBasic.ApplicationServices;
 using Npgsql;
-using System;
-using System.Data;
 using Sistem_Toko.Helpers;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 
 namespace Sistem_Toko.Model
 {
@@ -17,8 +20,8 @@ namespace Sistem_Toko.Model
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
-                    cmd.Parameters.Add("@username", NpgsqlTypes.NpgsqlDbType.Varchar).Value = username;
-                    cmd.Parameters.Add("@password", NpgsqlTypes.NpgsqlDbType.Varchar).Value = password;
+                    cmd.Parameters.AddWithValue("username", username);
+                    cmd.Parameters.AddWithValue("password", password);
 
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -31,6 +34,7 @@ namespace Sistem_Toko.Model
                             SessionUser.Alamat = reader["alamat"].ToString();
                             SessionUser.Role = reader["nama_role"].ToString();
                             SessionUser.IdRole = 2;
+                            try { SessionUser.NoHp = reader["no_hp"].ToString(); } catch { }
 
 
                             return new Kasir(
@@ -46,36 +50,45 @@ namespace Sistem_Toko.Model
             return null;
         }
 
-        public static int BuatOrderBaru(NpgsqlConnection conn, NpgsqlTransaction transaction, int idUser, string metodeBayar, string metodeKirim)
+        /// <summary>
+        /// Transaksi penjualan lengkap via 1 stored procedure.
+        /// Atomicity: Pengiriman + Order + Detail + Stok dalam 1 CALL.
+        /// </summary>
+        public static int TransaksiPenjualan(NpgsqlConnection conn, NpgsqlTransaction transaction,
+            int idKasir, int idCustomer, string metodeBayar,
+            int idKurir, List<Detail_orders> listBarang)
         {
-            string sqlOrder = "SELECT fn_buat_order_baru(@idUser, @metodeBayar, @metodeKirim);";
-            using (var cmdOrder = new NpgsqlCommand(sqlOrder, conn, transaction))
+            bool metodeBayarBool = metodeBayar.Equals("Cash", StringComparison.OrdinalIgnoreCase);
+
+            // Build arrays dari list barang
+            int[] produkIds = listBarang.Select(b => b.ProdukItem.Id).ToArray();
+            int[] produkJumlahs = listBarang.Select(b => b.Qty).ToArray();
+            decimal[] produkHargas = listBarang.Select(b => (decimal)b.ProdukItem.Harga).ToArray();
+
+            string sql = @"CALL p_transaksi_penjualan(
+                @idUser, @idCustomer, @metodeBayar, @idOrder,
+                @idKurir, @produkIds, @produkJumlahs, @produkHargas);";
+
+            using (var cmd = new NpgsqlCommand(sql, conn, transaction))
             {
-                cmdOrder.Parameters.AddWithValue("idUser", idUser);
-                cmdOrder.Parameters.AddWithValue("metodeBayar", metodeBayar);
-                cmdOrder.Parameters.AddWithValue("metodeKirim", metodeKirim);
+                cmd.Parameters.AddWithValue("idUser", idKasir);
+                cmd.Parameters.AddWithValue("idCustomer", idCustomer);
+                cmd.Parameters.AddWithValue("metodeBayar", metodeBayarBool);
 
-                return Convert.ToInt32(cmdOrder.ExecuteScalar());
+                var outParam = new NpgsqlParameter("idOrder", NpgsqlTypes.NpgsqlDbType.Integer)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                cmd.Parameters.Add(outParam);
+
+                cmd.Parameters.AddWithValue("idKurir", idKurir > 0 ? (object)idKurir : DBNull.Value);
+                cmd.Parameters.AddWithValue("produkIds", produkIds);
+                cmd.Parameters.AddWithValue("produkJumlahs", produkJumlahs);
+                cmd.Parameters.AddWithValue("produkHargas", produkHargas);
+
+                cmd.ExecuteNonQuery();
+                return Convert.ToInt32(outParam.Value);
             }
-        }
-
-        public static void TambahDetailOrder(NpgsqlConnection conn, NpgsqlTransaction transaction, int idOrder, int idProduk, int jumlah, decimal harga)
-        {
-            string sqlDetail = "SELECT fn_tambah_detail_order(@idOrder, @idProduk, @jumlah, @harga);";
-            using (var cmdDetail = new NpgsqlCommand(sqlDetail, conn, transaction))
-            {
-                cmdDetail.Parameters.AddWithValue("idOrder", idOrder);
-                cmdDetail.Parameters.AddWithValue("idProduk", idProduk);
-                cmdDetail.Parameters.AddWithValue("jumlah", jumlah);
-                cmdDetail.Parameters.AddWithValue("harga", harga);
-
-                cmdDetail.ExecuteScalar();
-            }
-        }
-
-        public static DataTable GetRiwayatPenjualan()
-        {
-            return GetRiwayatPenjualan(null, null);
         }
 
         public static DataTable GetRiwayatPenjualan(int? bulan, int? tahun)

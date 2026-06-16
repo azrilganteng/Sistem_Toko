@@ -29,8 +29,6 @@ namespace Sistem_Toko
 
             AuthController auth = new AuthController();
 
-
-
             Kasir kasirAktif = auth.LoginKasir(user, pass);
 
             if (kasirAktif != null)
@@ -57,24 +55,22 @@ namespace Sistem_Toko
 
             if (KurirAktif != null)
             {
-                MessageBox.Show($"Selamat Datang, {SessionUser.Nama}!");
-
-                // Coba login sebagai Kurir
-                Kurir dataKurir = auth.LoginKurir(user, pass);
-
-                if (dataKurir != null)
-                {
-
-                    kurirDashboard dashboard = new kurirDashboard();
-                    dashboard.Show();
-                    this.Hide();
-                    return;
-                }
-
-                MessageBox.Show("Username atau Password salah / Akun tidak dikenali!", "Login Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                kurirDashboard dashboard = new kurirDashboard();
+                dashboard.Show();
+                this.Hide();
+                return;
             }
+
+            MessageBox.Show("Username atau Password salah / Akun tidak dikenali!", "Login Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-
+        private void TogglePasswordBtn_Click(object sender, EventArgs e)
+        {
+            bool isHidden = PasswordBox.UseSystemPasswordChar;
+            PasswordBox.UseSystemPasswordChar = !isHidden;
+            // \uE7B3 = eye open, \uED1A = eye hidden (Segoe MDL2 Assets)
+            TogglePasswordBtn.Text = isHidden ? "\uE7B3" : "\uED1A";
+            TogglePasswordBtn.ForeColor = isHidden ? Color.SeaGreen : Color.Gray;
+        }
     }
-}  
+}

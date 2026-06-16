@@ -1,7 +1,6 @@
 using Sistem_Toko.View.KasirView;
 using Sistem_Toko.Model;
 using Sistem_Toko.Helpers;
-using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,6 +18,14 @@ namespace Sistem_Toko
         private FormKasir _formKasir;
         private int _idCustomer = 0;
         private string _namaCustomer = "";
+
+        //[Browsable(false)]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        //public int IdCustomerProperti
+        //{
+        //    get => _idCustomer;
+        //    set => _idCustomer = value;
+        //}
 
         public FormPembayaran(FormKasir formKasir, FormKeranjang formKeranjang, List<Detail_orders> listBarang)
         {
@@ -61,17 +68,19 @@ namespace Sistem_Toko
 
             foreach (var item in _listBarang)
             {
-                double subtotal = item.Qty * item.ProdukItem.Harga;
-                TotalBayar += subtotal;
+                if (item.ProdukItem != null)
+                {
+                    double subtotal = item.Qty * item.ProdukItem.Harga;
+                    TotalBayar += subtotal;
 
-                txtNota.AppendText($"{item.ProdukItem.NamaProduk} \t Qty: {item.Qty} x Rp. {item.ProdukItem.Harga:N0} \t Subtotal: Rp. {subtotal:N0}\r\n");
+                    txtNota.AppendText($"{item.ProdukItem.NamaProduk} \t Qty: {item.Qty} x Rp. {item.ProdukItem.Harga:N0} \t Subtotal: Rp. {subtotal:N0}\r\n");
+                }
             }
             lblTotal.Text = $"Total Bayar: Rp. {TotalBayar:N0}";
         }
 
         private void KonfirmBtn_Click(object sender, EventArgs e)
         {
-            // Check if customer is selected
             if (_idCustomer <= 0)
             {
                 MessageBox.Show("Silakan pilih customer terlebih dahulu!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -90,7 +99,10 @@ namespace Sistem_Toko
                 {
                     if (frmKurir.ShowDialog() == DialogResult.OK)
                     {
-                        idKurir = frmKurir.PilKurir.ID;
+                        if (frmKurir.PilKurir != null)
+                        {
+                            idKurir = frmKurir.PilKurir.ID;
+                        }
                         alamat = frmKurir.AlamatKirim;
 
                         if (idKurir <= 0 || string.IsNullOrWhiteSpace(alamat))
@@ -125,7 +137,12 @@ namespace Sistem_Toko
         private void ClosePembayaran()
         {
             _listBarang.Clear();
-            _formKeranjang.SelesaiBayar();
+
+            if (_formKeranjang != null && !_formKeranjang.IsDisposed)
+            {
+                _formKeranjang.SelesaiBayar();
+                _formKeranjang.Close(); 
+            }
 
             if (_formKasir != null)
             {
@@ -236,6 +253,7 @@ namespace Sistem_Toko
                 }
             }
         }
+
         private void FormPembayaran_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_listBarang.Count > 0 && _formKeranjang != null && !_formKeranjang.IsDisposed)

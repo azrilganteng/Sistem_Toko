@@ -17,4 +17,5 @@ namespace Sistem_Toko.Helpers
         public static string Alamat { get; set; }
         public static bool IsReady { get; set; }
     }
+
 }

@@ -38,7 +38,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label10
             // 
-            label10.Anchor = AnchorStyles.None;
+            label10.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             label10.AutoSize = true;
             label10.Font = new Font("Book Antiqua", 15F);
             label10.Location = new Point(74, 9);
@@ -49,7 +49,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.None;
+            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             label1.AutoSize = true;
             label1.Font = new Font("Book Antiqua", 15F);
             label1.Location = new Point(107, 124);
@@ -60,7 +60,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // TextBox_ID
             // 
-            TextBox_ID.Anchor = AnchorStyles.None;
+            TextBox_ID.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             TextBox_ID.Location = new Point(177, 128);
             TextBox_ID.Name = "TextBox_ID";
             TextBox_ID.Size = new Size(125, 30);
@@ -68,7 +68,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // Btn_Simpan
             // 
-            Btn_Simpan.Anchor = AnchorStyles.None;
+            Btn_Simpan.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             Btn_Simpan.BackColor = Color.Crimson;
             Btn_Simpan.BackgroundImageLayout = ImageLayout.Stretch;
             Btn_Simpan.Cursor = Cursors.Hand;
@@ -85,7 +85,7 @@ namespace Sistem_Toko.View.AdminView
             // 
             // Btn_Kembali
             // 
-            Btn_Kembali.Anchor = AnchorStyles.None;
+            Btn_Kembali.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             Btn_Kembali.BackColor = Color.Transparent;
             Btn_Kembali.BackgroundImage = (Image)resources.GetObject("Btn_Kembali.BackgroundImage");
             Btn_Kembali.BackgroundImageLayout = ImageLayout.Zoom;
@@ -104,6 +104,7 @@ namespace Sistem_Toko.View.AdminView
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(435, 293);
+            WindowState = FormWindowState.Maximized;
             Controls.Add(Btn_Simpan);
             Controls.Add(TextBox_ID);
             Controls.Add(label1);
