@@ -1,4 +1,4 @@
-﻿using Sistem_Toko.Controller;
+using Sistem_Toko.Controller;
 using Sistem_Toko.Model;
 using System;
 using System.Collections.Generic;
@@ -19,7 +19,6 @@ namespace Sistem_Toko.View.KasirView
         {
             InitializeComponent();
 
-            NamaToko.Text = "TOKO TANI SAMUDRA\n";
             ListKurirReady();
         }
 

@@ -19,6 +19,7 @@ namespace Sistem_Toko
         public AdminForm(Admin admin)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
             _admin = admin;
         }
 

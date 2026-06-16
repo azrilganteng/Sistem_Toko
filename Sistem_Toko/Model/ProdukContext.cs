@@ -17,7 +17,7 @@ namespace Sistem_Toko.Model
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = "SELECT id_produk, nama_produk, harga, stok, deskripsi, gambar FROM produk ORDER BY nama_produk";
+                string sql = "SELECT * FROM v_kartu_produk ORDER BY nama_produk";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 using (var reader = cmd.ExecuteReader())
@@ -30,7 +30,44 @@ namespace Sistem_Toko.Model
                             NamaProduk = reader["nama_produk"].ToString(),
                             Harga = Convert.ToInt32(reader["harga"]),
                             Stok = Convert.ToInt32(reader["stok"]),
-                            Gambar = ParseGambar(reader["gambar"]),
+                            Gambar = reader["gambar"] != DBNull.Value ? reader["gambar"].ToString() : null,
+                            Deskripsi = HasColumn(reader, "deskripsi") && reader["deskripsi"] != DBNull.Value
+                                ? reader["deskripsi"].ToString()
+                                : ""
+                        };
+
+                        list.Add(p);
+                    }
+                }
+            }
+            return list;
+        }
+
+        public static List<Produk> GetAllProductAdmin()
+        {
+            List<Produk> list = new List<Produk>();
+
+            using (var conn = connectDB.GetConn())
+            {
+                if (conn.State == ConnectionState.Closed) conn.Open();
+
+                // Admin (Restock) perlu melihat semua produk, termasuk yang stoknya habis.
+                // Oleh karena itu, kita query langsung ke tabel 'produk', bukan 'v_kartu_produk' 
+                // karena kemungkinan v_kartu_produk menyembunyikan stok 0.
+                string sql = "SELECT * FROM produk ORDER BY nama_produk";
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Produk p = new Produk
+                        {
+                            Id = Convert.ToInt32(reader["id_produk"]),
+                            NamaProduk = reader["nama_produk"].ToString(),
+                            Harga = Convert.ToInt32(reader["harga"]),
+                            Stok = Convert.ToInt32(reader["stok"]),
+                            Gambar = HasColumn(reader, "gambar") && reader["gambar"] != DBNull.Value ? reader["gambar"].ToString() : null,
                             Deskripsi = HasColumn(reader, "deskripsi") && reader["deskripsi"] != DBNull.Value
                                 ? reader["deskripsi"].ToString()
                                 : ""
@@ -97,13 +134,12 @@ namespace Sistem_Toko.Model
             cmd.ExecuteNonQuery();
         }
 
-        public static void TambahProduk(string namaProduk, int harga, int stok, string deskripsi, int idKategori, string gambarPath)
+        public static int TambahProduk(string namaProduk, int harga, int stok, string deskripsi, int idKategori, string gambarPath)
         {
             using var conn = connectDB.GetConn();
             if (conn.State == ConnectionState.Closed) conn.Open();
 
-            string sql = @"INSERT INTO produk (nama_produk, harga, stok, deskripsi, gambar, id_kategori_produk, status)
-                           VALUES (@nama, @harga, @stok, @deskripsi, @gambar, @kategori, true)";
+            string sql = "SELECT fn_tambah_produk(@nama, @harga, @stok, @deskripsi, @gambar, @kategori);";
             using var cmd = new NpgsqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("nama", namaProduk);
             cmd.Parameters.AddWithValue("harga", harga);
@@ -111,7 +147,7 @@ namespace Sistem_Toko.Model
             cmd.Parameters.AddWithValue("deskripsi", (object)deskripsi ?? DBNull.Value);
             cmd.Parameters.AddWithValue("gambar", (object)gambarPath ?? DBNull.Value);
             cmd.Parameters.AddWithValue("kategori", idKategori);
-            cmd.ExecuteNonQuery();
+            return Convert.ToInt32(cmd.ExecuteScalar());
         }
 
         public static DataTable GetStokGudang()
@@ -135,7 +171,7 @@ namespace Sistem_Toko.Model
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = "SELECT id_produk, nama_produk, harga, stok, gambar, id_kategori_produk, deskripsi FROM produk WHERE id_kategori_produk = @id_kat AND stok > 0;";
+                string sql = "SELECT * FROM v_kartu_produk WHERE id_kategori_produk = @id_kat;";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
@@ -153,7 +189,7 @@ namespace Sistem_Toko.Model
                                 Stok = Convert.ToInt32(reader["stok"]),
                                 IdKategori = Convert.ToInt32(reader["id_kategori_produk"]),
                                 //Status = reader["status"].ToString(),
-                                Gambar = reader["gambar"] != DBNull.Value ? (byte[])reader["gambar"] : null,
+                                Gambar = reader["gambar"] != DBNull.Value ? reader["gambar"].ToString() : null,
                                 Deskripsi = HasColumn(reader, "deskripsi") && reader["deskripsi"] != DBNull.Value
                                     ? reader["deskripsi"].ToString()
                                     : ""

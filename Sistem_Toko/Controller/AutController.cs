@@ -22,4 +22,9 @@ public class AuthController
     {
         return KurirContext.CekLoginKurir(username, password);
     }
+
+    public (int IdUser, string Nama, string Username, System.Collections.Generic.List<string> Roles)? CekCredentials(string username, string password)
+    {
+        return UserContext.CekCredentials(username, password);
+    }
 }

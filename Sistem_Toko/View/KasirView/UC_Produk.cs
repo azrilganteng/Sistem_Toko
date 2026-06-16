@@ -87,7 +87,10 @@ namespace Sistem_Toko
 
         private void BuyNowBtn_Click(object sender, EventArgs e)
         {
-
+            if (_Parent != null && this.ProdukData != null)
+            {
+                _Parent.BuyNow(this.ProdukData);
+            }
         }
         
     }

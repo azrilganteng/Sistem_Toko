@@ -41,6 +41,7 @@ namespace Sistem_Toko.View.KurirView
             label1.Font = new Font("Book Antiqua", 45F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(51, 42);
             label1.Name = "label1";
+            label1.BackColor = System.Drawing.Color.Transparent;
             label1.Size = new Size(488, 89);
             label1.TabIndex = 0;
             label1.Text = "Toko Taniku";
@@ -52,6 +53,7 @@ namespace Sistem_Toko.View.KurirView
             lblSelamatDatang.ForeColor = SystemColors.ActiveCaptionText;
             lblSelamatDatang.Location = new Point(70, 170);
             lblSelamatDatang.Name = "lblSelamatDatang";
+            lblSelamatDatang.BackColor = System.Drawing.Color.Transparent;
             lblSelamatDatang.Size = new Size(183, 31);
             lblSelamatDatang.TabIndex = 1;
             lblSelamatDatang.Text = "Selamat Datang ";
@@ -59,9 +61,12 @@ namespace Sistem_Toko.View.KurirView
             // 
             // button1
             // 
-            button1.BackColor = Color.MediumSpringGreen;
+            button1.BackColor = Color.SeaGreen;
             button1.Cursor = Cursors.Hand;
-            button1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.White;
             button1.Location = new Point(71, 267);
             button1.Name = "button1";
             button1.Size = new Size(281, 49);
@@ -73,21 +78,18 @@ namespace Sistem_Toko.View.KurirView
             // button2
             // 
             button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button2.BackColor = Color.White;
-            button2.BackgroundImageLayout = ImageLayout.Zoom;
+            button2.BackColor = Color.WhiteSmoke;
             button2.Cursor = Cursors.Hand;
-            button2.FlatStyle = FlatStyle.Flat;
             button2.FlatAppearance.BorderColor = Color.SeaGreen;
             button2.FlatAppearance.BorderSize = 2;
-            button2.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             button2.ForeColor = Color.SeaGreen;
             button2.Location = new Point(900, 33);
             button2.Name = "button2";
-            button2.Size = new Size(70, 70);
+            button2.Size = new Size(90, 45);
             button2.TabIndex = 3;
             button2.Text = "Profil";
-            button2.TextImageRelation = TextImageRelation.ImageAboveText;
-            button2.ImageAlign = ContentAlignment.MiddleCenter;
             button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
@@ -97,6 +99,7 @@ namespace Sistem_Toko.View.KurirView
             lblNamaKurir.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblNamaKurir.Location = new Point(247, 170);
             lblNamaKurir.Name = "lblNamaKurir";
+            lblNamaKurir.BackColor = System.Drawing.Color.Transparent;
             lblNamaKurir.Size = new Size(0, 31);
             lblNamaKurir.TabIndex = 4;
             //lblNamaKurir.Click += lblNamaKurir_Click;

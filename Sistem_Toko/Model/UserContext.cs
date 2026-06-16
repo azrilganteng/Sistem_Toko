@@ -8,14 +8,50 @@ namespace Sistem_Toko.Model
 {
     public class UserContext
     {
+        /// <summary>
+        /// Cek username & password via v_profil_user.
+        /// Return (id_user, nama, roles[]) jika valid, null jika salah.
+        /// </summary>
+        public static (int IdUser, string Nama, string Username, List<string> Roles)? CekCredentials(string username, string password)
+        {
+            using var conn = connectDB.GetConn();
+            if (conn.State == ConnectionState.Closed) conn.Open();
+
+            // Validasi credentials dari tabel users langsung
+            string sqlCek = "SELECT * FROM v_profil_user WHERE username = @u AND password = @p AND is_active = true;";
+            using var cmdCek = new NpgsqlCommand(sqlCek, conn);
+            cmdCek.Parameters.AddWithValue("u", username);
+            cmdCek.Parameters.AddWithValue("p", password);
+
+            int idUser; string nama; string uname;
+            using (var r = cmdCek.ExecuteReader())
+            {
+                if (!r.Read()) return null;
+                idUser = Convert.ToInt32(r["id_user"]);
+                nama = r["nama"].ToString();
+                uname = r["username"].ToString();
+            }
+
+            // Ambil semua role user tersebut
+            var roles = new List<string>();
+            string sqlRoles = @"SELECT r.nama_role FROM kewenangan k 
+                                JOIN roles r ON r.id_role = k.id_role
+                                WHERE k.id_user = @id;";
+            using var cmdRoles = new NpgsqlCommand(sqlRoles, conn);
+            cmdRoles.Parameters.AddWithValue("id", idUser);
+            using (var r = cmdRoles.ExecuteReader())
+                while (r.Read()) roles.Add(r["nama_role"].ToString());
+
+            return (idUser, nama, uname, roles);
+        }
+
         public static User Login(string username, string password)
         {
             using (var conn = connectDB.GetConn())
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = @"SELECT id_user, nama, username, password 
-                               FROM users 
+                string sql = @"SELECT * FROM v_profil_user
                                WHERE username = @username AND password = @password;";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
@@ -86,7 +122,7 @@ namespace Sistem_Toko.Model
             using var conn = connectDB.GetConn();
             if (conn.State == ConnectionState.Closed) conn.Open();
 
-            string sql = @"SELECT * FROM v_daftar_karyawan";
+            string sql = @"SELECT * FROM v_daftar_karyawan WHERE is_active = true";
             var adapter = new NpgsqlDataAdapter(sql, conn);
             var dt = new DataTable();
             adapter.Fill(dt);
@@ -99,7 +135,7 @@ namespace Sistem_Toko.Model
             using var conn = connectDB.GetConn();
             if (conn.State == ConnectionState.Closed) conn.Open();
 
-            string sqlUser = "SELECT username, password, nama, no_hp, alamat, email FROM users WHERE id_user = @id";
+            string sqlUser = "SELECT * FROM v_profil_user WHERE id_user = @id";
             using (var cmdUser = new NpgsqlCommand(sqlUser, conn))
             {
                 cmdUser.Parameters.AddWithValue("id", userId);
@@ -246,13 +282,7 @@ namespace Sistem_Toko.Model
             using var conn = connectDB.GetConn();
             if (conn.State == ConnectionState.Closed) conn.Open();
 
-            string sql = @"SELECT u.id_user, u.username, u.nama, u.email, u.no_hp, u.alamat,
-                                  STRING_AGG(r.nama_role, ', ') AS roles
-                           FROM users u
-                           LEFT JOIN kewenangan k ON k.id_user = u.id_user
-                           LEFT JOIN roles r ON r.id_role = k.id_role
-                           WHERE u.id_user = @id
-                           GROUP BY u.id_user, u.username, u.nama, u.email, u.no_hp, u.alamat";
+            string sql = "SELECT * FROM v_profil_user WHERE id_user = @id;";
 
             using var cmd = new NpgsqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("id", userId);

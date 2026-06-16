@@ -46,6 +46,7 @@ namespace Sistem_Toko
             ItemKeranjang.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             ItemKeranjang.Location = new Point(195, 15);
             ItemKeranjang.Name = "ItemKeranjang";
+            ItemKeranjang.BackColor = System.Drawing.Color.Transparent;
             ItemKeranjang.Size = new Size(92, 30);
             ItemKeranjang.TabIndex = 0;
             ItemKeranjang.Text = "Produk";
@@ -57,6 +58,7 @@ namespace Sistem_Toko
             HargaKeranjang.ForeColor = Color.Gray;
             HargaKeranjang.Location = new Point(195, 50);
             HargaKeranjang.Name = "HargaKeranjang";
+            HargaKeranjang.BackColor = System.Drawing.Color.Transparent;
             HargaKeranjang.Size = new Size(65, 25);
             HargaKeranjang.TabIndex = 1;
             HargaKeranjang.Text = "Harga";
@@ -121,6 +123,7 @@ namespace Sistem_Toko
             LblSubtotal.ForeColor = Color.SeaGreen;
             LblSubtotal.Location = new Point(420, 50);
             LblSubtotal.Name = "LblSubtotal";
+            LblSubtotal.BackColor = System.Drawing.Color.Transparent;
             LblSubtotal.Size = new Size(65, 23);
             LblSubtotal.TabIndex = 6;
             LblSubtotal.Text = "Subtotal";

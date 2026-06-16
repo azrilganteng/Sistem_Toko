@@ -41,10 +41,11 @@ namespace Sistem_Toko.View.AdminView
             // LblToko
             // 
             LblToko.AutoSize = true;
-            LblToko.Font = new Font("Segoe UI", 45F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LblToko.BackColor = System.Drawing.Color.Transparent;
+            LblToko.Font = new Font("Book Antiqua", 45F);
             LblToko.Location = new Point(51, 22);
             LblToko.Name = "LblToko";
-            LblToko.Size = new Size(428, 100);
+            LblToko.Size = new Size(465, 92);
             LblToko.TabIndex = 1;
             LblToko.Text = "Toko Taniku";
             // 
@@ -115,7 +116,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // Btn_Kembali
             // 
-            Btn_Kembali.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             Btn_Kembali.BackColor = Color.Transparent;
             Btn_Kembali.BackgroundImage = (Image)resources.GetObject("Btn_Kembali.BackgroundImage");
             Btn_Kembali.BackgroundImageLayout = ImageLayout.Zoom;
@@ -133,18 +133,21 @@ namespace Sistem_Toko.View.AdminView
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
+            BackgroundImage = Properties.Resources.background;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1168, 568);
-            WindowState = FormWindowState.Maximized;
             Controls.Add(Btn_Edit);
             Controls.Add(Btn_Hapus);
             Controls.Add(Btn_Tambah);
             Controls.Add(Grid_Daftar_Karyawan);
             Controls.Add(LblToko);
             Controls.Add(Btn_Kembali);
+            DoubleBuffered = true;
             Font = new Font("Segoe UI", 10F);
             IsMdiContainer = true;
             Name = "DaftarKaryawan";
             Text = "DaftarKaryawan";
+            WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)Grid_Daftar_Karyawan).EndInit();
             ResumeLayout(false);
@@ -158,7 +161,7 @@ namespace Sistem_Toko.View.AdminView
         private Button Btn_Tambah;
         private Button Btn_Hapus;
         private Button Btn_Edit;
-    
+
         private System.Windows.Forms.Button Btn_Kembali;
     }
 }

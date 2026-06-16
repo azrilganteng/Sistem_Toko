@@ -27,7 +27,7 @@ namespace Sistem_Toko.View.AdminView
 
             try
             {
-                var produkList = ProdukContext.GetProductFromDatabase();
+                var produkList = ProdukContext.GetAllProductAdmin();
 
                 if (produkList.Count == 0)
                 {

@@ -77,7 +77,8 @@ namespace Sistem_Toko.Model
 
                 var outParam = new NpgsqlParameter("idOrder", NpgsqlTypes.NpgsqlDbType.Integer)
                 {
-                    Direction = ParameterDirection.Output
+                    Direction = ParameterDirection.InputOutput,
+                    Value = 0
                 };
                 cmd.Parameters.Add(outParam);
 

@@ -34,7 +34,6 @@ namespace Sistem_Toko
 
         public void TampilanKasir()
         {
-            LblToko.Text = "TOKO TANI SAMUDRA\n";
             LblKasir.Text = "Selamat Datang Kasir: " + SessionUser.Nama;
         }
         public void ShowProduk(int? idKategori = null)
@@ -55,7 +54,7 @@ namespace Sistem_Toko
 
             foreach (var item in listProduk)
             {
-                UC_Produk ucProduk = new UC_Produk(this, item.Id, item.Gambar, item.NamaProduk, item.Harga, item.Stok,item.Deskripsi);
+                UC_Produk ucProduk = new UC_Produk(this, item.Id, item.Gambar, item.NamaProduk, item.Harga, item.Stok, item.Deskripsi);
                 FlpProduk.Controls.Add(ucProduk);
             }
         }
@@ -73,6 +72,15 @@ namespace Sistem_Toko
             {
                 MessageBox.Show(hasilValidasi, "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        public void BuyNow(Produk produk)
+        {
+            View.KasirView.FormBuyNow formBuyNow = new View.KasirView.FormBuyNow(this, produk, 0);
+            this.Hide();
+            formBuyNow.ShowDialog();
+            ShowProduk();
+            this.Show();
         }
 
         public void BukaKeranjang()
@@ -132,9 +140,23 @@ namespace Sistem_Toko
             halamanProfil.Owner = this;
             halamanProfil.ShowDialog();
             if (halamanProfil.IsLoggedOut)
+            {
+                foreach (Form form in Application.OpenForms)
+                {
+                    if (form is Login)
+                    {
+                        form.Show();
+                        break;
+                    }
+                }
+                
+                this.FormClosed -= FormKasir_FormClosed;
                 this.Close();
+            }
             else
+            {
                 this.Show();
+            }
         }
     }
 }

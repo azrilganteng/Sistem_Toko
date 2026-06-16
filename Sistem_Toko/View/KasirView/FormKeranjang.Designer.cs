@@ -30,9 +30,9 @@ namespace Sistem_Toko
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKeranjang));
             panel1 = new Panel();
-            BackBtn = new Button();
             LblToko = new Label();
             LblKasir = new Label();
+            BackBtn = new Button();
             panel2 = new Panel();
             BayarBtn = new Button();
             FlpKeranjang = new FlowLayoutPanel();
@@ -51,6 +51,28 @@ namespace Sistem_Toko
             panel1.Size = new Size(1067, 125);
             panel1.TabIndex = 5;
             // 
+            // LblToko
+            // 
+            LblToko.AutoSize = true;
+            LblToko.BackColor = Color.Transparent;
+            LblToko.Font = new Font("Book Antiqua", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblToko.Location = new Point(41, 9);
+            LblToko.Name = "LblToko";
+            LblToko.Size = new Size(353, 73);
+            LblToko.TabIndex = 0;
+            LblToko.Text = "Nama Toko";
+            // 
+            // LblKasir
+            // 
+            LblKasir.AutoSize = true;
+            LblKasir.BackColor = Color.Transparent;
+            LblKasir.Font = new Font("Book Antiqua", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LblKasir.Location = new Point(54, 88);
+            LblKasir.Name = "LblKasir";
+            LblKasir.Size = new Size(157, 37);
+            LblKasir.TabIndex = 1;
+            LblKasir.Text = "User Notif";
+            // 
             // BackBtn
             // 
             BackBtn.BackColor = Color.Transparent;
@@ -63,29 +85,10 @@ namespace Sistem_Toko
             BackBtn.UseVisualStyleBackColor = false;
             BackBtn.Click += BackBtn_Click;
             // 
-            // LblToko
-            // 
-            LblToko.AutoSize = true;
-            LblToko.Font = new Font("Book Antiqua", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            LblToko.Location = new Point(41, 9);
-            LblToko.Name = "LblToko";
-            LblToko.Size = new Size(353, 73);
-            LblToko.TabIndex = 0;
-            LblToko.Text = "Nama Toko";
-            // 
-            // LblKasir
-            // 
-            LblKasir.AutoSize = true;
-            LblKasir.Font = new Font("Book Antiqua", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LblKasir.Location = new Point(54, 88);
-            LblKasir.Name = "LblKasir";
-            LblKasir.Size = new Size(157, 37);
-            LblKasir.TabIndex = 1;
-            LblKasir.Text = "User Notif";
-            // 
             // panel2
             // 
             panel2.BackColor = Color.Transparent;
+            panel2.BackgroundImage = Properties.Resources.background;
             panel2.Controls.Add(BackBtn);
             panel2.Controls.Add(BayarBtn);
             panel2.Dock = DockStyle.Left;
@@ -115,6 +118,7 @@ namespace Sistem_Toko
             // 
             FlpKeranjang.AutoScroll = true;
             FlpKeranjang.BackColor = Color.Transparent;
+            FlpKeranjang.BackgroundImage = Properties.Resources.background;
             FlpKeranjang.Dock = DockStyle.Fill;
             FlpKeranjang.Location = new Point(250, 125);
             FlpKeranjang.Name = "FlpKeranjang";
@@ -127,13 +131,13 @@ namespace Sistem_Toko
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1067, 571);
-            WindowState = FormWindowState.Maximized;
             Controls.Add(FlpKeranjang);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Font = new Font("Segoe UI", 10F);
             Name = "FormKeranjang";
             Text = "FormKeranjang";
+            WindowState = FormWindowState.Maximized;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel2.ResumeLayout(false);

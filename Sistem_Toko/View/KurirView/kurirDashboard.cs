@@ -19,8 +19,8 @@ namespace Sistem_Toko.View.KurirView
 
         private void MuatInfoKurir()
         {
-            lblSelamatDatang.Text = "Selamat Datang Kurir Hebat!";
-            lblNamaKurir.Text = SessionUser.Nama;
+            lblSelamatDatang.Text = "Selamat Datang Kurir, " + SessionUser.Nama + "!";
+            lblNamaKurir.Text = "";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -37,9 +37,21 @@ namespace Sistem_Toko.View.KurirView
             halamanProfil.Owner = this;
             halamanProfil.ShowDialog();
             if (halamanProfil.IsLoggedOut)
+            {
+                foreach (Form form in Application.OpenForms)
+                {
+                    if (form is Login)
+                    {
+                        form.Show();
+                        break;
+                    }
+                }
                 this.Close();
+            }
             else
+            {
                 this.Show();
+            }
         }
     }
 }

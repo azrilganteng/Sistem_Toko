@@ -18,7 +18,6 @@ namespace Sistem_Toko
         public int JumlahBeli { get; private set; }
 
         public UC_ProdukKeranjang(FormKeranjang halamanKeranjang, FormKasir formInduk, Produk produk, int qty)
-        public UC_ProdukKeranjang(FormKeranjang halamanKeranjang, FormKasir formInduk, Produk produk, int qty)
         {
             InitializeComponent();
             this._halamanKeranjang = halamanKeranjang;
@@ -60,7 +59,15 @@ namespace Sistem_Toko
             }
         }
 
-        private void PlusQty_Click(object sender, EventArgs e)
+        private void HitungSubtotal()
+        {
+            if (this.ProdukItem != null)
+            {
+                LblSubtotal.Text = "Rp " + (this.ProdukItem.Harga * NumQty.Value).ToString("N0");
+            }
+        }
+
+        private void UpdateBtn_Click(object sender, EventArgs e)
         {
             if (_halamanKeranjang != null && this.ProdukItem != null)
             {

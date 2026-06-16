@@ -76,17 +76,19 @@ namespace Sistem_Toko.View.KasirView
             // NamaToko
             // 
             NamaToko.AutoSize = true;
+            NamaToko.BackColor = Color.Transparent;
             NamaToko.Font = new Font("Book Antiqua", 28F, FontStyle.Bold);
             NamaToko.ForeColor = Color.White;
             NamaToko.Location = new Point(130, 10);
             NamaToko.Name = "NamaToko";
-            NamaToko.Size = new Size(260, 56);
+            NamaToko.Size = new Size(306, 56);
             NamaToko.TabIndex = 1;
-            NamaToko.Text = "Pilih Kurir";
+            NamaToko.Text = "Toko Taniku\n";
             // 
             // LblToko
             // 
             LblToko.AutoSize = true;
+            LblToko.BackColor = Color.Transparent;
             LblToko.Location = new Point(131, 29);
             LblToko.Name = "LblToko";
             LblToko.Size = new Size(0, 20);
@@ -145,6 +147,7 @@ namespace Sistem_Toko.View.KasirView
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 11F);
             label2.ForeColor = Color.Black;
             label2.Location = new Point(28, 146);
@@ -156,6 +159,7 @@ namespace Sistem_Toko.View.KasirView
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 11F);
             label1.ForeColor = Color.Black;
             label1.Location = new Point(28, 32);
@@ -169,14 +173,17 @@ namespace Sistem_Toko.View.KasirView
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
+            BackgroundImage = Properties.Resources.background;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1067, 571);
-            WindowState = FormWindowState.Maximized;
             Controls.Add(groupBox1);
             Controls.Add(Kirmkan);
             Controls.Add(panel1);
+            DoubleBuffered = true;
             Name = "FormPilihKurir";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Pilih Kurir - Toko Tani Samudra";
+            Text = "Pilih Kurir - Toko Taniku";
+            WindowState = FormWindowState.Maximized;
             FormClosing += FormPilihKurir_FormClosing;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

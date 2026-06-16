@@ -31,6 +31,7 @@
             lblPesanan.ForeColor = Color.SeaGreen;
             lblPesanan.Location = new Point(20, 15);
             lblPesanan.Name = "lblPesanan";
+            lblPesanan.BackColor = System.Drawing.Color.Transparent;
             lblPesanan.Size = new Size(130, 30);
             lblPesanan.TabIndex = 0;
             lblPesanan.Text = "Pesanan #1";
@@ -38,7 +39,7 @@
             // lblStatus
             // 
             lblStatus.AutoSize = true;
-            lblStatus.BackColor = Color.DarkOrange;
+            lblStatus.BackColor = System.Drawing.Color.Transparent;
             lblStatus.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             lblStatus.ForeColor = Color.White;
             lblStatus.Location = new Point(20, 50);
@@ -55,6 +56,7 @@
             lblAlamatHeader.ForeColor = Color.Gray;
             lblAlamatHeader.Location = new Point(20, 85);
             lblAlamatHeader.Name = "lblAlamatHeader";
+            lblAlamatHeader.BackColor = System.Drawing.Color.Transparent;
             lblAlamatHeader.Size = new Size(110, 20);
             lblAlamatHeader.TabIndex = 4;
             lblAlamatHeader.Text = "Alamat Tujuan:";
@@ -67,6 +69,7 @@
             lblAlamat.Location = new Point(20, 108);
             lblAlamat.MaximumSize = new Size(500, 0);
             lblAlamat.Name = "lblAlamat";
+            lblAlamat.BackColor = System.Drawing.Color.Transparent;
             lblAlamat.Size = new Size(200, 25);
             lblAlamat.TabIndex = 1;
             lblAlamat.Text = "Alamat pengiriman";

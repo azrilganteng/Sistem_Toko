@@ -70,6 +70,7 @@ namespace Sistem_Toko.View.KasirView
             // LblHeader
             // 
             LblHeader.AutoSize = true;
+            LblHeader.BackColor = Color.Transparent;
             LblHeader.Font = new Font("Book Antiqua", 28F, FontStyle.Bold);
             LblHeader.ForeColor = Color.White;
             LblHeader.Location = new Point(130, 22);
@@ -110,6 +111,7 @@ namespace Sistem_Toko.View.KasirView
             // 
             FlpStatus.AutoScroll = true;
             FlpStatus.BackColor = Color.WhiteSmoke;
+            FlpStatus.BackgroundImage = Properties.Resources.background;
             FlpStatus.Dock = DockStyle.Fill;
             FlpStatus.Location = new Point(0, 100);
             FlpStatus.Name = "FlpStatus";
@@ -123,12 +125,12 @@ namespace Sistem_Toko.View.KasirView
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1067, 571);
-            WindowState = FormWindowState.Maximized;
             Controls.Add(FlpStatus);
             Controls.Add(panel1);
             Name = "FormStatusPengiriman";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Status Pengiriman - Toko Tani Samudra";
+            Text = "Status Pengiriman - Toko Taniku";
+            WindowState = FormWindowState.Maximized;
             FormClosing += FormStatusPengiriman_FormClosing;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();

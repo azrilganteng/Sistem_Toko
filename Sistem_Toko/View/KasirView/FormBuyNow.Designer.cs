@@ -79,6 +79,7 @@
             LblQty.AutoSize = true;
             LblQty.Location = new Point(111, 272);
             LblQty.Name = "LblQty";
+            LblQty.BackColor = System.Drawing.Color.Transparent;
             LblQty.Size = new Size(50, 20);
             LblQty.TabIndex = 5;
             LblQty.Text = "label4";
@@ -101,6 +102,7 @@
             label3.Font = new Font("Microsoft JhengHei UI", 16.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.Location = new Point(49, 205);
             label3.Name = "label3";
+            label3.BackColor = System.Drawing.Color.Transparent;
             label3.Size = new Size(188, 36);
             label3.TabIndex = 3;
             label3.Text = "Beli sekarang";
@@ -110,6 +112,7 @@
             LblKategori.AutoSize = true;
             LblKategori.Location = new Point(49, 140);
             LblKategori.Name = "LblKategori";
+            LblKategori.BackColor = System.Drawing.Color.Transparent;
             LblKategori.Size = new Size(50, 20);
             LblKategori.TabIndex = 2;
             LblKategori.Text = "label2";
@@ -119,6 +122,7 @@
             LblProduk.AutoSize = true;
             LblProduk.Location = new Point(49, 39);
             LblProduk.Name = "LblProduk";
+            LblProduk.BackColor = System.Drawing.Color.Transparent;
             LblProduk.Size = new Size(50, 20);
             LblProduk.TabIndex = 1;
             LblProduk.Text = "label1";
@@ -139,6 +143,7 @@
             DeskripsiLbl.AutoSize = true;
             DeskripsiLbl.Location = new Point(19, 45);
             DeskripsiLbl.Name = "DeskripsiLbl";
+            DeskripsiLbl.BackColor = System.Drawing.Color.Transparent;
             DeskripsiLbl.Size = new Size(50, 20);
             DeskripsiLbl.TabIndex = 1;
             DeskripsiLbl.Text = "label1";

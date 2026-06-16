@@ -38,6 +38,7 @@ namespace Sistem_Toko.View.AdminView
             // LblToko
             // 
             LblToko.AutoSize = true;
+            LblToko.BackColor = System.Drawing.Color.Transparent;
             LblToko.Font = new Font("Book Antiqua", 45F);
             LblToko.Location = new Point(51, 42);
             LblToko.Name = "LblToko";
@@ -60,7 +61,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // Btn_Kembali
             // 
-            Btn_Kembali.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             Btn_Kembali.BackColor = Color.Transparent;
             Btn_Kembali.BackgroundImage = (Image)resources.GetObject("Btn_Kembali.BackgroundImage");
             Btn_Kembali.BackgroundImageLayout = ImageLayout.Zoom;
@@ -78,14 +78,15 @@ namespace Sistem_Toko.View.AdminView
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
+            BackgroundImage = Properties.Resources.background;
             ClientSize = new Size(1168, 568);
-            WindowState = FormWindowState.Maximized;
             Controls.Add(Grid_Riwayat_Stok);
             Controls.Add(LblToko);
             Controls.Add(Btn_Kembali);
             Font = new Font("Segoe UI", 10F);
             Name = "StokGudang";
             Text = "RiwayatStok";
+            WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)Grid_Riwayat_Stok).EndInit();
             ResumeLayout(false);
@@ -96,7 +97,7 @@ namespace Sistem_Toko.View.AdminView
 
         private Label LblToko;
         private DataGridView Grid_Riwayat_Stok;
-    
+
         private System.Windows.Forms.Button Btn_Kembali;
     }
 }

@@ -79,7 +79,7 @@ namespace Sistem_Toko
             // label3
             // 
             label3.AutoSize = true;
-            label3.BackColor = Color.Transparent;
+            label3.BackColor = System.Drawing.Color.Transparent;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.DarkGreen;
             label3.Location = new Point(38, 181);
@@ -92,7 +92,7 @@ namespace Sistem_Toko
             // label2
             // 
             label2.AutoSize = true;
-            label2.BackColor = Color.Transparent;
+            label2.BackColor = System.Drawing.Color.Transparent;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.DarkGreen;
             label2.Location = new Point(38, 116);
@@ -136,7 +136,7 @@ namespace Sistem_Toko
             // LoginText
             // 
             LoginText.AutoSize = true;
-            LoginText.BackColor = Color.Transparent;
+            LoginText.BackColor = System.Drawing.Color.Transparent;
             LoginText.Font = new Font("MS Gothic", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             LoginText.ForeColor = Color.DarkGreen;
             LoginText.Location = new Point(136, 23);

@@ -40,41 +40,41 @@ namespace Sistem_Toko.View.AdminView
             // 
             // LblJudul
             // 
-            LblJudul.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             LblJudul.AutoSize = true;
+            LblJudul.BackColor = System.Drawing.Color.Transparent;
             LblJudul.Font = new Font("Book Antiqua", 15F, FontStyle.Bold);
             LblJudul.Location = new Point(260, 15);
             LblJudul.Name = "LblJudul";
-            LblJudul.Size = new Size(200, 31);
+            LblJudul.Size = new Size(198, 29);
             LblJudul.TabIndex = 0;
             LblJudul.Text = "Tambah Produk";
             // 
             // LblNama
             // 
-            LblNama.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             LblNama.AutoSize = true;
+            LblNama.BackColor = System.Drawing.Color.Transparent;
             LblNama.Font = new Font("Book Antiqua", 10F);
             LblNama.Location = new Point(40, 70);
             LblNama.Name = "LblNama";
-            LblNama.Size = new Size(115, 22);
+            LblNama.Size = new Size(124, 22);
             LblNama.TabIndex = 1;
             LblNama.Text = "Nama Produk :";
             // 
             // LblHarga
             // 
-            LblHarga.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             LblHarga.AutoSize = true;
+            LblHarga.BackColor = System.Drawing.Color.Transparent;
             LblHarga.Font = new Font("Book Antiqua", 10F);
             LblHarga.Location = new Point(40, 110);
             LblHarga.Name = "LblHarga";
-            LblHarga.Size = new Size(62, 22);
+            LblHarga.Size = new Size(66, 22);
             LblHarga.TabIndex = 2;
             LblHarga.Text = "Harga :";
             // 
             // LblStok
             // 
-            LblStok.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             LblStok.AutoSize = true;
+            LblStok.BackColor = System.Drawing.Color.Transparent;
             LblStok.Font = new Font("Book Antiqua", 10F);
             LblStok.Location = new Point(40, 150);
             LblStok.Name = "LblStok";
@@ -84,40 +84,39 @@ namespace Sistem_Toko.View.AdminView
             // 
             // LblDeskripsi
             // 
-            LblDeskripsi.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             LblDeskripsi.AutoSize = true;
+            LblDeskripsi.BackColor = System.Drawing.Color.Transparent;
             LblDeskripsi.Font = new Font("Book Antiqua", 10F);
             LblDeskripsi.Location = new Point(40, 190);
             LblDeskripsi.Name = "LblDeskripsi";
-            LblDeskripsi.Size = new Size(83, 22);
+            LblDeskripsi.Size = new Size(89, 22);
             LblDeskripsi.TabIndex = 4;
             LblDeskripsi.Text = "Deskripsi :";
             // 
             // LblKategori
             // 
-            LblKategori.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             LblKategori.AutoSize = true;
+            LblKategori.BackColor = System.Drawing.Color.Transparent;
             LblKategori.Font = new Font("Book Antiqua", 10F);
             LblKategori.Location = new Point(40, 260);
             LblKategori.Name = "LblKategori";
-            LblKategori.Size = new Size(78, 22);
+            LblKategori.Size = new Size(83, 22);
             LblKategori.TabIndex = 5;
             LblKategori.Text = "Kategori :";
             // 
             // LblGambar
             // 
-            LblGambar.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             LblGambar.AutoSize = true;
+            LblGambar.BackColor = System.Drawing.Color.Transparent;
             LblGambar.Font = new Font("Book Antiqua", 10F);
             LblGambar.Location = new Point(40, 305);
             LblGambar.Name = "LblGambar";
-            LblGambar.Size = new Size(76, 22);
+            LblGambar.Size = new Size(80, 22);
             LblGambar.TabIndex = 6;
             LblGambar.Text = "Gambar :";
             // 
             // TxtNama
             // 
-            TxtNama.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             TxtNama.Location = new Point(180, 65);
             TxtNama.Name = "TxtNama";
             TxtNama.Size = new Size(280, 30);
@@ -125,7 +124,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // TxtHarga
             // 
-            TxtHarga.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             TxtHarga.Location = new Point(180, 105);
             TxtHarga.Name = "TxtHarga";
             TxtHarga.Size = new Size(160, 30);
@@ -133,7 +131,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // TxtStok
             // 
-            TxtStok.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             TxtStok.Location = new Point(180, 145);
             TxtStok.Name = "TxtStok";
             TxtStok.Size = new Size(120, 30);
@@ -141,7 +138,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // TxtDeskripsi
             // 
-            TxtDeskripsi.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             TxtDeskripsi.Location = new Point(180, 185);
             TxtDeskripsi.Multiline = true;
             TxtDeskripsi.Name = "TxtDeskripsi";
@@ -150,7 +146,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // CmbKategori
             // 
-            CmbKategori.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             CmbKategori.DropDownStyle = ComboBoxStyle.DropDownList;
             CmbKategori.FormattingEnabled = true;
             CmbKategori.Items.AddRange(new object[] { "Pupuk", "Obat", "Bibit" });
@@ -161,7 +156,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // TxtGambar
             // 
-            TxtGambar.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             TxtGambar.Location = new Point(180, 300);
             TxtGambar.Name = "TxtGambar";
             TxtGambar.ReadOnly = true;
@@ -170,7 +164,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // BtnBrowse
             // 
-            BtnBrowse.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             BtnBrowse.BackColor = Color.MediumSeaGreen;
             BtnBrowse.Cursor = Cursors.Hand;
             BtnBrowse.FlatStyle = FlatStyle.Flat;
@@ -183,6 +176,34 @@ namespace Sistem_Toko.View.AdminView
             BtnBrowse.Text = "...";
             BtnBrowse.UseVisualStyleBackColor = false;
             BtnBrowse.Click += BtnBrowse_Click;
+            // 
+            // BtnSimpan
+            // 
+            BtnSimpan.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            BtnSimpan.BackColor = Color.SeaGreen;
+            BtnSimpan.Cursor = Cursors.Hand;
+            BtnSimpan.FlatStyle = FlatStyle.Flat;
+            BtnSimpan.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            BtnSimpan.ForeColor = Color.White;
+            BtnSimpan.Location = new Point(567, 340);
+            BtnSimpan.Name = "BtnSimpan";
+            BtnSimpan.Size = new Size(133, 40);
+            BtnSimpan.TabIndex = 20;
+            BtnSimpan.Text = "Simpan";
+            BtnSimpan.UseVisualStyleBackColor = false;
+            BtnSimpan.Click += BtnSimpan_Click;
+            // 
+            // BtnKembali
+            // 
+            BtnKembali.BackColor = Color.Transparent;
+            BtnKembali.BackgroundImage = (Image)resources.GetObject("BtnKembali.BackgroundImage");
+            BtnKembali.BackgroundImageLayout = ImageLayout.Zoom;
+            BtnKembali.Location = new Point(5, 12);
+            BtnKembali.Name = "BtnKembali";
+            BtnKembali.Size = new Size(40, 40);
+            BtnKembali.TabIndex = 99;
+            BtnKembali.UseVisualStyleBackColor = false;
+            BtnKembali.Click += BtnKembali_Click;
             // 
             // PnlPreview
             // 
@@ -204,42 +225,13 @@ namespace Sistem_Toko.View.AdminView
             PbPreview.TabIndex = 0;
             PbPreview.TabStop = false;
             // 
-            // BtnSimpan
-            // 
-            BtnSimpan.BackColor = Color.SeaGreen;
-            BtnSimpan.Cursor = Cursors.Hand;
-            BtnSimpan.FlatStyle = FlatStyle.Flat;
-            BtnSimpan.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            BtnSimpan.ForeColor = Color.White;
-            BtnSimpan.Location = new Point(567, 340);
-            BtnSimpan.Name = "BtnSimpan";
-            BtnSimpan.Size = new Size(133, 40);
-            BtnSimpan.TabIndex = 20;
-            BtnSimpan.Text = "Simpan";
-            BtnSimpan.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            BtnSimpan.UseVisualStyleBackColor = false;
-            BtnSimpan.Click += BtnSimpan_Click;
-            // 
-            // BtnKembali
-            // 
-            BtnKembali.Anchor = AnchorStyles.Top | AnchorStyles.Left;
-            BtnKembali.BackColor = Color.Transparent;
-            BtnKembali.BackgroundImage = (Image)resources.GetObject("BtnKembali.BackgroundImage");
-            BtnKembali.BackgroundImageLayout = ImageLayout.Zoom;
-            BtnKembali.Location = new Point(5, 12);
-            BtnKembali.Name = "BtnKembali";
-            BtnKembali.Size = new Size(40, 40);
-            BtnKembali.TabIndex = 99;
-            BtnKembali.UseVisualStyleBackColor = false;
-            BtnKembali.Click += BtnKembali_Click;
-            // 
             // TambahProduk
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
+            BackgroundImage = Properties.Resources.background;
             ClientSize = new Size(730, 400);
-            WindowState = FormWindowState.Maximized;
             Controls.Add(BtnKembali);
             Controls.Add(BtnSimpan);
             Controls.Add(PnlPreview);
@@ -259,6 +251,7 @@ namespace Sistem_Toko.View.AdminView
             Controls.Add(LblJudul);
             Font = new Font("Segoe UI", 10F);
             Name = "TambahProduk";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Tambah Produk";
             PnlPreview.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)PbPreview).EndInit();

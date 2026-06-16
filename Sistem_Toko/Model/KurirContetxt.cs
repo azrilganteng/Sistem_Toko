@@ -82,7 +82,7 @@ namespace Sistem_Toko.Model
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = "SELECT * FROM view_kurir_ready;";
+                string sql = "SELECT * FROM v_kurir_ready;";
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 using (var reader = cmd.ExecuteReader())
                 {

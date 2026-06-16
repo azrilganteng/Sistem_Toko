@@ -33,10 +33,8 @@ namespace Sistem_Toko
             BackBtn = new Button();
             LblHeader = new Label();
             panelContent = new Panel();
-            LblCustomer = new Label();
-            TxtCustomer = new TextBox();
-            BtnCariCustomer = new Button();
             LblNotaTitle = new Label();
+            txtNota = new TextBox();
             LblCustomer = new Label();
             TxtCustomer = new TextBox();
             BtnCariCustomer = new Button();
@@ -45,7 +43,6 @@ namespace Sistem_Toko
             CboMetodeKirim = new ComboBox();
             CboMetodeBayar = new ComboBox();
             lblTotal = new Label();
-            txtNota = new TextBox();
             KonfirmBtn = new Button();
             panelHeader.SuspendLayout();
             panelContent.SuspendLayout();
@@ -82,6 +79,7 @@ namespace Sistem_Toko
             // LblHeader
             // 
             LblHeader.AutoSize = true;
+            LblHeader.BackColor = Color.Transparent;
             LblHeader.Font = new Font("Book Antiqua", 28F, FontStyle.Bold);
             LblHeader.ForeColor = Color.White;
             LblHeader.Location = new Point(130, 22);
@@ -93,6 +91,7 @@ namespace Sistem_Toko
             // panelContent
             // 
             panelContent.BackColor = Color.WhiteSmoke;
+            panelContent.BackgroundImage = Properties.Resources.background;
             panelContent.Controls.Add(LblNotaTitle);
             panelContent.Controls.Add(txtNota);
             panelContent.Controls.Add(LblCustomer);
@@ -114,6 +113,7 @@ namespace Sistem_Toko
             // LblNotaTitle
             // 
             LblNotaTitle.AutoSize = true;
+            LblNotaTitle.BackColor = Color.Transparent;
             LblNotaTitle.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             LblNotaTitle.ForeColor = Color.SeaGreen;
             LblNotaTitle.Location = new Point(50, 20);
@@ -122,9 +122,61 @@ namespace Sistem_Toko
             LblNotaTitle.TabIndex = 10;
             LblNotaTitle.Text = "Detail Pesanan";
             // 
+            // txtNota
+            // 
+            txtNota.BackColor = Color.White;
+            txtNota.BorderStyle = BorderStyle.FixedSingle;
+            txtNota.Font = new Font("Consolas", 11F);
+            txtNota.Location = new Point(50, 60);
+            txtNota.Multiline = true;
+            txtNota.Name = "txtNota";
+            txtNota.ReadOnly = true;
+            txtNota.ScrollBars = ScrollBars.Vertical;
+            txtNota.Size = new Size(960, 200);
+            txtNota.TabIndex = 4;
+            txtNota.WordWrap = false;
+            // 
+            // LblCustomer
+            // 
+            LblCustomer.AutoSize = true;
+            LblCustomer.BackColor = Color.Transparent;
+            LblCustomer.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            LblCustomer.Location = new Point(50, 275);
+            LblCustomer.Name = "LblCustomer";
+            LblCustomer.Size = new Size(104, 25);
+            LblCustomer.TabIndex = 11;
+            LblCustomer.Text = "Customer:";
+            // 
+            // TxtCustomer
+            // 
+            TxtCustomer.BackColor = Color.White;
+            TxtCustomer.Font = new Font("Segoe UI", 11F);
+            TxtCustomer.Location = new Point(220, 272);
+            TxtCustomer.Name = "TxtCustomer";
+            TxtCustomer.ReadOnly = true;
+            TxtCustomer.Size = new Size(500, 32);
+            TxtCustomer.TabIndex = 12;
+            // 
+            // BtnCariCustomer
+            // 
+            BtnCariCustomer.BackColor = Color.SeaGreen;
+            BtnCariCustomer.Cursor = Cursors.Hand;
+            BtnCariCustomer.FlatAppearance.BorderSize = 0;
+            BtnCariCustomer.FlatStyle = FlatStyle.Flat;
+            BtnCariCustomer.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            BtnCariCustomer.ForeColor = Color.White;
+            BtnCariCustomer.Location = new Point(740, 270);
+            BtnCariCustomer.Name = "BtnCariCustomer";
+            BtnCariCustomer.Size = new Size(120, 36);
+            BtnCariCustomer.TabIndex = 13;
+            BtnCariCustomer.Text = "Cari Customer";
+            BtnCariCustomer.UseVisualStyleBackColor = false;
+            BtnCariCustomer.Click += BtnCariCustomer_Click;
+            // 
             // LblMetodeKirim
             // 
             LblMetodeKirim.AutoSize = true;
+            LblMetodeKirim.BackColor = Color.Transparent;
             LblMetodeKirim.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             LblMetodeKirim.Location = new Point(50, 320);
             LblMetodeKirim.Name = "LblMetodeKirim";
@@ -135,6 +187,7 @@ namespace Sistem_Toko
             // LblMetodeBayar
             // 
             LblMetodeBayar.AutoSize = true;
+            LblMetodeBayar.BackColor = Color.Transparent;
             LblMetodeBayar.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             LblMetodeBayar.Location = new Point(50, 365);
             LblMetodeBayar.Name = "LblMetodeBayar";
@@ -163,6 +216,7 @@ namespace Sistem_Toko
             // lblTotal
             // 
             lblTotal.AutoSize = true;
+            lblTotal.BackColor = Color.Transparent;
             lblTotal.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             lblTotal.ForeColor = Color.SeaGreen;
             lblTotal.Location = new Point(50, 410);
@@ -170,57 +224,6 @@ namespace Sistem_Toko
             lblTotal.Size = new Size(161, 37);
             lblTotal.TabIndex = 3;
             lblTotal.Text = "Total: Rp. 0";
-            // 
-            // txtNota
-            // 
-            txtNota.BackColor = Color.White;
-            txtNota.BorderStyle = BorderStyle.FixedSingle;
-            txtNota.Font = new Font("Consolas", 11F);
-            txtNota.Location = new Point(50, 60);
-            txtNota.Multiline = true;
-            txtNota.Name = "txtNota";
-            txtNota.ReadOnly = true;
-            txtNota.ScrollBars = ScrollBars.Vertical;
-            txtNota.Size = new Size(960, 200);
-            txtNota.TabIndex = 4;
-            txtNota.WordWrap = false;
-            // 
-            // LblCustomer
-            // 
-            LblCustomer.AutoSize = true;
-            LblCustomer.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            LblCustomer.Location = new Point(50, 275);
-            LblCustomer.Name = "LblCustomer";
-            LblCustomer.Size = new Size(85, 25);
-            LblCustomer.TabIndex = 11;
-            LblCustomer.Text = "Customer:";
-            // 
-            // TxtCustomer
-            // 
-            TxtCustomer.BackColor = Color.White;
-            TxtCustomer.Font = new Font("Segoe UI", 11F);
-            TxtCustomer.Location = new Point(220, 272);
-            TxtCustomer.Name = "TxtCustomer";
-            TxtCustomer.ReadOnly = true;
-            TxtCustomer.Size = new Size(500, 32);
-            TxtCustomer.TabIndex = 12;
-            TxtCustomer.Text = "";
-            // 
-            // BtnCariCustomer
-            // 
-            BtnCariCustomer.BackColor = Color.SeaGreen;
-            BtnCariCustomer.Cursor = Cursors.Hand;
-            BtnCariCustomer.FlatAppearance.BorderSize = 0;
-            BtnCariCustomer.FlatStyle = FlatStyle.Flat;
-            BtnCariCustomer.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            BtnCariCustomer.ForeColor = Color.White;
-            BtnCariCustomer.Location = new Point(740, 270);
-            BtnCariCustomer.Name = "BtnCariCustomer";
-            BtnCariCustomer.Size = new Size(120, 36);
-            BtnCariCustomer.TabIndex = 13;
-            BtnCariCustomer.Text = "Cari Customer";
-            BtnCariCustomer.UseVisualStyleBackColor = false;
-            BtnCariCustomer.Click += BtnCariCustomer_Click;
             // 
             // KonfirmBtn
             // 
@@ -245,13 +248,13 @@ namespace Sistem_Toko
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1067, 571);
-            WindowState = FormWindowState.Maximized;
             Controls.Add(panelContent);
             Controls.Add(panelHeader);
             Font = new Font("Segoe UI", 10F);
             Name = "FormPembayaran";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Pembayaran - Toko Tani Samudra";
+            Text = "Pembayaran - Toko Taniku";
+            WindowState = FormWindowState.Maximized;
             FormClosing += FormPembayaran_FormClosing;
             panelHeader.ResumeLayout(false);
             panelHeader.PerformLayout();

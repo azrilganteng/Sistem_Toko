@@ -20,8 +20,8 @@ namespace Sistem_Toko.View.KasirView
             panelHeader = new Panel();
             LblHeader = new Label();
             panelContent = new Panel();
-            TxtCari = new TextBox();
             LblCari = new Label();
+            TxtCari = new TextBox();
             GridCustomer = new DataGridView();
             PanelTambah = new Panel();
             LblNama = new Label();
@@ -54,17 +54,20 @@ namespace Sistem_Toko.View.KasirView
             // LblHeader
             // 
             LblHeader.AutoSize = true;
+            LblHeader.BackColor = Color.Transparent;
             LblHeader.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             LblHeader.ForeColor = Color.White;
             LblHeader.Location = new Point(20, 14);
             LblHeader.Name = "LblHeader";
-            LblHeader.Size = new Size(200, 37);
+            LblHeader.Size = new Size(205, 37);
             LblHeader.TabIndex = 0;
             LblHeader.Text = "Pilih Customer";
             // 
             // panelContent
             // 
             panelContent.BackColor = Color.WhiteSmoke;
+            panelContent.BackgroundImage = Properties.Resources.background;
+            panelContent.BackgroundImageLayout = ImageLayout.Stretch;
             panelContent.Controls.Add(LblCari);
             panelContent.Controls.Add(TxtCari);
             panelContent.Controls.Add(GridCustomer);
@@ -82,11 +85,12 @@ namespace Sistem_Toko.View.KasirView
             // LblCari
             // 
             LblCari.AutoSize = true;
+            LblCari.BackColor = Color.Transparent;
             LblCari.Font = new Font("Segoe UI", 10F);
             LblCari.ForeColor = Color.DimGray;
             LblCari.Location = new Point(30, 18);
             LblCari.Name = "LblCari";
-            LblCari.Size = new Size(110, 23);
+            LblCari.Size = new Size(123, 23);
             LblCari.TabIndex = 0;
             LblCari.Text = "Cari Customer:";
             // 
@@ -140,10 +144,11 @@ namespace Sistem_Toko.View.KasirView
             // LblNama
             // 
             LblNama.AutoSize = true;
+            LblNama.BackColor = Color.Transparent;
             LblNama.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             LblNama.Location = new Point(20, 15);
             LblNama.Name = "LblNama";
-            LblNama.Size = new Size(120, 23);
+            LblNama.Size = new Size(145, 23);
             LblNama.TabIndex = 0;
             LblNama.Text = "Nama Customer:";
             // 
@@ -158,10 +163,11 @@ namespace Sistem_Toko.View.KasirView
             // LblNoHp
             // 
             LblNoHp.AutoSize = true;
+            LblNoHp.BackColor = Color.Transparent;
             LblNoHp.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             LblNoHp.Location = new Point(20, 78);
             LblNoHp.Name = "LblNoHp";
-            LblNoHp.Size = new Size(65, 23);
+            LblNoHp.Size = new Size(71, 23);
             LblNoHp.TabIndex = 2;
             LblNoHp.Text = "No. HP:";
             // 
@@ -176,10 +182,11 @@ namespace Sistem_Toko.View.KasirView
             // LblAlamat
             // 
             LblAlamat.AutoSize = true;
+            LblAlamat.BackColor = Color.Transparent;
             LblAlamat.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             LblAlamat.Location = new Point(20, 140);
             LblAlamat.Name = "LblAlamat";
-            LblAlamat.Size = new Size(65, 23);
+            LblAlamat.Size = new Size(73, 23);
             LblAlamat.TabIndex = 4;
             LblAlamat.Text = "Alamat:";
             // 
@@ -279,12 +286,10 @@ namespace Sistem_Toko.View.KasirView
             ClientSize = new Size(600, 560);
             Controls.Add(panelContent);
             Controls.Add(panelHeader);
-            FormBorderStyle = FormBorderStyle.Sizable;
-            MaximizeBox = true;
             MinimizeBox = false;
             Name = "FormInputCustomer";
             StartPosition = FormStartPosition.CenterParent;
-            Text = "Pilih Customer - Toko Tani Samudra";
+            Text = "Pilih Customer - Toko Taniku";
             Load += FormInputCustomer_Load;
             panelHeader.ResumeLayout(false);
             panelHeader.PerformLayout();

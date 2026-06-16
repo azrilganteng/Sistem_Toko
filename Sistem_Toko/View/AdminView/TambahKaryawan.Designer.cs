@@ -54,8 +54,8 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             label1.AutoSize = true;
+            label1.BackColor = System.Drawing.Color.Transparent;
             label1.Font = new Font("Book Antiqua", 10F);
             label1.ForeColor = Color.Black;
             label1.Location = new Point(30, 68);
@@ -66,8 +66,8 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             label2.AutoSize = true;
+            label2.BackColor = System.Drawing.Color.Transparent;
             label2.Font = new Font("Book Antiqua", 10F);
             label2.ForeColor = Color.Black;
             label2.Location = new Point(30, 147);
@@ -78,8 +78,8 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label3
             // 
-            label3.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             label3.AutoSize = true;
+            label3.BackColor = System.Drawing.Color.Transparent;
             label3.Font = new Font("Book Antiqua", 10F);
             label3.ForeColor = Color.Black;
             label3.Location = new Point(30, 107);
@@ -90,8 +90,8 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label4
             // 
-            label4.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             label4.AutoSize = true;
+            label4.BackColor = System.Drawing.Color.Transparent;
             label4.Font = new Font("Book Antiqua", 10F);
             label4.ForeColor = Color.Black;
             label4.Location = new Point(30, 273);
@@ -102,8 +102,8 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label5
             // 
-            label5.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             label5.AutoSize = true;
+            label5.BackColor = System.Drawing.Color.Transparent;
             label5.Font = new Font("Book Antiqua", 10F);
             label5.ForeColor = Color.Black;
             label5.Location = new Point(30, 230);
@@ -114,8 +114,8 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label6
             // 
-            label6.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             label6.AutoSize = true;
+            label6.BackColor = System.Drawing.Color.Transparent;
             label6.Font = new Font("Book Antiqua", 10F);
             label6.ForeColor = Color.Black;
             label6.Location = new Point(30, 187);
@@ -126,8 +126,8 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label7
             // 
-            label7.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             label7.AutoSize = true;
+            label7.BackColor = System.Drawing.Color.Transparent;
             label7.Font = new Font("Book Antiqua", 10F);
             label7.ForeColor = Color.Black;
             label7.Location = new Point(30, 314);
@@ -138,8 +138,8 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label8
             // 
-            label8.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             label8.AutoSize = true;
+            label8.BackColor = System.Drawing.Color.Transparent;
             label8.Font = new Font("Book Antiqua", 10F);
             label8.ForeColor = Color.Black;
             label8.Location = new Point(30, 391);
@@ -150,8 +150,8 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label9
             // 
-            label9.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             label9.AutoSize = true;
+            label9.BackColor = System.Drawing.Color.Transparent;
             label9.Font = new Font("Book Antiqua", 10F);
             label9.ForeColor = Color.Black;
             label9.Location = new Point(30, 355);
@@ -162,7 +162,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // TextBox_Username
             // 
-            TextBox_Username.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             TextBox_Username.Location = new Point(170, 63);
             TextBox_Username.Name = "TextBox_Username";
             TextBox_Username.Size = new Size(173, 30);
@@ -170,7 +169,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // TextBox_Alamat
             // 
-            TextBox_Alamat.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             TextBox_Alamat.Location = new Point(170, 225);
             TextBox_Alamat.Name = "TextBox_Alamat";
             TextBox_Alamat.Size = new Size(343, 30);
@@ -178,7 +176,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // TextBox_NoHP
             // 
-            TextBox_NoHP.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             TextBox_NoHP.Location = new Point(170, 182);
             TextBox_NoHP.Name = "TextBox_NoHP";
             TextBox_NoHP.Size = new Size(190, 30);
@@ -186,7 +183,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // TextBox_NamaLengkap
             // 
-            TextBox_NamaLengkap.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             TextBox_NamaLengkap.Location = new Point(170, 142);
             TextBox_NamaLengkap.Name = "TextBox_NamaLengkap";
             TextBox_NamaLengkap.Size = new Size(343, 30);
@@ -194,7 +190,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // TextBox_Password
             // 
-            TextBox_Password.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             TextBox_Password.Location = new Point(170, 102);
             TextBox_Password.Name = "TextBox_Password";
             TextBox_Password.Size = new Size(173, 30);
@@ -202,7 +197,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // TextBox_Email
             // 
-            TextBox_Email.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             TextBox_Email.Location = new Point(170, 268);
             TextBox_Email.Name = "TextBox_Email";
             TextBox_Email.Size = new Size(343, 30);
@@ -210,7 +204,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // ComBox_Role1
             // 
-            ComBox_Role1.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             ComBox_Role1.FormattingEnabled = true;
             ComBox_Role1.Items.AddRange(new object[] { "Kasir", "Kurir", "Admin" });
             ComBox_Role1.Location = new Point(170, 308);
@@ -220,7 +213,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // ComBox_Role3
             // 
-            ComBox_Role3.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             ComBox_Role3.FormattingEnabled = true;
             ComBox_Role3.Items.AddRange(new object[] { "Kasir", "Kurir", "Admin", "Tidak ada" });
             ComBox_Role3.Location = new Point(170, 385);
@@ -230,7 +222,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // ComBox_Role2
             // 
-            ComBox_Role2.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             ComBox_Role2.FormattingEnabled = true;
             ComBox_Role2.Items.AddRange(new object[] { "Kasir", "Kurir", "Admin", "Tidak Ada" });
             ComBox_Role2.Location = new Point(170, 349);
@@ -257,8 +248,8 @@ namespace Sistem_Toko.View.AdminView
             // 
             // label10
             // 
-            label10.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             label10.AutoSize = true;
+            label10.BackColor = System.Drawing.Color.Transparent;
             label10.Font = new Font("Book Antiqua", 15F);
             label10.Location = new Point(273, 9);
             label10.Name = "label10";
@@ -268,7 +259,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // Btn_Kembali
             // 
-            Btn_Kembali.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             Btn_Kembali.BackColor = Color.Transparent;
             Btn_Kembali.BackgroundImage = (Image)resources.GetObject("Btn_Kembali.BackgroundImage");
             Btn_Kembali.BackgroundImageLayout = ImageLayout.Zoom;
@@ -286,8 +276,9 @@ namespace Sistem_Toko.View.AdminView
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
+            BackgroundImage = Properties.Resources.background;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(788, 426);
-            WindowState = FormWindowState.Maximized;
             Controls.Add(label10);
             Controls.Add(Btn_Simpan);
             Controls.Add(ComBox_Role2);
@@ -309,8 +300,10 @@ namespace Sistem_Toko.View.AdminView
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(Btn_Kembali);
+            DoubleBuffered = true;
             Font = new Font("Segoe UI", 10F);
             Name = "TambahKaryawan";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "TambahKaryawan";
             ResumeLayout(false);
             PerformLayout();

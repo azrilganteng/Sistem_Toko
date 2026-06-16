@@ -266,8 +266,7 @@ JOIN roles r USING(id_role)
 WHERE r.nama_role = 'Kurir' AND u.is_active = True
 
 create or replace view v_kartu_produk as
-create or replace view v_kartu_produk as
-select id_produk,nama_produk,harga,gambar,stok
+select id_produk,nama_produk,harga,gambar,stok, deskripsi
 from produk
 where stok >0
 
@@ -283,15 +282,12 @@ SELECT id_user,nama
 FROM users join kewenangan using(id_user)
 WHERE id_role = 3 and is_ready = true;
 
-CREATE VIEW v_status_pengiriman AS
-SELECT
-    p.id_pengiriman,
-    u.alamat,
-    p.status_pengiriman,
-    p.tanggal_kirim,
-    u.nama AS nama_kurir
+CREATE OR REPLACE VIEW v_status_pengiriman AS
+SELECT p.id_pengiriman, p.status_pengiriman, p.tanggal_kirim, p.id_user,
+       o.id_order, c.alamat
 FROM pengiriman p
-JOIN users u ON p.id_user = u.id_user;
+LEFT JOIN orders o ON o.id_pengiriman = p.id_pengiriman
+LEFT JOIN customer c ON o.id_customer = c.id_customer
 
 
 INSERT INTO users(username, password, nama, no_hp, alamat, email, is_active, is_ready)
@@ -668,115 +664,175 @@ $$;
 -- ============================================================
 
 -- Trigger function: otomatis jalan setiap kali stok berubah
-CREATE OR REPLACE FUNCTION fn_log_perubahan_stok()
+-- 1. Hapus trigger dan function lama agar bersih
+DROP TRIGGER IF EXISTS trg_log_perubahan_user ON users;
+DROP FUNCTION IF EXISTS fn_log_perubahan_user();
+
+-- 2. Buat ulang fungsi triggernya
+CREATE OR REPLACE FUNCTION fn_log_perubahan_user()
 RETURNS TRIGGER AS $$
-DECLARE
-    v_kode_aksi INT;
 BEGIN
-    -- Skip jika stok tidak berubah
-    IF NEW.stok = OLD.stok THEN
-        RETURN NEW;
-    END IF;
-    
-    -- Tentukan kode aksi: 1 = masuk (stok naik), 2 = keluar (stok turun)
-    IF NEW.stok > OLD.stok THEN
-        v_kode_aksi := 1;  -- MASUK (restock)
-    ELSE
-        v_kode_aksi := 2;  -- KELUAR (penjualan)
-    END IF;
-    
-    -- Insert ke log_stok (sesuai schema line 108-114)
-    INSERT INTO log_stok (jumlah_stok, kode_aksi, updated_at, id_produk)
-    VALUES (
-        ABS(NEW.stok - OLD.stok),  -- jumlah perubahan (selalu positif)
-        v_kode_aksi,
-        CURRENT_DATE,
-        NEW.id_produk
-    );
-    
-    RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
--- Pasang trigger ke tabel produk
-DROP TRIGGER IF EXISTS trg_log_stok ON produk;
-CREATE TRIGGER trg_log_stok
-    AFTER UPDATE OF stok ON produk
-    FOR EACH ROW
-    EXECUTE FUNCTION fn_log_perubahan_stok();
-
--- ============================================================
--- LOG PERUBAHAN USER: Trigger untuk tracking perubahan user
--- Tabel log_perubahan_user sudah ada (line 82-89)
--- kode_aksi: 1 = TAMBAH, 2 = EDIT, 3 = HAPUS/SOFT DELETE
--- ============================================================
-
--- Trigger function: otomatis jalan setiap ada perubahan di tabel users
-CREATE OR REPLACE fn_log_perubahan_user()
-DECLARE
-    id_baru INT;
-BEGIN
-    SELECT COALESCE(MAX(id_log_perubahan_user), 0) + 1
-    INTO id_baru
-    FROM log_perubahan_user;
-
     -- 1 = INSERT
     IF TG_OP = 'INSERT' THEN
-        INSERT INTO log_perubahan_user (id_log_perubahan_user, kode_aksi, data_lama, data_baru, update_at)
+        INSERT INTO log_perubahan_user (kode_aksi, data_lama, data_baru, update_at)
         VALUES (
-            id_baru, 1, NULL,
-            ROW(NEW.id_user, NEW.username, NEW.nama, NEW.no_hp,
-                NEW.alamat, NEW.email, NEW.is_aktif)::TEXT,
-            NOW()
+            1, 
+            NULL,
+            ROW(NEW.id_user, NEW.username, NEW.nama, NEW.no_hp, NEW.alamat, NEW.email, NEW.is_active)::TEXT,
+            CURRENT_DATE
         );
 
     -- 2 = UPDATE, 3 = SOFT DELETE
     ELSIF TG_OP = 'UPDATE' THEN
-
-        -- cek apakah semua data sama
+        -- cek apakah semua data persis sama, jika iya jangan catat
         IF OLD.username = NEW.username AND
            OLD.password = NEW.password AND
            OLD.nama     = NEW.nama     AND
            OLD.no_hp    = NEW.no_hp    AND
            OLD.alamat   = NEW.alamat   AND
            OLD.email    = NEW.email    AND
-           OLD.is_aktif = NEW.is_aktif THEN
-            RAISE EXCEPTION 'Tidak ada perubahan data, update dibatalkan.';
+           OLD.is_active = NEW.is_active THEN
+            RETURN NEW; 
         END IF;
 
-        -- soft delete
-        IF OLD.is_aktif = true AND NEW.is_aktif = false THEN
-            INSERT INTO log_perubahan_user (id_log_perubahan_user, kode_aksi, data_lama, data_baru, update_at)
+        -- soft delete (is_active berubah dari true ke false)
+        IF OLD.is_active = true AND NEW.is_active = false THEN
+            INSERT INTO log_perubahan_user (kode_aksi, data_lama, data_baru, update_at)
             VALUES (
-                id_baru, 3,
-                ROW(OLD.id_user, OLD.username, OLD.nama, OLD.no_hp,
-                    OLD.alamat, OLD.email, OLD.is_aktif)::TEXT,
+                3,
+                ROW(OLD.id_user, OLD.username, OLD.nama, OLD.no_hp, OLD.alamat, OLD.email, OLD.is_active)::TEXT,
                 NULL,
-                NOW()
+                CURRENT_DATE
             );
         ELSE
-            INSERT INTO log_perubahan_user (id_log_perubahan_user, kode_aksi, data_lama, data_baru, update_at)
+            -- update biasa
+            INSERT INTO log_perubahan_user (kode_aksi, data_lama, data_baru, update_at)
             VALUES (
-                id_baru, 2,
-                ROW(OLD.id_user, OLD.username, OLD.nama, OLD.no_hp,
-                    OLD.alamat, OLD.email, OLD.is_aktif)::TEXT,
-                ROW(NEW.id_user, NEW.username, NEW.nama, NEW.no_hp,
-                    NEW.alamat, NEW.email, NEW.is_aktif)::TEXT,
-                NOW()
+                2,
+                ROW(OLD.id_user, OLD.username, OLD.nama, OLD.no_hp, OLD.alamat, OLD.email, OLD.is_active)::TEXT,
+                ROW(NEW.id_user, NEW.username, NEW.nama, NEW.no_hp, NEW.alamat, NEW.email, NEW.is_active)::TEXT,
+                CURRENT_DATE
             );
         END IF;
-
-    -- 3 = DELETE permanen
-    ELSIF TG_OP = 'DELETE' THEN
-        INSERT INTO log_perubahan_user (id_log_perubahan_user, kode_aksi, data_lama, data_baru, update_at)
-        VALUES (
-            id_baru, 3,
-            ROW(OLD.id_user, OLD.username, OLD.nama, OLD.no_hp,
-                OLD.alamat, OLD.email, OLD.is_aktif)::TEXT,
-            NULL,
-            NOW()
-        );
     END IF;
 
     RETURN NEW;
 END;
+$$ LANGUAGE plpgsql;
+
+-- 3. Pasang/Attach trigger-nya ke tabel users
+CREATE TRIGGER trg_log_perubahan_user
+    AFTER INSERT OR UPDATE ON users
+    FOR EACH ROW
+    EXECUTE FUNCTION fn_log_perubahan_user();
+
+
+CREATE OR REPLACE FUNCTION fn_log_perubahan_user()
+RETURNS TRIGGER AS $$
+BEGIN
+    -- 1 = INSERT
+    IF TG_OP = 'INSERT' THEN
+        -- Perhatikan tambahan id_user dan NEW.id_user di bawah ini
+        INSERT INTO log_perubahan_user (id_user, kode_aksi, data_lama, data_baru, update_at)
+        VALUES (
+            NEW.id_user,
+            1, 
+            NULL,
+            ROW(NEW.id_user, NEW.username, NEW.nama, NEW.no_hp, NEW.alamat, NEW.email, NEW.is_active)::TEXT,
+            CURRENT_DATE
+        );
+
+    -- 2 = UPDATE, 3 = SOFT DELETE
+    ELSIF TG_OP = 'UPDATE' THEN
+        -- cek apakah semua data persis sama, jika iya jangan catat
+        IF OLD.username = NEW.username AND
+           OLD.password = NEW.password AND
+           OLD.nama     = NEW.nama     AND
+           OLD.no_hp    = NEW.no_hp    AND
+           OLD.alamat   = NEW.alamat   AND
+           OLD.email    = NEW.email    AND
+           OLD.is_active = NEW.is_active THEN
+            RETURN NEW; 
+        END IF;
+
+        -- soft delete (is_active berubah dari true ke false)
+        IF OLD.is_active = true AND NEW.is_active = false THEN
+            INSERT INTO log_perubahan_user (id_user, kode_aksi, data_lama, data_baru, update_at)
+            VALUES (
+                OLD.id_user,
+                3,
+                ROW(OLD.id_user, OLD.username, OLD.nama, OLD.no_hp, OLD.alamat, OLD.email, OLD.is_active)::TEXT,
+                NULL,
+                CURRENT_DATE
+            );
+        ELSE
+            -- update biasa
+            INSERT INTO log_perubahan_user (id_user, kode_aksi, data_lama, data_baru, update_at)
+            VALUES (
+                NEW.id_user,
+                2,
+                ROW(OLD.id_user, OLD.username, OLD.nama, OLD.no_hp, OLD.alamat, OLD.email, OLD.is_active)::TEXT,
+                ROW(NEW.id_user, NEW.username, NEW.nama, NEW.no_hp, NEW.alamat, NEW.email, NEW.is_active)::TEXT,
+                CURRENT_DATE
+            );
+        END IF;
+    END IF;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+-- 3. Pasang/Attach trigger-nya ke tabel users
+CREATE OR REPLACE TRIGGER trg_log_perubahan_user
+    AFTER INSERT OR UPDATE ON users
+    FOR EACH ROW
+    EXECUTE FUNCTION fn_log_perubahan_user();
+
+
+CREATE OR REPLACE VIEW v_detail_order AS
+SELECT
+    d.id_order,
+    p.nama_produk,
+    d.jumlah,
+    d.harga,
+    (d.jumlah * d.harga) AS subtotal
+FROM detail_orders d
+JOIN produk p
+    ON d.id_produk = p.id_produk;
+
+CREATE OR REPLACE VIEW v_customer AS
+SELECT id_customer, nama_customer, no_hp, alamat 
+FROM customer 
+ORDER BY nama_customer
+
+CREATE OR REPLACE FUNCTION fn_tambah_produk(
+    p_nama_produk       VARCHAR,
+    p_harga             INT,
+    p_stok              INT,
+    p_deskripsi         TEXT,
+    p_gambar            VARCHAR,
+    p_id_kategori_produk INT
+)
+RETURNS INT
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_id_produk INT;
+BEGIN
+    INSERT INTO produk (nama_produk, harga, stok, deskripsi, gambar, id_kategori_produk, status)
+    VALUES (p_nama_produk, p_harga, p_stok, p_deskripsi, p_gambar, p_id_kategori_produk, true)
+    RETURNING id_produk INTO v_id_produk;
+
+    -- Trigger trg_log_stok akan otomatis mencatat ke log_stok
+    RETURN v_id_produk;
+END;
+$$;
+
+CREATE OR REPLACE VIEW v_profil_user AS
+SELECT u.id_user, u.username, u.password, u.nama, u.email, u.no_hp, u.alamat, u.is_active, u.is_ready,
+       STRING_AGG(r.nama_role, ', ') AS roles
+FROM users u
+LEFT JOIN kewenangan k ON k.id_user = u.id_user
+LEFT JOIN roles r ON r.id_role = k.id_role
+GROUP BY u.id_user, u.username, u.password, u.nama, u.email, u.no_hp, u.alamat, u.is_active, u.is_ready;
+

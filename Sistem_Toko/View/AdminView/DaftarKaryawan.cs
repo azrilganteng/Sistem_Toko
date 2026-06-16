@@ -47,7 +47,7 @@ namespace Sistem_Toko.View.AdminView
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = Grid_Daftar_Karyawan.Rows[e.RowIndex];
-                selectedId = Convert.ToInt32(row.Cells["ID"].Value);
+                selectedId = Convert.ToInt32(row.Cells["id_user"].Value);
             }
         }
 

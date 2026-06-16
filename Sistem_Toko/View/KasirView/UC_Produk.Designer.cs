@@ -54,6 +54,7 @@ namespace Sistem_Toko
             LblProduk.Location = new Point(5, 138);
             LblProduk.MaximumSize = new Size(250, 0);
             LblProduk.Name = "LblProduk";
+            LblProduk.BackColor = System.Drawing.Color.Transparent;
             LblProduk.Size = new Size(136, 25);
             LblProduk.TabIndex = 1;
             LblProduk.Text = "Produk Name";
@@ -98,6 +99,7 @@ namespace Sistem_Toko
             LblHarga.ForeColor = Color.SeaGreen;
             LblHarga.Location = new Point(5, 190);
             LblHarga.Name = "LblHarga";
+            LblHarga.BackColor = System.Drawing.Color.Transparent;
             LblHarga.Size = new Size(49, 23);
             LblHarga.TabIndex = 4;
             LblHarga.Text = "Price";
@@ -109,6 +111,7 @@ namespace Sistem_Toko
             LblStok.ForeColor = Color.Gray;
             LblStok.Location = new Point(162, 190);
             LblStok.Name = "LblStok";
+            LblStok.BackColor = System.Drawing.Color.Transparent;
             LblStok.Size = new Size(38, 20);
             LblStok.TabIndex = 5;
             LblStok.Text = "Stok";

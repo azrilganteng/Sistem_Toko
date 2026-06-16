@@ -50,6 +50,7 @@
             LblJudul.ForeColor = Color.FromArgb(40, 100, 60);
             LblJudul.Location = new Point(55, 20);
             LblJudul.Name = "LblJudul";
+            LblJudul.BackColor = System.Drawing.Color.Transparent;
             LblJudul.Size = new Size(400, 73);
             LblJudul.TabIndex = 0;
             LblJudul.Text = "Profil Saya";
@@ -151,6 +152,7 @@
             LblIdUser.ForeColor = Color.DimGray;
             LblIdUser.Location = new Point(30, 45);
             LblIdUser.Name = "LblIdUser";
+            LblIdUser.BackColor = System.Drawing.Color.Transparent;
             LblIdUser.Size = new Size(70, 23);
             LblIdUser.TabIndex = 0;
             LblIdUser.Text = "ID User";
@@ -162,6 +164,7 @@
             LblIdUserVal.ForeColor = Color.Black;
             LblIdUserVal.Location = new Point(30, 70);
             LblIdUserVal.Name = "LblIdUserVal";
+            LblIdUserVal.BackColor = System.Drawing.Color.Transparent;
             LblIdUserVal.Size = new Size(30, 28);
             LblIdUserVal.TabIndex = 1;
             LblIdUserVal.Text = "ID";
@@ -173,6 +176,7 @@
             LblNama.ForeColor = Color.DimGray;
             LblNama.Location = new Point(350, 45);
             LblNama.Name = "LblNama";
+            LblNama.BackColor = System.Drawing.Color.Transparent;
             LblNama.Size = new Size(55, 23);
             LblNama.TabIndex = 2;
             LblNama.Text = "Nama";
@@ -184,6 +188,7 @@
             LblNamaVal.ForeColor = Color.Black;
             LblNamaVal.Location = new Point(350, 70);
             LblNamaVal.Name = "LblNamaVal";
+            LblNamaVal.BackColor = System.Drawing.Color.Transparent;
             LblNamaVal.Size = new Size(60, 28);
             LblNamaVal.TabIndex = 3;
             LblNamaVal.Text = "Nama";
@@ -195,6 +200,7 @@
             LblRole.ForeColor = Color.DimGray;
             LblRole.Location = new Point(30, 115);
             LblRole.Name = "LblRole";
+            LblRole.BackColor = System.Drawing.Color.Transparent;
             LblRole.Size = new Size(43, 23);
             LblRole.TabIndex = 4;
             LblRole.Text = "Role";
@@ -206,6 +212,7 @@
             LblRoleVal.ForeColor = Color.SeaGreen;
             LblRoleVal.Location = new Point(30, 140);
             LblRoleVal.Name = "LblRoleVal";
+            LblRoleVal.BackColor = System.Drawing.Color.Transparent;
             LblRoleVal.Size = new Size(50, 28);
             LblRoleVal.TabIndex = 5;
             LblRoleVal.Text = "Role";
@@ -217,6 +224,7 @@
             LblUsername.ForeColor = Color.DimGray;
             LblUsername.Location = new Point(30, 185);
             LblUsername.Name = "LblUsername";
+            LblUsername.BackColor = System.Drawing.Color.Transparent;
             LblUsername.Size = new Size(86, 23);
             LblUsername.TabIndex = 6;
             LblUsername.Text = "Username";
@@ -228,6 +236,7 @@
             LblUsernameVal.ForeColor = Color.Black;
             LblUsernameVal.Location = new Point(30, 210);
             LblUsernameVal.Name = "LblUsernameVal";
+            LblUsernameVal.BackColor = System.Drawing.Color.Transparent;
             LblUsernameVal.Size = new Size(95, 28);
             LblUsernameVal.TabIndex = 7;
             LblUsernameVal.Text = "Username";
@@ -239,6 +248,7 @@
             LblEmail.ForeColor = Color.DimGray;
             LblEmail.Location = new Point(350, 185);
             LblEmail.Name = "LblEmail";
+            LblEmail.BackColor = System.Drawing.Color.Transparent;
             LblEmail.Size = new Size(51, 23);
             LblEmail.TabIndex = 8;
             LblEmail.Text = "Email";
@@ -250,6 +260,7 @@
             LblEmailVal.ForeColor = Color.Black;
             LblEmailVal.Location = new Point(350, 210);
             LblEmailVal.Name = "LblEmailVal";
+            LblEmailVal.BackColor = System.Drawing.Color.Transparent;
             LblEmailVal.Size = new Size(60, 28);
             LblEmailVal.TabIndex = 9;
             LblEmailVal.Text = "Email";
@@ -261,6 +272,7 @@
             LblNoHP.ForeColor = Color.DimGray;
             LblNoHP.Location = new Point(30, 255);
             LblNoHP.Name = "LblNoHP";
+            LblNoHP.BackColor = System.Drawing.Color.Transparent;
             LblNoHP.Size = new Size(60, 23);
             LblNoHP.TabIndex = 10;
             LblNoHP.Text = "No HP";
@@ -272,6 +284,7 @@
             LblNoHPVal.ForeColor = Color.Black;
             LblNoHPVal.Location = new Point(30, 280);
             LblNoHPVal.Name = "LblNoHPVal";
+            LblNoHPVal.BackColor = System.Drawing.Color.Transparent;
             LblNoHPVal.Size = new Size(70, 28);
             LblNoHPVal.TabIndex = 11;
             LblNoHPVal.Text = "No HP";
@@ -283,6 +296,7 @@
             LblAlamat.ForeColor = Color.DimGray;
             LblAlamat.Location = new Point(350, 255);
             LblAlamat.Name = "LblAlamat";
+            LblAlamat.BackColor = System.Drawing.Color.Transparent;
             LblAlamat.Size = new Size(65, 23);
             LblAlamat.TabIndex = 12;
             LblAlamat.Text = "Alamat";
@@ -294,6 +308,7 @@
             LblAlamatVal.ForeColor = Color.Black;
             LblAlamatVal.Location = new Point(350, 280);
             LblAlamatVal.Name = "LblAlamatVal";
+            LblAlamatVal.BackColor = System.Drawing.Color.Transparent;
             LblAlamatVal.Size = new Size(75, 28);
             LblAlamatVal.TabIndex = 13;
             LblAlamatVal.Text = "Alamat";

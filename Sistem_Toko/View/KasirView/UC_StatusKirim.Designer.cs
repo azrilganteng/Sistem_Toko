@@ -54,6 +54,7 @@ namespace Sistem_Toko.View.KasirView
             LblInfo.ForeColor = Color.DarkSlateGray;
             LblInfo.Location = new Point(25, 20);
             LblInfo.Name = "LblInfo";
+            LblInfo.BackColor = System.Drawing.Color.Transparent;
             LblInfo.Size = new Size(87, 28);
             LblInfo.TabIndex = 0;
             LblInfo.Text = "label1";
@@ -65,6 +66,7 @@ namespace Sistem_Toko.View.KasirView
             LblStatus.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             LblStatus.Location = new Point(880, 40);
             LblStatus.Name = "LblStatus";
+            LblStatus.BackColor = System.Drawing.Color.Transparent;
             LblStatus.Padding = new Padding(12, 6, 12, 6);
             LblStatus.Size = new Size(80, 37);
             LblStatus.TabIndex = 1;

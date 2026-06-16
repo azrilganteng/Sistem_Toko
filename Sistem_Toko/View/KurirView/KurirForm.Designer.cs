@@ -60,6 +60,7 @@
             lblTitle.ForeColor = Color.White;
             lblTitle.Location = new Point(75, 15);
             lblTitle.Name = "lblTitle";
+            lblTitle.BackColor = System.Drawing.Color.Transparent;
             lblTitle.Size = new Size(220, 41);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Pengiriman";
@@ -71,6 +72,7 @@
             lblSubtitle.ForeColor = Color.FromArgb(200, 255, 255, 255);
             lblSubtitle.Location = new Point(78, 52);
             lblSubtitle.Name = "lblSubtitle";
+            lblSubtitle.BackColor = System.Drawing.Color.Transparent;
             lblSubtitle.Size = new Size(200, 25);
             lblSubtitle.TabIndex = 1;
             lblSubtitle.Text = "Daftar pengiriman aktif";

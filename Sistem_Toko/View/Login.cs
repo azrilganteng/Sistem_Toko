@@ -28,40 +28,92 @@ namespace Sistem_Toko
             }
 
             AuthController auth = new AuthController();
+            var result = auth.CekCredentials(user, pass);
 
-            Kasir kasirAktif = auth.LoginKasir(user, pass);
-
-            if (kasirAktif != null)
+            if (result == null)
             {
-                FormKasir kasirPage = new FormKasir();
-                kasirPage.Show();
-                this.Hide();
+                MessageBox.Show("Username atau Password salah / Akun tidak aktif!", "Login Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-
-            Admin adminAktif = auth.LoginAdmin(user, pass);
-
-            if (adminAktif != null)
+            var roles = result.Value.Roles;
+            if (roles.Count == 0)
             {
-
-                AdminForm adminPage = new AdminForm();
-                adminPage.Show();
-                this.Hide();
+                MessageBox.Show("Akun Anda tidak memiliki role/kewenangan apa pun!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            Kurir KurirAktif = auth.LoginKurir(user, pass);
+            string selectedRole = roles[0];
 
-            if (KurirAktif != null)
+            if (roles.Count > 1)
             {
-                kurirDashboard dashboard = new kurirDashboard();
-                dashboard.Show();
-                this.Hide();
-                return;
+                // Buat form sederhana untuk pilih role
+                using (Form formPilih = new Form())
+                {
+                    formPilih.Text = "Pilih Role";
+                    formPilih.StartPosition = FormStartPosition.CenterParent;
+                    formPilih.Size = new System.Drawing.Size(300, 150);
+                    formPilih.FormBorderStyle = FormBorderStyle.FixedDialog;
+                    formPilih.MaximizeBox = false;
+                    formPilih.MinimizeBox = false;
+
+                    Label lbl = new Label() { Text = "Pilih role untuk login:", Left = 20, Top = 20, Width = 250 };
+                    ComboBox cmb = new ComboBox() { Left = 20, Top = 45, Width = 240, DropDownStyle = ComboBoxStyle.DropDownList };
+                    foreach (var r in roles) cmb.Items.Add(r);
+                    cmb.SelectedIndex = 0;
+
+                    Button btnOk = new Button() { Text = "Masuk", Left = 160, Top = 80, DialogResult = DialogResult.OK };
+                    formPilih.Controls.Add(lbl);
+                    formPilih.Controls.Add(cmb);
+                    formPilih.Controls.Add(btnOk);
+                    formPilih.AcceptButton = btnOk;
+
+                    if (formPilih.ShowDialog(this) == DialogResult.OK)
+                    {
+                        selectedRole = cmb.SelectedItem.ToString();
+                    }
+                    else
+                    {
+                        return; // Batal login
+                    }
+                }
             }
 
-            MessageBox.Show("Username atau Password salah / Akun tidak dikenali!", "Login Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            // Setelah role terpilih, eksekusi login sesuai role untuk mengisi session context
+            if (selectedRole == "Kasir")
+            {
+                var kasir = auth.LoginKasir(user, pass);
+                if (kasir != null)
+                {
+                    FormKasir kasirPage = new FormKasir();
+                    kasirPage.Show();
+                    this.Hide();
+                }
+            }
+            else if (selectedRole == "Admin")
+            {
+                var admin = auth.LoginAdmin(user, pass);
+                if (admin != null)
+                {
+                    AdminForm adminPage = new AdminForm(admin);
+                    adminPage.Show();
+                    this.Hide();
+                }
+            }
+            else if (selectedRole == "Kurir")
+            {
+                var kurir = auth.LoginKurir(user, pass);
+                if (kurir != null)
+                {
+                    kurirDashboard dashboard = new kurirDashboard();
+                    dashboard.Show();
+                    this.Hide();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Role tidak dikenali: " + selectedRole, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void TogglePasswordBtn_Click(object sender, EventArgs e)

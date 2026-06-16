@@ -42,18 +42,17 @@ namespace Sistem_Toko.View.AdminView
             // 
             // LblToko
             // 
-            LblToko.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             LblToko.AutoSize = true;
-            LblToko.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
+            LblToko.BackColor = System.Drawing.Color.Transparent;
+            LblToko.Font = new Font("Book Antiqua", 24F, FontStyle.Bold);
             LblToko.Location = new Point(344, 40);
             LblToko.Name = "LblToko";
-            LblToko.Size = new Size(369, 54);
+            LblToko.Size = new Size(364, 49);
             LblToko.TabIndex = 8;
             LblToko.Text = "Riwayat Penjualan";
             // 
             // Btn_Kembali
             // 
-            Btn_Kembali.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             Btn_Kembali.BackColor = Color.Transparent;
             Btn_Kembali.BackgroundImage = (Image)resources.GetObject("Btn_Kembali.BackgroundImage");
             Btn_Kembali.BackgroundImageLayout = ImageLayout.Zoom;
@@ -68,7 +67,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // CmbBulan
             // 
-            CmbBulan.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             CmbBulan.DropDownStyle = ComboBoxStyle.DropDownList;
             CmbBulan.Font = new Font("Segoe UI", 10F);
             CmbBulan.Location = new Point(110, 141);
@@ -78,7 +76,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // NumTahun
             // 
-            NumTahun.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             NumTahun.Font = new Font("Segoe UI", 10F);
             NumTahun.Location = new Point(325, 141);
             NumTahun.Maximum = new decimal(new int[] { 2100, 0, 0, 0 });
@@ -90,7 +87,6 @@ namespace Sistem_Toko.View.AdminView
             // 
             // Btn_Filter
             // 
-            Btn_Filter.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             Btn_Filter.BackColor = Color.SeaGreen;
             Btn_Filter.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             Btn_Filter.ForeColor = Color.White;
@@ -104,8 +100,8 @@ namespace Sistem_Toko.View.AdminView
             // 
             // LblBulan
             // 
-            LblBulan.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             LblBulan.AutoSize = true;
+            LblBulan.BackColor = System.Drawing.Color.Transparent;
             LblBulan.Font = new Font("Segoe UI", 10F);
             LblBulan.Location = new Point(52, 144);
             LblBulan.Name = "LblBulan";
@@ -115,8 +111,8 @@ namespace Sistem_Toko.View.AdminView
             // 
             // LblTahun
             // 
-            LblTahun.Anchor = AnchorStyles.Top | AnchorStyles.Left;
             LblTahun.AutoSize = true;
+            LblTahun.BackColor = System.Drawing.Color.Transparent;
             LblTahun.Font = new Font("Segoe UI", 10F);
             LblTahun.Location = new Point(268, 144);
             LblTahun.Name = "LblTahun";
@@ -129,8 +125,9 @@ namespace Sistem_Toko.View.AdminView
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
+            BackgroundImage = Properties.Resources.background;
+            BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1050, 560);
-            WindowState = FormWindowState.Maximized;
             Controls.Add(Grid_RiwayatPenjualan);
             Controls.Add(LblToko);
             Controls.Add(LblBulan);
@@ -139,9 +136,11 @@ namespace Sistem_Toko.View.AdminView
             Controls.Add(NumTahun);
             Controls.Add(Btn_Filter);
             Controls.Add(Btn_Kembali);
+            DoubleBuffered = true;
             Font = new Font("Segoe UI", 10F);
             Name = "Riwayat_Stok";
             Text = "Riwayat Penjualan";
+            WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)Grid_RiwayatPenjualan).EndInit();
             ((System.ComponentModel.ISupportInitialize)NumTahun).EndInit();

@@ -19,7 +19,7 @@ namespace Sistem_Toko.Model
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = "SELECT id_customer, nama_customer, no_hp, alamat FROM customer ORDER BY nama_customer;";
+                string sql = "SELECT * FROM v_customer;";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 using (var reader = cmd.ExecuteReader())
@@ -49,7 +49,7 @@ namespace Sistem_Toko.Model
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = "SELECT * FROM customer WHERE LOWER(nama_customer) = LOWER(@nama) LIMIT 1;";
+                string sql = "SELECT * FROM v_customer WHERE LOWER(nama_customer) = LOWER(@nama) LIMIT 1;";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
@@ -83,7 +83,7 @@ namespace Sistem_Toko.Model
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = "INSERT INTO customer (nama_customer, no_hp, alamat) VALUES (@nama, @noHp, @alamat) RETURNING id_customer;";
+                string sql = "SELECT fn_tambah_customer(@nama, @noHp, @alamat);";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {

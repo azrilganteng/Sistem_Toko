@@ -56,6 +56,7 @@ namespace Sistem_Toko.View.AdminView
             LblNamaProduk.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             LblNamaProduk.Location = new System.Drawing.Point(40, 8);
             LblNamaProduk.Name = "LblNamaProduk";
+            LblNamaProduk.BackColor = System.Drawing.Color.Transparent;
             LblNamaProduk.Size = new System.Drawing.Size(220, 22);
             LblNamaProduk.TabIndex = 1;
             LblNamaProduk.Text = "Nama Produk";
@@ -67,6 +68,7 @@ namespace Sistem_Toko.View.AdminView
             LblStokSaatIni.ForeColor = System.Drawing.Color.Gray;
             LblStokSaatIni.Location = new System.Drawing.Point(40, 32);
             LblStokSaatIni.Name = "LblStokSaatIni";
+            LblStokSaatIni.BackColor = System.Drawing.Color.Transparent;
             LblStokSaatIni.Size = new System.Drawing.Size(180, 20);
             LblStokSaatIni.TabIndex = 2;
             LblStokSaatIni.Text = "Stok: 0";
@@ -77,6 +79,7 @@ namespace Sistem_Toko.View.AdminView
             LblJumlah.Font = new System.Drawing.Font("Segoe UI", 9F);
             LblJumlah.Location = new System.Drawing.Point(270, 32);
             LblJumlah.Name = "LblJumlah";
+            LblJumlah.BackColor = System.Drawing.Color.Transparent;
             LblJumlah.TabIndex = 3;
             LblJumlah.Text = "Tambah:";
             // 
@@ -99,6 +102,7 @@ namespace Sistem_Toko.View.AdminView
             LblDeskripsi.ForeColor = System.Drawing.Color.DimGray;
             LblDeskripsi.Location = new System.Drawing.Point(450, 10);
             LblDeskripsi.Name = "LblDeskripsi";
+            LblDeskripsi.BackColor = System.Drawing.Color.Transparent;
             LblDeskripsi.Size = new System.Drawing.Size(530, 64);
             LblDeskripsi.TabIndex = 5;
             LblDeskripsi.Text = "";

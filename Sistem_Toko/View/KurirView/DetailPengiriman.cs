@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
@@ -20,7 +20,7 @@ namespace Sistem_Toko.View.KurirView
 
         private void DetailPengiriman_Load(object sender, EventArgs e)
         {
-            LblJudul.Text = "TOKO TANI SAMUDRA\nPesanan #" + _idOrder;
+            LblJudul.Text = "Detail Pesanan #" + _idOrder;
             LblTujuan.Text = "Alamat Pengiriman:\n" + _alamat;
 
             TxtNota.Clear();
@@ -62,6 +62,11 @@ namespace Sistem_Toko.View.KurirView
             {
                 MessageBox.Show("Gagal memuat format nota: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void Btn_Kembali_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
