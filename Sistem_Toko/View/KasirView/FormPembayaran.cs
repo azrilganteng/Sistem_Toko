@@ -2,6 +2,7 @@ using Sistem_Toko.View.KasirView;
 using Sistem_Toko.Model;
 using Sistem_Toko.Helpers;
 using System;
+using Npgsql;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;

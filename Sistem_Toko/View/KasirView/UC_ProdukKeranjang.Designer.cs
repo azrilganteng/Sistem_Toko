@@ -98,7 +98,7 @@ namespace Sistem_Toko
             UpdateBtn.TabIndex = 4;
             UpdateBtn.Text = "Update";
             UpdateBtn.UseVisualStyleBackColor = false;
-            UpdateBtn.Click += UpdateBtn_Click;
+            //UpdateBtn.Click += UpdateBtn_Click;
             // 
             // BatalBtn
             // 

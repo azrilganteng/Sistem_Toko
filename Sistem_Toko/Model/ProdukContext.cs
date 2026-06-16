@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using Sistem_Toko.Helpers; 
+using Sistem_Toko.Helpers;
 
 namespace Sistem_Toko.Model
 {
@@ -67,6 +67,7 @@ namespace Sistem_Toko.Model
                             NamaProduk = reader["nama_produk"].ToString(),
                             Harga = Convert.ToInt32(reader["harga"]),
                             Stok = Convert.ToInt32(reader["stok"]),
+                            //Gambar = ParseGambar(reader["gambar"]),
                             Gambar = HasColumn(reader, "gambar") && reader["gambar"] != DBNull.Value ? reader["gambar"].ToString() : null,
                             Deskripsi = HasColumn(reader, "deskripsi") && reader["deskripsi"] != DBNull.Value
                                 ? reader["deskripsi"].ToString()
@@ -189,6 +190,7 @@ namespace Sistem_Toko.Model
                                 Stok = Convert.ToInt32(reader["stok"]),
                                 IdKategori = Convert.ToInt32(reader["id_kategori_produk"]),
                                 //Status = reader["status"].ToString(),
+                                //Gambar = reader["gambar"] != DBNull.Value ? (byte[])reader["gambar"] : null,
                                 Gambar = reader["gambar"] != DBNull.Value ? reader["gambar"].ToString() : null,
                                 Deskripsi = HasColumn(reader, "deskripsi") && reader["deskripsi"] != DBNull.Value
                                     ? reader["deskripsi"].ToString()
