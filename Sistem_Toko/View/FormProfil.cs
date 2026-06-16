@@ -35,5 +35,6 @@ namespace Sistem_Toko.View
         {
             this.Close();
         }
+       
     }
 }

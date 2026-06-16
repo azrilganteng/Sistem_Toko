@@ -20,6 +20,14 @@ namespace Sistem_Toko
         private int _idCustomer = 0;
         private string _namaCustomer = "";
 
+        //[Browsable(false)]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        //public int IdCustomerProperti
+        //{
+        //    get => _idCustomer;
+        //    set => _idCustomer = value;
+        //}
+
         public FormPembayaran(FormKasir formKasir, FormKeranjang formKeranjang, List<Detail_orders> listBarang)
         {
             InitializeComponent();
@@ -61,17 +69,19 @@ namespace Sistem_Toko
 
             foreach (var item in _listBarang)
             {
-                double subtotal = item.Qty * item.ProdukItem.Harga;
-                TotalBayar += subtotal;
+                if (item.ProdukItem != null)
+                {
+                    double subtotal = item.Qty * item.ProdukItem.Harga;
+                    TotalBayar += subtotal;
 
-                txtNota.AppendText($"{item.ProdukItem.NamaProduk} \t Qty: {item.Qty} x Rp. {item.ProdukItem.Harga:N0} \t Subtotal: Rp. {subtotal:N0}\r\n");
+                    txtNota.AppendText($"{item.ProdukItem.NamaProduk} \t Qty: {item.Qty} x Rp. {item.ProdukItem.Harga:N0} \t Subtotal: Rp. {subtotal:N0}\r\n");
+                }
             }
             lblTotal.Text = $"Total Bayar: Rp. {TotalBayar:N0}";
         }
 
         private void KonfirmBtn_Click(object sender, EventArgs e)
         {
-            // Check if customer is selected
             if (_idCustomer <= 0)
             {
                 MessageBox.Show("Silakan pilih customer terlebih dahulu!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -90,7 +100,10 @@ namespace Sistem_Toko
                 {
                     if (frmKurir.ShowDialog() == DialogResult.OK)
                     {
-                        idKurir = frmKurir.PilKurir.ID;
+                        if (frmKurir.PilKurir != null)
+                        {
+                            idKurir = frmKurir.PilKurir.ID;
+                        }
                         alamat = frmKurir.AlamatKirim;
 
                         if (idKurir <= 0 || string.IsNullOrWhiteSpace(alamat))
@@ -125,7 +138,12 @@ namespace Sistem_Toko
         private void ClosePembayaran()
         {
             _listBarang.Clear();
-            _formKeranjang.SelesaiBayar();
+
+            if (_formKeranjang != null && !_formKeranjang.IsDisposed)
+            {
+                _formKeranjang.SelesaiBayar();
+                _formKeranjang.Close(); 
+            }
 
             if (_formKasir != null)
             {
@@ -142,11 +160,9 @@ namespace Sistem_Toko
             using (var cmdKirim = new NpgsqlCommand(sqlPengiriman, conn, transaction))
             {
                 cmdKirim.Parameters.AddWithValue("idKurir", idKurir);
-
                 cmdKirim.ExecuteNonQuery();
             }
 
-            // Ambil id_pengiriman yang baru dibuat
             string sqlGetId = "SELECT MAX(id_pengiriman) FROM pengiriman WHERE id_user = @idKurir;";
             using (var cmdGet = new NpgsqlCommand(sqlGetId, conn, transaction))
             {
@@ -172,11 +188,20 @@ namespace Sistem_Toko
                     try
                     {
                         int idOrderBaru = 0;
+                        int idKasirAktif = 0;
+
+                        if (_formKeranjang != null && _formKeranjang._formInduk != null && _formKeranjang._formInduk._kasirActive != null)
+                        {
+                            idKasirAktif = _formKeranjang._formInduk._kasirActive.ID;
+                        }
+                        else
+                        {
+                            idKasirAktif = SessionUser.Id; 
+                        }
 
                         string sqlOrder = "SELECT fn_buat_order_baru(@idUser, @metodeBayar, @metodeKirim);";
                         using (var cmdOrder = new NpgsqlCommand(sqlOrder, conn, transaction))
                         {
-                            int idKasirAktif = this._formKeranjang._formInduk._kasirActive.ID;
                             cmdOrder.Parameters.AddWithValue("idUser", idKasirAktif);
                             cmdOrder.Parameters.AddWithValue("metodeBayar", metodeBayar);
                             cmdOrder.Parameters.AddWithValue("metodeKirim", metodeKirim);
@@ -184,7 +209,6 @@ namespace Sistem_Toko
                             idOrderBaru = Convert.ToInt32(cmdOrder.ExecuteScalar());
                         }
 
-                        // Set id_customer pada order
                         if (idCustomer > 0)
                         {
                             string sqlSetCustomer = "UPDATE orders SET id_customer = @idCustomer WHERE id_order = @idOrder;";
@@ -200,7 +224,6 @@ namespace Sistem_Toko
                         {
                             int idPengiriman = SimpanDataPengiriman(conn, transaction, idKurir);
 
-                            // Link order ke pengiriman via orders.id_pengiriman
                             string sqlLink = "UPDATE orders SET id_pengiriman = @idPengiriman WHERE id_order = @idOrder;";
                             using (var cmdLink = new NpgsqlCommand(sqlLink, conn, transaction))
                             {
@@ -212,18 +235,22 @@ namespace Sistem_Toko
 
                         foreach (var item in _listBarang)
                         {
-                            string sqlDetail = "SELECT fn_tambah_detail_order(@idOrder, @idProduk, @jumlah, @harga);";
-                            using (var cmdDetail = new NpgsqlCommand(sqlDetail, conn, transaction))
+                            if (item.ProdukItem != null)
                             {
-                                decimal subTotalHarga = (decimal)(item.Qty * item.ProdukItem.Harga);
-                                cmdDetail.Parameters.AddWithValue("idOrder", idOrderBaru);
-                                cmdDetail.Parameters.AddWithValue("idProduk", item.ProdukItem.Id);
-                                cmdDetail.Parameters.AddWithValue("jumlah", item.Qty);
-                                cmdDetail.Parameters.AddWithValue("harga", subTotalHarga);
+                                string sqlDetail = "SELECT fn_tambah_detail_order(@idOrder, @idProduk, @jumlah, @harga);";
+                                using (var cmdDetail = new NpgsqlCommand(sqlDetail, conn, transaction))
+                                {
+                                    decimal subTotalHarga = (decimal)(item.Qty * item.ProdukItem.Harga);
+                                    cmdDetail.Parameters.AddWithValue("idOrder", idOrderBaru);
+                                    cmdDetail.Parameters.AddWithValue("idProduk", item.ProdukItem.Id);
+                                    cmdDetail.Parameters.AddWithValue("jumlah", item.Qty);
+                                    cmdDetail.Parameters.AddWithValue("harga", subTotalHarga);
 
-                                cmdDetail.ExecuteScalar();
+                                    cmdDetail.ExecuteScalar();
+                                }
                             }
                         }
+
                         transaction.Commit();
                         return true;
                     }
@@ -236,6 +263,7 @@ namespace Sistem_Toko
                 }
             }
         }
+
         private void FormPembayaran_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (_listBarang.Count > 0 && _formKeranjang != null && !_formKeranjang.IsDisposed)

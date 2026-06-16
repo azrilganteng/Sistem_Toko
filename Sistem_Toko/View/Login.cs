@@ -29,8 +29,6 @@ namespace Sistem_Toko
 
             AuthController auth = new AuthController();
 
-
-
             Kasir kasirAktif = auth.LoginKasir(user, pass);
 
             if (kasirAktif != null)
@@ -59,7 +57,6 @@ namespace Sistem_Toko
             {
                 MessageBox.Show($"Selamat Datang, {SessionUser.Nama}!");
 
-                // Coba login sebagai Kurir
                 Kurir dataKurir = auth.LoginKurir(user, pass);
 
                 if (dataKurir != null)
@@ -74,7 +71,6 @@ namespace Sistem_Toko
                 MessageBox.Show("Username atau Password salah / Akun tidak dikenali!", "Login Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
+        
     }
 }  

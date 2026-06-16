@@ -7,14 +7,8 @@ namespace Sistem_Toko.View.KasirView
 {
     public partial class FormInputCustomer : Form
     {
-        /// <summary>
-        /// ID customer yang dipilih/dibuat. 0 jika belum ada.
-        /// </summary>
         public int CustomerDipilih { get; private set; }
 
-        /// <summary>
-        /// Nama customer yang dipilih.
-        /// </summary>
         public string NamaCustomer { get; private set; }
 
         public FormInputCustomer()

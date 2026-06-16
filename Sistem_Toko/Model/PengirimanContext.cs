@@ -12,7 +12,6 @@ namespace Sistem_Toko.Model
         {
             List<Pengiriman> list = new List<Pengiriman>();
 
-            // Convert string status to boolean: "Selesai" = true, "Proses" = false
             bool statusBool = status.Equals("Selesai", StringComparison.OrdinalIgnoreCase);
 
             using (var conn = connectDB.GetConn())

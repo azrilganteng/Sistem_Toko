@@ -29,7 +29,7 @@ namespace Sistem_Toko.Model
                             NamaProduk = reader["nama_produk"].ToString(),
                             Harga = Convert.ToInt32(reader["harga"]),
                             Stok = Convert.ToInt32(reader["stok"]),
-                            Gambar = reader["gambar"] != DBNull.Value ? (byte[])reader["gambar"] : null,
+                            Gambar = reader["gambar"] != DBNull.Value ? reader["gambar"].ToString() : "",
                             Deskripsi = HasColumn(reader, "deskripsi") && reader["deskripsi"] != DBNull.Value
                                 ? reader["deskripsi"].ToString()
                                 : ""
@@ -100,7 +100,7 @@ namespace Sistem_Toko.Model
                                 Stok = Convert.ToInt32(reader["stok"]),
                                 IdKategori = Convert.ToInt32(reader["id_kategori_produk"]),
                                 //Status = reader["status"].ToString(),
-                                Gambar = reader["gambar"] != DBNull.Value ? (byte[])reader["gambar"] : null,
+                                Gambar = reader["gambar"] != DBNull.Value ? reader["gambar"].ToString() : "",
                                 Deskripsi = HasColumn(reader, "deskripsi") && reader["deskripsi"] != DBNull.Value
                                     ? reader["deskripsi"].ToString()
                                     : ""

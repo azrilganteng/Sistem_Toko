@@ -1,7 +1,8 @@
+using Microsoft.VisualBasic.ApplicationServices;
 using Npgsql;
+using Sistem_Toko.Helpers;
 using System;
 using System.Data;
-using Sistem_Toko.Helpers;
 
 namespace Sistem_Toko.Model
 {
@@ -13,12 +14,12 @@ namespace Sistem_Toko.Model
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = @"SELECT * FROM v_data_kasir WHERE username = @username AND password = @password;";
+                string sql = @"SELECT * FROM v_data_kasir WHERE username = @u AND password = @p;";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
-                    cmd.Parameters.Add("@username", NpgsqlTypes.NpgsqlDbType.Varchar).Value = username;
-                    cmd.Parameters.Add("@password", NpgsqlTypes.NpgsqlDbType.Varchar).Value = password;
+                    cmd.Parameters.AddWithValue("u", username);
+                    cmd.Parameters.AddWithValue("p", password);
 
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -71,11 +72,6 @@ namespace Sistem_Toko.Model
 
                 cmdDetail.ExecuteScalar();
             }
-        }
-
-        public static DataTable GetRiwayatPenjualan()
-        {
-            return GetRiwayatPenjualan(null, null);
         }
 
         public static DataTable GetRiwayatPenjualan(int? bulan, int? tahun)

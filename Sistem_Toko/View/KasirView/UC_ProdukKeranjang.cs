@@ -17,7 +17,7 @@ namespace Sistem_Toko
         public Produk ProdukItem { get; private set; }
         public int JumlahBeli { get; private set; }
 
-        public UC_ProdukKeranjang(FormKeranjang halamanKeranjang,FormKasir formInduk, Produk produk, int qty)
+        public UC_ProdukKeranjang(FormKeranjang halamanKeranjang, FormKasir formInduk, Produk produk, int qty)
         {
             InitializeComponent();
             this._halamanKeranjang = halamanKeranjang;
@@ -25,29 +25,37 @@ namespace Sistem_Toko
             this.ProdukItem = produk;
             this.JumlahBeli = qty;
 
-
             ItemKeranjang.Text = produk.NamaProduk;
             HargaKeranjang.Text = "Harga Rp. " + produk.Harga.ToString("N0");
             this.lblQty.Text = qty.ToString();
+
             try
             {
-                if (produk.Gambar != null && produk.Gambar.Length > 0)
+                if (!string.IsNullOrEmpty(produk.Gambar))
                 {
-                    using (MemoryStream ms = new MemoryStream(produk.Gambar))
+                    string folderPath = Path.Combine(Application.StartupPath, "Images");
+                    string fullPath = Path.Combine(folderPath, produk.Gambar);
+
+                    if (File.Exists(fullPath))
                     {
-                        pictureBox1.Image = Image.FromStream(ms);
+                        pictureBox1.Image = Image.FromFile(fullPath);
+                    }
+                    else
+                    {
+                        pictureBox1.Image = null; 
                     }
                 }
                 else
                 {
-                    pictureBox1.Image = null;
+                    pictureBox1.Image = null; 
                 }
             }
             catch
             {
-                pictureBox1.Image = null;
+                pictureBox1.Image = null; 
             }
         }
+
 
         private void PlusQty_Click(object sender, EventArgs e)
         {

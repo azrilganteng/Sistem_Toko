@@ -1,12 +1,13 @@
+using Sistem_Toko.Model;
+using Sistem_Toko.View.KasirView;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
-using Sistem_Toko.Model;
 
 namespace Sistem_Toko
 {
@@ -15,7 +16,7 @@ namespace Sistem_Toko
         private FormKasir _Parent;
         public Produk ProdukData { get; private set; }
 
-        public UC_Produk(FormKasir formInduk, int id, byte[] gambar, string nama, int harga, int stok)
+        public UC_Produk(FormKasir formInduk, int id, string gambar, string nama, int harga, int stok, string deskripsi)
         {
             InitializeComponent();
             this._Parent = formInduk;
@@ -26,16 +27,24 @@ namespace Sistem_Toko
                 Gambar = gambar,
                 NamaProduk = nama,
                 Harga = harga,
-                Stok = stok
+                Stok = stok,
+                Deskripsi = deskripsi
             };
 
             try
             {
-                if (gambar != null && gambar.Length > 0)
+                if (!string.IsNullOrEmpty(gambar))
                 {
-                    using (MemoryStream ms = new MemoryStream(gambar))
+                    string folderPath = Path.Combine(Application.StartupPath, "Images");
+                    string fullPath = Path.Combine(folderPath, gambar);
+
+                    if (File.Exists(fullPath))
                     {
-                        Gambar.Image = Image.FromStream(ms);
+                        Gambar.Image = Image.FromFile(fullPath);
+                    }
+                    else
+                    {
+                        Gambar.Image = null;
                     }
                 }
                 else
@@ -43,8 +52,9 @@ namespace Sistem_Toko
                     Gambar.Image = null;
                 }
             }
-            catch (ArgumentException)
-            {
+            catch (Exception ex)
+            { 
+                MessageBox.Show("Gagal memuat gambar: " + ex.Message);
                 Gambar.Image = null;
             }
 
@@ -65,7 +75,10 @@ namespace Sistem_Toko
 
         private void BuyNowBtn_Click(object sender, EventArgs e)
         {
-
+            int idCustomer = 1;
+            FormBuyNow frmBuyNow = new FormBuyNow(this._Parent, this.ProdukData,idCustomer);
+            frmBuyNow.ShowDialog();
         }
+        
     }
 }
