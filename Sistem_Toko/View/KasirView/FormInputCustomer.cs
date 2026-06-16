@@ -28,16 +28,16 @@ namespace Sistem_Toko.View.KasirView
 
         private void MuatCustomer()
         {
-            try
-            {
-                _semuaCustomer = CustomerContext.GetAllCustomers();
-                TampilkanGrid(_semuaCustomer);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Gagal memuat data customer: " + ex.Message, "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //try
+            //{
+            //    _semuaCustomer = CustomerContext.GetAllCustomers();
+            //    TampilkanGrid(_semuaCustomer);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Gagal memuat data customer: " + ex.Message, "Error",
+            //        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         private void TampilkanGrid(List<Customer> list)

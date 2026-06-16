@@ -18,7 +18,6 @@ namespace Sistem_Toko
         public int JumlahBeli { get; private set; }
 
         public UC_ProdukKeranjang(FormKeranjang halamanKeranjang, FormKasir formInduk, Produk produk, int qty)
-        public UC_ProdukKeranjang(FormKeranjang halamanKeranjang, FormKasir formInduk, Produk produk, int qty)
         {
             InitializeComponent();
             this._halamanKeranjang = halamanKeranjang;
@@ -31,7 +30,7 @@ namespace Sistem_Toko
             NumQty.Value = qty;
 
             // Calculate subtotal
-            HitungSubtotal();
+            //HitungSubtotal();
 
             try
             {

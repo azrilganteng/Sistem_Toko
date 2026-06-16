@@ -1,6 +1,10 @@
+using Npgsql;
+using Sistem_Toko.Helpers;
 using Sistem_Toko.Model;
+using System;
 using System.Collections.Generic;
-
+using System.Data;
+using System.Text;
 namespace Sistem_Toko.Controller
 {
     public class KurirController
@@ -34,8 +38,8 @@ namespace Sistem_Toko.Controller
             }
 
         }
-            return KurirContext.GetKurirReady();
-        }
+          
+  
 
         public List<Pengiriman> GetAllPengiriman()
         {
