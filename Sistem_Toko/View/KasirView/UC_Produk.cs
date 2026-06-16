@@ -41,23 +41,35 @@ namespace Sistem_Toko
                 else
                 {
                     Gambar.Image = null;
+                    Gambar.BackColor = Color.LightGray;
                 }
             }
-            catch (ArgumentException)
+            catch
             {
                 Gambar.Image = null;
+                Gambar.BackColor = Color.LightGray;
             }
 
             LblProduk.Text = nama;
-            LblHarga.Text = "Rp. " + harga.ToString("N0");
-            LblStok.Text = "Stok: " + stok.ToString();
+            LblHarga.Text = "Rp " + harga.ToString("N0");
+            LblStok.Text = stok > 0 ? $"Stok: {stok}" : "Stok Habis";
+
+            // Disable buttons if out of stock
+            if (stok <= 0)
+            {
+                KeranjangBtn.Enabled = false;
+                KeranjangBtn.BackColor = Color.Gray;
+                BuyNowBtn.Enabled = false;
+                BuyNowBtn.BackColor = Color.Gray;
+                LblStok.ForeColor = Color.Crimson;
+                LblStok.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            }
         }
 
         private void KeranjangBtn_Click(object sender, EventArgs e)
         {
             if (_Parent != null && this.ProdukData != null)
             {
-
                 _Parent.Keranjang(this.ProdukData);
                 MessageBox.Show($"{this.ProdukData.NamaProduk} berhasil dimasukkan ke keranjang!", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -65,7 +77,10 @@ namespace Sistem_Toko
 
         private void BuyNowBtn_Click(object sender, EventArgs e)
         {
+            if (_Parent == null || this.ProdukData == null) return;
 
+            _Parent.Keranjang(this.ProdukData);
+            _Parent.BukaKeranjang();
         }
     }
 }

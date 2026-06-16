@@ -111,6 +111,7 @@ namespace Sistem_Toko.View.KasirView
             // 
             // Kirmkan
             // 
+            Kirmkan.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             Kirmkan.BackColor = Color.SeaGreen;
             Kirmkan.Cursor = Cursors.Hand;
             Kirmkan.FlatAppearance.BorderSize = 0;
@@ -127,6 +128,7 @@ namespace Sistem_Toko.View.KasirView
             // 
             // groupBox1
             // 
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(CboKurir);
@@ -168,6 +170,7 @@ namespace Sistem_Toko.View.KasirView
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1067, 571);
+            WindowState = FormWindowState.Maximized;
             Controls.Add(groupBox1);
             Controls.Add(Kirmkan);
             Controls.Add(panel1);

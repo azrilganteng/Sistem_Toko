@@ -29,5 +29,17 @@ namespace Sistem_Toko.View.KurirView
             formPengiriman.Show();
             this.Hide(); 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Sistem_Toko.View.FormProfil halamanProfil = new Sistem_Toko.View.FormProfil();
+            halamanProfil.Owner = this;
+            halamanProfil.ShowDialog();
+            if (halamanProfil.IsLoggedOut)
+                this.Close();
+            else
+                this.Show();
+        }
     }
 }

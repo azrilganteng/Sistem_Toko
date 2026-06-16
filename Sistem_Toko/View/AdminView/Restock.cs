@@ -20,7 +20,7 @@ namespace Sistem_Toko.View.AdminView
             MuatDaftarProduk();
         }
 
-        private void MuatDaftarProduk()
+        public void MuatDaftarProduk()
         {
             FlowProduk.Controls.Clear();
             _kontrolProduk.Clear();
@@ -97,6 +97,12 @@ namespace Sistem_Toko.View.AdminView
         private void Btn_Kembali_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void Btn_Tambah_Produk_Click(object sender, EventArgs e)
+        {
+            TambahProduk formTambah = new TambahProduk(this);
+            formTambah.ShowDialog();
         }
     }
 }

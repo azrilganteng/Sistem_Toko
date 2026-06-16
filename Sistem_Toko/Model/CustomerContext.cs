@@ -1,12 +1,44 @@
 using Npgsql;
 using Sistem_Toko.Helpers;
 using System;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Sistem_Toko.Model
 {
     public class CustomerContext
     {
+        /// <summary>
+        /// Ambil semua customer dari database.
+        /// </summary>
+        public static List<Customer> GetAllCustomers()
+        {
+            List<Customer> list = new List<Customer>();
+
+            using (var conn = connectDB.GetConn())
+            {
+                if (conn.State == ConnectionState.Closed) conn.Open();
+
+                string sql = "SELECT id_customer, nama_customer, no_hp, alamat FROM customer ORDER BY nama_customer;";
+
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Customer
+                        {
+                            IdCustomer = Convert.ToInt32(reader["id_customer"]),
+                            Nama = reader["nama_customer"].ToString(),
+                            NoHp = reader["no_hp"]?.ToString() ?? "",
+                            Alamat = reader["alamat"]?.ToString() ?? ""
+                        });
+                    }
+                }
+            }
+            return list;
+        }
+
         /// <summary>
         /// Cari customer berdasarkan nama (case-insensitive exact match).
         /// Return Customer jika ditemukan, null jika tidak.

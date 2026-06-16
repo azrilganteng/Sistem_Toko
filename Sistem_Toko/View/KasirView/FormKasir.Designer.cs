@@ -2,15 +2,8 @@ namespace Sistem_Toko
 {
     partial class FormKasir
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,253 +15,239 @@ namespace Sistem_Toko
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKasir));
             components = new System.ComponentModel.Container();
+            panelHeader = new Panel();
             LblToko = new Label();
             LblKasir = new Label();
+            Btn_Profil = new Button();
+            SemuaBtn = new Button();
+            PupukBtn = new Button();
+            BibitBtn = new Button();
+            ObatBtn = new Button();
+            panelSidebar = new Panel();
             ListKeranjangBtn = new Button();
             StatusKirimBtn = new Button();
-            panel1 = new Panel();
-            Profil = new PictureBox();
-            ObatBtn = new Button();
-            BibitBtn = new Button();
-            PupukBtn = new Button();
-            panel2 = new Panel();
             FlpProduk = new FlowLayoutPanel();
-            imageList1 = new ImageList(components);
-            contextMenuStrip1 = new ContextMenuStrip(components);
-            profilToolStripMenuItem = new ToolStripMenuItem();
-            logoutToolStripMenuItem = new ToolStripMenuItem();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)Profil).BeginInit();
-            panel2.SuspendLayout();
-            contextMenuStrip1.SuspendLayout();
+            panelHeader.SuspendLayout();
+            panelSidebar.SuspendLayout();
             SuspendLayout();
+            // 
+            // panelHeader
+            // 
+            panelHeader.BackColor = Color.SeaGreen;
+            panelHeader.Controls.Add(Btn_Profil);
+            panelHeader.Controls.Add(SemuaBtn);
+            panelHeader.Controls.Add(ObatBtn);
+            panelHeader.Controls.Add(BibitBtn);
+            panelHeader.Controls.Add(PupukBtn);
+            panelHeader.Controls.Add(LblToko);
+            panelHeader.Controls.Add(LblKasir);
+            panelHeader.Dock = DockStyle.Top;
+            panelHeader.Location = new Point(0, 0);
+            panelHeader.Name = "panelHeader";
+            panelHeader.Size = new Size(1168, 140);
+            panelHeader.TabIndex = 0;
             // 
             // LblToko
             // 
             LblToko.AutoSize = true;
-            LblToko.Font = new Font("Book Antiqua", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            LblToko.BackColor = Color.Transparent;
+            LblToko.Font = new Font("Book Antiqua", 36F, FontStyle.Bold);
+            LblToko.ForeColor = Color.White;
             LblToko.Location = new Point(41, 9);
             LblToko.Name = "LblToko";
-            LblToko.Size = new Size(353, 73);
+            LblToko.Size = new Size(490, 73);
             LblToko.TabIndex = 0;
-            LblToko.Text = "Nama Toko";
+            LblToko.Text = "Toko Taniku";
             // 
             // LblKasir
             // 
             LblKasir.AutoSize = true;
-            LblKasir.Font = new Font("Book Antiqua", 18F);
-            LblKasir.Location = new Point(54, 88);
+            LblKasir.BackColor = Color.Transparent;
+            LblKasir.Font = new Font("Book Antiqua", 14F);
+            LblKasir.ForeColor = Color.White;
+            LblKasir.Location = new Point(48, 85);
             LblKasir.Name = "LblKasir";
-            LblKasir.Size = new Size(157, 37);
+            LblKasir.Size = new Size(157, 29);
             LblKasir.TabIndex = 1;
             LblKasir.Text = "User Notif";
             // 
+            // Btn_Profil
+            // 
+            Btn_Profil.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            Btn_Profil.BackColor = Color.White;
+            Btn_Profil.BackgroundImageLayout = ImageLayout.Zoom;
+            Btn_Profil.Cursor = Cursors.Hand;
+            Btn_Profil.FlatStyle = FlatStyle.Flat;
+            Btn_Profil.FlatAppearance.BorderColor = Color.SeaGreen;
+            Btn_Profil.FlatAppearance.BorderSize = 2;
+            Btn_Profil.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            Btn_Profil.ForeColor = Color.SeaGreen;
+            Btn_Profil.Location = new Point(1080, 15);
+            Btn_Profil.Name = "Btn_Profil";
+            Btn_Profil.Size = new Size(70, 70);
+            Btn_Profil.TabIndex = 6;
+            Btn_Profil.Text = "Profil";
+            Btn_Profil.TextImageRelation = TextImageRelation.ImageAboveText;
+            Btn_Profil.ImageAlign = ContentAlignment.MiddleCenter;
+            Btn_Profil.UseVisualStyleBackColor = false;
+            Btn_Profil.Click += Profil_Click;
+            // 
+            // SemuaBtn
+            // 
+            SemuaBtn.BackColor = Color.DarkSeaGreen;
+            SemuaBtn.Cursor = Cursors.Hand;
+            SemuaBtn.FlatStyle = FlatStyle.Flat;
+            SemuaBtn.FlatAppearance.BorderSize = 0;
+            SemuaBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            SemuaBtn.ForeColor = Color.White;
+            SemuaBtn.Location = new Point(590, 95);
+            SemuaBtn.Name = "SemuaBtn";
+            SemuaBtn.Size = new Size(90, 38);
+            SemuaBtn.TabIndex = 2;
+            SemuaBtn.Text = "Semua";
+            SemuaBtn.UseVisualStyleBackColor = false;
+            SemuaBtn.Click += SemuaBtn_Click;
+            // 
+            // PupukBtn
+            // 
+            PupukBtn.BackColor = Color.DarkSeaGreen;
+            PupukBtn.Cursor = Cursors.Hand;
+            PupukBtn.FlatStyle = FlatStyle.Flat;
+            PupukBtn.FlatAppearance.BorderSize = 0;
+            PupukBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            PupukBtn.ForeColor = Color.White;
+            PupukBtn.Location = new Point(695, 95);
+            PupukBtn.Name = "PupukBtn";
+            PupukBtn.Size = new Size(90, 38);
+            PupukBtn.TabIndex = 3;
+            PupukBtn.Text = "Pupuk";
+            PupukBtn.UseVisualStyleBackColor = false;
+            PupukBtn.Click += PupukBtn_Click;
+            // 
+            // BibitBtn
+            // 
+            BibitBtn.BackColor = Color.DarkSeaGreen;
+            BibitBtn.Cursor = Cursors.Hand;
+            BibitBtn.FlatStyle = FlatStyle.Flat;
+            BibitBtn.FlatAppearance.BorderSize = 0;
+            BibitBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            BibitBtn.ForeColor = Color.White;
+            BibitBtn.Location = new Point(800, 95);
+            BibitBtn.Name = "BibitBtn";
+            BibitBtn.Size = new Size(90, 38);
+            BibitBtn.TabIndex = 4;
+            BibitBtn.Text = "Bibit";
+            BibitBtn.UseVisualStyleBackColor = false;
+            BibitBtn.Click += BibitBtn_Click;
+            // 
+            // ObatBtn
+            // 
+            ObatBtn.BackColor = Color.DarkSeaGreen;
+            ObatBtn.Cursor = Cursors.Hand;
+            ObatBtn.FlatStyle = FlatStyle.Flat;
+            ObatBtn.FlatAppearance.BorderSize = 0;
+            ObatBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            ObatBtn.ForeColor = Color.White;
+            ObatBtn.Location = new Point(905, 95);
+            ObatBtn.Name = "ObatBtn";
+            ObatBtn.Size = new Size(90, 38);
+            ObatBtn.TabIndex = 5;
+            ObatBtn.Text = "Obat";
+            ObatBtn.UseVisualStyleBackColor = false;
+            ObatBtn.Click += ObatBtn_Click;
+            // 
+            // panelSidebar
+            // 
+            panelSidebar.BackColor = Color.SeaGreen;
+            panelSidebar.Controls.Add(ListKeranjangBtn);
+            panelSidebar.Controls.Add(StatusKirimBtn);
+            panelSidebar.Dock = DockStyle.Left;
+            panelSidebar.Location = new Point(0, 140);
+            panelSidebar.Name = "panelSidebar";
+            panelSidebar.Padding = new Padding(15, 20, 15, 20);
+            panelSidebar.Size = new Size(262, 446);
+            panelSidebar.TabIndex = 1;
+            // 
             // ListKeranjangBtn
             // 
-            ListKeranjangBtn.BackColor = Color.Transparent;
-            //ListKeranjangBtn.BackgroundImage = (Image)resources.GetObject("ListKeranjangBtn.BackgroundImage");
-            ListKeranjangBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            ListKeranjangBtn.BackColor = Color.MediumSeaGreen;
             ListKeranjangBtn.Cursor = Cursors.Hand;
             ListKeranjangBtn.FlatStyle = FlatStyle.Flat;
+            ListKeranjangBtn.FlatAppearance.BorderSize = 0;
             ListKeranjangBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             ListKeranjangBtn.ForeColor = Color.White;
-            ListKeranjangBtn.Location = new Point(12, 51);
+            ListKeranjangBtn.Location = new Point(15, 25);
             ListKeranjangBtn.Name = "ListKeranjangBtn";
-            ListKeranjangBtn.Size = new Size(221, 67);
-            ListKeranjangBtn.TabIndex = 2;
+            ListKeranjangBtn.Size = new Size(232, 52);
+            ListKeranjangBtn.TabIndex = 0;
             ListKeranjangBtn.Text = "Keranjang";
             ListKeranjangBtn.UseVisualStyleBackColor = false;
             ListKeranjangBtn.Click += ListKeranjangBtn_Click;
             // 
             // StatusKirimBtn
             // 
-            StatusKirimBtn.BackColor = Color.Transparent;
-            //StatusKirimBtn.BackgroundImage = (Image)resources.GetObject("StatusKirimBtn.BackgroundImage");
-            StatusKirimBtn.BackgroundImageLayout = ImageLayout.Stretch;
+            StatusKirimBtn.BackColor = Color.MediumSeaGreen;
             StatusKirimBtn.Cursor = Cursors.Hand;
             StatusKirimBtn.FlatStyle = FlatStyle.Flat;
+            StatusKirimBtn.FlatAppearance.BorderSize = 0;
             StatusKirimBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             StatusKirimBtn.ForeColor = Color.White;
-            StatusKirimBtn.Location = new Point(12, 146);
+            StatusKirimBtn.Location = new Point(15, 95);
             StatusKirimBtn.Name = "StatusKirimBtn";
-            StatusKirimBtn.Size = new Size(221, 99);
-            StatusKirimBtn.TabIndex = 3;
+            StatusKirimBtn.Size = new Size(232, 52);
+            StatusKirimBtn.TabIndex = 1;
             StatusKirimBtn.Text = "Status Pengiriman";
             StatusKirimBtn.UseVisualStyleBackColor = false;
             StatusKirimBtn.Click += StatusKirimBtn_Click_1;
             // 
-            // panel1
-            // 
-            panel1.BackColor = Color.SeaGreen;
-            panel1.Controls.Add(Profil);
-            panel1.Controls.Add(ObatBtn);
-            panel1.Controls.Add(BibitBtn);
-            panel1.Controls.Add(PupukBtn);
-            panel1.Controls.Add(LblToko);
-            panel1.Controls.Add(LblKasir);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1067, 125);
-            panel1.TabIndex = 4;
-            // 
-            // Profil
-            // 
-            Profil.BackColor = Color.Transparent;
-            //Profil.BackgroundImage = (Image)resources.GetObject("Profil.BackgroundImage");
-            Profil.BackgroundImageLayout = ImageLayout.Stretch;
-            Profil.Location = new Point(989, 0);
-            Profil.Name = "Profil";
-            Profil.Size = new Size(75, 75);
-            Profil.TabIndex = 5;
-            Profil.TabStop = false;
-            Profil.Click += Profil_Click;
-            // 
-            // ObatBtn
-            // 
-            ObatBtn.BackColor = Color.YellowGreen;
-            ObatBtn.BackgroundImageLayout = ImageLayout.Stretch;
-            ObatBtn.Cursor = Cursors.Hand;
-            ObatBtn.FlatStyle = FlatStyle.Flat;
-            ObatBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            ObatBtn.ForeColor = Color.White;
-            ObatBtn.Location = new Point(849, 82);
-            ObatBtn.Name = "ObatBtn";
-            ObatBtn.Size = new Size(95, 40);
-            ObatBtn.TabIndex = 4;
-            ObatBtn.Text = "Obat";
-            ObatBtn.UseVisualStyleBackColor = false;
-            ObatBtn.Click += ObatBtn_Click;
-            // 
-            // BibitBtn
-            // 
-            BibitBtn.BackColor = Color.YellowGreen;
-            BibitBtn.BackgroundImageLayout = ImageLayout.Stretch;
-            BibitBtn.Cursor = Cursors.Hand;
-            BibitBtn.FlatStyle = FlatStyle.Flat;
-            BibitBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            BibitBtn.ForeColor = Color.White;
-            BibitBtn.Location = new Point(720, 79);
-            BibitBtn.Name = "BibitBtn";
-            BibitBtn.Size = new Size(93, 40);
-            BibitBtn.TabIndex = 3;
-            BibitBtn.Text = "Bibit";
-            BibitBtn.UseVisualStyleBackColor = false;
-            BibitBtn.Click += BibitBtn_Click;
-            // 
-            // PupukBtn
-            // 
-            PupukBtn.BackColor = Color.YellowGreen;
-            PupukBtn.BackgroundImageLayout = ImageLayout.Stretch;
-            PupukBtn.Cursor = Cursors.Hand;
-            PupukBtn.FlatStyle = FlatStyle.Flat;
-            PupukBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            PupukBtn.ForeColor = Color.White;
-            PupukBtn.Location = new Point(590, 79);
-            PupukBtn.Name = "PupukBtn";
-            PupukBtn.Size = new Size(93, 40);
-            PupukBtn.TabIndex = 2;
-            PupukBtn.Text = "Pupuk";
-            PupukBtn.UseVisualStyleBackColor = false;
-            PupukBtn.Click += PupukBtn_Click;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.Transparent;
-            panel2.Controls.Add(ListKeranjangBtn);
-            panel2.Controls.Add(StatusKirimBtn);
-            panel2.Dock = DockStyle.Left;
-            panel2.Location = new Point(0, 125);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(250, 446);
-            panel2.TabIndex = 5;
-            // 
             // FlpProduk
             // 
             FlpProduk.AutoScroll = true;
-            FlpProduk.BackColor = Color.Transparent;
+            FlpProduk.BackColor = Color.WhiteSmoke;
             FlpProduk.Dock = DockStyle.Fill;
-            FlpProduk.Location = new Point(250, 125);
+            FlpProduk.Location = new Point(262, 140);
             FlpProduk.Name = "FlpProduk";
-            FlpProduk.Size = new Size(817, 446);
-            FlpProduk.TabIndex = 6;
-            // 
-            // imageList1
-            // 
-            imageList1.ColorDepth = ColorDepth.Depth32Bit;
-            imageList1.ImageSize = new Size(16, 16);
-            imageList1.TransparentColor = Color.Transparent;
-            // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.ImageScalingSize = new Size(20, 20);
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { profilToolStripMenuItem, logoutToolStripMenuItem });
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(126, 52);
-            // 
-            // profilToolStripMenuItem
-            // 
-            profilToolStripMenuItem.Name = "profilToolStripMenuItem";
-            profilToolStripMenuItem.Size = new Size(125, 24);
-            profilToolStripMenuItem.Text = "Profil";
-            profilToolStripMenuItem.Click += profilToolStripMenuItem_Click;
-            // 
-            // logoutToolStripMenuItem
-            // 
-            logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            logoutToolStripMenuItem.Size = new Size(125, 24);
-            logoutToolStripMenuItem.Text = "Logout";
-            logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
+            FlpProduk.Padding = new Padding(10);
+            FlpProduk.Size = new Size(906, 446);
+            FlpProduk.TabIndex = 2;
             // 
             // FormKasir
             // 
             AutoScaleDimensions = new SizeF(9F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
-            BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1067, 571);
+            ClientSize = new Size(1168, 586);
+            WindowState = FormWindowState.Maximized;
             Controls.Add(FlpProduk);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
+            Controls.Add(panelSidebar);
+            Controls.Add(panelHeader);
             Font = new Font("Segoe UI", 10F);
             Name = "FormKasir";
-            Text = "FormKasir";
+            Text = "Kasir - Toko Taniku";
             FormClosed += FormKasir_FormClosed;
             Load += FormKasir_Load;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)Profil).EndInit();
-            panel2.ResumeLayout(false);
-            contextMenuStrip1.ResumeLayout(false);
+            panelHeader.ResumeLayout(false);
+            panelHeader.PerformLayout();
+            panelSidebar.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
+        private Panel panelHeader;
         private Label LblToko;
         private Label LblKasir;
+        private Button Btn_Profil;
+        private Button SemuaBtn;
+        private Button PupukBtn;
+        private Button BibitBtn;
+        private Button ObatBtn;
+        private Panel panelSidebar;
         private Button ListKeranjangBtn;
         private Button StatusKirimBtn;
-        private Panel panel1;
-        private Panel panel2;
         private FlowLayoutPanel FlpProduk;
-        private ImageList imageList1;
-        private Button ObatBtn;
-        private Button BibitBtn;
-        private Button PupukBtn;
-        private PictureBox Profil;
-        private ContextMenuStrip contextMenuStrip1;
-        private ToolStripMenuItem profilToolStripMenuItem;
-        private ToolStripMenuItem logoutToolStripMenuItem;
     }
 }
-
-

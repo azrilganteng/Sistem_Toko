@@ -1,5 +1,6 @@
 using Npgsql;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using Sistem_Toko.Helpers;
 
@@ -15,7 +16,7 @@ namespace Sistem_Toko.Model
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
                 string sql = @"SELECT * FROM v_data_kurir
-                               WHERE username = @u AND password = @p;";
+                               WHERE username = @username AND password = @password;";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
@@ -34,6 +35,7 @@ namespace Sistem_Toko.Model
                             SessionUser.Alamat = reader["alamat"].ToString();
                             SessionUser.Role = "Kurir";
                             SessionUser.IdRole = 3;
+                            try { SessionUser.NoHp = reader["no_hp"].ToString(); } catch { }
 
                             return new Kurir(
                                 SessionUser.Id,
@@ -51,6 +53,10 @@ namespace Sistem_Toko.Model
 
         public static bool UpdateStatusKeDatabase(int idPengiriman, string statusBaru)
         {
+            // Convert string status to boolean: "Selesai" = true, "Proses" = false
+            bool statusBool = statusBaru.Equals("Selesai", StringComparison.OrdinalIgnoreCase)
+                           || statusBaru.Equals("True", StringComparison.OrdinalIgnoreCase);
+
             using (var conn = connectDB.GetConn())
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
@@ -61,13 +67,38 @@ namespace Sistem_Toko.Model
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("status", statusBaru);
+                    cmd.Parameters.AddWithValue("status", statusBool);
                     cmd.Parameters.AddWithValue("id", idPengiriman);
 
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
         }
-       
+
+        public static List<Kurir> GetKurirReady()
+        {
+            List<Kurir> list = new List<Kurir>();
+            using (var conn = connectDB.GetConn())
+            {
+                if (conn.State == ConnectionState.Closed) conn.Open();
+
+                string sql = "SELECT * FROM view_kurir_ready;";
+                using (var cmd = new NpgsqlCommand(sql, conn))
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Kurir(
+                            Convert.ToInt32(reader["id_user"]),
+                            reader["nama"].ToString(),
+                            "",
+                            "",
+                            true
+                        ));
+                    }
+                }
+            }
+            return list;
+        }
     }
 }

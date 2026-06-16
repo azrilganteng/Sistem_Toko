@@ -224,6 +224,7 @@ namespace Sistem_Toko
             // 
             // KonfirmBtn
             // 
+            KonfirmBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             KonfirmBtn.BackColor = Color.SeaGreen;
             KonfirmBtn.Cursor = Cursors.Hand;
             KonfirmBtn.FlatAppearance.BorderSize = 0;
@@ -244,6 +245,7 @@ namespace Sistem_Toko
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1067, 571);
+            WindowState = FormWindowState.Maximized;
             Controls.Add(panelContent);
             Controls.Add(panelHeader);
             Font = new Font("Segoe UI", 10F);

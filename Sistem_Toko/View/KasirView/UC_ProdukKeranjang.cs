@@ -17,7 +17,7 @@ namespace Sistem_Toko
         public Produk ProdukItem { get; private set; }
         public int JumlahBeli { get; private set; }
 
-        public UC_ProdukKeranjang(FormKeranjang halamanKeranjang,FormKasir formInduk, Produk produk, int qty)
+        public UC_ProdukKeranjang(FormKeranjang halamanKeranjang, FormKasir formInduk, Produk produk, int qty)
         {
             InitializeComponent();
             this._halamanKeranjang = halamanKeranjang;
@@ -25,10 +25,13 @@ namespace Sistem_Toko
             this.ProdukItem = produk;
             this.JumlahBeli = qty;
 
-
             ItemKeranjang.Text = produk.NamaProduk;
-            HargaKeranjang.Text = "Harga Rp. " + produk.Harga.ToString("N0");
-            this.lblQty.Text = qty.ToString();
+            HargaKeranjang.Text = "Rp " + produk.Harga.ToString("N0");
+            NumQty.Value = qty;
+
+            // Calculate subtotal
+            HitungSubtotal();
+
             try
             {
                 if (produk.Gambar != null && produk.Gambar.Length > 0)
@@ -49,11 +52,25 @@ namespace Sistem_Toko
             }
         }
 
-        private void PlusQty_Click(object sender, EventArgs e)
+        private void HitungSubtotal()
+        {
+            long subtotal = (long)ProdukItem.Harga * (int)NumQty.Value;
+            LblSubtotal.Text = "Rp " + subtotal.ToString("N0");
+        }
+
+        private void UpdateBtn_Click(object sender, EventArgs e)
         {
             if (_halamanKeranjang != null && this.ProdukItem != null)
-            { 
-                _halamanKeranjang.TmbhQty(this.ProdukItem.NamaProduk);
+            {
+                int newQty = (int)NumQty.Value;
+                if (newQty <= 0)
+                {
+                    _halamanKeranjang.HapusItem(this.ProdukItem.NamaProduk);
+                }
+                else
+                {
+                    _halamanKeranjang.UbahQty(this.ProdukItem.NamaProduk, newQty);
+                }
             }
         }
 

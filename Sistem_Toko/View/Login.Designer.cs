@@ -29,6 +29,7 @@ namespace Sistem_Toko
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
+            TogglePasswordBtn = new Button();
             groupBox1 = new GroupBox();
             button1 = new Button();
             label3 = new Label();
@@ -41,10 +42,11 @@ namespace Sistem_Toko
             // 
             // groupBox1
             // 
-            groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            groupBox1.Anchor = AnchorStyles.None;
             groupBox1.BackColor = Color.Transparent;
             groupBox1.BackgroundImage = (Image)resources.GetObject("groupBox1.BackgroundImage");
             groupBox1.BackgroundImageLayout = ImageLayout.Stretch;
+            groupBox1.Controls.Add(TogglePasswordBtn);
             groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
@@ -59,7 +61,6 @@ namespace Sistem_Toko
             // 
             // button1
             // 
-            button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             button1.BackColor = Color.SeaGreen;
             button1.BackgroundImage = (Image)resources.GetObject("button1.BackgroundImage");
             button1.BackgroundImageLayout = ImageLayout.Stretch;
@@ -77,7 +78,6 @@ namespace Sistem_Toko
             // 
             // label3
             // 
-            label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -91,7 +91,6 @@ namespace Sistem_Toko
             // 
             // label2
             // 
-            label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -105,15 +104,30 @@ namespace Sistem_Toko
             // 
             // PasswordBox
             // 
-            PasswordBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             PasswordBox.Location = new Point(149, 185);
             PasswordBox.Name = "PasswordBox";
-            PasswordBox.Size = new Size(268, 30);
+            PasswordBox.Size = new Size(238, 30);
             PasswordBox.TabIndex = 8;
+            PasswordBox.UseSystemPasswordChar = true;
+            // 
+            // TogglePasswordBtn
+            // 
+            TogglePasswordBtn.BackColor = Color.White;
+            TogglePasswordBtn.Cursor = Cursors.Hand;
+            TogglePasswordBtn.FlatAppearance.BorderSize = 0;
+            TogglePasswordBtn.FlatStyle = FlatStyle.Flat;
+            TogglePasswordBtn.Font = new Font("Segoe MDL2 Assets", 12F);
+            TogglePasswordBtn.ForeColor = Color.Gray;
+            TogglePasswordBtn.Location = new Point(387, 185);
+            TogglePasswordBtn.Name = "TogglePasswordBtn";
+            TogglePasswordBtn.Size = new Size(30, 30);
+            TogglePasswordBtn.TabIndex = 11;
+            TogglePasswordBtn.Text = "\uED1A";
+            TogglePasswordBtn.UseVisualStyleBackColor = false;
+            TogglePasswordBtn.Click += TogglePasswordBtn_Click;
             // 
             // UsernameBox
             // 
-            UsernameBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             UsernameBox.Location = new Point(149, 120);
             UsernameBox.Name = "UsernameBox";
             UsernameBox.Size = new Size(268, 30);
@@ -121,7 +135,6 @@ namespace Sistem_Toko
             // 
             // LoginText
             // 
-            LoginText.Anchor = System.Windows.Forms.AnchorStyles.None;
             LoginText.AutoSize = true;
             LoginText.BackColor = Color.Transparent;
             LoginText.Font = new Font("MS Gothic", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -160,9 +173,6 @@ namespace Sistem_Toko
         private Label label3;
         private Label label2;
         private Button button1;
+        private Button TogglePasswordBtn;
     }
 }
-
-
-
-

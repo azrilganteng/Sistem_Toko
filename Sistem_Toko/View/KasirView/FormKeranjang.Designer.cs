@@ -31,9 +31,6 @@ namespace Sistem_Toko
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormKeranjang));
             panel1 = new Panel();
             BackBtn = new Button();
-            ObatBtn = new Button();
-            BibitBtn = new Button();
-            PupukBtn = new Button();
             LblToko = new Label();
             LblKasir = new Label();
             panel2 = new Panel();
@@ -46,9 +43,6 @@ namespace Sistem_Toko
             // panel1
             // 
             panel1.BackColor = Color.SeaGreen;
-            panel1.Controls.Add(ObatBtn);
-            panel1.Controls.Add(BibitBtn);
-            panel1.Controls.Add(PupukBtn);
             panel1.Controls.Add(LblToko);
             panel1.Controls.Add(LblKasir);
             panel1.Dock = DockStyle.Top;
@@ -68,51 +62,6 @@ namespace Sistem_Toko
             BackBtn.TabIndex = 5;
             BackBtn.UseVisualStyleBackColor = false;
             BackBtn.Click += BackBtn_Click;
-            // 
-            // ObatBtn
-            // 
-            ObatBtn.BackColor = Color.YellowGreen;
-            ObatBtn.BackgroundImageLayout = ImageLayout.Stretch;
-            ObatBtn.Cursor = Cursors.Hand;
-            ObatBtn.FlatStyle = FlatStyle.Flat;
-            ObatBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            ObatBtn.ForeColor = Color.White;
-            ObatBtn.Location = new Point(926, 77);
-            ObatBtn.Name = "ObatBtn";
-            ObatBtn.Size = new Size(93, 40);
-            ObatBtn.TabIndex = 4;
-            ObatBtn.Text = "Obat";
-            ObatBtn.UseVisualStyleBackColor = false;
-            // 
-            // BibitBtn
-            // 
-            BibitBtn.BackColor = Color.YellowGreen;
-            BibitBtn.BackgroundImageLayout = ImageLayout.Stretch;
-            BibitBtn.Cursor = Cursors.Hand;
-            BibitBtn.FlatStyle = FlatStyle.Flat;
-            BibitBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            BibitBtn.ForeColor = Color.White;
-            BibitBtn.Location = new Point(781, 77);
-            BibitBtn.Name = "BibitBtn";
-            BibitBtn.Size = new Size(93, 40);
-            BibitBtn.TabIndex = 3;
-            BibitBtn.Text = "Bibit";
-            BibitBtn.UseVisualStyleBackColor = false;
-            // 
-            // PupukBtn
-            // 
-            PupukBtn.BackColor = Color.YellowGreen;
-            PupukBtn.BackgroundImageLayout = ImageLayout.Stretch;
-            PupukBtn.Cursor = Cursors.Hand;
-            PupukBtn.FlatStyle = FlatStyle.Flat;
-            PupukBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            PupukBtn.ForeColor = Color.White;
-            PupukBtn.Location = new Point(633, 77);
-            PupukBtn.Name = "PupukBtn";
-            PupukBtn.Size = new Size(93, 40);
-            PupukBtn.TabIndex = 2;
-            PupukBtn.Text = "Pupuk";
-            PupukBtn.UseVisualStyleBackColor = false;
             // 
             // LblToko
             // 
@@ -147,6 +96,7 @@ namespace Sistem_Toko
             // 
             // BayarBtn
             // 
+            BayarBtn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             BayarBtn.BackColor = Color.SeaGreen;
             BayarBtn.BackgroundImageLayout = ImageLayout.Stretch;
             BayarBtn.Cursor = Cursors.Hand;
@@ -177,6 +127,7 @@ namespace Sistem_Toko
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(1067, 571);
+            WindowState = FormWindowState.Maximized;
             Controls.Add(FlpKeranjang);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -192,15 +143,12 @@ namespace Sistem_Toko
         #endregion
 
         private Panel panel1;
-        private Button ObatBtn;
-        private Button BibitBtn;
-        private Button PupukBtn;
+        private Button BackBtn;
         private Label LblToko;
         private Label LblKasir;
         private Panel panel2;
         private Button BayarBtn;
         private FlowLayoutPanel FlpKeranjang;
-        private Button BackBtn;
     }
 }
 

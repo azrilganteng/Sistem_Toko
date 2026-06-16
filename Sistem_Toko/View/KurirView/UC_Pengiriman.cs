@@ -25,11 +25,27 @@ namespace Sistem_Toko.View.KurirView
             };
 
             lblPesanan.Text = "Pesanan #" + idOrder;
-            lblAlamat.Text = alamat;
+            lblAlamat.Text = string.IsNullOrWhiteSpace(alamat) ? "Alamat tidak tersedia" : alamat;
+
+            // Set status badge color
+            if (statusPengiriman?.Equals("Selesai", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                lblStatus.Text = "Selesai";
+                lblStatus.BackColor = Color.SeaGreen;
+                SelesaiBtn.Enabled = false;
+                SelesaiBtn.BackColor = Color.Gray;
+            }
+            else
+            {
+                lblStatus.Text = "Proses";
+                lblStatus.BackColor = Color.DarkOrange;
+            }
 
             this.Click += new EventHandler(KartuPengiriman_Click);
             this.lblPesanan.Click += new EventHandler(KartuPengiriman_Click);
             this.lblAlamat.Click += new EventHandler(KartuPengiriman_Click);
+            this.lblStatus.Click += new EventHandler(KartuPengiriman_Click);
+            this.lblAlamatHeader.Click += new EventHandler(KartuPengiriman_Click);
         }
         private void UC_Pengiriman_Load(object sender, EventArgs e)
         {

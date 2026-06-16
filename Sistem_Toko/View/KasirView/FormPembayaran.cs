@@ -1,7 +1,6 @@
 using Sistem_Toko.View.KasirView;
 using Sistem_Toko.Model;
 using Sistem_Toko.Helpers;
-using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -135,26 +134,6 @@ namespace Sistem_Toko
             this.Close();
         }
 
-        private int SimpanDataPengiriman(NpgsqlConnection conn, NpgsqlTransaction transaction, int idKurir)
-        {
-            string sqlPengiriman = @"CALL p_simpan_pengiriman(@idKurir);";
-
-            using (var cmdKirim = new NpgsqlCommand(sqlPengiriman, conn, transaction))
-            {
-                cmdKirim.Parameters.AddWithValue("idKurir", idKurir);
-
-                cmdKirim.ExecuteNonQuery();
-            }
-
-            // Ambil id_pengiriman yang baru dibuat
-            string sqlGetId = "SELECT MAX(id_pengiriman) FROM pengiriman WHERE id_user = @idKurir;";
-            using (var cmdGet = new NpgsqlCommand(sqlGetId, conn, transaction))
-            {
-                cmdGet.Parameters.AddWithValue("idKurir", idKurir);
-                return Convert.ToInt32(cmdGet.ExecuteScalar());
-            }
-        }
-
         private bool UpdateStok(string metodeBayar, string metodeKirim, int idKurir, string alamat, int idCustomer)
         {
             if (_listBarang.Count == 0)
@@ -171,59 +150,13 @@ namespace Sistem_Toko
                 {
                     try
                     {
-                        int idOrderBaru = 0;
+                        int idKasirAktif = this._formKeranjang._formInduk._kasirActive.ID;
 
-                        string sqlOrder = "SELECT fn_buat_order_baru(@idUser, @metodeBayar, @metodeKirim);";
-                        using (var cmdOrder = new NpgsqlCommand(sqlOrder, conn, transaction))
-                        {
-                            int idKasirAktif = this._formKeranjang._formInduk._kasirActive.ID;
-                            cmdOrder.Parameters.AddWithValue("idUser", idKasirAktif);
-                            cmdOrder.Parameters.AddWithValue("metodeBayar", metodeBayar);
-                            cmdOrder.Parameters.AddWithValue("metodeKirim", metodeKirim);
+                        // 1 procedure call = Pengiriman + Order + Detail + Stok (ACID)
+                        int idOrderBaru = KasirContext.TransaksiPenjualan(
+                            conn, transaction, idKasirAktif, idCustomer,
+                            metodeBayar, idKurir, _listBarang);
 
-                            idOrderBaru = Convert.ToInt32(cmdOrder.ExecuteScalar());
-                        }
-
-                        // Set id_customer pada order
-                        if (idCustomer > 0)
-                        {
-                            string sqlSetCustomer = "UPDATE orders SET id_customer = @idCustomer WHERE id_order = @idOrder;";
-                            using (var cmdCust = new NpgsqlCommand(sqlSetCustomer, conn, transaction))
-                            {
-                                cmdCust.Parameters.AddWithValue("idCustomer", idCustomer);
-                                cmdCust.Parameters.AddWithValue("idOrder", idOrderBaru);
-                                cmdCust.ExecuteNonQuery();
-                            }
-                        }
-
-                        if (metodeKirim.Equals("Dikirim", StringComparison.OrdinalIgnoreCase) && idKurir > 0)
-                        {
-                            int idPengiriman = SimpanDataPengiriman(conn, transaction, idKurir);
-
-                            // Link order ke pengiriman via orders.id_pengiriman
-                            string sqlLink = "UPDATE orders SET id_pengiriman = @idPengiriman WHERE id_order = @idOrder;";
-                            using (var cmdLink = new NpgsqlCommand(sqlLink, conn, transaction))
-                            {
-                                cmdLink.Parameters.AddWithValue("idPengiriman", idPengiriman);
-                                cmdLink.Parameters.AddWithValue("idOrder", idOrderBaru);
-                                cmdLink.ExecuteNonQuery();
-                            }
-                        }
-
-                        foreach (var item in _listBarang)
-                        {
-                            string sqlDetail = "SELECT fn_tambah_detail_order(@idOrder, @idProduk, @jumlah, @harga);";
-                            using (var cmdDetail = new NpgsqlCommand(sqlDetail, conn, transaction))
-                            {
-                                decimal subTotalHarga = (decimal)(item.Qty * item.ProdukItem.Harga);
-                                cmdDetail.Parameters.AddWithValue("idOrder", idOrderBaru);
-                                cmdDetail.Parameters.AddWithValue("idProduk", item.ProdukItem.Id);
-                                cmdDetail.Parameters.AddWithValue("jumlah", item.Qty);
-                                cmdDetail.Parameters.AddWithValue("harga", subTotalHarga);
-
-                                cmdDetail.ExecuteScalar();
-                            }
-                        }
                         transaction.Commit();
                         return true;
                     }

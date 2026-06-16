@@ -2,15 +2,8 @@
 {
     partial class KurirForm
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,96 +15,102 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
-            panel2 = new Panel();
-            lblPengiriman = new Label();
-            panel3 = new Panel();
+            HeaderPanel = new Panel();
+            lblTitle = new Label();
+            BtnBack = new Button();
+            lblSubtitle = new Label();
             FlpPengiriman = new FlowLayoutPanel();
-            panel1.SuspendLayout();
-            panel3.SuspendLayout();
+            HeaderPanel.SuspendLayout();
             SuspendLayout();
             // 
-            // panel1
+            // HeaderPanel
             // 
-            panel1.Controls.Add(panel2);
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(250, 125);
-            panel1.TabIndex = 0;
+            HeaderPanel.BackColor = Color.SeaGreen;
+            HeaderPanel.Controls.Add(BtnBack);
+            HeaderPanel.Controls.Add(lblTitle);
+            HeaderPanel.Controls.Add(lblSubtitle);
+            HeaderPanel.Dock = DockStyle.Top;
+            HeaderPanel.Location = new Point(0, 0);
+            HeaderPanel.Name = "HeaderPanel";
+            HeaderPanel.Size = new Size(1100, 90);
+            HeaderPanel.TabIndex = 0;
             // 
-            // panel2
+            // BtnBack
             // 
-            panel2.Location = new Point(0, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(803, 452);
-            panel2.TabIndex = 0;
+            BtnBack.BackColor = Color.White;
+            BtnBack.Cursor = Cursors.Hand;
+            BtnBack.FlatAppearance.BorderSize = 0;
+            BtnBack.FlatStyle = FlatStyle.Flat;
+            BtnBack.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            BtnBack.ForeColor = Color.SeaGreen;
+            BtnBack.Location = new Point(20, 25);
+            BtnBack.Name = "BtnBack";
+            BtnBack.Size = new Size(40, 40);
+            BtnBack.TabIndex = 2;
+            BtnBack.Text = "\u2190";
+            BtnBack.UseVisualStyleBackColor = false;
+            BtnBack.Click += BtnBack_Click;
             // 
-            // lblPengiriman
+            // lblTitle
             // 
-            lblPengiriman.AutoSize = true;
-            lblPengiriman.BackColor = Color.White;
-            lblPengiriman.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblPengiriman.Location = new Point(91, 78);
-            lblPengiriman.Name = "lblPengiriman";
-            lblPengiriman.Size = new Size(119, 28);
-            lblPengiriman.TabIndex = 0;
-            lblPengiriman.Text = "Pengiriman";
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(75, 15);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(220, 41);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "Pengiriman";
             // 
-            // panel3
+            // lblSubtitle
             // 
-            panel3.Controls.Add(lblPengiriman);
-            panel3.Dock = DockStyle.Top;
-            panel3.Location = new Point(0, 0);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(1067, 125);
-            panel3.TabIndex = 1;
+            lblSubtitle.AutoSize = true;
+            lblSubtitle.Font = new Font("Segoe UI", 11F);
+            lblSubtitle.ForeColor = Color.FromArgb(200, 255, 255, 255);
+            lblSubtitle.Location = new Point(78, 52);
+            lblSubtitle.Name = "lblSubtitle";
+            lblSubtitle.Size = new Size(200, 25);
+            lblSubtitle.TabIndex = 1;
+            lblSubtitle.Text = "Daftar pengiriman aktif";
             // 
             // FlpPengiriman
             // 
+            FlpPengiriman.AutoScroll = true;
+            FlpPengiriman.BackColor = Color.WhiteSmoke;
             FlpPengiriman.Dock = DockStyle.Fill;
-            FlpPengiriman.Location = new Point(0, 125);
+            FlpPengiriman.FlowDirection = FlowDirection.TopDown;
+            FlpPengiriman.Location = new Point(0, 90);
             FlpPengiriman.Name = "FlpPengiriman";
-            FlpPengiriman.Size = new Size(1067, 446);
-            FlpPengiriman.TabIndex = 2;
+            FlpPengiriman.Padding = new Padding(20, 15, 20, 15);
+            FlpPengiriman.Size = new Size(1100, 480);
+            FlpPengiriman.TabIndex = 1;
+            FlpPengiriman.WrapContents = false;
             // 
             // KurirForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightGray;
-            ClientSize = new Size(1067, 571);
+            BackColor = Color.WhiteSmoke;
+            ClientSize = new Size(1100, 570);
             Controls.Add(FlpPengiriman);
-            Controls.Add(panel3);
-            Controls.Add(panel1);
+            Controls.Add(HeaderPanel);
             Name = "KurirForm";
-            Text = "Form1";
+            Text = "Pengiriman";
+            WindowState = FormWindowState.Maximized;
             Load += KurirForm_Load;
-            panel1.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
+            HeaderPanel.ResumeLayout(false);
+            HeaderPanel.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel panel1;
-        private Panel panel2;
-        private Label lblPengiriman;
-        private Panel panel3;
+        private Panel HeaderPanel;
+        private Label lblTitle;
+        private Label lblSubtitle;
+        private Button BtnBack;
         private FlowLayoutPanel FlpPengiriman;
     }
-
 }
-
-
-
-
-
-
-

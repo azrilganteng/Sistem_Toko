@@ -1,18 +1,10 @@
 ﻿using Sistem_Toko.Controller;
-using Sistem_Toko.Controller;
 using Sistem_Toko.Helpers;
-using Sistem_Toko.Model;
 using Sistem_Toko.Model;
 using Sistem_Toko.View.KurirView;
 using System;
-using System;
 using System.Collections.Generic;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.Windows.Forms;
 
 namespace Sistem_Toko.View.KurirView
@@ -66,6 +58,13 @@ namespace Sistem_Toko.View.KurirView
             {
                 MessageBox.Show("Gagal memperbarui status di database!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void BtnBack_Click(object sender, EventArgs e)
+        {
+            kurirDashboard dashboard = new kurirDashboard();
+            dashboard.Show();
+            this.Close();
         }
     }
 }

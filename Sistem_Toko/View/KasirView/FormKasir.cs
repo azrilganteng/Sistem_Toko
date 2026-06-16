@@ -75,7 +75,7 @@ namespace Sistem_Toko
             }
         }
 
-        private void ListKeranjangBtn_Click(object sender, EventArgs e)
+        public void BukaKeranjang()
         {
             var keranjang = _kasirActive.GetListKeranjang();
             if (keranjang.Count == 0)
@@ -84,12 +84,15 @@ namespace Sistem_Toko
                 return;
             }
             FormKeranjang halamanKeranjang = new FormKeranjang(this, keranjang);
-
             this.Hide();
             halamanKeranjang.ShowDialog();
-
             ShowProduk();
             this.Show();
+        }
+
+        private void ListKeranjangBtn_Click(object sender, EventArgs e)
+        {
+            BukaKeranjang();
         }
 
 
@@ -124,33 +127,14 @@ namespace Sistem_Toko
 
         private void Profil_Click(object sender, EventArgs e)
         {
-            contextMenuStrip1.Show(Profil, new Point(-90, Profil.Height));
-
-        }
-
-        private void profilToolStripMenuItem_Click(object sender, EventArgs e)
-        {
             this.Hide();
             Sistem_Toko.View.FormProfil halamanProfil = new Sistem_Toko.View.FormProfil();
+            halamanProfil.Owner = this;
             halamanProfil.ShowDialog();
-            this.Show();
-        }
-
-        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DialogResult dialog = MessageBox.Show("Apakah Anda yakin ingin logout?", "Konfirmasi Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (dialog == DialogResult.Yes)
-            {
-                SessionUser.Id = 0;
-                SessionUser.Nama = "";
-                SessionUser.Username = "";
-
-                Login halamanLogin = new Login();
-                halamanLogin.Show();
-
-                this.Hide();
-            }
+            if (halamanProfil.IsLoggedOut)
+                this.Close();
+            else
+                this.Show();
         }
 
         private void FormKasir_Load(object sender, EventArgs e)

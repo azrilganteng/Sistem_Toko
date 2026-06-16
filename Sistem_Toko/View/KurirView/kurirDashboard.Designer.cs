@@ -28,7 +28,6 @@ namespace Sistem_Toko.View.KurirView
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(kurirDashboard));
             label1 = new Label();
             lblSelamatDatang = new Label();
             button1 = new Button();
@@ -74,14 +73,23 @@ namespace Sistem_Toko.View.KurirView
             // button2
             // 
             button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button2.BackColor = Color.LightGray;
-            button2.BackgroundImage = (Image)resources.GetObject("button2.BackgroundImage");
+            button2.BackColor = Color.White;
             button2.BackgroundImageLayout = ImageLayout.Zoom;
-            button2.Location = new Point(874, 33);
+            button2.Cursor = Cursors.Hand;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.FlatAppearance.BorderColor = Color.SeaGreen;
+            button2.FlatAppearance.BorderSize = 2;
+            button2.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            button2.ForeColor = Color.SeaGreen;
+            button2.Location = new Point(900, 33);
             button2.Name = "button2";
-            button2.Size = new Size(150, 150);
+            button2.Size = new Size(70, 70);
             button2.TabIndex = 3;
+            button2.Text = "Profil";
+            button2.TextImageRelation = TextImageRelation.ImageAboveText;
+            button2.ImageAlign = ContentAlignment.MiddleCenter;
             button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
             // 
             // lblNamaKurir
             // 
@@ -99,6 +107,7 @@ namespace Sistem_Toko.View.KurirView
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightGray;
             ClientSize = new Size(1067, 571);
+            WindowState = FormWindowState.Maximized;
             Controls.Add(lblNamaKurir);
             Controls.Add(button2);
             Controls.Add(button1);
