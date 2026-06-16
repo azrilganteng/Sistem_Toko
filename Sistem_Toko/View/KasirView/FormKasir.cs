@@ -55,7 +55,7 @@ namespace Sistem_Toko
 
             foreach (var item in listProduk)
             {
-                UC_Produk ucProduk = new UC_Produk(this, item.Id, item.Gambar, item.NamaProduk, item.Harga, item.Stok);
+                UC_Produk ucProduk = new UC_Produk(this, item.Id, item.Gambar, item.NamaProduk, item.Harga, item.Stok,item.Deskripsi);
                 FlpProduk.Controls.Add(ucProduk);
             }
         }
@@ -112,12 +112,12 @@ namespace Sistem_Toko
 
         private void BibitBtn_Click(object sender, EventArgs e)
         {
-            ShowProduk(2);
+            ShowProduk(3);
         }
 
         private void ObatBtn_Click(object sender, EventArgs e)
         {
-            ShowProduk(3);
+            ShowProduk(2);
         }
 
         private void SemuaBtn_Click(object sender, EventArgs e)
@@ -135,11 +135,6 @@ namespace Sistem_Toko
                 this.Close();
             else
                 this.Show();
-        }
-
-        private void FormKasir_Load(object sender, EventArgs e)
-        {
-            
         }
     }
 }

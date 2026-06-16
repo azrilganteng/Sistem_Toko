@@ -18,6 +18,7 @@ namespace Sistem_Toko
         public int JumlahBeli { get; private set; }
 
         public UC_ProdukKeranjang(FormKeranjang halamanKeranjang, FormKasir formInduk, Produk produk, int qty)
+        public UC_ProdukKeranjang(FormKeranjang halamanKeranjang, FormKasir formInduk, Produk produk, int qty)
         {
             InitializeComponent();
             this._halamanKeranjang = halamanKeranjang;
@@ -34,31 +35,32 @@ namespace Sistem_Toko
 
             try
             {
-                if (produk.Gambar != null && produk.Gambar.Length > 0)
+                if (!string.IsNullOrEmpty(produk.Gambar))
                 {
-                    using (MemoryStream ms = new MemoryStream(produk.Gambar))
+                    string folderPath = Path.Combine(Application.StartupPath, "Images");
+                    string fullPath = Path.Combine(folderPath, produk.Gambar);
+
+                    if (File.Exists(fullPath))
                     {
-                        pictureBox1.Image = Image.FromStream(ms);
+                        pictureBox1.Image = Image.FromFile(fullPath);
+                    }
+                    else
+                    {
+                        pictureBox1.Image = null; 
                     }
                 }
                 else
                 {
-                    pictureBox1.Image = null;
+                    pictureBox1.Image = null; 
                 }
             }
             catch
             {
-                pictureBox1.Image = null;
+                pictureBox1.Image = null; 
             }
         }
 
-        private void HitungSubtotal()
-        {
-            long subtotal = (long)ProdukItem.Harga * (int)NumQty.Value;
-            LblSubtotal.Text = "Rp " + subtotal.ToString("N0");
-        }
-
-        private void UpdateBtn_Click(object sender, EventArgs e)
+        private void PlusQty_Click(object sender, EventArgs e)
         {
             if (_halamanKeranjang != null && this.ProdukItem != null)
             {

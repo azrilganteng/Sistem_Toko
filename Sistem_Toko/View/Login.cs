@@ -29,8 +29,6 @@ namespace Sistem_Toko
 
             AuthController auth = new AuthController();
 
-
-
             Kasir kasirAktif = auth.LoginKasir(user, pass);
 
             if (kasirAktif != null)

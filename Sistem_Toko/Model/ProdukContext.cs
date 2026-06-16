@@ -153,7 +153,7 @@ namespace Sistem_Toko.Model
                                 Stok = Convert.ToInt32(reader["stok"]),
                                 IdKategori = Convert.ToInt32(reader["id_kategori_produk"]),
                                 //Status = reader["status"].ToString(),
-                                Gambar = ParseGambar(reader["gambar"]),
+                                Gambar = reader["gambar"] != DBNull.Value ? (byte[])reader["gambar"] : null,
                                 Deskripsi = HasColumn(reader, "deskripsi") && reader["deskripsi"] != DBNull.Value
                                     ? reader["deskripsi"].ToString()
                                     : ""

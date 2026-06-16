@@ -12,7 +12,7 @@ namespace Sistem_Toko.View.KurirView
             InitializeComponent();
         }
 
-        private void kurirDashboard_Load(object sender, EventArgs e)
+        private void MuatDashboard(object sender, EventArgs e)
         {
             MuatInfoKurir();
         }

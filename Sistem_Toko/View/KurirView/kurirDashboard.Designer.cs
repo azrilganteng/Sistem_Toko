@@ -115,7 +115,7 @@ namespace Sistem_Toko.View.KurirView
             Controls.Add(label1);
             Name = "kurirDashboard";
             Text = "DashboardKurir";
-            Load += kurirDashboard_Load;
+            Load += MuatDashboard;
             ResumeLayout(false);
             PerformLayout();
         }
