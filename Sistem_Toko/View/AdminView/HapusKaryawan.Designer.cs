@@ -103,6 +103,7 @@ namespace Sistem_Toko.View.AdminView
             BackColor = Color.WhiteSmoke;
             BackgroundImage = Properties.Resources.background;
             ClientSize = new Size(435, 293);
+
             Controls.Add(Btn_Simpan);
             Controls.Add(TextBox_ID);
             Controls.Add(label1);

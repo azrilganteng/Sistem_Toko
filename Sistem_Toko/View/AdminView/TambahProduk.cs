@@ -10,12 +10,40 @@ namespace Sistem_Toko.View.AdminView
     {
         private Restock _parentForm;
         private string _selectedImagePath = "";
+        private System.Collections.Generic.List<(int Id, string Nama)> _supplierList = new();
 
         public TambahProduk(Restock parent)
         {
             InitializeComponent();
             _parentForm = parent;
             CmbKategori.SelectedIndex = 0;
+            MuatSupplier();
+        }
+
+        public void MuatSupplier()
+        {
+            try
+            {
+                _supplierList = ProdukContext.GetAllSupplier();
+                CmbSupplier.Items.Clear();
+                foreach (var s in _supplierList)
+                {
+                    CmbSupplier.Items.Add(s.Nama);
+                }
+                if (CmbSupplier.Items.Count > 0)
+                    CmbSupplier.SelectedIndex = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Gagal memuat data supplier: " + ex.Message, "Peringatan",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void BtnTambahSupplier_Click(object sender, EventArgs e)
+        {
+            FormTambahSupplier formTambahSupplier = new FormTambahSupplier(this);
+            formTambahSupplier.ShowDialog();
         }
 
         private void BtnBrowse_Click(object sender, EventArgs e)
@@ -43,7 +71,6 @@ namespace Sistem_Toko.View.AdminView
 
         private void BtnSimpan_Click(object sender, EventArgs e)
         {
-            // Validation
             if (string.IsNullOrWhiteSpace(TxtNama.Text))
             {
                 MessageBox.Show("Nama produk wajib diisi!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -58,10 +85,10 @@ namespace Sistem_Toko.View.AdminView
                 return;
             }
 
-            if (!int.TryParse(TxtStok.Text, out int stok) || stok < 0)
+            if (CmbSupplier.SelectedIndex < 0)
             {
-                MessageBox.Show("Stok harus berupa angka non-negatif!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                TxtStok.Focus();
+                MessageBox.Show("Supplier wajib dipilih!", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                CmbSupplier.Focus();
                 return;
             }
 
@@ -71,22 +98,24 @@ namespace Sistem_Toko.View.AdminView
                 return;
             }
 
-            // Map category index to id_kategori_produk: Pupuk=1, Obat=2, Bibit=3
             int idKategori = CmbKategori.SelectedIndex + 1;
+            int idSupplier = _supplierList[CmbSupplier.SelectedIndex].Id;
 
             try
             {
-                ProdukContext.TambahProduk(
+                int idProdukBaru = ProdukContext.TambahProduk(
                     TxtNama.Text.Trim(),
                     harga,
-                    stok,
                     TxtDeskripsi.Text.Trim(),
                     idKategori,
                     _selectedImagePath
                 );
 
-                MessageBox.Show("Produk berhasil ditambahkan!", "Sukses",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Tambahkan relasi supplier_produk
+                ProdukContext.TambahSupplierProduk(idSupplier, idProdukBaru);
+
+                MessageBox.Show("Produk berhasil ditambahkan!\nStok awal = 0, silakan lakukan restock untuk menambah stok.",
+                    "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 _parentForm.MuatDaftarProduk();
                 this.Close();

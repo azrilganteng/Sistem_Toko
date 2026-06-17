@@ -18,8 +18,8 @@
         private void InitializeComponent()
         {
             HeaderPanel = new Panel();
-            lblTitle = new Label();
             BtnBack = new Button();
+            lblTitle = new Label();
             lblSubtitle = new Label();
             FlpPengiriman = new FlowLayoutPanel();
             HeaderPanel.SuspendLayout();
@@ -49,31 +49,31 @@
             BtnBack.Name = "BtnBack";
             BtnBack.Size = new Size(40, 40);
             BtnBack.TabIndex = 2;
-            BtnBack.Text = "\u2190";
+            BtnBack.Text = "←";
             BtnBack.UseVisualStyleBackColor = false;
             BtnBack.Click += BtnBack_Click;
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
+            lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             lblTitle.ForeColor = Color.White;
             lblTitle.Location = new Point(75, 15);
             lblTitle.Name = "lblTitle";
-            lblTitle.BackColor = System.Drawing.Color.Transparent;
-            lblTitle.Size = new Size(220, 41);
+            lblTitle.Size = new Size(179, 41);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Pengiriman";
             // 
             // lblSubtitle
             // 
             lblSubtitle.AutoSize = true;
+            lblSubtitle.BackColor = Color.Transparent;
             lblSubtitle.Font = new Font("Segoe UI", 11F);
             lblSubtitle.ForeColor = Color.FromArgb(200, 255, 255, 255);
             lblSubtitle.Location = new Point(78, 52);
             lblSubtitle.Name = "lblSubtitle";
-            lblSubtitle.BackColor = System.Drawing.Color.Transparent;
-            lblSubtitle.Size = new Size(200, 25);
+            lblSubtitle.Size = new Size(207, 25);
             lblSubtitle.TabIndex = 1;
             lblSubtitle.Text = "Daftar pengiriman aktif";
             // 
@@ -81,6 +81,8 @@
             // 
             FlpPengiriman.AutoScroll = true;
             FlpPengiriman.BackColor = Color.WhiteSmoke;
+            FlpPengiriman.BackgroundImage = Properties.Resources.background;
+            FlpPengiriman.BackgroundImageLayout = ImageLayout.Stretch;
             FlpPengiriman.Dock = DockStyle.Fill;
             FlpPengiriman.FlowDirection = FlowDirection.TopDown;
             FlpPengiriman.Location = new Point(0, 90);

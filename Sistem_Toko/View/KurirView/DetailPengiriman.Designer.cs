@@ -127,7 +127,7 @@ namespace Sistem_Toko.View.KurirView
             DoubleBuffered = true;
             Name = "DetailPengiriman";
             Text = "Detail Pengiriman - Toko Taniku";
-            WindowState = FormWindowState.Maximized;
+
             Load += DetailPengiriman_Load;
             PanelNota.ResumeLayout(false);
             ResumeLayout(false);

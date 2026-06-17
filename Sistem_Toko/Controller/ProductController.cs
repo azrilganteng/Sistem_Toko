@@ -51,10 +51,9 @@ namespace Sistem_Toko.Controller
         /// Tambah produk baru via fn_tambah_produk.
         /// Return id_produk yang baru dibuat.
         /// </summary>
-        public int TambahProduk(string namaProduk, int harga, int stok,
-                                 string deskripsi, int idKategori, string gambarPath)
+        public int TambahProduk(string namaProduk, int harga, string deskripsi, int idKategori, string gambarPath)
         {
-            return ProdukContext.TambahProduk(namaProduk, harga, stok, deskripsi, idKategori, gambarPath);
+            return ProdukContext.TambahProduk(namaProduk, harga, deskripsi, idKategori, gambarPath);
         }
     }
 }

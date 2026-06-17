@@ -1,4 +1,4 @@
-﻿namespace Sistem_Toko.View.KasirView
+namespace Sistem_Toko.View.KasirView
 {
     partial class FormBuyNow
     {
@@ -185,6 +185,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightGray;
             ClientSize = new Size(1067, 571);
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             Controls.Add(groupBox1);
             Controls.Add(BackBtn);
             Controls.Add(PbGambar);

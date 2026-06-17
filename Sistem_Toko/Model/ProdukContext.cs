@@ -135,20 +135,64 @@ namespace Sistem_Toko.Model
             cmd.ExecuteNonQuery();
         }
 
-        public static int TambahProduk(string namaProduk, int harga, int stok, string deskripsi, int idKategori, string gambarPath)
+        public static int TambahProduk(string namaProduk, int harga, string deskripsi, int idKategori, string gambarPath)
         {
             using var conn = connectDB.GetConn();
             if (conn.State == ConnectionState.Closed) conn.Open();
 
+            // Stok awal = 0, akan bertambah saat restock
             string sql = "SELECT fn_tambah_produk(@nama, @harga, @stok, @deskripsi, @gambar, @kategori);";
             using var cmd = new NpgsqlCommand(sql, conn);
             cmd.Parameters.AddWithValue("nama", namaProduk);
             cmd.Parameters.AddWithValue("harga", harga);
-            cmd.Parameters.AddWithValue("stok", stok);
+            cmd.Parameters.AddWithValue("stok", 0);
             cmd.Parameters.AddWithValue("deskripsi", (object)deskripsi ?? DBNull.Value);
             cmd.Parameters.AddWithValue("gambar", (object)gambarPath ?? DBNull.Value);
             cmd.Parameters.AddWithValue("kategori", idKategori);
             return Convert.ToInt32(cmd.ExecuteScalar());
+        }
+
+        public static List<(int Id, string Nama)> GetAllSupplier()
+        {
+            var list = new List<(int, string)>();
+            using var conn = connectDB.GetConn();
+            if (conn.State == ConnectionState.Closed) conn.Open();
+
+            string sql = "SELECT id_supplier, nama FROM supplier ORDER BY nama;";
+            using var cmd = new NpgsqlCommand(sql, conn);
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                list.Add((Convert.ToInt32(reader["id_supplier"]), reader["nama"].ToString() ?? ""));
+            }
+            return list;
+        }
+
+        public static int TambahSupplier(string nama, string alamat, string noHp, string email)
+        {
+            using var conn = connectDB.GetConn();
+            if (conn.State == ConnectionState.Closed) conn.Open();
+
+            string sql = "SELECT fn_tambah_supplier(@nama, @alamat, @noHp, @email);";
+            using var cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("nama", nama);
+            cmd.Parameters.AddWithValue("alamat", (object)alamat ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("noHp", (object)noHp ?? DBNull.Value);
+            cmd.Parameters.AddWithValue("email", (object)email ?? DBNull.Value);
+            
+            return Convert.ToInt32(cmd.ExecuteScalar());
+        }
+
+        public static void TambahSupplierProduk(int idSupplier, int idProduk)
+        {
+            using var conn = connectDB.GetConn();
+            if (conn.State == ConnectionState.Closed) conn.Open();
+
+            string sql = "INSERT INTO supplier_produk (id_supplier, id_produk) VALUES (@idSupplier, @idProduk);";
+            using var cmd = new NpgsqlCommand(sql, conn);
+            cmd.Parameters.AddWithValue("idSupplier", idSupplier);
+            cmd.Parameters.AddWithValue("idProduk", idProduk);
+            cmd.ExecuteNonQuery();
         }
 
         public static DataTable GetStokGudang()

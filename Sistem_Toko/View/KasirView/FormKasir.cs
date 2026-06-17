@@ -158,5 +158,57 @@ namespace Sistem_Toko
                 this.Show();
             }
         }
+
+        private void profilToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Sistem_Toko.View.FormProfil halamanProfil = new Sistem_Toko.View.FormProfil();
+            halamanProfil.Owner = this;
+            halamanProfil.ShowDialog();
+            if (halamanProfil.IsLoggedOut)
+            {
+                foreach (Form form in Application.OpenForms)
+                {
+                    if (form is Login)
+                    {
+                        form.Show();
+                        break;
+                    }
+                }
+                this.FormClosed -= FormKasir_FormClosed;
+                this.Close();
+            }
+            else
+            {
+                this.Show();
+            }
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "Apakah Anda yakin ingin logout?",
+                "Konfirmasi Logout",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                SessionUser.Id = 0;
+                SessionUser.Nama = "";
+                SessionUser.Username = "";
+                SessionUser.Role = "";
+                foreach (Form form in Application.OpenForms)
+                {
+                    if (form is Login)
+                    {
+                        form.Show();
+                        break;
+                    }
+                }
+                this.FormClosed -= FormKasir_FormClosed;
+                this.Close();
+            }
+        }
     }
 }

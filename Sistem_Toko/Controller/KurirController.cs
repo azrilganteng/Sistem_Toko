@@ -53,10 +53,6 @@ namespace Sistem_Toko.Controller
             }
 
         }
-          
-  
-            return KurirContext.GetKurirReady();
-        }
 
         /// <summary>
         /// Ambil kurir yang status ready via v_kurir_ready.

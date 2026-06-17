@@ -227,14 +227,14 @@ namespace Sistem_Toko
             profilToolStripMenuItem.Name = "profilToolStripMenuItem";
             profilToolStripMenuItem.Size = new Size(125, 24);
             profilToolStripMenuItem.Text = "Profil";
-            //profilToolStripMenuItem.Click += profilToolStripMenuItem_Click;
+            profilToolStripMenuItem.Click += profilToolStripMenuItem_Click;
             // 
             // logoutToolStripMenuItem
             // 
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
             logoutToolStripMenuItem.Size = new Size(125, 24);
             logoutToolStripMenuItem.Text = "Logout";
-            //logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
+            logoutToolStripMenuItem.Click += logoutToolStripMenuItem_Click;
             // 
             // FormKasir
             // 
@@ -243,6 +243,7 @@ namespace Sistem_Toko
             BackColor = Color.WhiteSmoke;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1067, 571);
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             Controls.Add(FlpProduk);
             Controls.Add(panel2);
             Controls.Add(panel1);

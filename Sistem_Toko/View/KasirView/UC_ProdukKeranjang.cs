@@ -30,7 +30,7 @@ namespace Sistem_Toko
             NumQty.Value = qty;
 
             // Calculate subtotal
-            //HitungSubtotal();
+            HitungSubtotal();
 
             try
             {

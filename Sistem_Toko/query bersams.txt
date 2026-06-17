@@ -836,3 +836,22 @@ LEFT JOIN kewenangan k ON k.id_user = u.id_user
 LEFT JOIN roles r ON r.id_role = k.id_role
 GROUP BY u.id_user, u.username, u.password, u.nama, u.email, u.no_hp, u.alamat, u.is_active, u.is_ready;
 
+CREATE OR REPLACE FUNCTION fn_tambah_supplier(
+    p_nama          VARCHAR,
+    p_alamat        VARCHAR,
+    p_no_hp         VARCHAR,
+    p_email         VARCHAR
+)
+RETURNS INT
+LANGUAGE plpgsql
+AS $body
+DECLARE
+    v_id_supplier INT;
+BEGIN
+    INSERT INTO supplier (nama, alamat, no_hp, email)
+    VALUES (p_nama, p_alamat, p_no_hp, p_email)
+    RETURNING id_supplier INTO v_id_supplier;
+    
+    RETURN v_id_supplier;
+END;
+$body;

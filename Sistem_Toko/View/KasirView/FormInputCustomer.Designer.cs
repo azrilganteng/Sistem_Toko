@@ -284,6 +284,7 @@ namespace Sistem_Toko.View.KasirView
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.WhiteSmoke;
             ClientSize = new Size(600, 560);
+
             Controls.Add(panelContent);
             Controls.Add(panelHeader);
             MinimizeBox = false;

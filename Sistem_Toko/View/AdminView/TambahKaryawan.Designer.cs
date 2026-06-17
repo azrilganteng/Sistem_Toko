@@ -279,6 +279,7 @@ namespace Sistem_Toko.View.AdminView
             BackgroundImage = Properties.Resources.background;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(788, 426);
+
             Controls.Add(label10);
             Controls.Add(Btn_Simpan);
             Controls.Add(ComBox_Role2);

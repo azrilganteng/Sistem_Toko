@@ -19,13 +19,13 @@ namespace Sistem_Toko.View.AdminView
             LblJudul = new Label();
             LblNama = new Label();
             LblHarga = new Label();
-            LblStok = new Label();
+            LblSupplier = new Label();
             LblDeskripsi = new Label();
             LblKategori = new Label();
             LblGambar = new Label();
             TxtNama = new TextBox();
             TxtHarga = new TextBox();
-            TxtStok = new TextBox();
+            CmbSupplier = new ComboBox();
             TxtDeskripsi = new TextBox();
             CmbKategori = new ComboBox();
             TxtGambar = new TextBox();
@@ -71,16 +71,17 @@ namespace Sistem_Toko.View.AdminView
             LblHarga.TabIndex = 2;
             LblHarga.Text = "Harga :";
             // 
-            // LblStok
+            // LblSupplier
             // 
-            LblStok.AutoSize = true;
-            LblStok.BackColor = System.Drawing.Color.Transparent;
-            LblStok.Font = new Font("Book Antiqua", 10F);
-            LblStok.Location = new Point(40, 150);
-            LblStok.Name = "LblStok";
-            LblStok.Size = new Size(51, 22);
-            LblStok.TabIndex = 3;
-            LblStok.Text = "Stok :";
+            LblSupplier = new Label();
+            LblSupplier.AutoSize = true;
+            LblSupplier.BackColor = System.Drawing.Color.Transparent;
+            LblSupplier.Font = new Font("Book Antiqua", 10F);
+            LblSupplier.Location = new Point(40, 150);
+            LblSupplier.Name = "LblSupplier";
+            LblSupplier.Size = new Size(80, 22);
+            LblSupplier.TabIndex = 3;
+            LblSupplier.Text = "Supplier :";
             // 
             // LblDeskripsi
             // 
@@ -129,12 +130,31 @@ namespace Sistem_Toko.View.AdminView
             TxtHarga.Size = new Size(160, 30);
             TxtHarga.TabIndex = 11;
             // 
-            // TxtStok
+            // CmbSupplier
             // 
-            TxtStok.Location = new Point(180, 145);
-            TxtStok.Name = "TxtStok";
-            TxtStok.Size = new Size(120, 30);
-            TxtStok.TabIndex = 12;
+            CmbSupplier = new ComboBox();
+            CmbSupplier.DropDownStyle = ComboBoxStyle.DropDownList;
+            CmbSupplier.FormattingEnabled = true;
+            CmbSupplier.Location = new Point(180, 145);
+            CmbSupplier.Name = "CmbSupplier";
+            CmbSupplier.Size = new Size(240, 31);
+            CmbSupplier.TabIndex = 12;
+            // 
+            // BtnTambahSupplier
+            // 
+            BtnTambahSupplier = new Button();
+            BtnTambahSupplier.BackColor = Color.MediumSeaGreen;
+            BtnTambahSupplier.Cursor = Cursors.Hand;
+            BtnTambahSupplier.FlatStyle = FlatStyle.Flat;
+            BtnTambahSupplier.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            BtnTambahSupplier.ForeColor = Color.White;
+            BtnTambahSupplier.Location = new Point(430, 144);
+            BtnTambahSupplier.Name = "BtnTambahSupplier";
+            BtnTambahSupplier.Size = new Size(30, 33);
+            BtnTambahSupplier.TabIndex = 100;
+            BtnTambahSupplier.Text = "+";
+            BtnTambahSupplier.UseVisualStyleBackColor = false;
+            BtnTambahSupplier.Click += BtnTambahSupplier_Click;
             // 
             // TxtDeskripsi
             // 
@@ -232,6 +252,7 @@ namespace Sistem_Toko.View.AdminView
             BackColor = Color.WhiteSmoke;
             BackgroundImage = Properties.Resources.background;
             ClientSize = new Size(730, 400);
+
             Controls.Add(BtnKembali);
             Controls.Add(BtnSimpan);
             Controls.Add(PnlPreview);
@@ -239,13 +260,14 @@ namespace Sistem_Toko.View.AdminView
             Controls.Add(TxtGambar);
             Controls.Add(CmbKategori);
             Controls.Add(TxtDeskripsi);
-            Controls.Add(TxtStok);
+            Controls.Add(CmbSupplier);
+            Controls.Add(BtnTambahSupplier);
             Controls.Add(TxtHarga);
             Controls.Add(TxtNama);
             Controls.Add(LblGambar);
             Controls.Add(LblKategori);
             Controls.Add(LblDeskripsi);
-            Controls.Add(LblStok);
+            Controls.Add(LblSupplier);
             Controls.Add(LblHarga);
             Controls.Add(LblNama);
             Controls.Add(LblJudul);
@@ -264,13 +286,14 @@ namespace Sistem_Toko.View.AdminView
         private Label LblJudul;
         private Label LblNama;
         private Label LblHarga;
-        private Label LblStok;
+        private Label LblSupplier;
         private Label LblDeskripsi;
         private Label LblKategori;
         private Label LblGambar;
         private TextBox TxtNama;
         private TextBox TxtHarga;
-        private TextBox TxtStok;
+        private ComboBox CmbSupplier;
+        private Button BtnTambahSupplier;
         private TextBox TxtDeskripsi;
         private ComboBox CmbKategori;
         private TextBox TxtGambar;

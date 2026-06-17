@@ -25,18 +25,27 @@ namespace Sistem_Toko.Model
         public static List<Pengiriman> GetStatusPengiriman(string status)
         {
             List<Pengiriman> list = new List<Pengiriman>();
-            bool statusBool = status.Equals("Selesai", StringComparison.OrdinalIgnoreCase);
+            bool isSelesai = status.Equals("Selesai", StringComparison.OrdinalIgnoreCase);
 
             using (var conn = connectDB.GetConn())
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
                 string sql = @"SELECT * FROM v_status_pengiriman
-                               WHERE status_pengiriman = @status";
+                               WHERE status_pengiriman::text = @status1 OR status_pengiriman::text = @status2";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("status", statusBool);
+                    if (isSelesai)
+                    {
+                        cmd.Parameters.AddWithValue("status1", "true");
+                        cmd.Parameters.AddWithValue("status2", "Selesai");
+                    }
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("status1", "false");
+                        cmd.Parameters.AddWithValue("status2", "Proses");
+                    }
 
                     using (var reader = cmd.ExecuteReader())
                     {
@@ -98,18 +107,14 @@ namespace Sistem_Toko.Model
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                // Menggunakan view v_status_pengiriman dengan filter id_user (kurir)
-                // NULL status = belum dikirim (sama dengan false)
-                // CATATAN: view tidak punya kolom id_kurir, gunakan id_user
+                // Menggunakan view v_status_pengiriman
+                // Memfilter hanya yang statusnya Proses atau false (aktif)
                 string sql = @"SELECT * FROM v_status_pengiriman
-                               WHERE id_user = @id_kurir
-                                 AND (status_pengiriman = false OR status_pengiriman IS NULL)
+                               WHERE status_pengiriman::text = 'false' OR status_pengiriman::text = 'Proses' OR status_pengiriman IS NULL
                                ORDER BY id_pengiriman DESC;";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("id_kurir", idKurir);
-
                     using (var reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -151,7 +156,11 @@ namespace Sistem_Toko.Model
             {
                 if (conn.State == ConnectionState.Closed) conn.Open();
 
-                string sql = @"SELECT * FROM v_detail_order WHERE id_order = @idOrder;";
+                // Langsung query ke tabel untuk menghindari error view v_detail_order yang corrupt
+                string sql = @"SELECT d.id_order, p.nama_produk, d.jumlah, d.harga, (d.jumlah * d.harga) AS subtotal 
+                               FROM detail_orders d 
+                               JOIN produk p ON d.id_produk = p.id_produk 
+                               WHERE d.id_order = @idOrder;";
 
                 using (var cmd = new NpgsqlCommand(sql, conn))
                 {

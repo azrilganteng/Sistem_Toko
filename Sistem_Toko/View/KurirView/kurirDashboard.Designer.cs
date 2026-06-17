@@ -38,10 +38,10 @@ namespace Sistem_Toko.View.KurirView
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
             label1.Font = new Font("Book Antiqua", 45F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(51, 42);
             label1.Name = "label1";
-            label1.BackColor = System.Drawing.Color.Transparent;
             label1.Size = new Size(488, 89);
             label1.TabIndex = 0;
             label1.Text = "Toko Taniku";
@@ -49,15 +49,14 @@ namespace Sistem_Toko.View.KurirView
             // lblSelamatDatang
             // 
             lblSelamatDatang.AutoSize = true;
+            lblSelamatDatang.BackColor = Color.Transparent;
             lblSelamatDatang.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblSelamatDatang.ForeColor = SystemColors.ActiveCaptionText;
             lblSelamatDatang.Location = new Point(70, 170);
             lblSelamatDatang.Name = "lblSelamatDatang";
-            lblSelamatDatang.BackColor = System.Drawing.Color.Transparent;
             lblSelamatDatang.Size = new Size(183, 31);
             lblSelamatDatang.TabIndex = 1;
             lblSelamatDatang.Text = "Selamat Datang ";
-            //lblSelamatDatang.Click += label2_Click;
             // 
             // button1
             // 
@@ -78,7 +77,7 @@ namespace Sistem_Toko.View.KurirView
             // button2
             // 
             button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button2.BackColor = Color.WhiteSmoke;
+            button2.BackColor = Color.Transparent;
             button2.Cursor = Cursors.Hand;
             button2.FlatAppearance.BorderColor = Color.SeaGreen;
             button2.FlatAppearance.BorderSize = 2;
@@ -96,21 +95,20 @@ namespace Sistem_Toko.View.KurirView
             // lblNamaKurir
             // 
             lblNamaKurir.AutoSize = true;
+            lblNamaKurir.BackColor = Color.Transparent;
             lblNamaKurir.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblNamaKurir.Location = new Point(247, 170);
             lblNamaKurir.Name = "lblNamaKurir";
-            lblNamaKurir.BackColor = System.Drawing.Color.Transparent;
             lblNamaKurir.Size = new Size(0, 31);
             lblNamaKurir.TabIndex = 4;
-            //lblNamaKurir.Click += lblNamaKurir_Click;
             // 
             // kurirDashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightGray;
+            BackgroundImage = Properties.Resources.background;
             ClientSize = new Size(1067, 571);
-            WindowState = FormWindowState.Maximized;
             Controls.Add(lblNamaKurir);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -118,6 +116,7 @@ namespace Sistem_Toko.View.KurirView
             Controls.Add(label1);
             Name = "kurirDashboard";
             Text = "DashboardKurir";
+            WindowState = FormWindowState.Maximized;
             Load += MuatDashboard;
             ResumeLayout(false);
             PerformLayout();
